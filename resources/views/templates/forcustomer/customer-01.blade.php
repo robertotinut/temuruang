@@ -1,0 +1,1251 @@
+@php
+    $couple = $couple ?? [
+        'groom' => 'Ikhsan',
+        'bride' => 'Tari',
+        'parents' => [
+            'groom' => 'Bpk. Saharuddin & Ibu Nur Aini',
+            'bride' => 'Bpk. Zaifullah, SH & Ibu Nur Aiyni. A. S.IP',
+        ],
+    ];
+
+    $event = $event ?? [
+        'date_iso' => '2025-02-14',
+        'time' => '09:00',
+        'location' => "Kediaman Mempelai Wanita",
+        'address' => 'Jl. K.H. Wahid Hasyim No. 67, Jakarta Pusat',
+        'maps_url' => 'https://maps.google.com/?q=Jakarta',
+    ];
+
+    $schedule = $schedule ?? [
+        ['title' => 'Akad Nikah', 'time' => '09:00 - Selesai', 'note' => "Kediaman Mempelai Wanita"],
+        ['title' => 'Resepsi Pernikahan', 'time' => '19:00 - 21:00 WIB', 'note' => 'NDC Hall'],
+    ];
+
+    $stories = $stories ?? [
+        ['title' => 'Awal Bertemu', 'date' => 'Maret 2022', 'text' => 'Bermula dari perkenalan singkat di bangku perkuliahan, kami menyadari banyak hal menarik yang membuat kami dekat.'],
+        ['title' => 'Menjalin Komitmen', 'date' => 'Juli 2024', 'text' => 'Kami memutuskan untuk melangkah bersama dengan komitmen serius yang matang.'],
+        ['title' => 'Menuju Pernikahan', 'date' => 'Desember 2026', 'text' => 'Hari bahagia yang dinantikan akhirnya tiba untuk menyatukan janji suci kami berdua.'],
+    ];
+
+    $gallery = $gallery ?? [
+        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
+        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
+        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
+        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400',
+        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
+        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400'
+    ];
+
+    $bg = $bg ?? [
+        'cover' => 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800',
+        'groom' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400',
+        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
+    ];
+
+    $eventDate = \Carbon\Carbon::parse($event['date_iso']);
+    $dayName = $eventDate->translatedFormat('l');
+    $dayNum = $eventDate->translatedFormat('d');
+    $monthName = $eventDate->translatedFormat('F');
+    $year = $eventDate->translatedFormat('Y');
+@endphp
+<!DOCTYPE html>
+<html lang="id" class="notranslate" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="color-scheme" content="light only">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="google" content="notranslate" />
+    <title>Wedding - {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</title>
+    <meta name="title" content="Wedding - {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}">
+    <meta name="description"
+        content="Undangan digital modern untuk pernikahan {{ $couple['groom'] }} dan {{ $couple['bride'] }}.">
+    <meta itemprop="image" content="{{ $bg['cover'] }}">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:title" content="Wedding - {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}">
+    <meta property="og:description"
+        content="Undangan digital modern untuk pernikahan {{ $couple['groom'] }} dan {{ $couple['bride'] }}.">
+    <meta property="og:image" content="{{ $bg['cover'] }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org/", 
+          "@@type": "Product", 
+          "name": "Wedding  - Phinisi Maroon",
+          "image": "https://satumomen.com/themes/phinisi-maroon/phinisi-maroon.webp",
+          "description": "Tema undangan adat phinisi makassar warna maroon coklat art - Undangan Online: Undangan digital modern untuk pernikahan dan acara spesial lainnya.",
+          "brand": {
+            "@@type": "Brand",
+            "name": "Satu Momen"
+          },
+          "review": {
+            "@@type": "Review",
+            "reviewRating": {
+              "@@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "author": {
+              "@@type": "Person",
+              "name": "Elsa Gunayanti"
+            }
+          },
+          "aggregateRating": {
+            "@@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "579"
+          },
+          "offers": {
+            "@@type": "Offer",
+            "url": "https://satumomen.com/harga",
+            "priceCurrency": "IDR",
+            "price": "85000",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          }
+        }
+    </script>
+
+
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="/plugins/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css" />
+
+    <link rel="preload" as="style" href="/build/assets/bootstrap-vCaDZZbr.css" />
+    <link rel="preload" as="style" href="/build/assets/themes-scroll-CXWhxC9B.css" />
+    <link rel="stylesheet" href="/build/assets/bootstrap-vCaDZZbr.css" />
+    <link rel="stylesheet" href="/build/assets/themes-scroll-CXWhxC9B.css" />
+    <style>
+        @import url('/fonts/e111viva/style.css');
+        @import url('/fonts/against/style.css');
+        @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+        :root {
+            --inv-bg: #f8f8f6;
+            --inv-base: #000000;
+            --inv-accent: #800000;
+            --inv-border: #d8bbb7;
+            --menu-bg: #800000;
+            --menu-inactive: #ffffff;
+            --menu-active: #d0a461;
+            --btn-color: #ffffff;
+            --font-base: "Marcellus", serif;
+            --font-accent: "Against", sans-serif;
+            --font-latin: "English111 Vivace BT", cursive;
+        }
+
+        @keyframes wave-left {
+            0% {
+                transform: rotate(-3deg);
+            }
+
+            100% {
+                transform: rotate(4deg);
+            }
+        }
+
+        @keyframes wave-right {
+            0% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-4deg);
+            }
+        }
+
+        .wave-left img {
+            animation: wave-left 4s ease-in-out infinite alternate;
+        }
+
+        .wave-right img {
+            animation: wave-right 4s ease-in-out infinite alternate;
+        }
+
+        .frame-couple::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(/themes/phinisi-maroon/frame-couple.webp);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .frame-mempelai::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(/themes/phinisi-maroon/frame-mempelai.webp);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .editor .frame-mempelai::after,
+        .editor .frame-couple::after {
+            z-index: -1
+        }
+
+        #satuMomen::before {
+            content: '';
+            background-image: url("/themes/phinisi/bg-desktop.webp");
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .cover .frame {
+            display: none
+        }
+    </style>
+
+
+    <style>
+        @import url('/fonts/brittany_signature/BrittanySignature.css');
+        @import url('/fonts/photograph_signature/fonts.css');
+        @import url('/fonts/heatwood/Heatwood.css');
+
+        .font-brittany-signature {
+            font-family: 'Brittany Signature';
+            line-height: 1.6 !important;
+        }
+
+        .font-photograph-signature {
+            font-family: 'Photograph Signature';
+            line-height: 1.6 !important;
+        }
+
+        .font-heatwood {
+            font-family: 'Heatwood';
+            line-height: 3 !important;
+        }
+
+        #YTMusic {
+            display: block
+        }
+    </style>
+    <style>
+        /* Hide dynamic satumomen watermark */
+        .watermark-placeholder svg, 
+        .watermark-placeholder img, 
+        .watermark-placeholder a, 
+        #waterMark,
+        .btn-float.bg-success {
+            display: none !important;
+        }
+        
+        /* Render TemuRuang custom watermark */
+        .watermark-placeholder::after {
+            content: "TemuRuang";
+            font-family: "Marcellus", serif;
+            font-weight: bold;
+            font-size: 14px;
+            color: #800000;
+            opacity: 0.8;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="app" class="">
+        <div id="modalOverlay" class="modal-backdrop fade" style="display: none;"></div>
+        <!-- Loader -->
+        <div id="loader" class="loader-wrapper"><span class="loader"><span class="loader-inner"></span></span></div>
+        <!-- music -->
+        <audio id="music" loop autoplay>
+            <source src="/musics/bugis-music.mp3">
+        </audio>
+        <!-- end music -->
+        <div id="satuMomen" data-guest="{{ request()->get('kpd', 'Tamu Undangan') }}" data-group="{{ request()->get('group', 'VIP') }}" class="not-open">
+            <div class="satumomen_track">
+                <ul class="satumomen_list">
+                    <li class="container-mobile satumomen_slide satumomen_cover"
+                        style="background-image: url(/themes/phinisi-maroon/bg-section.webp); background-size: cover;">
+                        <div class="workspace cover">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="pt-4 h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+                                    style="padding-bottom:80px;">
+
+                                    <div
+                                        class="mt-4 mb-auto text-center animate__animated animate__fadeInDown animate__slower">
+
+                                        <div class="editable color-accent"
+                                            style="font-size:14.4px;color:rgb(255, 255, 255);">The Wedding Of</div>
+                                        <div class="editable color-accent font-latin"
+                                            style="font-size:50px;line-height:1.2;color:rgb(255, 255, 255);">Tari &amp;
+                                            Ikhsan</div>
+                                    </div>
+                                    <div class="w-100 text-center mx-auto">
+                                        <div class="mx-auto w-100 text-center mb-3 p-2 animate__animated animate__zoomIn animate__slower"
+                                            style="border-radius:.5rem;max-width:240px;background-color:rgb(255 255 255 / 77%);backdrop-filter:blur(2px);">
+                                            <div class="editable mb-1 animate__animated animate__fadeInUp animate__slower"
+                                                style="font-size:14px;">Kepada Yth.<br />Bapak/Ibu/Saudara/i</div>
+                                            <div id="guestNameSlot"
+                                                class="editable color-accent h5 font-weight-bold mb-1 animate__animated animate__fadeInUp animate__slower"
+                                                style="font-size:16px;">Tamu Undangan</div>
+
+                                            <div id="groupNameSlot"
+                                                class="editable h5 animate__animated animate__fadeInUp animate__slower"
+                                                style="font-size:14.4px;">di Tempat</div>
+                                        </div><button
+                                            class="btn-open-invitation btn btn-primary animate__animated animate__fadeInUp animate__slow"
+                                            style="font-size:14px;">Open Invitation</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="blank-canvas" style="height: 100vh"></li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div
+                                    class="h-100 w-100 d-flex flex-column justify-content-center align-items-center overflow-hidden">
+
+                                    <div style="position:absolute;inset:0;">
+                                        <video autoplay="" playsinline="" preload="" muted="" class="w-100 h-100"
+                                            style="object-fit: cover;     object-position: center;"
+                                            poster="/themes/phinisi-maroon/poster.png">
+                                            <source
+                                                src="/themes/phinisi-maroon/bg-video.mp4"
+                                                type="video/mp4">
+                                            </source>
+                                        </video>
+                                    </div>
+                                    <div class="position-relative w-100" style="max-width:280px;">
+
+
+
+
+
+                                        <div class="w-100 text-center" style="z-index:1;">
+                                            <div class="mb-3 editable color-accent animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:40px;line-height:1.2;animation-delay:11s;">Tari &amp;
+                                                Ikhsan</div>
+                                            <div class="editable mb-3 animate__animated animate__zoomIn animate__slower"
+                                                style="font-size:18px;animation-delay:12s;">Dan di antara tanda-tanda
+                                                kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu
+                                                sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan
+                                                dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang
+                                                demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.
+                                            </div>
+                                            <div class="editable animate__animated animate__fadeInUp animate__slower font-italic"
+                                                style="font-size:18px;animation-delay:11s;">(QS Ar-Rum : 21)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div
+                                    class="h-100 w-100 overflow-hidden d-flex flex-column justify-content-center align-items-center">
+
+
+
+                                    <div class="position-relative w-100" style="max-width:350px;">
+                                        <div class="w-100">
+                                            <div class="color-accent editable text-center animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:50px;">The Bride</div>
+                                        </div>
+                                        <div class="w-100 text-center">
+
+
+                                            <div class="w-100 mx-auto animate__animated animate__zoomIn animate__slow"
+                                                style="max-width:240px;">
+                                                <div class="w-100 position-relative d-flex align-items-center justify-content-center"
+                                                    style="padding-bottom:115%;">
+                                                    <div style="width:80%;position:absolute;left:-21%;top:-30%;transform:rotate( 0deg);"
+                                                        class="wave-left">
+                                                        <img src="/themes/phinisi-maroon/flowers.webp"
+                                                            class="w-100 h-auto"
+                                                            style="pointer-events: none;     transform-origin: bottom center;"
+                                                            alt="flowers.webp" />
+                                                    </div>
+
+                                                    <div class="frame-mempelai w-100 h-100 d-flex align-items-center justify-content-center"
+                                                        style="position:absolute;top:0;">
+                                                        <div class="image-editable"
+                                                            style="height:209px;width:61%;overflow:hidden;border-radius:100%;">
+                                                            <img src="{{ $bg['bride'] }}"
+                                                                style="width: 100%; height: 100%; object-fit: cover;"
+                                                                alt="no-image.jpg" /></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center mb-4">
+                                                <div class="editable h4 mb-2 animate__animated animate__fadeInUp animate__slower color-accent"
+                                                    style="font-size:24px;">{{ $couple['bride'] }}</div>
+                                                <div class="editable animate__animated animate__fadeInUp animate__slower"
+                                                    style="font-size:14.4px;">Putri dari<br />Bapak Zaifullah, SH
+                                                    dan<br />Ibu Nur Aiyni. A. S.IP</div>
+                                            </div>
+
+
+                                            <a rel="nofollow" href="https://instagram.com/"
+                                                class="btn btn-sm link btn-primary rounded-pill"
+                                                style="line-height:1.3;font-size:14px;background-image:url('/images/instagram.png');background-size:contain;background-repeat:no-repeat;padding-left:28px;background-position:left;">instagram</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div
+                                    class="h-100 w-100 overflow-hidden d-flex flex-column justify-content-center align-items-center">
+
+
+
+                                    <div class="position-relative w-100" style="max-width:350px;">
+                                        <div class="w-100">
+                                            <div class="color-accent editable text-center animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:50px;">The Bride</div>
+                                        </div>
+                                        <div class="w-100 text-center">
+
+
+                                            <div class="w-100 mx-auto animate__animated animate__zoomIn animate__slow"
+                                                style="max-width:240px;">
+                                                <div class="w-100 position-relative d-flex align-items-center justify-content-center"
+                                                    style="padding-bottom:115%;">
+                                                    <div style="width:80%;position:absolute;left:-21%;top:-30%;transform:rotate( 0deg);"
+                                                        class="wave-left">
+                                                        <img src="/themes/phinisi-maroon/flowers.webp"
+                                                            class="w-100 h-auto"
+                                                            style="pointer-events: none;     transform-origin: bottom center;"
+                                                            alt="flowers.webp" />
+                                                    </div>
+
+                                                    <div class="frame-mempelai w-100 h-100 d-flex align-items-center justify-content-center"
+                                                        style="position:absolute;top:0;">
+                                                        <div class="image-editable"
+                                                            style="height:209px;width:61%;overflow:hidden;border-radius:100%;">
+                                                            <img src="{{ $bg['groom'] }}"
+                                                                style="width: 100%; height: 100%; object-fit: cover;"
+                                                                alt="no-image.jpg" /></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center mb-4">
+                                                <div class="editable h4 mb-2 animate__animated animate__fadeInUp animate__slower color-accent"
+                                                    style="font-size:24px;">{{ $couple['groom'] }}</div>
+                                                <div class="editable animate__animated animate__fadeInUp animate__slower"
+                                                    style="font-size:14.4px;">Pitra dari<br />Bapak Saharuddin
+                                                    dan<br />Ibu Nur Aini</div>
+                                            </div>
+
+
+                                            <a rel="nofollow" href="https://instagram.com/"
+                                                class="btn btn-sm link btn-primary rounded-pill"
+                                                style="line-height:1.3;font-size:14px;background-image:url('/images/instagram.png');background-size:contain;background-repeat:no-repeat;padding-left:28px;background-position:left;">instagram</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div
+                                    class="py-5 position-relative h-100 d-flex flex-column justify-content-start align-items-center">
+
+
+
+                                    <div class="text-center w-100 mb-1">
+
+
+                                        <div class="editable animate__animated animate__fadeInUp animate__slower color-accent font-latin"
+                                            style="font-size:40px;animation-delay:500ms;line-height:1.2;">Save The Date
+                                        </div>
+                                    </div>
+                                    <div class="text-center w-100 mb-4">
+
+
+                                    </div>
+                                    <div class="mt-4 text-center w-100 p-4 d-flex flex-column justify-content-center align-items-center position-relative animate__animated animate__zoomIn animate__slower"
+                                        style="box-shadow:0 .5rem 1rem rgba(0, 0, 0, .15) !important;max-width:320px;background-color:var(--inv-bg);border-radius:1rem;">
+
+
+                                        <div
+                                            style="padding:0.5rem;background-color:var(--inv-accent);color:var(--btn-color);border-radius:100%;position:absolute;top:-14%;width:3.6rem;height:3.6rem;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"
+                                                xml:space="preserve" height="42" width="42"
+                                                style="enable-background:new 0 0 512 512" fill="currentColor">
+                                                <path
+                                                    d="M350.87 144.228c-34.533 0-67.206 10.662-94.87 30.883-17.24-12.601-36.424-21.486-56.793-26.394l43.291-49.612c.015-.017.025-.037.039-.054.257-.299.486-.619.693-.955l.098-.161c.192-.331.36-.676.501-1.037.022-.056.041-.112.062-.169a7.44 7.44 0 0 0 .317-1.123c.007-.035.01-.07.016-.104.065-.361.102-.73.114-1.106.002-.05.007-.099.007-.149 0-.027.004-.054.004-.081 0-.359-.034-.71-.082-1.054-.01-.068-.019-.134-.031-.202a7.3 7.3 0 0 0-.274-1.111c-.016-.047-.035-.093-.051-.14a7.503 7.503 0 0 0-.489-1.106l-.026-.044a7.437 7.437 0 0 0-.714-1.056c-.008-.01-.013-.021-.021-.031l-.028-.034-33.483-41.102a7.517 7.517 0 0 0-5.827-2.769h-84.389c-2.26 0-4.4 1.017-5.827 2.769L79.625 89.382l-.028.034c-.008.01-.013.021-.021.031-.267.33-.505.683-.714 1.056l-.026.044a7.597 7.597 0 0 0-.489 1.106c-.017.047-.036.093-.051.14a7.607 7.607 0 0 0-.305 1.313 7.48 7.48 0 0 0-.082 1.054c0 .028.004.054.004.081.001.05.006.099.007.149.011.377.049.746.114 1.106.006.035.009.07.016.104.075.387.185.761.317 1.123.021.057.04.113.062.169.141.361.309.706.501 1.037.031.054.065.107.098.161.207.337.438.656.693.955.015.017.024.037.039.054l43.339 49.67C52.547 165.911 0 229.608 0 305.358c0 88.848 72.283 161.13 161.129 161.13 34.533 0 67.206-10.662 94.871-30.883 27.664 20.22 60.336 30.883 94.871 30.883 88.847 0 161.129-72.283 161.129-161.13s-72.283-161.13-161.13-161.13zM199.753 60.543l21.265 26.104h-24.456l-8.416-26.104h11.607zm-3.309 41.135h23.858l-38.285 43.877c-.232-.029-.461-.062-.691-.091l15.118-43.786zm-46.538-41.136h22.447l8.416 26.104H141.49l8.416-26.104zm30.636 41.137-14.717 42.624a166.514 166.514 0 0 0-4.694-.074c-.964 0-1.953.015-2.958.037-.579.01-1.159.019-1.738.036l-14.717-42.623h38.824zm-58.035-41.137h11.605l-8.415 26.104h-24.455l21.265-26.104zm-20.549 41.137h23.857l15.128 43.811-.68.087-38.305-43.898zm59.171 349.776c-80.558 0-146.097-65.539-146.097-146.097 0-72.876 53.636-133.457 123.504-144.349 1.744-.271 3.495-.507 5.252-.715l.66-.076a147.96 147.96 0 0 1 7.097-.619c.037-.002.073.005.11.002a184.84 184.84 0 0 1 4.86-.251c1.539-.049 3.078-.09 4.613-.09 3.075 0 6.128.195 9.449.409.162.01.324.015.484.015.121 0 .239-.022.359-.028 4.015.302 8.104.774 12.341 1.433.386.06.773.089 1.156.089l.049-.003c24.16 3.926 46.775 13.846 66.387 29.266 2.02 1.588 4 3.233 5.938 4.929a146.55 146.55 0 0 1 5.533 5.105 146.796 146.796 0 0 1 10.652 11.493l.001.001c21.763 26.151 33.749 59.317 33.749 93.388 0 31.637-10.335 62.494-29.234 87.678-.04-.034-.082-.066-.123-.099a117.623 117.623 0 0 1-3.076-2.659c-.194-.174-.383-.357-.576-.533-.809-.735-1.61-1.477-2.398-2.235-.345-.332-.68-.672-1.021-1.009-.626-.617-1.25-1.238-1.861-1.87-.37-.383-.734-.772-1.098-1.159-.57-.605-1.136-1.216-1.693-1.834-.17-.188-.337-.381-.506-.57 12.13-16.726 20.093-36.159 23.13-56.571a7.516 7.516 0 0 0-6.327-8.54 7.511 7.511 0 0 0-8.54 6.327c-2.465 16.566-8.619 32.398-17.918 46.323-12.55-18.714-19.138-40.386-19.138-63.25s6.589-44.536 19.138-63.249c10.283 15.382 16.667 32.985 18.564 51.467a7.517 7.517 0 0 0 14.954-1.536c-2.531-24.66-12.09-47.948-27.64-67.346a129.731 129.731 0 0 0-24.686-23.603c-22.197-16.215-48.494-24.787-76.048-24.787a129.009 129.009 0 0 0-84.5 31.507 7.517 7.517 0 0 0 9.846 11.358c20.703-17.949 47.215-27.833 74.653-27.833 21.723 0 42.551 6.044 60.716 17.518-20.754 27.744-32.106 61.693-32.106 96.503 0 34.809 11.352 68.759 32.106 96.503-18.165 11.474-38.993 17.518-60.716 17.518-62.872 0-114.021-51.15-114.021-114.021 0-23.382 7.024-45.85 20.312-64.976a7.516 7.516 0 0 0-1.884-10.461 7.513 7.513 0 0 0-10.46 1.884c-15.047 21.656-23 47.09-23 73.553 0 71.16 57.893 129.053 129.053 129.053 25.234 0 49.411-7.187 70.352-20.852.184.203.376.4.561.601.495.54.996 1.075 1.499 1.609.481.512.963 1.022 1.452 1.528.511.529 1.029 1.052 1.547 1.574.494.498.988.995 1.488 1.486.525.515 1.056 1.023 1.587 1.531.507.484 1.013.969 1.526 1.447.537.5 1.081.993 1.625 1.485.362.328.716.663 1.079.987-24.359 16.815-52.765 25.651-82.715 25.651zm189.741 0c-33.082 0-64.282-10.782-90.225-31.18a147.357 147.357 0 0 1-22.125-21.528c-21.763-26.153-33.749-59.318-33.749-93.389 0-31.636 10.334-62.493 29.234-87.678l.118.095c1.042.869 2.069 1.756 3.08 2.662.201.18.396.369.596.551a113.14 113.14 0 0 1 2.378 2.217c.349.336.689.681 1.034 1.022.62.612 1.239 1.228 1.845 1.854.376.388.744.783 1.113 1.176.563.599 1.123 1.202 1.674 1.813.173.192.344.388.515.582-15.867 21.908-24.543 48.552-24.543 75.707 0 29.237 10.057 57.884 28.32 80.662a129.762 129.762 0 0 0 24.685 23.604c22.197 16.215 48.495 24.787 76.049 24.787 33.75 0 65.671-12.944 89.882-36.446a7.516 7.516 0 1 0-10.471-10.785c-21.39 20.764-49.592 32.199-79.412 32.199-21.723 0-42.551-6.045-60.717-17.519 20.754-27.743 32.106-61.693 32.106-96.503s-11.352-68.76-32.106-96.503c18.166-11.474 38.994-17.518 60.717-17.518 62.872 0 114.021 51.15 114.021 114.021 0 21.164-5.838 41.823-16.884 59.742a7.516 7.516 0 0 0 2.454 10.342 7.516 7.516 0 0 0 10.342-2.454c12.509-20.292 19.121-43.678 19.121-67.63 0-71.16-57.893-129.053-129.053-129.053-25.233 0-49.411 7.187-70.352 20.852-.179-.197-.365-.389-.545-.585a171.21 171.21 0 0 0-1.54-1.654c-.468-.497-.936-.993-1.41-1.484a161.943 161.943 0 0 0-1.592-1.619c-.479-.482-.957-.964-1.442-1.44a162.796 162.796 0 0 0-1.637-1.579c-.491-.469-.981-.938-1.477-1.4-.556-.518-1.12-1.029-1.685-1.539-.348-.315-.687-.637-1.037-.948 24.361-16.81 52.766-25.646 82.717-25.646 80.558 0 146.097 65.539 146.097 146.097.002 80.556-65.537 146.095-146.096 146.095z">
+                                                </path>
+                                            </svg></div>
+                                        <div class="mt-3 mb-2 color-accent editable animate__animated animate__fadeInUp animate__slower font-accent"
+                                            style="font-size:24px;line-height:1.2;animation-delay:1500ms;">AKAD</div>
+                                        <div class="mb-3 animate__animated animate__fadeInUp animate__slower">
+
+                                            <div class="pl-3 text-center">
+
+                                                <div class="editable mb-3 font-accent" style="font-size:14.4px;">Friday,
+                                                    February 14th 2025<br />09.00 - End</div>
+                                                <div class="editable font-weight-bold font-accent"
+                                                    style="font-size:14.4px;">{{ $schedule[0]['note'] ?? "Kediaman Mempelai Wanita" }}</div>
+                                                <div class="editable" style="font-size:12px;">Jl. K.H. Wahid Hasyim No.
+                                                    67, Jakarta Pusat</div>
+                                            </div>
+                                        </div>
+                                        <div class="w-100 animate__animated animate__fadeInUp animate__slower">
+
+                                            <a href="{{ $event['maps_url'] ?? '#' }}"
+                                                rel="nofollow noreferrer noopener" target="_blank"
+                                                class="link btn btn-block btn-primary">Open Maps</a>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 text-center w-100 p-4 d-flex flex-column justify-content-center align-items-center position-relative animate__animated animate__zoomIn animate__slower"
+                                        style="box-shadow:0 .5rem 1rem rgba(0, 0, 0, .15) !important;max-width:320px;background-color:var(--inv-bg);border-radius:1rem;">
+
+
+                                        <div
+                                            style="padding:0.5rem;background-color:var(--inv-accent);color:var(--btn-color);border-radius:100%;position:absolute;top:-14%;width:3.6rem;height:3.6rem;">
+                                            <svg height="40" viewbox="0 0 56 56" width="40"
+                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                                <path
+                                                    d="M27.927 39.563c-.18 0-.36-.049-.52-.146-1.513-.921-3.024-2.482-4.025-3.63-.719-.824-1.234-1.702-1.532-2.61-.683-2.078-.188-3.824 1.393-4.915 1.874-1.294 3.557-.865 4.685.08 1.128-.942 2.813-1.372 4.685-.08 1.581 1.091 2.075 2.836 1.393 4.916-.299.909-.814 1.787-1.531 2.609-1.004 1.149-2.517 2.711-4.026 3.63a1.005 1.005 0 0 1-.522.146zm-2.318-10.102c-.357 0-.767.127-1.231.448-.524.361-1.159 1.028-.628 2.645.214.653.597 1.299 1.139 1.92.65.744 1.839 2.024 3.038 2.889 1.197-.863 2.388-2.145 3.039-2.89.54-.619.923-1.265 1.138-1.918.531-1.617-.104-2.284-.628-2.646-1.299-.897-2.165-.279-2.666.394l-.001.002c-.189.253-.565.442-.881.442s-.692-.189-.881-.442c-.323-.435-.797-.844-1.438-.844zM29.913 23.187h12.784v2H29.913z">
+                                                </path>
+                                                <path
+                                                    d="M37.336 40.101a7.227 7.227 0 0 1-3.446-.868 1 1 0 1 1 .944-1.764c1.631.873 3.463.844 5.444-.081l.905-.422c3.2-1.492 4.594-5.313 3.106-8.514-.044-.077-7.327-13.331-9.23-16.795l-6.335 2.954a1 1 0 0 1-.845-1.813l7.183-3.35a.999.999 0 0 1 1.299.425C46.1 27.595 46.1 27.595 46.123 27.654c1.932 4.156.104 9.167-4.095 11.125l-.905.421c-1.286.6-2.56.901-3.787.901z">
+                                                </path>
+                                                <path
+                                                    d="M18.753 40.101c-1.227 0-2.5-.3-3.787-.9l-.905-.422c-4.198-1.959-6.026-6.969-4.076-11.17.004-.015.004-.015 9.743-17.736a1.003 1.003 0 0 1 1.299-.425l11.929 5.563c.477.223.7.777.51 1.268l-3.711 9.563a1 1 0 1 1-1.864-.724l3.372-8.69-10.233-4.772-9.249 16.83c-1.444 3.238-.047 7 3.124 8.48l.905.422c1.998.933 3.841.954 5.479.063a1 1 0 1 1 .955 1.757 7.23 7.23 0 0 1-3.491.893zM42.251 37.865l5.066 10.577-1.804.864-5.066-10.577z">
+                                                </path>
+                                                <path
+                                                    d="M43.05 52.018a1 1 0 0 1-.433-1.901l7.182-3.442a1 1 0 1 1 .865 1.803l-7.182 3.442c-.14.066-.288.098-.432.098zM13.716 37.886l1.805.867-5.077 10.576-1.805-.866z">
+                                                </path>
+                                                <path
+                                                    d="M12.95 52.018a.984.984 0 0 1-.432-.099l-7.181-3.442a1 1 0 0 1 .864-1.803l7.181 3.442a1 1 0 0 1-.432 1.902zM25.611 25.187H13.504a1 1 0 0 1 0-2h12.107a1 1 0 0 1 0 2zM28.009 8.172a1 1 0 0 1-1-1v-2.19a1 1 0 0 1 2 0v2.19a1 1 0 0 1-1 1zM30.947 9.843a.999.999 0 0 1-.706-1.708l1.616-1.61a.998.998 0 0 1 1.414.003.999.999 0 0 1-.002 1.414l-1.616 1.61a.999.999 0 0 1-.706.291zM25.142 9.843a.996.996 0 0 1-.706-.292l-1.616-1.61a.999.999 0 1 1 1.411-1.417l1.616 1.61a.999.999 0 0 1-.705 1.709z">
+                                                </path>
+                                            </svg></div>
+                                        <div class="mt-3 mb-2 color-accent editable animate__animated animate__fadeInUp animate__slower font-accent"
+                                            style="font-size:24px;line-height:1.2;animation-delay:1500ms;">WEDDING
+                                            RECEPTION</div>
+                                        <div class="mb-3 animate__animated animate__fadeInUp animate__slower">
+
+                                            <div class="pl-3 text-center">
+
+                                                <div class="editable mb-3 font-accent" style="font-size:14.4px;">
+                                                    Saturday, 1 February 2025<br />19:00 - 21:00 WIB</div>
+                                                <div class="editable font-weight-bold" style="font-size:14.4px;">NDC
+                                                    Hall</div>
+                                                <div class="editable" style="font-size:12px;">Living World Alam Sutera,
+                                                    Lt. 2 Tangerang Selatan</div>
+                                            </div>
+                                        </div>
+                                        <div class="w-100 animate__animated animate__fadeInUp animate__slower">
+
+                                            <a href="{{ $event['maps_url'] ?? '#' }}"
+                                                rel="nofollow noreferrer noopener" target="_blank"
+                                                class="link btn btn-block btn-primary">Open Maps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="h-100 w-100 d-flex flex-column justify-content-center align-items-center">
+
+
+
+
+
+
+                                    <div class="w-100 position-relative"
+                                        style="max-width:350px;background-color:rgb(255 255 255 / 80%);padding:30px;border-radius:1rem;">
+
+
+
+
+                                        <div>
+                                            <div class="mb-4 editable text-center color-accent h4 animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:50px;">Location</div>
+
+                                            <div style="width:100%;margin:auto;border-radius:10px;overflow:hidden;margin-bottom:20px;padding-bottom:53%;position:relative;border:4px solid var(--inv-accent);"
+                                                class="animate__animated animate__zoomIn animate__slow">
+                                                <iframe width="100%" height="100%" style="border:0;position:absolute;"
+                                                    allowfullscreen=""
+                                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCpV55KNPo55TuxnDFd_dR3MD0luBrN1Gc&amp;zoom=17&amp;q={{ urlencode($event['address']) }}"
+                                                    class="maps-embed">
+                                                </iframe>
+                                            </div>
+                                            <button
+                                                class="btn-maps btn btn-sm btn-pilled btn-block btn-accent mt-1 mb-4">Edit
+                                                Denah Lokasi</button>
+                                            <div class="text-center animate__animated animate__fadeInUp animate__slow">
+
+
+                                                <div class="editable font-weight-bold" style="font-size:24px;">Grand
+                                                    Ballroom<br />Hotel Labersa</div>
+                                                <div class="editable mb-3" style="font-size:14px;">Jl. Labersa, Tanah
+                                                    Merah, Kec. Siak Hulu,<br />Kab. Kampar, Riau</div><a
+                                                    href="{{ $event['maps_url'] ?? '#' }}"
+                                                    class="rounded-pill btn-maps-link mx-auto btn btn-primary animate__animated animate__fadeInUp animate__slow"
+                                                    target="_blank" style="gap:8px;max-width:200px;font-size:14px;"
+                                                    rel="noreferrer noopener">Buka Google Maps</a>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="d-flex flex-column justify-content-center align-items-center"
+                                    style="margin:-30px;height:calc(100% + 60px);width:calc(100% + 60px);">
+
+
+
+                                    <div class="position-relative w-100 d-flex flex-column justify-content-center align-items-center"
+                                        style="box-shadow:0 .5rem 1rem rgb(0 0 0 / 10%) !important;max-width:320px;background-color:var(--inv-bg);border-radius:1rem;padding:30px;">
+
+                                        <div class="mb-4">
+                                            <div class="editable text-center color-accent h4 animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:50px;">Date</div>
+                                        </div>
+                                        <div class="px-4 w-100 position-relative mb-4" style="z-index:2;">
+
+
+                                            <div class="mb-4 countdown-wrapper d-flex flex-column animate__animated animate__zoomIn animate__slower"
+                                                data-datetime="{{ $event['date_iso'] }}T{{ $event['time'] ?? '00:00' }}">
+                                                <div class="countdown text-center flex-wrap" style="gap:0;">
+                                                    <div class="countdown-item day"
+                                                        style="width:50%;background-color:transparent;color:color: var(--inv-base);">
+                                                        <div class="number" style="font-size:32px;">00</div>
+                                                        <div class="text editable" style="font-size:20px;">Day</div>
+                                                    </div>
+                                                    <div class="countdown-item hour"
+                                                        style="width:50%;background-color:transparent;color:var(--inv-base);">
+                                                        <div class="number" style="font-size:32px;">00</div>
+                                                        <div class="text editable" style="font-size:20px;">Hour</div>
+                                                    </div>
+                                                    <div class="countdown-item minute"
+                                                        style="width:50%;background-color:transparent;color:var(--inv-base);">
+                                                        <div class="number" style="font-size:32px;">00</div>
+                                                        <div class="text editable" style="font-size:20px;">Minute</div>
+                                                    </div>
+                                                    <div class="countdown-item second"
+                                                        style="width:50%;background-color:transparent;color:var(--inv-base);">
+                                                        <div class="number" style="font-size:32px;">00</div>
+                                                        <div class="text editable" style="font-size:20px;">Second</div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn-countdown btn btn-sm btn-pilled btn-accent mt-2">Atur
+                                                    Countdown</button>
+                                            </div>
+
+
+                                            <div class="text-center">
+                                                <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=&amp;dates=%2F&amp;details=&amp;location="
+                                                    target="_blank"
+                                                    class="btn-reminder btn btn-primary rounded-pill animate__animated animate__fadeInUp animate__slow"
+                                                    rel="noreferrer noopener">Save the Date</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="d-flex flex-column justify-content-center align-items-center"
+                                    style="margin:-30px;width:calc(100% + 60px);height:calc(100% + 60px);">
+                                    <div style="width:100%;height:400px;overflow:hidden;"
+                                        class="animate__animated animate__zoomIn animate__slower">
+                                        <div class="light" style="overflow:hidden;width:100%;height:100%;">
+                                            <img src="{{ $gallery[0] ?? $bg['cover'] }}"
+                                                style="width: 100%;height: 100%;object-fit: cover;" class="lightbox"
+                                                alt="14989-gallery-1657822631.jpg" />
+                                        </div>
+                                    </div>
+
+                                    <div style="width:100%;height:250px;overflow:hidden;"
+                                        class="animate__animated animate__zoomIn animate__slower">
+                                        <div class="light" style="overflow:hidden;width:100%;height:100%;">
+                                            <img src="{{ $gallery[1] ?? $bg['cover'] }}"
+                                                style="width: 100%;height: 100%;object-fit: cover;" class="lightbox"
+                                                alt="14989-gallery-1657822631.jpg" />
+                                        </div>
+                                    </div>
+                                    <div style="width:100%;height:300px;overflow:hidden;" class="d-flex">
+                                        <div style="width:50%;height:100%;overflow:hidden;"
+                                            class="animate__animated animate__zoomIn animate__slower">
+                                            <div class="light" style="overflow:hidden;width:100%;height:100%;">
+                                                <img src="{{ $bg['groom'] }}"
+                                                    style="width: 100%;height: 100%;object-fit: cover;" class="lightbox"
+                                                    alt="14989-gallery-1657822631.jpg" />
+                                            </div>
+                                        </div>
+
+                                        <div style="width:50%;height:100%;overflow:hidden;"
+                                            class="animate__animated animate__zoomIn animate__slower">
+                                            <div class="light" style="overflow:hidden;width:100%;height:100%;">
+                                                <img src="{{ $bg['bride'] }}"
+                                                    style="width: 100%;height: 100%;object-fit: cover;" class="lightbox"
+                                                    alt="14989-gallery-1657822631.jpg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="h-100 d-flex justify-content-center align-items-center">
+
+
+                                    <div class="position-relative w-100">
+                                        <div>
+                                            <div
+                                                class="position-relative animate__animated animate__fadeInRight animate__slower">
+                                                <div style="width:51%;position:absolute;left:-13%;top:-16%;transform:rotate(353deg);"
+                                                    class="wave-left">
+                                                    <img src="/themes/phinisi-maroon/flowers.webp" class="w-100 h-auto"
+                                                        style="pointer-events: none;     transform-origin: bottom center;"
+                                                        alt="flowers.webp" />
+                                                </div>
+
+                                                <div class="image-editable"
+                                                    style="width:248px;height:195px;margin:auto;overflow:hidden;transform:translate(15px, 24px) rotate(356deg);border:4px solid var(--inv-border);border-radius:1rem;">
+                                                    <img src="{{ $gallery[4] ?? $bg['cover'] }}"
+                                                        style="width: 100%; height: 100%; object-fit: cover"
+                                                        alt="no-image.jpg" />
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="position-relative animate__animated animate__fadeInLeft animate__slower">
+                                                <div class="wave-right"
+                                                    style="width:50%;position:absolute;right:-4%;bottom:-3%;"><img
+                                                        src="/themes/cream-purple/flower-3.webp" alt="wayang-atas.webp"
+                                                        class="w-100 h-auto"
+                                                        style="pointer-events: none; transform-origin: center bottom;" />
+                                                </div>
+
+                                                <div class="image-editable"
+                                                    style="width:248px;height:195px;margin:auto;overflow:hidden;margin-bottom:20px;transform:translate(-1px, 0px) rotate(5deg);border:4px solid var(--inv-border);border-radius:1rem;">
+                                                    <img src="{{ $gallery[5] ?? $bg['cover'] }}"
+                                                        style="width: 100%; height: 100%; object-fit: cover"
+                                                        alt="no-image.jpg" />
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="editable mb-4 animate__animated animate__fadeInUp animate__slower"
+                                                    style="font-size:14.4px;">Please help us prepare by<br />confirming
+                                                    your attendance at our<br />wedding through the form below<br />and
+                                                    sending your good wishes</div>
+
+                                                <button
+                                                    class="rounded-pill btn-rsvp btn btn-primary mb-4 animate__animated animate__fadeInUp animate__slow">
+                                                    Kirim Ucapan RSVP
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="h-100 d-flex justify-content-center align-items-center">
+                                    <div class="w-100 text-center" style="max-width:300px;">
+                                        <div class="mb-4">
+                                            <div class="editable text-center color-accent h4 animate__animated animate__fadeInDown animate__slower font-latin"
+                                                style="font-size:50px;">Wedding Gift</div>
+                                        </div>
+
+                                        <div class="editable mb-4 animate__animated animate__fadeInDown animate__slower"
+                                            style="font-size:14.4px;">Your blessings mean the world to us. However, if
+                                            giving is your way of expressing love, we would gratefully accept it, as it
+                                            would add to our happiness.</div>
+                                        <div style="display:flex;gap:8px;">
+                                            <button
+                                                class="btn-gift btn btn-block btn-primary rounded-pill animate__animated animate__fadeInUp animate__slow"
+                                                style="max-width: 150px; margin: auto; font-size: 14.4px;">Cashless</button>
+                                            <button
+                                                class="btn-gift btn btn-block btn-primary rounded-pill animate__animated animate__fadeInUp animate__slow"
+                                                style="max-width: 150px; margin: auto; font-size: 14.4px;">Wedding
+                                                Gif</button>
+                                        </div>
+
+
+                                        <div class="gift-container mt-3 p-4 rounded"
+                                            style="border:1px solid var(--inv-border);">
+                                            <div class="d-flex animate__animated animate__zoomIn animate__slow">
+                                                <div class="mx-auto">
+                                                    <div class="d-flex align-items-center mb-3">
+
+                                                        <div style="width:80px;height:50px;overflow:hidden;"
+                                                            class="image-editable bg-white rounded">
+                                                            <img src="/images/logo-bca.png"
+                                                                style="width: 100%;height: 100%;object-fit: contain;"
+                                                                alt="no-image.jpg" />
+                                                        </div>
+
+
+
+                                                        <div class="text-left pl-2">
+                                                            <div class="editable account-number font-weight-bold h5 mb-0"
+                                                                style="font-size:18px;">12345678</div>
+                                                            <div class="editable" style="font-size:14.4px;">BCA : Atas
+                                                                Nama Rekening</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="width:80px;height:50px;overflow:hidden;"
+                                                            class="image-editable bg-white rounded">
+                                                            <img src="/images/logo-bni.png"
+                                                                style="width: 100%;height: 100%;object-fit: contain;"
+                                                                alt="no-image.jpg" />
+                                                        </div>
+                                                        <div class="text-left pl-2">
+                                                            <div class="editable account-number font-weight-bold h5 mb-0"
+                                                                style="font-size:18px;">12345678</div>
+                                                            <div class="editable" style="font-size:14.4px;">BCA : Atas
+                                                                Nama</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gift-container mt-3 p-4 rounded"
+                                            style="border:1px solid var(--inv-border);">
+                                            <div
+                                                class="text-center mb-2 animate__animated animate__zoomIn animate__slow">
+                                                <div class="editable font-weight-bold h5 color-accent mb-2 font-accent"
+                                                    style="font-size:18px;">Kirim Hadiah</div>
+                                                <div class="editable copy-address mb-0" style="font-size:14.4px;">Anda
+                                                    dapat mengirim kado ke:<br />Jl. Wildan Sari 1 No 11 Banjarmasin
+                                                    Barat 70119</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="container-mobile satumomen_slide"
+                        style="background-image: url(https://satumomen.com/themes/phinisi-maroon/bg.webp); ;">
+                        <div class="workspace ">
+                            <div class="content h-100 w-100 mx-auto">
+                                <div class="watermark d-flex flex-column justify-content-center h-100 w-100">
+                                    <img src="/themes/phinisi-maroon/bg-end.webp" class="h-100 w-100"
+                                        style="position: absolute;top: 0;left: 0;object-fit: cover;"
+                                        alt="470301-gallery-wnDgKfHzeY.jpg" />
+
+
+
+
+                                    <div style="width:60%;position:absolute;left:3%;bottom:-11%;" class="wave-left">
+                                        <img src="/themes/phinisi-maroon/bunga-right.webp" class="w-100 h-auto"
+                                            style="pointer-events: none;transform-origin: bottom center;animation-duration: 4.2s;"
+                                            alt="flamingo.webp" />
+                                    </div>
+                                    <div style="width:60%;position:absolute;right:3%;bottom:-12%;" class="wave-right">
+                                        <img src="/themes/phinisi-maroon/bunga-left.webp" class="w-100 h-auto"
+                                            style="pointer-events: none;transform-origin: bottom center;animation-duration: 4.5s;"
+                                            alt="flamingo.webp" />
+                                    </div>
+                                    <div style="width:60%;position:absolute;left:-25%;bottom:-6%;" class="wave-left">
+                                        <img src="/themes/phinisi-maroon/bunga-left.webp" class="w-100 h-auto"
+                                            style="pointer-events: none;transform-origin: bottom center;animation-duration: 4.2s;"
+                                            alt="flamingo.webp" />
+                                    </div>
+                                    <div style="width:60%;position:absolute;right:-25%;bottom:-6%;" class="wave-right">
+                                        <img src="/themes/phinisi-maroon/bunga-right.webp" class="w-100 h-auto"
+                                            style="pointer-events: none;transform-origin: bottom center;animation-duration: 4.3s;"
+                                            alt="flamingo.webp" />
+                                    </div>
+                                    <div class="mx-auto position-relative"
+                                        style="max-width:350px;background-color:rgb(255 255 255 / 80%);padding:30px;border-radius:1rem;box-shadow:0 .5rem 1rem rgb(0 0 0 / 10%) !important;">
+                                        <div class="w-100">
+                                            <div class="text-center">
+
+                                                <div class="editable mb-2 animate__animated animate__fadeInDown animate__slower"
+                                                    style="font-size:14.4px;">“We would like to thank you for sharing in
+                                                    our wedding celebration. We are truly grateful for your presence,
+                                                    warmth, and kind wishes. We look forward to our future together and
+                                                    creating more wonderful memories with you.”</div>
+                                                <div class="editable mb-4 animate__animated animate__fadeInDown animate__slower"
+                                                    style="font-size:14.4px;">Atas kehadiran dan do’a restunya<br />kami
+                                                    ucapkan terima kasih.</div>
+                                                <div class="mb-2 editable animate__animated animate__fadeInDown animate__slow"
+                                                    style="font-size:14.4px;">Much Love,</div>
+
+                                                <div class="text-center" style="position:relative;">
+                                                    <div class="editable color-accent h4 animate__animated animate__fadeInLeft animate__slower font-accent"
+                                                        style="font-size:32px;">Tari</div>
+                                                    <div class="h4 editable text-center color-accent animate__animated animate__zoomIn animate__slower font-latin"
+                                                        style="font-size:24px;">&amp;</div>
+                                                    <div class="editable color-accent h4 animate__animated animate__fadeInRight animate__slower font-accent"
+                                                        style="font-size:32px;">Ikhsan</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="watermark-placeholder text-center"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <img src="/themes/phinisi-maroon/left.webp"
+                                    class="frame-tl h-100 animate__animated animate__slideInLeft animate__slower">
+                                <img src="/themes/phinisi-maroon/right.webp"
+                                    class="frame-tr h-100 animate__animated animate__slideInRight animate__slower">
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Ads for free version -->
+                    <!-- end Ads for free version -->
+                </ul>
+            </div>
+        </div>
+        <!-- end invitation -->
+        <div class="floating-action d-flex align-items-end flex-column">
+            <a href="/chat?text=Saya+mau+order+undangan+digital+tema+Phinisi+Maroon" title="Pesan Tema Ini"
+                target="_blank" rel="noopener noreferrer" class="btn btn-float bg-success border-success text-white"
+                style="z-index: 99">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    focusable="false" width="1.5rem" height="1.5rem"
+                    style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                    preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413c-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214l-3.741.982l.998-3.648l-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884c2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+                        fill="currentColor"></path>
+                    <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
+                </svg>
+            </a>
+            <button id="btnQrModal" onclick="if (!window.__cfRLUnblockHandlers) return false; showModal(qrModal)"
+                class="btn btn-float " data-cf-modified-5897196ba946cc1e1cf0532d-="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <rect x="40" y="40" width="80" height="80" rx="16"></rect>
+                    <rect x="40" y="136" width="80" height="80" rx="16"></rect>
+                    <rect x="136" y="40" width="80" height="80" rx="16"></rect>
+                    <path d="M144,184a8,8,0,0,0,8-8V144a8,8,0,0,0-16,0v32A8,8,0,0,0,144,184Z"></path>
+                    <path
+                        d="M208,152H184v-8a8,8,0,0,0-16,0v56H144a8,8,0,0,0,0,16h32a8,8,0,0,0,8-8V168h24a8,8,0,0,0,0-16Z">
+                    </path>
+                    <path d="M208,184a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V192A8,8,0,0,0,208,184Z"></path>
+                </svg>
+            </button>
+            <button id="btnMusic" onclick="if (!window.__cfRLUnblockHandlers) return false; playMusic()"
+                class="btn btn-float " data-cf-modified-5897196ba946cc1e1cf0532d-="">
+                <svg class="play" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <path
+                        d="M184,152V104a8,8,0,0,1,16,0v48a8,8,0,0,1-16,0Zm40-72a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,224,80ZM53.92,34.62A8,8,0,1,0,42.08,45.38L73.55,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V175.09l42.08,46.29a8,8,0,1,0,11.84-10.76Zm92.16,77.59A8,8,0,0,0,160,106.83V32a8,8,0,0,0-12.91-6.31l-39.85,31a8,8,0,0,0-1,11.7Z">
+                    </path>
+                </svg>
+                <svg class="pause" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <path
+                        d="M160,32V224a8,8,0,0,1-12.91,6.31L77.25,176H32a16,16,0,0,1-16-16V96A16,16,0,0,1,32,80H77.25l69.84-54.31A8,8,0,0,1,160,32Zm32,64a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V104A8,8,0,0,0,192,96Zm32-16a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,224,80Z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- lightbox -->
+        <div id="lightboxWrapper" class="lightbox-wrapper">
+            <div class="lightbox-list"></div>
+            <button id="lightboxCloseBtn" class="btn btn-lightbox">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+            <div class="lightbox-navigation">
+                <button id="lightboxPrevBtn" class="btn lightbox-arrow" data-index="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="lightboxNextBtn" class="btn lightbox-arrow" data-index="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- end lightbox -->
+        <!-- startQRModal -->
+        <div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="height:100%">
+                    <div
+                        style="width: 100%;aspect-ratio: 16/9; background-size:cover; background-position: center; background-image: url(/images/no-image.jpg);">
+                    </div>
+                    <div class="text-center py-4 px-4">
+                        <div>
+                            <div class="mx-auto">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180" height="180"
+                                    viewBox="0 0 180 180">
+                                    <rect x="0" y="0" width="180" height="180" fill="#ffffff" />
+                                    <g transform="scale(7.2)">
+                                        <g transform="translate(0,0)">
+                                            <path fill-rule="evenodd"
+                                                d="M8 0L8 1L9 1L9 2L10 2L10 3L11 3L11 1L13 1L13 0L11 0L11 1L9 1L9 0ZM14 0L14 1L15 1L15 0ZM16 0L16 1L17 1L17 0ZM12 2L12 4L11 4L11 5L10 5L10 4L9 4L9 5L10 5L10 8L9 8L9 6L8 6L8 8L9 8L9 10L8 10L8 11L7 11L7 10L6 10L6 11L5 11L5 8L3 8L3 9L4 9L4 12L5 12L5 13L3 13L3 10L2 10L2 8L0 8L0 11L1 11L1 12L0 12L0 17L1 17L1 15L3 15L3 16L2 16L2 17L7 17L7 16L6 16L6 15L8 15L8 18L9 18L9 20L8 20L8 22L9 22L9 20L10 20L10 23L8 23L8 25L9 25L9 24L10 24L10 23L11 23L11 20L10 20L10 19L12 19L12 21L14 21L14 24L13 24L13 25L15 25L15 22L16 22L16 23L17 23L17 22L19 22L19 21L21 21L21 16L22 16L22 18L24 18L24 19L23 19L23 22L20 22L20 23L18 23L18 25L19 25L19 24L21 24L21 25L22 25L22 24L24 24L24 25L25 25L25 18L24 18L24 16L25 16L25 14L24 14L24 13L25 13L25 10L24 10L24 9L25 9L25 8L24 8L24 9L19 9L19 8L18 8L18 9L19 9L19 10L16 10L16 9L17 9L17 6L16 6L16 8L14 8L14 7L15 7L15 6L14 6L14 5L15 5L15 4L16 4L16 5L17 5L17 3L15 3L15 4L14 4L14 2ZM12 4L12 5L11 5L11 7L12 7L12 9L10 9L10 10L9 10L9 11L10 11L10 10L12 10L12 11L13 11L13 13L11 13L11 12L10 12L10 13L9 13L9 14L8 14L8 12L7 12L7 11L6 11L6 12L7 12L7 13L6 13L6 14L3 14L3 15L4 15L4 16L5 16L5 15L6 15L6 14L8 14L8 15L9 15L9 14L10 14L10 15L11 15L11 14L14 14L14 13L16 13L16 12L17 12L17 13L18 13L18 14L19 14L19 15L20 15L20 16L21 16L21 15L20 15L20 13L21 13L21 14L23 14L23 13L24 13L24 12L21 12L21 10L20 10L20 11L19 11L19 13L18 13L18 11L15 11L15 10L14 10L14 11L13 11L13 10L12 10L12 9L14 9L14 8L13 8L13 7L14 7L14 6L13 6L13 7L12 7L12 5L14 5L14 4ZM6 8L6 9L7 9L7 8ZM22 10L22 11L24 11L24 10ZM14 11L14 12L15 12L15 11ZM1 13L1 14L2 14L2 13ZM16 14L16 16L15 16L15 15L12 15L12 16L9 16L9 17L14 17L14 18L12 18L12 19L13 19L13 20L14 20L14 19L16 19L16 16L18 16L18 15L17 15L17 14ZM23 15L23 16L24 16L24 15ZM14 16L14 17L15 17L15 16ZM17 17L17 20L20 20L20 17ZM18 18L18 19L19 19L19 18ZM12 22L12 23L13 23L13 22ZM21 23L21 24L22 24L22 23ZM16 24L16 25L17 25L17 24ZM0 0L0 7L7 7L7 0ZM1 1L1 6L6 6L6 1ZM2 2L2 5L5 5L5 2ZM18 0L18 7L25 7L25 0ZM19 1L19 6L24 6L24 1ZM20 2L20 5L23 5L23 2ZM0 18L0 25L7 25L7 18ZM1 19L1 24L6 24L6 19ZM2 20L2 23L5 23L5 20Z"
+                                                fill="#000000" />
+                                        </g>
+                                    </g>
+                                </svg>
+
+                                <div style="margin-top: 10px; text-align: center"></div>
+                            </div>
+                        </div>
+                        <hr
+                            style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 2px dashed rgba(0,0,0,.1);">
+                        <div style="text-align: center">
+                            <strong>08 Dec 2025</strong><br>
+                            <p class="mb-0">17:40 </p>
+                            <p></p>
+                        </div>
+                        <hr
+                            style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 2px dashed rgba(0,0,0,.1);">
+                        <div style="margin-bottom: 10px">
+                            <div style="color: #b2b2b2;">Nama</div>
+                            <div>Nama Tamu</div>
+                        </div>
+                    </div>
+                    <button onclick="if (!window.__cfRLUnblockHandlers) return false; closeModal(qrModal)" type="button"
+                        class="btn btn-close" data-cf-modified-5897196ba946cc1e1cf0532d-=""><svg
+                            xmlns="http://www.w3.org/2000/svg" height="42px" width="42px" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18 18 6M6 6l12 12" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+        <!-- endQRModal -->
+        <!-- startRSVPModal -->
+        <div class="modal fade" id="rsvpModal" tabindex="-1" role="dialog" aria-labelledby="rsvpModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-4" style="height:100%">
+                    <!-- rsvp form -->
+                    <rsvp-component
+                        :lang="{&quot;invitation_code&quot;:&quot;Kode Undangan&quot;,&quot;validate_code&quot;:&quot;Validasi Kode Undangan&quot;,&quot;name&quot;:&quot;Nama&quot;,&quot;group_name&quot;:&quot;Nama Grup&quot;,&quot;phone&quot;:&quot;No Hp \/ WhatsApp&quot;,&quot;attendance&quot;:&quot;Kehadiran?&quot;,&quot;yes&quot;:&quot;Hadir&quot;,&quot;no&quot;:&quot;Tidak Hadir&quot;,&quot;guest&quot;:&quot;Orang&quot;,&quot;guest_count&quot;:&quot;Jumlah Tamu&quot;,&quot;comment&quot;:&quot;Komentar atau Ucapan&quot;,&quot;send&quot;:&quot;Kirim&quot;,&quot;update&quot;:&quot;Kirim&quot;,&quot;captcha_placeholder&quot;:&quot;Ketik Text&quot;}"
+                        :invitation_id="742896" name="Nama Tamu" code="" :replace="false" overlay="1"></rsvp-component>
+                    <!-- rsvp form -->
+                    <button onclick="if (!window.__cfRLUnblockHandlers) return false; closeModal(rsvpModal)"
+                        type="button" class="btn btn-close" data-cf-modified-5897196ba946cc1e1cf0532d-=""><svg
+                            xmlns="http://www.w3.org/2000/svg" height="42px" width="42px" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18 18 6M6 6l12 12" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+        <!-- endRSVPModal -->
+        <div id="waterMark" class="mt-5" style="display: none">
+            <div class="wm-music mt-3 text-center animate__animated animate__fadeInUp animate__slower animate__delay-1s"
+                style="font-size: 60%">
+                <div style="opacity: 0.5"><strong>Music:</strong></div>
+                <div style="opacity: 0.5">Sibali Lino Ahera Karaoke _ Bugis Sidrap _</div>
+            </div>
+        </div>
+    </main>
+    <!-- illegal -->
+    <div id="illegal" class="container-mobile"
+        style="background: #ffffff; z-index: 9999; min-height: 100vh; display: flex; justify-content: center; align-items: center; display: none">
+        <div class="modal-body modal-body d-flex flex-column align-items-center">
+            <div class="mb-4 text-center">
+                <svg width="90" height="90" fill="none">
+                    <path d="M36 28.024A18.05 18.05 0 0025.022 39M59.999 28.024A18.05 18.05 0 0170.975 39"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <ellipse cx="37.5" cy="43.5" rx="4.5" ry="7.5" fill="currentColor"></ellipse>
+                    <ellipse cx="58.5" cy="43.5" rx="4.5" ry="7.5" fill="currentColor"></ellipse>
+                    <path
+                        d="M24.673 75.42a9.003 9.003 0 008.879 5.563m-8.88-5.562A8.973 8.973 0 0124 72c0-7.97 9-18 9-18s9 10.03 9 18a9 9 0 01-8.448 8.983m-8.88-5.562C16.919 68.817 12 58.983 12 48c0-19.882 16.118-36 36-36s36 16.118 36 36-16.118 36-36 36a35.877 35.877 0 01-14.448-3.017"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path
+                        d="M41.997 71.75A14.94 14.94 0 0148 70.5c2.399 0 4.658.56 6.661 1.556a3 3 0 003.999-4.066 12 12 0 00-10.662-6.49 11.955 11.955 0 00-7.974 3.032c1.11 2.37 1.917 4.876 1.972 7.217z"
+                        fill="currentColor"></path>
+                </svg>
+                <h2 class="mb-3">Jangan Bikin Aku Sedih</h2>
+                <p>Kamu didapati mencoba menghapus watermark secara ilegal.</p>
+            </div>
+        </div>
+    </div>
+    <!-- end illegal -->
+
+    <!-- not support modal -->
+    <div class="modal fade" id="notSupport" tabindex="-1" role="dialog" aria-labelledby="notSupport" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: .8rem;">
+                <div class="modal-body text-center justify-content-center align-items-center">
+                    <h2>Pemberitahuan</h2>
+                    <p>Browser yang kamu gunakan mungkin kurang kompatibel. Beberapa fungsi undangan ini mungkin tidak
+                        dapat berjalan dengan baik. Kami merekomendasikan Chrome. Klik tombol dibawah ini untuk
+                        mendownload.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://apps.apple.com/id/app/google-chrome/id535886823" class="btn p-1"
+                            target="_BLANK">
+                            <img src="/images/btn_app_store.png" alt="AppStore" height="40px">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=in&gl=US"
+                            class="btn p-1" target="_BLANK">
+                            <img src="/images/btn_play_store.png" alt="PlayStore" height="40px">
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary btn-block rounded-pill"
+                        onclick="if (!window.__cfRLUnblockHandlers) return false; closeModal(notSupport)"
+                        data-cf-modified-5897196ba946cc1e1cf0532d-="">Tetap Akses</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- not support modal -->
+
+    <!-- start script -->
+    <script src="/themes/theme-app.js?v=160426"></script>
+
+
+    <script src="/themes/themes-scroll.js?v=160426"></script>
+
+    <script>
+        var notSupport = document.getElementById('notSupport');
+        function checkBrowser() { 
+            if(navigator.userAgent.indexOf("UCBrowser") != -1 || navigator.userAgent.indexOf("MiuiBrowser") != -1 || navigator.userAgent.indexOf("OppoBrowser") != -1) {
+                showModal(notSupport);
+                if (loader) {
+                    loader.style.display = "none";
+                }
+            }
+        }
+        checkBrowser()
+    </script>
+    <!-- end script -->
+    <script>
+
+    </script>
+    
+    
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+        integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+        data-cf-beacon='{"version":"2024.11.0","token":"bb94421b81454f668eb9cf5cf8e9f0cb","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
