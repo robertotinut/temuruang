@@ -215,9 +215,30 @@
                 <h5 class="font-size-15">{{ $package->name }}</h5>
                 <h2 class="mb-4">Rp {{ number_format($package->price, 0, ',', '.') }} <span class="font-size-13 text-muted">/ {{ $package->duration_days }} Hari</span></h2>
                 
-                <div class="text-muted mb-4">
-                    <p>{{ $package->description }}</p>
-                </div>
+                <ul class="list-unstyled mb-4 text-start font-size-14" style="padding-left: 20px; color: #74788d; line-height: 1.8;">
+                    <li><i class="mdi mdi-check text-success me-2"></i> Masa Aktif {{ $package->duration_days }} Hari</li>
+                    <li><i class="mdi mdi-check text-success me-2"></i> <strong>Galeri Foto Tanpa Batas</strong></li>
+                    <li><i class="mdi mdi-check text-success me-2"></i> Fitur RSVP & Google Maps</li>
+                    <li><i class="mdi mdi-check text-success me-2"></i> Buku Tamu & Ucapan Digital</li>
+                    
+                    @if($package->name === 'Basic')
+                        <li><i class="mdi mdi-check text-success me-2"></i> Pilih Maks. <strong>2 Template Premium</strong></li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Revisi Maks. <strong>2 Kali</strong> per Template</li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Musik Pengiring Standar</li>
+                        <li class="text-danger"><i class="mdi mdi-alert-outline me-2"></i> Dengan Watermark TemuRuang</li>
+                    @elseif($package->name === 'Plus')
+                        <li><i class="mdi mdi-check text-success me-2"></i> Pilih Maks. <strong>10 Template Premium</strong> (Recommended)</li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Revisi Maks. <strong>5 Kali</strong> per Template</li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> <strong>Musik Latar Kustom (MP3)</strong></li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> <strong>Tanpa Watermark TemuRuang</strong></li>
+                    @else
+                        <li><i class="mdi mdi-check text-success me-2"></i> Pilih Maks. <strong>20 Template Premium</strong></li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> <strong>Revisi Tanpa Batas (Unlimited)</strong></li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Musik Latar Kustom (MP3)</li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Tanpa Watermark TemuRuang</li>
+                        <li><i class="mdi mdi-check text-success me-2"></i> Efek Salju & Stardust Premium</li>
+                    @endif
+                </ul>
 
                 <div class="text-center">
                     <form action="{{ route('checkout.process') }}" method="POST">

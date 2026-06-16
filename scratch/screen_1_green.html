@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Wedding of Alex &amp; Morgan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&amp;family=Manrope:wght@200..800&amp;family=Space+Grotesk:wght@300..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffe088",
+                        "outline-variant": "#c3c8c1",
+                        "background": "#faf9f6",
+                        "deep-forest": "#1B3022",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e3e2e0",
+                        "on-primary-container": "#819986",
+                        "surface": "#faf9f6",
+                        "on-surface-variant": "#434843",
+                        "secondary-container": "#d6e7a1",
+                        "on-surface": "#1a1c1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d0e9d4",
+                        "on-primary-fixed-variant": "#364c3c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4cdb8",
+                        "on-secondary-container": "#5a682f",
+                        "surface-container-high": "#e9e8e5",
+                        "on-background": "#1a1c1a",
+                        "festive-gold": "#D4AF37",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#161f00",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "sage-green": "#8A9A5B",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "surface-tint": "#4d6453",
+                        "secondary": "#56642b",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1b3022",
+                        "secondary-fixed-dim": "#bdce89",
+                        "primary-fixed-dim": "#b4cdb8",
+                        "surface-dim": "#dbdad7",
+                        "surface-bright": "#faf9f6",
+                        "on-tertiary-container": "#4e3d00",
+                        "primary": "#061b0e",
+                        "tertiary": "#735c00",
+                        "burnished-copper": "#B87333",
+                        "surface-container-low": "#f4f3f1",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f2f1ee",
+                        "tertiary-container": "#cba72f",
+                        "alabaster-white": "#FAF9F6",
+                        "secondary-fixed": "#d9eaa3",
+                        "inverse-surface": "#2f312f",
+                        "outline": "#737973",
+                        "surface-container-highest": "#e3e2e0",
+                        "on-primary-fixed": "#0b2013",
+                        "surface-container": "#efeeeb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "overlap-offset": "-2rem",
+                        "gutter": "1.5rem",
+                        "margin-page": "2rem",
+                        "section-gap": "6rem"
+                    },
+                    "fontFamily": {
+                        "subheading": ["Space Grotesk", "sans-serif"],
+                        "display-xl-mobile": ["Anybody", "sans-serif"],
+                        "display-xl": ["Anybody", "sans-serif"],
+                        "headline-lg": ["Anybody", "sans-serif"],
+                        "headline-lg-mobile": ["Anybody", "sans-serif"],
+                        "body-md": ["Manrope", "sans-serif"],
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "label-bold": ["Space Grotesk", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "subheading": ["18px", { "lineHeight": "24px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl-mobile": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "display-xl": ["84px", { "lineHeight": "90px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "headline-lg": ["48px", { "lineHeight": "52px", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["36px", { "lineHeight": "40px", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "18px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .grain-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            pointer-events: none;
+        }
+        .polaroid-frame {
+            padding: 12px 12px 40px 12px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(27, 48, 34, 0.1);
+        }
+        .collage-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(12, 1fr);
+            height: 80vh;
+        }
+        .circular-mask {
+            clip-path: circle(50% at 50% 50%);
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .animate-sparkle {
+            animation: sparkle 2s infinite ease-in-out;
+        }
+        #main-content {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-alabaster-white text-deep-forest selection:bg-festive-gold selection:text-white overflow-x-hidden">
+<!-- Grain Overlay -->
+<div class="fixed inset-0 grain-overlay opacity-30 z-[100]"></div>
+<!-- COVER SECTION (Full Screen) -->
+<section class="relative min-h-screen flex items-center justify-center bg-alabaster-white p-margin-page overflow-hidden" id="cover">
+<div class="absolute inset-0 z-0">
+
+</div>
+<div class="relative z-10 w-full max-w-5xl">
+<!-- Triple Photo Collage with Overlaps -->
+<div class="relative h-[530px] md:h-[618px] mb-12">
+<div class="absolute top-0 left-0 w-2/3 h-4/5 z-10 overflow-hidden rounded-xl shadow-2xl rotate-[-2deg]">
+<img class="w-full h-full object-cover" data-alt="A vertical editorial wedding portrait of a stylish couple in high-fashion wedding attire, standing against a minimalist warm beige wall. The lighting is soft and directional, casting subtle shadows that emphasize the texture of the bride's lace gown and the groom's deep forest green suit. The aesthetic is modern, clean, and highly artistic, reflecting a luxury editorial vibe with a muted, warm color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwo0w1oILw-4OLO3bJtOcr3qB9E1DFUr624jG4qiVrTxtBLqLBMoZuCQx2dKy3P4M_a9oCHrCzqyDxBqyutxQGGWCk8rPip5YsA3z84H_2trrvcdhumIcYetqOVTz8_KoT5MMkRbN2psLnCg9fqK-s5eca-_Iml40pXjFIQxtWTdqJj7La8EWVBUOJ4Pt6oZdxrEhk_pkTKwfrpidh798fzIC_cFekRK7V5hY2Ev9qP-pzdCv9o5PLc_8yi5QLVh7N2wWKxhITELfH"/>
+</div>
+<div class="absolute bottom-0 right-0 w-1/2 h-3/5 z-20 overflow-hidden rounded-xl shadow-2xl rotate-[3deg] border-4 border-white">
+<img class="w-full h-full object-cover" data-alt="A close-up horizontal shot of a couple's hands interlaced, featuring a beautiful gold engagement ring with a botanical vine detail. The background is a soft-focus garden setting with sage green foliage and warm sunlight filtering through the trees. The image has a romantic, intimate feel with high contrast and rich textures, perfectly aligned with a festive yet modern wedding theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyY7rmGqI4-CGtmFRnMdL-U94yx5sK5gStM8JirhlwzA0l6E_p7i5lRksnBPSMq8a3PnF0J3XnW_vPDoOyShO-x3vFxwyEW1Tyxhc8mN1QHo_x18-pQVuAc1S5DKU8SUjX1T298syJxgFGrfT4IFMSiANUX2Vfp5KIGADwrSZfV_Atpsc0rWp7d7M29Y_usHkJjM-sDtUR0RwhlEPS2X5YHzFUV2d4vXgTA3B7ITBrWhDxrCy2Fnq64g2gFZ9W9viV_2Ozk9ijtPG_"/>
+</div>
+<div class="absolute top-1/4 right-0 w-1/3 h-1/3 z-30 overflow-hidden rounded-full shadow-xl animate-pulse">
+<img class="w-full h-full object-cover" data-alt="A candid, artistic black and white photo of a bride and groom laughing together during a golden hour sunset. The composition uses a circular mask, emphasizing the central subjects against a blurred, airy landscape. The lighting is ethereal with a noticeable lens flare, creating a joyful and expressive atmosphere that captures the 'meriah' essence of the celebration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhQuA2VoSGKSmUG9RBRIPzljcTsSLPOa5rpNGSkl4bCYP5V4gZeutZVK1J69r-uZqKZmFY_uCmuDJ90ULprz0-imlzaMCan6IxGgyyudB2ee0qqYZdQ9cWrVqIVg04fmphB5XMHvaoFRq0voyAZa10Of5Dl10oX9TPcH9s2pTk9_GSKDA-pQBUUyTxorn4v8fELojBLimKwad7u1-z_dvnnMhmmsigCNZEk459ducaVKX_NOX18kEsnPm-GxF8TITUL04whT7I5PWs"/>
+</div>
+<!-- Gold Ornaments -->
+<div class="absolute -top-10 -left-10 w-40 h-40 opacity-40 pointer-events-none">
+
+</div>
+<div class="absolute -bottom-10 right-1/4 w-32 h-32 text-festive-gold opacity-60">
+<span class="material-symbols-outlined text-[80px]" data-weight="fill">park</span>
+</div>
+</div>
+<div class="text-center space-y-6">
+<p class="font-subheading text-subheading uppercase tracking-[0.3em]">The Wedding Invitation of</p>
+<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-deep-forest leading-none">
+<span class="block text-festive-gold">ALEX</span>
+<span class="block">&amp; MORGAN</span>
+</h1>
+<div class="py-6 inline-block">
+<div class="bg-sage-green/10 backdrop-blur-sm border border-sage-green/20 px-8 py-4 rounded-full">
+<p class="font-label-bold text-label-bold text-deep-forest/60">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mt-1">Nama Tamu Undangan</h2>
+</div>
+</div>
+<div>
+<button class="group relative px-10 py-4 bg-deep-forest text-festive-gold font-label-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-deep-forest/20" onclick="openInvitation()">
+<span class="relative z-10 flex items-center gap-2">
+                            BUKA UNDANGAN
+                            <span class="material-symbols-outlined">mail</span>
+</span>
+<div class="absolute inset-0 bg-festive-gold transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity z-10 text-deep-forest">
+                            SELAMAT DATANG
+                        </span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN CONTENT -->
+<main id="main-content">
+<!-- Floating Navigation -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-max z-50 flex gap-4 px-6 py-3 bg-deep-forest/90 dark:bg-surface-container-highest/90 backdrop-blur-xl rounded-full shadow-2xl shadow-deep-forest/20 hidden" id="navbar">
+<a class="bg-sage-green text-white rounded-full p-3 transition-all hover:scale-110" href="#hero">
+<span class="material-symbols-outlined">auto_awesome</span>
+</a>
+<a class="text-primary-fixed-dim p-3 hover:text-festive-gold transition-colors" href="#events">
+<span class="material-symbols-outlined">event</span>
+</a>
+<a class="text-primary-fixed-dim p-3 hover:text-festive-gold transition-colors" href="#gallery">
+<span class="material-symbols-outlined">photo_library</span>
+</a>
+<a class="text-primary-fixed-dim p-3 hover:text-festive-gold transition-colors" href="#rsvp">
+<span class="material-symbols-outlined">edit_note</span>
+</a>
+</nav>
+<!-- TOP BAR -->
+<header class="fixed top-0 w-full z-[40] flex justify-between items-center px-margin-page h-16 bg-alabaster-white/80 backdrop-blur-md">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-deep-forest font-bold tracking-tighter">A &amp; M</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-deep-forest">favorite</span>
+</div>
+</header>
+<!-- HERO SECTION -->
+<section class="pt-32 pb-section-gap px-margin-page relative overflow-hidden" id="hero">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/2 relative">
+<div class="polaroid-frame rotate-[-3deg] relative z-10">
+<img class="w-full aspect-[4/5] object-cover grayscale-[20%] sepia-[10%]" data-alt="A warm-toned, full-body portrait of the bride and groom standing in an old-world European library. The groom is leaning against a mahogany bookshelf while the bride looks towards the camera with a gentle smile. The lighting is moody and dramatic with golden rays streaming through a high window, creating a cinematic and artful atmosphere. The color palette emphasizes deep forest greens and alabaster whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnZZjJdfz2oxZAEQUaBmilSuejNJln7zbQBobJuLl_RKwUFdFGssVmP3qY_7zXVyCYfefVHojyrCN8XGaaUD6Jrm2Yp6KPOWEHDgHbfykTYv7Ow0IdguT4jRqfGHjy5ACSLYpfo6EYQuCPEXy1ZvuL9ZCiexdj9J2aaEvqBbtBcq8RJeiiDl5X32bI278Z9yhovyEo2JVd9CXxOh-bW1FhAN6T9EYd7eEmpl7yF6nlHmloApT65NrDp8tsy5ZX6lrXe-RHinAXBisO"/>
+</div>
+<!-- Festive Sparkles -->
+<div class="absolute -top-4 -right-4 w-12 h-12 text-festive-gold animate-sparkle">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">flare</span>
+</div>
+<div class="absolute top-1/2 -left-8 w-16 h-16 text-sage-green/40 opacity-50">
+
+</div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-deep-forest leading-tight">
+                        Waktu yang <span class="italic text-festive-gold">Ditunggu-tunggu</span> Akan Segera Tiba
+                    </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        "Cinta bukan tentang berapa hari, bulan, atau tahun kalian bersama. Cinta adalah tentang seberapa besar kalian saling mencintai setiap harinya."
+                    </p>
+<!-- Countdown -->
+<div class="flex gap-4">
+<div class="bg-sage-green p-4 rounded-xl text-white text-center flex-1 shadow-lg shadow-sage-green/20">
+<span class="font-headline-lg-mobile text-headline-lg-mobile block" id="days">00</span>
+<span class="font-label-bold text-[10px] uppercase tracking-widest">Hari</span>
+</div>
+<div class="bg-sage-green p-4 rounded-xl text-white text-center flex-1 shadow-lg shadow-sage-green/20">
+<span class="font-headline-lg-mobile text-headline-lg-mobile block" id="hours">00</span>
+<span class="font-label-bold text-[10px] uppercase tracking-widest">Jam</span>
+</div>
+<div class="bg-sage-green p-4 rounded-xl text-white text-center flex-1 shadow-lg shadow-sage-green/20">
+<span class="font-headline-lg-mobile text-headline-lg-mobile block" id="minutes">00</span>
+<span class="font-label-bold text-[10px] uppercase tracking-widest">Menit</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROFILE SECTION -->
+<section class="py-section-gap bg-surface-container-low relative overflow-hidden" id="profiles">
+<div class="absolute top-0 right-0 w-64 h-64 text-festive-gold/10 -rotate-12 translate-x-20">
+<span class="material-symbols-outlined text-[300px]">filter_vintage</span>
+</div>
+<div class="max-w-6xl mx-auto px-margin-page relative z-10">
+<div class="flex flex-col md:flex-row gap-24 items-center">
+<!-- Groom -->
+<div class="w-full md:w-1/2 text-right flex flex-col md:flex-row-reverse items-center gap-8">
+<div class="polaroid-frame rotate-[2deg] w-72 flex-shrink-0 group hover:rotate-0 transition-transform duration-500">
+<img class="w-full aspect-square object-cover" data-alt="A portrait of a handsome groom in a tailored dark suit, looking thoughtfully away from the camera. The setting is a minimalist indoor studio with soft, natural side-lighting that highlights his features and the fine texture of his suit. The overall mood is sophisticated, masculine, and artfully understated, maintaining the clean modern aesthetic of the wedding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAihcWViQptcMxEq5NhDUD7l9GNu5gQ1Ghol0VbtzfgZ8JzvP1JW_7P01Qf0U92UhQd84Y13V_iUBLjT6ZJnwmE_8yICfbF0CLVdF4D77O5fdMKwOa4M4wuMS-sDXtlMSZMiJSxq7BlGrVJwhws4JUmkTnokcR1XDGcH3KuMyv2XbouHlYO70ay3SyJodkLsK37CkdB3ooe6bAOWQjx4C0xw6NXQFOVmkscro_2Yj76-MwX0vSYh7bpvCe07MS9HJMCnYm4Km9-EKzV"/>
+</div>
+<div class="space-y-4">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-deep-forest">Alexandro Putra</h3>
+<p class="font-body-md text-body-md italic text-sage-green">"Seorang pemimpi yang akhirnya menemukan rumah dalam pelukanmu."</p>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Putra pertama dari <br/>Bpk. Heru &amp; Ibu Sarah</p>
+</div>
+</div>
+<div class="font-display-xl-mobile text-display-xl-mobile text-festive-gold md:rotate-90">&amp;</div>
+<!-- Bride -->
+<div class="w-full md:w-1/2 flex flex-col md:flex-row items-center gap-8">
+<div class="polaroid-frame rotate-[-4deg] w-72 flex-shrink-0 group hover:rotate-0 transition-transform duration-500">
+<img class="w-full aspect-square object-cover" data-alt="A beautiful, ethereal portrait of a bride in a minimalist silk gown, holding a bouquet of dried sage and eucalyptus. She is standing against a soft-lit, white-washed brick wall, with a gentle smile. The lighting is airy and high-key, creating a serene and timeless atmosphere that reflects the artful and modern celebration theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVq_cJRRjrt244E2Ap6MM4ARZxEwAALWSSKTRsRDYMYvbUTAbJnVg4uly5MvgK0_Q-UeHsAUEHpw5BFQVSVbeD-mJtQGir4ZiXZssDT7AiRziXmJzHNVXSVPamvNbVzPw9LDknBfkIpuN28fGG3Uwwr9rBm-YrdGNVo1tk672E4YmfwlDcO2-s8kFvvQw7-2YgNPOe9lbmptCyUQKvL5RRkmxlOyekIhbHa6OK8XAA5D3WwqYezApx33MchpwuvdRqZ2f172Lddrog"/>
+</div>
+<div class="space-y-4">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-deep-forest">Morgana Jelita</h3>
+<p class="font-body-md text-body-md italic text-sage-green">"Menemukan petualangan terindah dalam setiap percakapan kita."</p>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Putri tunggal dari <br/>Bpk. Wijaya &amp; Ibu Ratna</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SAVE THE DATE SECTION -->
+<section class="py-section-gap px-margin-page" id="events">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16 space-y-4">
+<span class="font-subheading text-subheading text-festive-gold uppercase tracking-[0.2em]">The Celebration</span>
+<h2 class="font-headline-lg text-headline-lg">Waktu &amp; Tempat</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-8 items-stretch">
+<!-- Akad -->
+<div class="relative p-12 bg-sage-green/5 rounded-3xl overflow-hidden group hover:bg-sage-green/10 transition-colors border-t-4 border-sage-green">
+<div class="relative z-10 space-y-6">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-4xl text-sage-green">church</span>
+<span class="font-label-bold text-label-bold text-sage-green uppercase tracking-widest">Akad Nikah</span>
+</div>
+<div class="space-y-2">
+<p class="font-headline-lg-mobile text-headline-lg-mobile">08:00 - 10:00</p>
+<p class="font-label-bold text-label-bold">Minggu, 24 November 2024</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Gedung Kesenian Jakarta, Jl. Gedung Kesenian No.1, Sawah Besar, Jakarta Pusat.</p>
+<a class="inline-flex items-center gap-2 font-label-bold text-festive-gold hover:underline" href="#">
+                                LIHAT LOKASI <span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 text-sage-green opacity-5">
+<span class="material-symbols-outlined text-[200px]">spa</span>
+</div>
+</div>
+<!-- Resepsi -->
+<div class="relative p-12 bg-deep-forest text-white rounded-3xl overflow-hidden shadow-2xl translate-y-8 md:translate-y-16 border-t-4 border-festive-gold">
+<div class="relative z-10 space-y-6">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-4xl text-festive-gold">celebration</span>
+<span class="font-label-bold text-label-bold text-festive-gold uppercase tracking-widest">Resepsi</span>
+</div>
+<div class="space-y-2">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-festive-gold">11:00 - Selesai</p>
+<p class="font-label-bold text-label-bold">Minggu, 24 November 2024</p>
+</div>
+<p class="font-body-md text-body-md text-white/70">Grand Ballroom Gedung Kesenian, Jl. Gedung Kesenian No.1, Jakarta Pusat.</p>
+<a class="inline-flex items-center gap-2 font-label-bold text-festive-gold hover:text-white transition-colors" href="#">
+                                LIHAT LOKASI <span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 text-festive-gold opacity-10">
+<span class="material-symbols-outlined text-[200px]">wine_bar</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- GALLERY SECTION (Artful Circular & Broken Grid) -->
+<section class="py-section-gap px-margin-page bg-alabaster-white overflow-hidden mt-32" id="gallery">
+<div class="max-w-6xl mx-auto">
+<div class="mb-16">
+<h2 class="font-display-xl-mobile text-display-xl-mobile text-deep-forest">Our <span class="text-sage-green italic">Artful</span> Moments</h2>
+</div>
+<div class="grid grid-cols-12 grid-rows-6 gap-4 h-[1060px]">
+<!-- Large Circle -->
+<div class="col-span-6 row-span-3 circular-mask overflow-hidden group cursor-pointer relative shadow-xl">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A wide-angle landscape photo of a couple walking through a field of wild sage under a dramatic, cloudy sky. The lighting is moody and expressive, with a few beams of sunlight breaking through. The composition is artistic and expansive, with the couple appearing small against the vast, atmospheric background, reflecting a modern editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgstP4pxlw1uk-d-WjTrIhJQDKzVZO_CTZPtF8WlRK8bFhVsGoOq14_rwfUl8860N2crR6-E9PgGNhb_3my2J-ivkJONp6rOO0xbE_Nd_X8yvCev-9rzRn3oggAzB4RM3kLNBWppo4epB3UYJM9H9e72YiGV1KH8TzFo_uJqfmBYtSVAsFmSVVK5JCz3RdMgiVcTMCm4qLW9460rJ-sbddOlxjHl4-un44TiZNz2VCWPYGiZtSZJjt4T06Yr9E12y3F9te-pVzs7oj"/>
+</div>
+<!-- Sharp Vertical -->
+<div class="col-span-6 row-span-2 overflow-hidden rounded-xl group cursor-pointer relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A focused, modern portrait of the bride's veil blowing in the wind, catching the soft afternoon light. The background is a clean, minimalist urban environment with neutral-toned buildings. The image has high contrast and a sharp, contemporary feel, emphasizing movement and texture in a highly artistic manner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8J_3jfGhpLSqLcKqm8ZAF-ou92Ohi3Wo5TqBlz0p6KAwq2I7IqIetHg2GPf9GuPQVCBcY-mUoTj6qdrWbXFVLCi_uBHFYsvWLDl_y7qJNPtLCEbmjyxxvAzvuGgTAE1P1PAuWVd6OlEQXOvWdegg-kZMkt8xiEZuTy_ZlIdripWha21RZHiGE-puLXFLxDEC11wE-A5hNx71BNdVWwfGLDTfWQGD_h6DBOi4Qa-yHoLU7JaK6vUdYSPyyUQJlAW0T3gLXa8Bw19N-"/>
+</div>
+<!-- Offset Small Square -->
+<div class="col-span-3 row-span-2 overflow-hidden rounded-full group cursor-pointer relative border-4 border-festive-gold p-2 translate-y-[-20%]">
+<img class="w-full h-full object-cover rounded-full" data-alt="A macro shot of two minimalist gold wedding bands resting on a piece of rough-textured Alabaster stone. The lighting is stark and directional, creating deep shadows and highlighting the clean lines of the jewelry. The aesthetic is extremely modern and luxurious, fitting the 'Artful Celebration' theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAunwKrcC8lYWh-FOSa5QrPUP8I1EiAOWvVvPAETCkv-FcuPrsYEmM0xC4ejR5wU-XmVPA6uL6TNY0Xo7rKAmDa7VVS-_dTYnhKC7pl2lsqcW2S6GEyqhRvtepJ-bH1adCYfRUyWf_Dh6PTT26zE5Or7Dco4Cr2eYkgnLrIsz1jRnv7YN7YcSJlKpFsOp2JBgP7Y7jkb_Q2whj60wBIEnFh6c0T3uNYJx8JzoaRXhIH-7uyNVIWsSaKvqVo7wPVjJjUQsXomEA2DIHb"/>
+</div>
+<!-- Horizontal Break-out -->
+<div class="col-span-9 row-span-2 overflow-hidden rounded-2xl group cursor-pointer relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A lifestyle photo of the bride and groom sharing a toast with champagne in a modern glasshouse setting. The surrounding greenery is lush and vibrant, contrasting with the clean, sharp lines of the architecture. The lighting is festive and bright, capturing a moment of 'meriah' celebration and joy in a stylish, contemporary way." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjDoyj188A8UZsvNYZMjNZ_OULl7HrAR17V09f2QxVxBcRAzrfhLeJowPkUS607k_VhhCJQ8XleaMuRDrRkT9iTIYjw9u_aq90aIN8cpWUiiVEVwuJNocqKEUKFnVrIgm-GHdXQol0dLSRlBBRkkFP-495YMh2NBToqTONl93-vsXr15xhl2-2kUsTFvXtX1XdcSYfQEWhJIP8Bv_KjSVe1Je46VbMaGG9hlXG0NRTSzREJQdsxAPauM2vgntgk9whGB-dZiPleazJ"/>
+</div>
+<!-- Final Circle -->
+<div class="col-span-5 row-span-2 circular-mask overflow-hidden group cursor-pointer relative translate-x-[-20%]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An artistic black and white portrait of the couple's silhouette against a large, bright window. The focus is on the contrast between light and dark, creating a dramatic and puitis atmosphere. The minimalist composition and high contrast reflect the modern, editorial-style photography central to this invitation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmOGkQBmcTS3qUIg7e6yov9l-WZdVLzG4SjLl6dtFKLxmz1uZXLOUEhk5zaAHo1AjzhEqOCmV0_bcP9QYndFqE1-GaU6XrWHIBFmkor5CUBxqBnwdSvkOeLBX30lL297b4yVO0kGpkicSVOJdgcEopt0QE2jrF8ugC-PDIuyFwgy91LjB0eCH6Odz5gh3GN3zLPeEAZ6x54MPFuYfwZo8TDV3Xzdp1EgEMusxbLFz4g85wGRSZY7pJGhVwqI8gV-Gb8_xI27u-l5Wc"/>
+</div>
+</div>
+</div>
+</section>
+<!-- RSVP SECTION -->
+<section class="py-section-gap px-margin-page bg-deep-forest text-white relative" id="rsvp">
+<div class="max-w-2xl mx-auto relative z-10">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg text-festive-gold mb-4">RSVP Konfirmasi Kehadiran</h2>
+<p class="font-body-md text-body-md opacity-70">Mohon konfirmasi kehadiran Anda sebelum tanggal 10 November 2024.</p>
+</div>
+<form class="space-y-8">
+<div class="space-y-1">
+<label class="font-label-bold text-label-bold text-festive-gold uppercase tracking-widest">Nama Lengkap</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-sage-green focus:ring-0 focus:border-festive-gold transition-colors text-body-lg p-4 placeholder:text-white/20" placeholder="Masukkan nama Anda" type="text"/>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-1">
+<label class="font-label-bold text-label-bold text-festive-gold uppercase tracking-widest">Jumlah Tamu</label>
+<select class="w-full bg-transparent border-0 border-b-2 border-sage-green focus:ring-0 focus:border-festive-gold transition-colors text-body-lg p-4">
+<option class="text-deep-forest">1 Orang</option>
+<option class="text-deep-forest">2 Orang</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-label-bold text-label-bold text-festive-gold uppercase tracking-widest">Kehadiran</label>
+<select class="w-full bg-transparent border-0 border-b-2 border-sage-green focus:ring-0 focus:border-festive-gold transition-colors text-body-lg p-4">
+<option class="text-deep-forest">Hadir</option>
+<option class="text-deep-forest">Berhalangan Hadir</option>
+</select>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-bold text-label-bold text-festive-gold uppercase tracking-widest">Pesan &amp; Doa</label>
+<textarea class="w-full bg-transparent border-0 border-b-2 border-sage-green focus:ring-0 focus:border-festive-gold transition-colors text-body-lg p-4 placeholder:text-white/20" placeholder="Tuliskan ucapan untuk mempelai" rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-festive-gold text-deep-forest font-label-bold rounded-full transition-transform hover:scale-105 active:scale-95" type="button">
+                        KIRIM KONFIRMASI
+                    </button>
+</form>
+</div>
+</section>
+<!-- GIFT SECTION -->
+<section class="py-section-gap px-margin-page bg-alabaster-white">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-headline-lg text-headline-lg mb-8">Wedding Gift</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto mb-12">
+                    Kehadiran dan doa restu Anda adalah kado terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, Anda dapat memberikannya melalui:
+                </p>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="p-8 bg-surface-container-high rounded-3xl border border-outline-variant/30 flex flex-col items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-sage-green">account_balance</span>
+<p class="font-label-bold text-label-bold">BANK CENTRAL ASIA (BCA)</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile">1234567890</p>
+<p class="font-body-md text-body-md">a.n Alexandro Putra</p>
+<button class="px-6 py-2 border-2 border-burnished-copper text-burnished-copper rounded-full font-label-bold hover:bg-burnished-copper hover:text-white transition-all">
+                            Salin Rekening
+                        </button>
+</div>
+<div class="p-8 bg-surface-container-high rounded-3xl border border-outline-variant/30 flex flex-col items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-sage-green">featured_play_list</span>
+<p class="font-label-bold text-label-bold">BANK MANDIRI</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile">0987654321</p>
+<p class="font-body-md text-body-md">a.n Morgana Jelita</p>
+<button class="px-6 py-2 border-2 border-burnished-copper text-burnished-copper rounded-full font-label-bold hover:bg-burnished-copper hover:text-white transition-all">
+                            Salin Rekening
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-low py-20 px-margin-page flex flex-col items-center text-center gap-8 border-t border-outline-variant/20">
+<h2 class="font-display-xl-mobile text-display-xl-mobile text-deep-forest dark:text-festive-gold">A &amp; M</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md italic">
+                "Cinta adalah satu-satunya kebebasan di dunia ini karena ia begitu tinggi membumbung sehingga hukum-hukum kemanusiaan dan gejala-gejala alami tidak dapat mengubah jalannya."
+            </p>
+<div class="flex gap-8">
+<a class="font-label-bold text-label-bold text-deep-forest hover:text-festive-gold transition-colors" href="#">Instagram</a>
+<a class="font-label-bold text-label-bold text-deep-forest hover:text-festive-gold transition-colors" href="#">Our Story</a>
+<a class="font-label-bold text-label-bold text-deep-forest hover:text-festive-gold transition-colors" href="#">RSVP</a>
+</div>
+<p class="font-label-bold text-label-bold text-sage-green opacity-60">With love, Alex &amp; Morgan 2024</p>
+</footer>
+</main>
+<script>
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const main = document.getElementById('main-content');
+            const nav = document.getElementById('navbar');
+            
+            cover.classList.add('transition-all', 'duration-1000', '-translate-y-full', 'opacity-0');
+            setTimeout(() => {
+                cover.style.display = 'none';
+                main.style.display = 'block';
+                nav.classList.remove('hidden');
+                initCountdown();
+                
+                // Play audio logic would go here
+            }, 800);
+        }
+
+        function initCountdown() {
+            const targetDate = new Date("Nov 24, 2024 08:00:00").getTime();
+            
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("days").innerText = "00";
+                    document.getElementById("hours").innerText = "00";
+                    document.getElementById("minutes").innerText = "00";
+                }
+            }, 1000);
+        }
+
+        // Add some parallax effect on scroll for decorative elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const ornaments = document.querySelectorAll('.material-symbols-outlined');
+            ornaments.forEach((orn, idx) => {
+                const speed = (idx % 3 + 1) * 0.1;
+                orn.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&amp;family=Space+Grotesk:wght@600&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#464653",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "inverse-surface": "#303037",
+                    "tertiary-container": "#cca830",
+                    "on-tertiary-container": "#4f3e00",
+                    "tertiary": "#735c00",
+                    "on-background": "#1b1b22",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary-container": "#000080",
+                    "outline-variant": "#c6c5d5",
+                    "midnight-tint": "#000066",
+                    "inverse-primary": "#bfc2ff",
+                    "on-tertiary-fixed": "#241a00",
+                    "primary-fixed": "#e0e0ff",
+                    "surface-container-low": "#f5f2fc",
+                    "surface-container-high": "#eae7f0",
+                    "gold-foil": "#D4AF37",
+                    "inverse-on-surface": "#f2eff9",
+                    "surface-container": "#efecf6",
+                    "on-secondary-container": "#616363",
+                    "tertiary-fixed": "#ffe088",
+                    "secondary-fixed": "#e2e2e2",
+                    "ink-black": "#00001A",
+                    "surface": "#fbf8ff",
+                    "primary": "#00003c",
+                    "paper-white": "#FAFAFA",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1eb",
+                    "background": "#fbf8ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-container": "#dfe0e0",
+                    "surface-dim": "#dbd9e2",
+                    "on-surface": "#1b1b22",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fbf8ff",
+                    "surface-container-highest": "#e4e1eb",
+                    "outline": "#767684",
+                    "on-primary-container": "#777eea",
+                    "on-primary-fixed": "#00006e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#bfc2ff",
+                    "on-primary-fixed-variant": "#3239a3",
+                    "surface-tint": "#4b53bc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-offset": "40px",
+                    "gutter": "16px",
+                    "section-gap": "120px",
+                    "content-margin": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Space Grotesk"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "display-grand-mobile": ["Playfair Display"],
+                    "display-grand": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "script-accent": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-grand-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "900"}],
+                    "display-grand": ["84px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "script-accent": ["42px", {"lineHeight": "1.2", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FAFAFA; scroll-behavior: smooth; overflow-x: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .gold-border { border: 1px solid #D4AF37; }
+        .paper-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+        .ornament-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #D4AF37;
+            pointer-events: none;
+        }
+        .ornament-corner-tl { top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+        .ornament-corner-tr { top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+        .ornament-corner-bl { bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+        .ornament-corner-br { bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .masonry-item:nth-child(3n) { grid-column: span 2; }
+        
+        .timeline-scroll::-webkit-scrollbar { display: none; }
+        .timeline-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: rotate-slow 20s linear infinite; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-gold-foil/30">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-transparent flex justify-between items-center px-content-margin py-6">
+<div class="font-script-accent text-script-accent text-gold-foil">N &amp; A</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gold-foil transition-colors active:scale-95 duration-300" id="musicToggle">music_note</button>
+<button class="material-symbols-outlined text-gold-foil transition-colors active:scale-95 duration-300">menu</button>
+</div>
+</header>
+<!-- Cover Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-paper-white paper-texture" id="cover">
+<div class="absolute -top-20 -left-20 opacity-20 pointer-events-none">
+<svg class="text-gold-foil" fill="none" height="400" viewbox="0 0 100 100" width="400">
+<path d="M50 0C50 27.6142 27.6142 50 0 50C27.6142 50 50 72.3858 50 100C50 72.3858 72.3858 50 100 50C72.3858 50 50 27.6142 50 0Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="relative w-full max-w-6xl mx-auto px-content-margin grid grid-cols-12 gap-4 items-center mb-16">
+<div class="col-span-12 md:col-span-6 z-20 transform md:-rotate-2">
+<div class="relative p-3 bg-white shadow-2xl gold-border">
+<img alt="Wedding Portrait" class="w-full aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmHeF02Bg2ubkn7S02dUxp2l7U2yGjCWk21VCIa9_TQ1JdhkQD7AbuEEjfIo-hwLVa31l21yPhgMnbYfF4Cssfw1lA46eSTOPVBNUv66O35hrgXHJ68L8yhxs1Br_S1ThFWEOV69uAVrKHLSc52CndI7gwyjRz7abcehkAmBlVbnYqnsdC6Tp1c-FkO6mbo9Yqi77xCAsiW04h8MlkmavJPpQgfQj-i2dMdUQzQCOtcprp1oSfMyUMy8iq0xupvhP7Cqxftku4E_g"/>
+</div>
+</div>
+<div class="col-span-6 md:col-span-3 mt-12 md:-mt-24 z-30">
+<div class="relative rounded-full overflow-hidden border-2 border-gold-foil aspect-square shadow-xl parallax-circle">
+<img alt="Detail Shot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJXF19H1ONnwCk--fvP_udobe_AhJ53CQVvwJPPF9RnwSWU_NDV-JCGx6zBDxoG4VRYrb4zOpTwy8zaHn5mwIIvl5prhLNJFC1VyAFTun9V-X33Xb4v0kKHIJhQr_sm5SFt4Z45N_g9vBwc1A1xf4cB9UTQuAu498s3EgYGR3ZiQhPYeT5ad9HkAGey8we4Xz8cNoe0INOeE1qXwYPlsYR2be__rNjRQL9VN6CYW1ESYWiyIe7UR7me1GRVeQ7FRxBHobL_8ASKrw"/>
+</div>
+</div>
+<div class="col-span-6 md:col-span-3 mt-6 md:mt-48 z-10">
+<div class="relative p-2 bg-white gold-border shadow-lg transform rotate-6">
+<img alt="Event Vibe" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpTClHT_k_2wzq0y-6WOINxcIIVS7SUzm3WS2tTlz_y1_ertGucWeS1ja7YhQN5bd7Fh9mCXfPahQ552vK2wQS8nOx1vVJl9vGJ2ePIRYHHtzaXfZTDEv6-eU160OQi3D48dGE_M2bI2QgVkcLHR3fpPu1pP2aL23OHkEzL2ruRISkEYSTznCEnH83Mg3fFcCT979fQCjcnBQIkb8wpZzHFHknvQ37-ai-IK1PLYNbAAZ8FKBjjBrScknbzETqgLx4gUyc1-cnbfA"/>
+</div>
+</div>
+</div>
+<div class="relative z-40 text-center px-4 max-w-4xl mx-auto">
+<span class="font-label-caps text-label-caps text-gold-foil mb-4 block tracking-[0.3em]">THE WEDDING OF</span>
+<h1 class="flex flex-col items-center justify-center gap-2">
+<span class="font-display-grand text-display-grand md:text-[120px] text-primary leading-[0.8] font-black uppercase tracking-tighter">Naurah</span>
+<span class="font-script-accent text-script-accent text-gold-foil text-6xl md:text-8xl -my-4 md:-my-8 italic">&amp;</span>
+<span class="font-display-grand text-display-grand md:text-[120px] text-primary leading-[0.8] font-black uppercase tracking-tighter">Arya</span>
+</h1>
+<div class="mt-12">
+<a class="group relative inline-flex items-center justify-center px-10 py-4 font-label-caps text-label-caps text-paper-white bg-primary overflow-hidden transition-all duration-300 hover:scale-105" href="#mempelai">
+<span class="relative z-10">BUKA UNDANGAN</span>
+<div class="absolute inset-0 bg-gold-foil translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</a>
+</div>
+</div>
+</section>
+<!-- Mempelai Section -->
+<section class="relative py-section-gap bg-surface overflow-hidden paper-texture" id="mempelai">
+<div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+<svg class="text-midnight-tint w-96 h-96" fill="currentColor" viewbox="0 0 100 100"><path d="M50 0C50 50 0 50 0 50C50 50 50 100 50 100C50 50 100 50 100 50C50 50 50 0 50 0Z"></path></svg>
+</div>
+<div class="max-w-4xl mx-auto px-content-margin relative z-10">
+<div class="text-center mb-16">
+<span class="font-label-caps text-gold-foil tracking-widest block mb-4 uppercase">Mengenal Lebih Dekat</span>
+<h2 class="font-headline-lg text-primary uppercase italic">Sang Mempelai</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<!-- Naurah -->
+<div class="flex flex-col items-center">
+<div class="relative w-full max-w-[280px] p-4 bg-white shadow-xl transform -rotate-3 gold-border mb-8">
+<img alt="Naurah Portrait" class="w-full aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040200"/>
+<div class="mt-4 font-script-accent text-primary text-center text-2xl">Naurah Al-Zahra</div>
+</div>
+<div class="text-center">
+<p class="font-body-md text-secondary">Putri bungsu dari</p>
+<p class="font-headline-md text-primary">Bpk. H. Ahmad &amp; Ibu Hj. Siti</p>
+</div>
+</div>
+<!-- Arya -->
+<div class="flex flex-col items-center">
+<div class="relative w-full max-w-[280px] p-4 bg-white shadow-xl transform rotate-3 gold-border mb-8">
+<img alt="Arya Portrait" class="w-full aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040201"/>
+<div class="mt-4 font-script-accent text-primary text-center text-2xl">Arya Pratama</div>
+</div>
+<div class="text-center">
+<p class="font-body-md text-secondary">Putra pertama dari</p>
+<p class="font-headline-md text-primary">Bpk. Ir. Gunawan &amp; Ibu Ratna</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Save The Date / Event Section -->
+<section class="relative py-section-gap bg-midnight-tint overflow-hidden" id="acara">
+<!-- Ornament Background -->
+<div class="absolute inset-0 opacity-5 pointer-events-none">
+<svg height="100%" width="100%"><pattern height="100" id="grid" patternunits="userSpaceOnUse" width="100"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="gold" stroke-width="0.5"></path></pattern><rect fill="url(#grid)" height="100%" width="100%"></rect></svg>
+</div>
+<div class="max-w-5xl mx-auto px-content-margin relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-display-grand text-gold-foil text-6xl md:text-8xl italic mb-4">Save the Date</h2>
+<div class="h-px w-24 bg-gold-foil mx-auto"></div>
+</div>
+<div class="relative space-y-12">
+<!-- Akad Card -->
+<div class="relative bg-primary p-8 md:p-12 border border-gold-foil/30 shadow-2xl ml-0 md:mr-12 group transition-transform hover:-translate-y-2">
+<div class="ornament-corner ornament-corner-tl"></div>
+<div class="ornament-corner ornament-corner-br"></div>
+<div class="grid md:grid-cols-2 gap-8 items-center">
+<div>
+<span class="font-label-caps text-gold-foil block mb-4">08:00 - 10:00 WIB</span>
+<h3 class="font-headline-lg text-paper-white mb-4">Akad Nikah</h3>
+<p class="text-secondary-fixed-dim font-body-md mb-6 leading-relaxed">Prosesi sakral penyatuan dua janji suci di bawah naungan Ridho Ilahi.</p>
+<div class="flex items-start gap-3 text-gold-foil">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-md">Masjid Agung Al-Azhar, Jakarta Selatan</span>
+</div>
+</div>
+<div class="hidden md:block">
+<img alt="Masjid" class="w-full h-48 object-cover rounded border border-gold-foil/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040202"/>
+</div>
+</div>
+</div>
+<!-- Resepsi Card -->
+<div class="relative bg-primary p-8 md:p-12 border border-gold-foil/30 shadow-2xl mr-0 md:ml-12 group transition-transform hover:-translate-y-2">
+<div class="ornament-corner ornament-corner-tr"></div>
+<div class="ornament-corner ornament-corner-bl"></div>
+<div class="grid md:grid-cols-2 gap-8 items-center">
+<div class="order-2 md:order-1 hidden md:block">
+<img alt="Ballroom" class="w-full h-48 object-cover rounded border border-gold-foil/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040203"/>
+</div>
+<div class="order-1 md:order-2 text-right md:text-left">
+<span class="font-label-caps text-gold-foil block mb-4">19:00 - SELESAI</span>
+<h3 class="font-headline-lg text-paper-white mb-4">Resepsi Pernikahan</h3>
+<p class="text-secondary-fixed-dim font-body-md mb-6 leading-relaxed">Malam perayaan penuh suka cita bersama keluarga dan kerabat terdekat.</p>
+<div class="flex items-start justify-end md:justify-start gap-3 text-gold-foil">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-md">The Grand Ballroom, Mulia Senayan</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Kisah Cinta Section -->
+<section class="py-section-gap bg-paper-white paper-texture overflow-hidden" id="kisah">
+<div class="max-w-6xl mx-auto px-content-margin">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-primary uppercase">Kisah Kami</h2>
+<p class="text-gold-foil font-script-accent text-3xl">A Journey to Forever</p>
+</div>
+<div class="overflow-x-auto timeline-scroll flex gap-8 pb-12 snap-x">
+<!-- Timeline Item 1 -->
+<div class="min-w-[300px] md:min-w-[400px] snap-center">
+<div class="p-6 bg-white shadow-lg gold-border">
+<img alt="First Meet" class="w-full aspect-video object-cover mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040204"/>
+<span class="font-label-caps text-gold-foil">AGUSTUS 2021</span>
+<h4 class="font-headline-md text-primary mt-2">Pertemuan Pertama</h4>
+<p class="font-body-md text-secondary mt-2">Tak sengaja bertemu di sebuah galeri seni, berawal dari diskusi tentang lukisan klasik.</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="min-w-[300px] md:min-w-[400px] snap-center">
+<div class="p-6 bg-white shadow-lg gold-border">
+<img alt="Engagement" class="w-full aspect-video object-cover mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040205"/>
+<span class="font-label-caps text-gold-foil">JANUARI 2023</span>
+<h4 class="font-headline-md text-primary mt-2">Lamaran</h4>
+<p class="font-body-md text-secondary mt-2">Di bawah pendar lampu kota, kami memutuskan untuk melangkah ke jenjang yang lebih serius.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="min-w-[300px] md:min-w-[400px] snap-center">
+<div class="p-6 bg-white shadow-lg gold-border">
+<img alt="Now" class="w-full aspect-video object-cover mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040206"/>
+<span class="font-label-caps text-gold-foil">JUNI 2024</span>
+<h4 class="font-headline-md text-primary mt-2">Selamanya</h4>
+<p class="font-body-md text-secondary mt-2">Hari ini, kami mengukir janji untuk menua bersama dalam cinta yang abadi.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Galeri Section -->
+<section class="py-section-gap bg-primary overflow-hidden" id="galeri">
+<div class="max-w-6xl mx-auto px-content-margin">
+<div class="text-center mb-16">
+<span class="font-label-caps text-gold-foil tracking-widest block mb-4">OUR MOMENTS</span>
+<h2 class="font-display-grand text-paper-white text-5xl italic">Galeri Kebahagiaan</h2>
+</div>
+<div class="masonry-grid">
+<div class="masonry-item relative group overflow-hidden">
+<img alt="Gallery 1" class="w-full h-full object-cover gold-border grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040207"/>
+</div>
+<div class="masonry-item relative group overflow-hidden">
+<img alt="Gallery 2" class="w-full h-full object-cover gold-border grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040208"/>
+</div>
+<div class="masonry-item relative group overflow-hidden">
+<img alt="Gallery 3" class="w-full h-full object-cover gold-border grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040209"/>
+</div>
+<div class="masonry-item relative group overflow-hidden">
+<img alt="Gallery 4" class="w-full h-full object-cover gold-border grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9E3M0I9iMvI_lY7yI7V9N4K0Y0E0Z0W0O0I0G0F0D0B0A0806040210"/>
+</div>
+</div>
+</div>
+</section>
+<!-- RSVP & Ucapan -->
+<section class="py-section-gap bg-paper-white paper-texture" id="rsvp">
+<div class="max-w-4xl mx-auto px-content-margin">
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Form RSVP -->
+<div class="bg-white p-8 shadow-xl gold-border relative">
+<div class="ornament-corner ornament-corner-tl w-10 h-10"></div>
+<h3 class="font-headline-md text-primary mb-8 text-center uppercase tracking-wider">Konfirmasi Kehadiran</h3>
+<form class="space-y-6">
+<div>
+<label class="font-label-caps text-secondary block mb-2 uppercase">Nama Lengkap</label>
+<input class="w-full bg-surface border-b-2 border-gold-foil/30 focus:border-gold-foil focus:ring-0 px-0 py-3 transition-colors" placeholder="Masukkan nama Anda" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-secondary block mb-2 uppercase">Kehadiran</label>
+<select class="w-full bg-surface border-b-2 border-gold-foil/30 focus:border-gold-foil focus:ring-0 px-0 py-3 transition-colors">
+<option>Hadir</option>
+<option>Berhalangan Hadir</option>
+</select>
+</div>
+<button class="w-full bg-primary text-paper-white font-label-caps py-4 tracking-widest hover:bg-midnight-tint transition-colors">KIRIM KONFIRMASI</button>
+</form>
+</div>
+<!-- Pesan Section -->
+<div class="flex flex-col">
+<h3 class="font-headline-md text-primary mb-8 uppercase tracking-wider">Ucapan &amp; Doa</h3>
+<div class="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+<div class="p-4 bg-white shadow-md border-l-4 border-gold-foil">
+<p class="font-body-md text-on-surface-variant italic">"Selamat menempuh hidup baru Naurah &amp; Arya! Semoga sakinah mawaddah warahmah."</p>
+<span class="font-label-caps text-gold-foil block mt-2">— Sahabat Naurah</span>
+</div>
+<div class="p-4 bg-white shadow-md border-l-4 border-gold-foil">
+<p class="font-body-md text-on-surface-variant italic">"Bahagia selalu ya kalian berdua, ditunggu kabar baik selanjutnya!"</p>
+<span class="font-label-caps text-gold-foil block mt-2">— Keluarga Besar Arya</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Kado Digital -->
+<section class="py-section-gap bg-midnight-tint relative overflow-hidden" id="kado">
+<div class="max-w-4xl mx-auto px-content-margin relative z-10">
+<div class="text-center mb-12">
+<span class="material-symbols-outlined text-gold-foil text-6xl mb-4">wallet</span>
+<h2 class="font-headline-lg text-paper-white uppercase italic">Wedding Gift</h2>
+<p class="text-secondary-fixed-dim mt-4">Kehadiran Anda adalah kado terindah, namun jika Anda ingin memberikan tanda kasih, silakan melalui rekening di bawah ini:</p>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-primary-container p-8 border border-gold-foil/30 rounded-xl text-center relative group overflow-hidden">
+<div class="absolute inset-0 bg-gold-foil/5 translate-x-full group-hover:translate-x-0 transition-transform"></div>
+<img alt="BCA" class="h-8 mx-auto mb-6 grayscale invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHhpCTTEWuPDa6x_sfuIjzy2aToOMjMDAPvq99PWsiqz82WL-7iRnRXWWTvyZZZdxiJFt4rIzABWgiZqIpleWXdU_fCqk1j9yEmGVE-ZdtvpNKCbhvYnRyjUmqURIybJEhfJ5Q8EHCtGbXLCRXJ9EZXSBOo6qmExUpNHgtSKforQFdfIyJvuWZFl9ck5NeS8pRPv0zfKBIhzOAA5UMkoDsra_XMS2oWGx7Lw40cNMP50VEEYb7G-zUCDrS0LxE1eXzuEDnP3_BVU8"/>
+<p class="font-label-caps text-secondary-fixed-dim mb-2 uppercase">NOMOR REKENING</p>
+<p class="font-display-grand text-3xl text-gold-foil mb-4 tracking-wider">123 456 7890</p>
+<p class="font-body-md text-paper-white">a.n Naurah Al-Zahra</p>
+<button class="mt-6 flex items-center gap-2 mx-auto text-gold-foil font-label-caps border border-gold-foil px-4 py-2 hover:bg-gold-foil hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">content_copy</span> SALIN
+                </button>
+</div>
+<div class="bg-primary-container p-8 border border-gold-foil/30 rounded-xl text-center relative group overflow-hidden">
+<div class="absolute inset-0 bg-gold-foil/5 translate-x-full group-hover:translate-x-0 transition-transform"></div>
+<img alt="Mandiri" class="h-8 mx-auto mb-6 grayscale invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhoh7T0N76ZCdKAMzxmBMXZni51wIKp4haCuBX7kmH4JCyuTR80p5JsWPGSCSdd2WwXFb0RgrVnNHb03Io9UCngXLKH-Frxj7HqF1E9UX-fHtfShSVGWrgxXPoCBuNMqSnf25p8d2gxULsCVfmoq3nNm8WWBsuVPa_b--ZHIguYxayslqMBvcMr3zoLcasBreiC5U8wwcIq-KiUutjPw_h-r9BJrFO7dR2jqMV6Ky4ZGKlTIkY-3t6VHvTT4M2eo4eqdhp6MwUc4E"/>
+<p class="font-label-caps text-secondary-fixed-dim mb-2 uppercase">NOMOR REKENING</p>
+<p class="font-display-grand text-3xl text-gold-foil mb-4 tracking-wider">098 765 4321</p>
+<p class="font-body-md text-paper-white">a.n Arya Pratama</p>
+<button class="mt-6 flex items-center gap-2 mx-auto text-gold-foil font-label-caps border border-gold-foil px-4 py-2 hover:bg-gold-foil hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">content_copy</span> SALIN
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-section-gap relative overflow-hidden bg-primary border-t border-gold-foil/20 flex flex-col items-center text-center px-content-margin">
+<div class="font-display-grand text-display-grand text-paper-white mb-4 text-6xl md:text-8xl opacity-20 absolute -top-10">N &amp; A</div>
+<div class="relative z-10">
+<h2 class="font-script-accent text-gold-foil text-5xl mb-8">Naurah &amp; Arya</h2>
+<p class="font-body-lg text-secondary-fixed-dim max-w-lg mb-12 italic">"And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."</p>
+<p class="font-label-caps text-label-caps text-gold-foil mb-8 tracking-widest uppercase">2024 NAURAH &amp; ARYA — CREATED WITH LOVE</p>
+<div class="flex gap-8 justify-center">
+<a class="font-label-caps text-label-caps text-secondary-fixed-dim hover:text-paper-white transition-opacity duration-300" href="#">Digital Invitation</a>
+<a class="font-label-caps text-label-caps text-secondary-fixed-dim hover:text-paper-white transition-opacity duration-300" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<!-- Navigation Pill (Bottom) -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-8 items-center z-50 bg-primary/60 backdrop-blur-md rounded-full px-8 py-4 border border-gold-foil/30 shadow-xl">
+<a class="material-symbols-outlined text-gold-foil scale-110 transition-all duration-500 ease-out hover:scale-125" href="#cover">home</a>
+<a class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all hover:scale-125" href="#mempelai">favorite</a>
+<a class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all hover:scale-125" href="#acara">event</a>
+<a class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all hover:scale-125" href="#galeri">celebration</a>
+</nav>
+<script>
+    // Smooth Scroll Interactivity for Nav
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Update active state
+            document.querySelectorAll('nav a').forEach(a => a.classList.replace('text-gold-foil', 'text-secondary-fixed-dim'));
+            this.classList.replace('text-secondary-fixed-dim', 'text-gold-foil');
+        });
+    });
+
+    // Parallax Effect for Circular Images & Floating elements
+    window.addEventListener('scroll', () => {
+        const circles = document.querySelectorAll('.parallax-circle');
+        const scroll = window.pageYOffset;
+        circles.forEach(circle => {
+            const speed = 0.1;
+            circle.style.transform = `translateY(${scroll * speed}px)`;
+        });
+    });
+
+    // Music Toggle
+    const musicBtn = document.getElementById('musicToggle');
+    let isPlaying = false;
+    musicBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+            musicBtn.classList.add('animate-spin-slow');
+            musicBtn.style.color = '#D4AF37';
+        } else {
+            musicBtn.classList.remove('animate-spin-slow');
+        }
+    });
+
+    // Handle Copy to Clipboard for Bank Accounts
+    document.querySelectorAll('button:contains("SALIN")').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const accountNumber = this.parentElement.querySelector('.text-3xl').innerText;
+            navigator.clipboard.writeText(accountNumber);
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> COPIED';
+            setTimeout(() => { this.innerHTML = originalText; }, 2000);
+        });
+    });
+</script>
+</body></html>

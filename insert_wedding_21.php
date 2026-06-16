@@ -8,13 +8,13 @@ $kernel->bootstrap();
 use App\Models\Template;
 
 $t = [
-    'name' => 'Golden Floral Minimalist',
+    'name' => 'Elegant Festive Maroon Wedding',
     'event_type_id' => 1,
     'slug' => 'wedding-21',
-    'description' => 'Desain elegan, bersih, dan modern dengan ornamen floral warna emas. Sangat cocok untuk pasangan yang menyukai kesederhanaan mewah.',
+    'description' => 'Desain undangan pernikahan dengan nuansa merah marun megah yang berpadu serasi dengan detail emas berkilau dan efek glassmorphism yang premium.',
     'is_premium' => false,
     'is_active' => true,
-    'theme_category' => 'Soft & Elegant'
+    'theme_category' => 'Unik & Kreatif'
 ];
 
 Template::updateOrCreate(['slug' => $t['slug']], $t);

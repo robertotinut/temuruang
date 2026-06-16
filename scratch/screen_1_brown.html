@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Wedding of Aria &amp; Bima</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Outfit:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        
+        .gold-foil-text {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-border {
+            border-image: linear-gradient(to right, #D4AF37, #F9E498, #D4AF37) 1;
+        }
+
+        .scrapbook-tape {
+            background: rgba(250, 249, 246, 0.4);
+            backdrop-filter: blur(2px);
+            transform: rotate(-15deg);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-soft {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floral-bg {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIyjIm2o-gtIh94Zp7DErNglZl7nQzyPcjI8lm8jQKQNkuCpzQK9sc0P6AEAUpeLL4AdXD8qigZMVi96uU2tZOKHFIZgWxs4m_V10lVPs9hOYcB8YGNj5uxSDPDP4D1UddNplzroadToabVkB_xqm5Vzy_8TKLZJpi23N5YPiBmm3ir9rK4R9csUuyszi87w4MJfLNOT1KpgGybN22nfof7lqyCWxoMv1gv-f7HjJ8HYX5ULbhCdiyRoVoARRVCfMvjWNEDihhEek');
+            background-size: 400px;
+            opacity: 0.08;
+        }
+
+        .gold-corner-tl { background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3Hb-5cKbunbfhxe5veKc52gShQJmkkAmMKOtKDjX7ehyS0xAgsD6eOgYrk9hpVy5tvGeucaUTCOQ8wSh9kNwlQTy8q5kVD7soht5j4J5RGK9dC0nU935_STLR7CyiWdn8snr6Sd4-D0x2PX9QkTBDjHMsBrK_BPyucckCgtt8GSCPT8AGFDdSCFBIBb1a8GqKJDAkxE2IVFhNa7IJNe69CFfrfHsZJObNoIpQT_U9ADOcSR59Lz1gYw9njU0wh7ukHhZWA9jhR9o'); background-size: 200%; background-position: top left; }
+        .gold-corner-tr { background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3Hb-5cKbunbfhxe5veKc52gShQJmkkAmMKOtKDjX7ehyS0xAgsD6eOgYrk9hpVy5tvGeucaUTCOQ8wSh9kNwlQTy8q5kVD7soht5j4J5RGK9dC0nU935_STLR7CyiWdn8snr6Sd4-D0x2PX9QkTBDjHMsBrK_BPyucckCgtt8GSCPT8AGFDdSCFBIBb1a8GqKJDAkxE2IVFhNa7IJNe69CFfrfHsZJObNoIpQT_U9ADOcSR59Lz1gYw9njU0wh7ukHhZWA9jhR9o'); background-size: 200%; background-position: top right; }
+        .gold-corner-bl { background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3Hb-5cKbunbfhxe5veKc52gShQJmkkAmMKOtKDjX7ehyS0xAgsD6eOgYrk9hpVy5tvGeucaUTCOQ8wSh9kNwlQTy8q5kVD7soht5j4J5RGK9dC0nU935_STLR7CyiWdn8snr6Sd4-D0x2PX9QkTBDjHMsBrK_BPyucckCgtt8GSCPT8AGFDdSCFBIBb1a8GqKJDAkxE2IVFhNa7IJNe69CFfrfHsZJObNoIpQT_U9ADOcSR59Lz1gYw9njU0wh7ukHhZWA9jhR9o'); background-size: 200%; background-position: bottom left; }
+        .gold-corner-br { background: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3Hb-5cKbunbfhxe5veKc52gShQJmkkAmMKOtKDjX7ehyS0xAgsD6eOgYrk9hpVy5tvGeucaUTCOQ8wSh9kNwlQTy8q5kVD7soht5j4J5RGK9dC0nU935_STLR7CyiWdn8snr6Sd4-D0x2PX9QkTBDjHMsBrK_BPyucckCgtt8GSCPT8AGFDdSCFBIBb1a8GqKJDAkxE2IVFhNa7IJNe69CFfrfHsZJObNoIpQT_U9ADOcSR59Lz1gYw9njU0wh7ukHhZWA9jhR9o'); background-size: 200%; background-position: bottom right; }
+
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 50%;
+            background: #D4AF37;
+            opacity: 0.3;
+        }
+
+        .parallax-layer {
+            transition: transform 0.2s ease-out;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#ffdbce",
+                      "on-primary-fixed-variant": "#613e31",
+                      "tertiary-fixed": "#ffdbcf",
+                      "surface-container-highest": "#e3e2e0",
+                      "inverse-primary": "#ecbcaa",
+                      "tertiary-fixed-dim": "#e1bfb3",
+                      "on-surface": "#1a1c1a",
+                      "primary": "#32170d",
+                      "surface-tint": "#7b5647",
+                      "primary-fixed-dim": "#ecbcaa",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "gold-foil-light": "#F9E498",
+                      "inverse-surface": "#2f312f",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#574500",
+                      "secondary": "#735c00",
+                      "secondary-fixed": "#ffe088",
+                      "tertiary-container": "#452f27",
+                      "deep-espresso": "#26140D",
+                      "creamy-alabaster": "#FAF9F6",
+                      "on-secondary-container": "#745c00",
+                      "surface-container": "#efeeeb",
+                      "on-tertiary-fixed": "#291710",
+                      "secondary-fixed-dim": "#e9c349",
+                      "on-secondary-fixed": "#241a00",
+                      "inverse-on-surface": "#f2f1ee",
+                      "on-primary-container": "#bf9282",
+                      "surface-variant": "#e3e2e0",
+                      "outline-variant": "#d5c3bd",
+                      "on-primary-fixed": "#2e140a",
+                      "on-primary": "#ffffff",
+                      "metallic-gold": "#D4AF37",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e9e8e5",
+                      "primary-container": "#4b2c20",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#faf9f6",
+                      "outline": "#83746f",
+                      "on-tertiary-container": "#b5968b",
+                      "surface": "#faf9f6",
+                      "on-background": "#1a1c1a",
+                      "background": "#faf9f6",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#fed65b",
+                      "festive-accent": "#8B0000",
+                      "surface-container-low": "#f4f3f1",
+                      "rich-chocolate": "#4B2C20",
+                      "on-surface-variant": "#504440",
+                      "surface-dim": "#dbdad7",
+                      "on-tertiary-fixed-variant": "#594138",
+                      "tertiary": "#2d1a13"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "section-gap": "80px",
+                      "stack-lg": "32px",
+                      "stack-xs": "4px",
+                      "grid-margin": "24px",
+                      "polaroid-padding": "12px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Outfit"],
+                      "display-hero-mobile": ["Playfair Display"],
+                      "label-bold": ["Outfit"],
+                      "label-sm": ["Outfit"],
+                      "headline-md": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"],
+                      "display-hero": ["Playfair Display"],
+                      "body-md": ["Outfit"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-hero-mobile": ["42px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "900"}],
+                      "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "display-hero": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-creamy-alabaster font-body-md text-on-surface selection:bg-metallic-gold selection:text-white overflow-x-hidden">
+<div class="fixed inset-0 pointer-events-none z-[1]" id="particle-container"></div>
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-metallic-gold/20 shadow-sm flex justify-between items-center px-grid-margin py-stack-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-transform hover:rotate-90">menu</span>
+<h1 class="font-display-hero-mobile text-primary tracking-tighter text-lg md:text-xl">The Wedding of</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform text-festive-accent">favorite</span>
+</div>
+</header>
+<!-- Cover Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 px-grid-margin reveal" id="cover">
+<div class="absolute inset-0 floral-bg z-0"></div>
+<!-- Gold Corners -->
+<div class="absolute top-4 left-4 w-24 h-24 gold-corner-tl opacity-60"></div>
+<div class="absolute top-4 right-4 w-24 h-24 gold-corner-tr opacity-60"></div>
+<div class="z-10 text-center max-w-4xl space-y-6">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-[0.3em]">Undangan Pernikahan</span>
+<div class="relative py-12">
+<h2 class="font-display-hero text-display-hero md:text-[120px] leading-none mb-4 animate-float text-primary">
+                Aria <span class="gold-foil-text">&amp;</span> Bima
+            </h2>
+<div class="flex justify-center items-center gap-4">
+<div class="h-[1px] w-12 bg-metallic-gold"></div>
+<p class="font-headline-md text-headline-md text-rich-chocolate italic">Save the Date: 20.12.24</p>
+<div class="h-[1px] w-12 bg-metallic-gold"></div>
+</div>
+</div>
+<button class="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-label-bold text-label-bold rounded-full bg-deep-espresso text-metallic-gold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl ring-2 ring-metallic-gold/30 animate-pulse-soft" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})">
+<span class="relative z-10">Buka Undangan</span>
+<div class="absolute inset-0 bg-gradient-to-r from-metallic-gold/0 via-white/20 to-metallic-gold/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+</button>
+</div>
+</section>
+<!-- Hero Section -->
+<section class="relative py-section-gap px-grid-margin bg-surface-container-low overflow-hidden reveal" id="hero">
+<div class="absolute inset-0 floral-bg z-0"></div>
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-stack-lg relative z-10">
+<!-- Large Polaroid Frame -->
+<div class="w-full md:w-1/2 relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500 animate-float">
+<div class="bg-white p-polaroid-padding pb-stack-lg shadow-[0_10px_30px_rgba(38,20,13,0.15)] rounded-sm">
+<img class="w-full h-auto object-cover grayscale-[20%] sepia-[10%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqiKG7dLQZ7uC81nJIF6DoS7txntqMfAZKAl9_MN-zczH1l3rUINnpnEhjJwzaebfzo47Ng2-KIbXYVRMY5QgYjtmjqaewbiMw_rEFEZfeii51vt7BkRFMOeacW-2IQjfvPH7ff1jVlzNYVWf49SEkL7GOV711vUnhjLtAzN_3e1I_hzRhTyufQZQFrHD2itBaGpmEFNTp1t-Qot9_xJNiCuKvBmEeYaJF37HFOlWqJ0J1cLVXsyboeJQd-tHSFyIEClVmwiB7rMk"/>
+<p class="mt-stack-md text-center font-display-hero-mobile text-headline-md text-primary italic">Together Forever</p>
+</div>
+<div class="absolute -top-4 -right-4 w-24 h-8 scrapbook-tape opacity-80 border border-metallic-gold/30"></div>
+</div>
+<!-- Countdown Content -->
+<div class="w-full md:w-1/2 space-y-stack-lg">
+<h3 class="font-headline-lg text-headline-lg text-primary">Menuju Hari Bahagia</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.”
+            </p>
+<div class="grid grid-cols-4 gap-stack-sm bg-deep-espresso p-stack-md rounded-xl shadow-2xl border-2 border-metallic-gold/20">
+<div class="flex flex-col items-center">
+<span class="font-display-hero text-headline-lg text-metallic-gold" id="days">00</span>
+<span class="font-label-sm text-label-sm text-creamy-alabaster/60 uppercase">Hari</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-display-hero text-headline-lg text-metallic-gold" id="hours">00</span>
+<span class="font-label-sm text-label-sm text-creamy-alabaster/60 uppercase">Jam</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-display-hero text-headline-lg text-metallic-gold" id="mins">00</span>
+<span class="font-label-sm text-label-sm text-creamy-alabaster/60 uppercase">Menit</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-display-hero text-headline-lg text-metallic-gold" id="secs">00</span>
+<span class="font-label-sm text-label-sm text-creamy-alabaster/60 uppercase">Detik</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mempelai Section -->
+<section class="py-section-gap px-grid-margin relative overflow-hidden reveal" id="story">
+<div class="absolute inset-0 floral-bg z-0"></div>
+<!-- Corner Ornaments -->
+<div class="absolute bottom-4 left-4 w-24 h-24 gold-corner-bl opacity-40"></div>
+<div class="absolute bottom-4 right-4 w-24 h-24 gold-corner-br opacity-40"></div>
+<div class="max-w-4xl mx-auto text-center space-y-stack-lg relative z-10">
+<h2 class="font-display-hero-mobile text-display-hero-mobile text-primary">Pasangan Mempelai</h2>
+<div class="grid md:grid-cols-2 gap-20 mt-16">
+<!-- Aria -->
+<div class="space-y-stack-md transform hover:scale-105 transition-transform duration-500">
+<div class="relative inline-block animate-float" style="animation-delay: 0.5s">
+<div class="w-48 h-48 rounded-full border-4 border-metallic-gold p-2 overflow-hidden mx-auto">
+<img class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA4Nyy7yn0uWoZVseNKR3MwCVu7cmf5Rq_7s4Xa731Cdnc1FhT1ari2mvP_QW_lHFAl2E5n8awQHocyRwbuQD485glGkbs8d_nQW9TCrAqlplUtcYj4ujSgchcOrGWP-6C41jTtfGaGqSMQ9_1uUNabf814H6BdfT632ybuUA44AFZLlm5ICLtWJ4jHJIoHeu6H04JGUH0MHntP1CbHLWkXGR0buNUjSI1nfPOzAU-DbuKI7UJIHeK2v96kryUYJMedq0L5zbl6W0"/>
+</div>
+<div class="absolute -bottom-4 -right-4 w-12 h-12 bg-creamy-alabaster rounded-full flex items-center justify-center text-festive-accent shadow-md">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<h3 class="font-display-hero text-headline-lg text-primary">Aria Kusuma</h3>
+<p class="font-label-bold text-label-bold text-metallic-gold">Putri dari Bapak Hartono &amp; Ibu Sri</p>
+<a class="inline-flex items-center gap-2 text-primary hover:text-metallic-gold transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span> @ariakusuma
+                </a>
+</div>
+<!-- Bima -->
+<div class="space-y-stack-md transform hover:scale-105 transition-transform duration-500">
+<div class="relative inline-block animate-float" style="animation-delay: 1s">
+<div class="w-48 h-48 rounded-full border-4 border-metallic-gold p-2 overflow-hidden mx-auto">
+<img class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5CuVRbIveDHNX9QX8YCeCEvrayOAs2YCpirQ9yQnoCOyE7PnzZ2KqHEK-gR8kVariXMPFBGC3utHhMBdcb3SQXZ6EDtUrzm5BYT7p8TiFVx2bUaLGV1crgs3fRDVlxuWc9iyk7pLi-N_w78i-IYS-HkzX6rnCzkYy0jZxLunh5fHeRA5ucuReVhZmAv0pAy5AjIqqRtqf8jZxwIGgr2G3K4IoOVQ5-XXnseN7CGhV2wTW8t4sw1W3jvQRB5t6SinQ5eq-qVrVX7U"/>
+</div>
+<div class="absolute -bottom-4 -right-4 w-12 h-12 bg-creamy-alabaster rounded-full flex items-center justify-center text-festive-accent shadow-md">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<h3 class="font-display-hero text-headline-lg text-primary">Bima Pratama</h3>
+<p class="font-label-bold text-label-bold text-metallic-gold">Putra dari Bapak Suherman &amp; Ibu Ani</p>
+<a class="inline-flex items-center gap-2 text-primary hover:text-metallic-gold transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span> @bimapratama
+                </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="py-section-gap px-grid-margin bg-rich-chocolate overflow-hidden relative reveal" id="gallery">
+<div class="absolute inset-0 opacity-10">
+<div class="absolute w-full h-full floral-bg bg-repeat"></div>
+</div>
+<div class="max-w-6xl mx-auto relative z-10">
+<h2 class="font-display-hero text-display-hero-mobile md:text-display-hero text-creamy-alabaster text-center mb-16">Galeri Kenangan</h2>
+<div class="relative grid grid-cols-2 md:grid-cols-4 gap-4 min-h-[800px] md:min-h-[600px] parallax-container">
+<!-- Polaroid 1 -->
+<div class="absolute top-0 left-0 w-64 rotate-[-10deg] z-20 hover:z-50 hover:rotate-0 transition-all duration-300 parallax-layer" data-speed="0.05">
+<div class="bg-white p-3 pb-8 shadow-xl">
+<img class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQTZThMK4wAXzv9pqcPqX-crm34buN0A1Y0vtHI1SIoVoXUdDWMcldrnOXHStylfcoFmf5imfhNrPWbscU6rLHivZTQ95gVOlRSf52HGAUj580Zhxc2qMsZSs-pTl3OOxywR5pvTBWqhCFcgFwlQpQWnwdb-wINA7JUjoihsPiV6shkO7XyrkczH2W6nerX-7ax9GV5SKz1DL7ZCFgZAHYmktxaVKxxHo92b6-MFjMmGS2brl8rC8NJEq8mYAymt07HcXIo3ru7bI"/>
+<span class="scrapbook-tape absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-6"></span>
+</div>
+</div>
+<!-- Polaroid 2 -->
+<div class="absolute top-10 right-4 w-72 rotate-[5deg] z-10 hover:z-50 transition-all parallax-layer" data-speed="-0.03">
+<div class="bg-white p-3 pb-10 shadow-2xl border-[12px] border-white">
+<img class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQKpIKrIGFjv6-v9mdEb5_AX7r-kZztRiPAFj8KKc4CvKDMO9wmfNE335Oddy49JsvoxPmkk9Rf7bbapT1N0AMMueuCQNJcgSY085cFgc6IjvoqeKzMlNP392FeQ8hLGZ2oEYvv50XrXEYYTd_EZUu04xOcQ2MEkH7T5GDK2hukrDlBlQi7cwQ-h3CCQmiJ8EX5Ob8SmZJQP4HpU2nWr0N91FVLdlWJutF3dSOl_qld5X8gf6783KVLeImlCPXZOb15UwcMmEM5HY"/>
+</div>
+</div>
+<!-- Polaroid 3 -->
+<div class="absolute bottom-20 left-10 w-80 rotate-[-4deg] z-30 hover:z-50 transition-all parallax-layer" data-speed="0.08">
+<div class="bg-white p-4 pb-12 shadow-2xl">
+<img class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeSU25RWoBwxMidAraDv8LiqA3omQzIKMew9smQfPbI7h2KlboDoYmf4sZPpHtZ6CAh3YKulAnf6r1SG9PFFZ_AX6mC8_VgE2nvrtOvopcyFkPxT7U7DPYIdr-WyBtpR1dkqQ09YCMx7-guHCsRn0gO5edXeBvA4Jz_LkZUW5mW3Q8ZTZiee-EkwmZhWUJGJyujXvmgYPLFXz9gvBIyq_6H8jL3IxIus286ksfAlbwaGpaZDxJ_3MuA7vFFCDZZHTUV31-jXYrvgo"/>
+<div class="absolute top-4 right-4 w-12 h-4 bg-metallic-gold/30 rotate-45"></div>
+</div>
+</div>
+<!-- Polaroid 5 -->
+<div class="absolute bottom-0 right-0 w-64 rotate-[8deg] z-40 hover:z-50 transition-all parallax-layer" data-speed="-0.06">
+<div class="bg-white p-3 pb-8 shadow-xl border-t-8 border-metallic-gold">
+<img class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG8EvH9JzEVofAFZsbifHZCgfXVi8bGIZEZNc5KaujdWZKVbhY2PXU37bhx6A-M3HJWcU_v8T70t7xiVTscwKeoknJ1TpvV0ajXr5LlYKOT4g_J1EY0BFsJbdINfJx4CWEJvXw82WoveqKzthoVXQRDsL5TutZrhrZVv6fWi4QupfeAw4qyM_jZuMr0gLUKVwr9qdvk6xaGlFo8asanklf3zSPP57T5I3ZfuzGtz6PFg3VaMBAeIAYREqAGQzLw_j7wpErPJShCrE"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Event/RSVP Section -->
+<section class="py-section-gap px-grid-margin relative reveal" id="event">
+<div class="absolute inset-0 floral-bg z-0 opacity-[0.04]"></div>
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-stack-lg relative z-10">
+<!-- Event Card -->
+<div class="relative group">
+<div class="absolute inset-0 bg-deep-espresso transform translate-x-3 translate-y-3 rounded-xl transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+<div class="relative bg-rich-chocolate border-4 border-metallic-gold p-stack-lg rounded-xl text-creamy-alabaster space-y-stack-md z-10 h-full overflow-hidden">
+<!-- Ornament divider -->
+<div class="absolute top-0 right-0 w-32 h-32 gold-corner-tr opacity-20"></div>
+<div class="flex items-center gap-4 border-b border-metallic-gold/30 pb-stack-md">
+<span class="material-symbols-outlined text-4xl text-metallic-gold">calendar_month</span>
+<h3 class="font-headline-lg text-headline-lg uppercase">Akad Nikah</h3>
+</div>
+<div class="space-y-stack-sm">
+<p class="font-label-bold text-label-bold text-metallic-gold">Waktu &amp; Tempat</p>
+<p class="font-headline-md text-headline-md">Sabtu, 20 Desember 2024</p>
+<p class="font-body-lg">Pukul 08:00 - 10:00 WIB</p>
+<p class="font-body-md opacity-80">Hotel Indonesia Kempinski, Jakarta</p>
+</div>
+<button class="w-full py-4 bg-metallic-gold text-deep-espresso font-label-bold rounded-lg hover:bg-gold-foil-light transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg">
+<span class="material-symbols-outlined">map</span> Google Maps
+                </button>
+</div>
+</div>
+<!-- RSVP Card -->
+<div class="relative group" id="rsvp">
+<div class="absolute inset-0 bg-metallic-gold transform translate-x-3 translate-y-3 rounded-xl transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+<div class="relative bg-creamy-alabaster border-4 border-deep-espresso p-stack-lg rounded-xl text-deep-espresso space-y-stack-md z-10 h-full overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 gold-corner-tr opacity-10"></div>
+<div class="flex items-center gap-4 border-b border-deep-espresso/10 pb-stack-md">
+<span class="material-symbols-outlined text-4xl">mail</span>
+<h3 class="font-headline-lg text-headline-lg uppercase">Kehadiran</h3>
+</div>
+<form class="space-y-stack-md pt-4">
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold block">Nama Lengkap</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-metallic-gold focus:ring-0 focus:border-deep-espresso px-0 transition-colors" placeholder="Masukkan nama Anda" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold block">Konfirmasi Kehadiran</label>
+<select class="w-full bg-transparent border-0 border-b-2 border-metallic-gold focus:ring-0 focus:border-deep-espresso px-0 transition-colors">
+<option>Hadir</option>
+<option>Tidak Hadir</option>
+<option>Masih Ragu</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold block">Pesan Harapan</label>
+<textarea class="w-full bg-transparent border-0 border-b-2 border-metallic-gold focus:ring-0 focus:border-deep-espresso px-0 transition-colors" placeholder="Berikan ucapan terbaikmu..." rows="3"></textarea>
+</div>
+<button class="w-full py-4 bg-deep-espresso text-metallic-gold font-label-bold rounded-lg hover:bg-rich-chocolate transition-all duration-300 shadow-lg hover:shadow-xl" type="submit">
+                        Kirim Konfirmasi
+                    </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-full bg-deep-espresso border-t-2 border-metallic-gold shadow-[0_-4px_10px_rgba(38,20,13,0.3)] flex justify-around items-center h-20 px-2 pb-2">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1.5 transition-all transform scale-110" href="#cover">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 opacity-80 hover:text-gold-foil-light transition-all hover:scale-110" href="#event">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm">Event</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 opacity-80 hover:text-gold-foil-light transition-all hover:scale-110" href="#story">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm">Story</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 opacity-80 hover:text-gold-foil-light transition-all hover:scale-110" href="#gallery">
+<span class="material-symbols-outlined">collections</span>
+<span class="font-label-sm text-label-sm">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 opacity-80 hover:text-gold-foil-light transition-all hover:scale-110" href="#rsvp">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-sm text-label-sm">RSVP</span>
+</a>
+</nav>
+<div class="h-24"></div>
+<script>
+    // Particle Effect Logic
+    function createParticles() {
+        const container = document.getElementById('particle-container');
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            resetParticle(particle);
+            container.appendChild(particle);
+            animateParticle(particle);
+        }
+    }
+
+    function resetParticle(particle) {
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `-20px`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+    }
+
+    function animateParticle(particle) {
+        let top = parseFloat(particle.style.top);
+        let left = parseFloat(particle.style.left);
+        const speed = Math.random() * 0.5 + 0.2;
+        const drift = (Math.random() - 0.5) * 0.2;
+
+        function step() {
+            top += speed;
+            left += drift;
+            particle.style.top = `${top}px`;
+            particle.style.left = `${left}vw`;
+
+            if (top > window.innerHeight) {
+                resetParticle(particle);
+                top = -20;
+            }
+            requestAnimationFrame(step);
+        }
+        step();
+    }
+
+    // Intersection Observer for Reveal Animations
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Parallax Effect for Gallery
+    window.addEventListener('scroll', () => {
+        const layers = document.querySelectorAll('.parallax-layer');
+        const scrollY = window.pageYOffset;
+
+        layers.forEach(layer => {
+            const speed = layer.getAttribute('data-speed');
+            layer.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+    });
+
+    // Countdown Logic
+    const targetDate = new Date("Dec 20, 2024 08:00:00").getTime();
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("mins").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("secs").innerText = seconds.toString().padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Init
+    createParticles();
+</script>
+</body></html>

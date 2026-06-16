@@ -1,44 +1,166 @@
 @php
-    $couple = $couple ?? [
-        'groom' => 'Haris',
-        'bride' => 'Anisa',
-        'parents' => [
-            'groom' => 'Bapak Surono & Ibu Sri Mulyani',
-            'bride' => 'Bapak Budi & Ibu Siti',
-        ],
-    ];
+    // If $invitation is passed, map its properties and relations
+    if (isset($invitation)) {
+        $names = explode('&', $invitation->title);
+        $groomName = trim($names[0] ?? 'Haris');
+        $brideName = trim($names[1] ?? 'Anisa');
 
-    $event = $event ?? [
-        'date_iso' => '2026-12-12',
-        'time' => '09:00',
-        'location' => 'Omah Kawangan',
-        'address' => 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali',
-        'maps_url' => 'https://maps.google.com/?q=Boyolali',
-    ];
+        $couple = [
+            'groom' => $groomName,
+            'bride' => $brideName,
+            'parents' => [
+                'groom' => $invitation->description ?? 'Bapak Surono & Ibu Sri Mulyani',
+                'bride' => 'Bapak Budi & Ibu Siti',
+            ],
+        ];
 
-    $schedule = $schedule ?? [
-        ['title' => 'Akad Nikah', 'time' => '09:00 - 10:30', 'note' => 'Lokasi Acara, Omah Kawangan'],
-        ['title' => 'Resepsi Pernikahan', 'time' => '11:00 - 15:00', 'note' => 'Lokasi Acara, Omah Kawangan'],
-    ];
+        $event = [
+            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2026-12-12',
+            'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '09:00',
+            'location' => $invitation->location ?? 'Omah Kawangan',
+            'address' => $invitation->address ?? 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali',
+            'maps_url' => $invitation->google_maps_url ?? 'https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Omah Kawangan, Boyolali'),
+        ];
 
-    $stories = $stories ?? [
-        ['title' => 'Pertama Bertemu', 'date' => '09 Jan 2021', 'text' => 'Kami dipertemukan oleh seorang teman dekat, lalu mulai bertukar cerita dan merasa cocok.'],
-        ['title' => 'Mengikat Janji', 'date' => '25 Agt 2022', 'text' => 'Kami sepakat untuk melangkah ke jenjang yang lebih serius dengan pertunangan disaksikan keluarga.'],
-        ['title' => 'Hari Bahagia', 'date' => '12 Des 2026', 'text' => 'Kami mengikat janji suci kami dalam ikatan pernikahan yang sah dan memulai babak baru.'],
-    ];
+        $schedule = [
+            [
+                'title' => 'Akad Nikah',
+                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '09:00') . ' - 10:30 WIB',
+                'note' => $invitation->location ?? 'Omah Kawangan'
+            ],
+            [
+                'title' => 'Resepsi Pernikahan',
+                'time' => '11:00 - 15:00 WIB',
+                'note' => $invitation->address ?? 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali'
+            ]
+        ];
 
-    $gallery = $gallery ?? [
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
-        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
-    ];
+        if (isset($invitation->stories) && $invitation->stories->count() > 0) {
+            $stories = [];
+            foreach ($invitation->stories as $story) {
+                $stories[] = [
+                    'title' => $story->title,
+                    'date' => $story->date,
+                    'text' => $story->content
+                ];
+            }
+        } else {
+            $stories = [
+                ['title' => 'Pertama Bertemu', 'date' => '09 Jan 2021', 'text' => 'Kami dipertemukan oleh seorang teman dekat, lalu mulai bertukar cerita dan merasa cocok.'],
+                ['title' => 'Mengikat Janji', 'date' => '25 Agt 2022', 'text' => 'Kami sepakat untuk melangkah ke jenjang yang lebih serius dengan pertunangan disaksikan keluarga.'],
+                ['title' => 'Hari Bahagia', 'date' => '12 Des 2026', 'text' => 'Kami mengikat janji suci kami dalam ikatan pernikahan yang sah dan memulai babak baru.'],
+            ];
+        }
 
-    $bg = $bg ?? [
-        'cover' => 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800',
-        'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
-        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
-    ];
+        if (isset($invitation->galleries) && $invitation->galleries->count() > 0) {
+            $gallery = [];
+            foreach ($invitation->galleries as $gal) {
+                $gallery[] = asset('storage/' . $gal->image_path);
+            }
+        } else {
+            $gallery = [
+                'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
+                'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
+                'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
+            ];
+        }
+
+        $coverUrl = $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800';
+        $bg = [
+            'cover' => $coverUrl,
+            'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
+            'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
+        ];
+
+        if (isset($invitation->comments)) {
+            $wishes = [];
+            foreach ($invitation->comments as $comment) {
+                $wishes[] = [
+                    'name' => $comment->name,
+                    'status' => $comment->status,
+                    'message' => $comment->message
+                ];
+            }
+        } else {
+            $wishes = [
+                ['name' => 'Keluarga Budi', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Haris & Anisa! Semoga sakinah mawaddah warahmah.'],
+                ['name' => 'Siti Aminah', 'status' => 'Hadir', 'message' => 'Lancar-lancar acaranya ya, turut bahagia.'],
+            ];
+        }
+
+        if (isset($invitation->bankAccounts) && $invitation->bankAccounts->count() > 0) {
+            $gifts = [];
+            foreach ($invitation->bankAccounts as $bank) {
+                $gifts[] = [
+                    'bank' => $bank->bank_name,
+                    'name' => $bank->account_name,
+                    'account' => $bank->account_number
+                ];
+            }
+        } else {
+            $gifts = [
+                ['bank' => 'BCA', 'name' => 'Haris', 'account' => '123-456-7890'],
+                ['bank' => 'Mandiri', 'name' => 'Anisa', 'account' => '987-654-3210'],
+            ];
+        }
+
+        $musicUrl = $invitation->music ? asset('storage/' . $invitation->music) : asset('musics/love-story-taylor-swift-sax-cover-by-leon-chen-rdlfx2fnhok.mp3');
+    } else {
+        // Fallback / Demo values
+        $couple = [
+            'groom' => 'Haris',
+            'bride' => 'Anisa',
+            'parents' => [
+                'groom' => 'Bapak Surono & Ibu Sri Mulyani',
+                'bride' => 'Bapak Budi & Ibu Siti',
+            ],
+        ];
+
+        $event = [
+            'date_iso' => '2026-12-12',
+            'time' => '09:00',
+            'location' => 'Omah Kawangan',
+            'address' => 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali',
+            'maps_url' => 'https://maps.google.com/?q=Boyolali',
+        ];
+
+        $schedule = [
+            ['title' => 'Akad Nikah', 'time' => '09:00 - 10:30', 'note' => 'Lokasi Acara, Omah Kawangan'],
+            ['title' => 'Resepsi Pernikahan', 'time' => '11:00 - 15:00', 'note' => 'Lokasi Acara, Omah Kawangan'],
+        ];
+
+        $stories = [
+            ['title' => 'Pertama Bertemu', 'date' => '09 Jan 2021', 'text' => 'Kami dipertemukan oleh seorang teman dekat, lalu mulai bertukar cerita dan merasa cocok.'],
+            ['title' => 'Mengikat Janji', 'date' => '25 Agt 2022', 'text' => 'Kami sepakat untuk melangkah ke jenjang yang lebih serius dengan pertunangan disaksikan keluarga.'],
+            ['title' => 'Hari Bahagia', 'date' => '12 Des 2026', 'text' => 'Kami mengikat janji suci kami dalam ikatan pernikahan yang sah dan memulai babak baru.'],
+        ];
+
+        $gallery = [
+            'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
+            'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
+            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
+        ];
+
+        $bg = [
+            'cover' => 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800',
+            'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
+            'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
+        ];
+
+        $wishes = [
+            ['name' => 'Keluarga Budi', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Haris & Anisa! Semoga sakinah mawaddah warahmah.'],
+            ['name' => 'Siti Aminah', 'status' => 'Hadir', 'message' => 'Lancar-lancar acaranya ya, turut bahagia.'],
+        ];
+
+        $gifts = [
+            ['bank' => 'BCA', 'name' => 'Haris', 'account' => '123-456-7890'],
+            ['bank' => 'Mandiri', 'name' => 'Anisa', 'account' => '987-654-3210'],
+        ];
+
+        $musicUrl = asset('musics/love-story-taylor-swift-sax-cover-by-leon-chen-rdlfx2fnhok.mp3');
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -1251,7 +1373,7 @@
         <div class="inner-wrapper">
             
             <audio id="bg-audio" loop preload="auto">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+                <source src="{{ $musicUrl }}" type="audio/mpeg">
             </audio>
 
             <!-- Fine Gold leaf decorative vector corners inside the frames -->
@@ -1503,11 +1625,15 @@
                     Doa restu Anda merupakan kado terindah bagi kami. Namun bagi Anda yang ingin memberikan tanda kasih secara digital, silakan transfer melalui:
                 </p>
 
-                <div class="gift-card" data-aos="fade-up">
-                    <p style="font-weight: 700; font-size: 0.8rem; color: var(--emerald); letter-spacing: 1.5px;">BANK CENTRAL ASIA (BCA)</p>
-                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--emerald); margin: 6px 0; font-weight: 700;">123-456-7890</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">a.n. {{ $couple['groom'] }}</p>
-                    <button class="btn-copy" onclick="copyAccount('123-456-7890')">Salin Nomor Rekening</button>
+                <div class="gifts-container" style="display: flex; flex-direction: column; gap: 20px;">
+                    @foreach($gifts as $g)
+                    <div class="gift-card" data-aos="fade-up" style="margin-bottom: 0px;">
+                        <p style="font-weight: 700; font-size: 0.8rem; color: var(--emerald); letter-spacing: 1.5px;">{{ strtoupper($g['bank']) }}</p>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--emerald); margin: 6px 0; font-weight: 700;">{{ $g['account'] }}</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-light);">a.n. {{ $g['name'] }}</p>
+                        <button class="btn-copy" onclick="copyAccount('{{ $g['account'] }}')">Salin Nomor Rekening</button>
+                    </div>
+                    @endforeach
                 </div>
             </section>
 
@@ -1538,20 +1664,15 @@
                 </div>
 
                 <div class="wish-list" id="wishList">
+                    @foreach($wishes as $w)
                     <div class="wish-card">
                         <div class="wish-header">
-                            <span class="wish-name">Ari Wibowo</span>
-                            <span class="wish-status">Hadir</span>
+                            <span class="wish-name">{{ $w['name'] }}</span>
+                            <span class="wish-status">{{ $w['status'] }}</span>
                         </div>
-                        <p class="wish-content">Selamat berbahagia ya Haris & Anisa! Semoga acaranya lancar dari awal sampai akhir, dan menjadi keluarga yang sakinah, mawaddah, warahmah.</p>
+                        <p class="wish-content">{{ $w['message'] }}</p>
                     </div>
-                    <div class="wish-card">
-                        <div class="wish-header">
-                            <span class="wish-name">Sisca Amelia</span>
-                            <span class="wish-status">Berhalangan</span>
-                        </div>
-                        <p class="wish-content">Selamat menempuh hidup baru! Maaf sekali belum bisa hadir langsung karena masih dinas di luar kota. Doa terbaik untuk kalian berdua.</p>
-                    </div>
+                    @endforeach
                     <div id="dynamicWishes"></div>
                 </div>
             </section>
@@ -1813,7 +1934,7 @@
 
         // Copy Account function
         function copyAccount(num) {
-            navigator.clipboard.writeText(num);
+            navigator.clipboard.writeText(num.replace(/\s/g, ''));
             alert("Nomor rekening berhasil disalin!");
         }
 

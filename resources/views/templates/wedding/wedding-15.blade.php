@@ -1,186 +1,216 @@
 @php
-    $couple = $couple ?? [
-        'groom' => 'Arkan',
-        'bride' => 'Nabila',
-        'parents' => [
-            'groom' => 'Bpk. Herman & Ibu Siti',
-            'bride' => 'Bpk. Joko & Ibu Wati',
-        ],
-    ];
+    // If $invitation is passed, map its properties and relations
+    if (isset($invitation)) {
+        $names = explode('&', $invitation->title);
+        $groomName = trim($names[0] ?? 'Arjuna Putra Pratama');
+        $brideName = trim($names[1] ?? 'Srikandi Larasati');
 
-    $event = $event ?? [
-        'date_iso' => '2026-12-12',
-        'time' => '10:00',
-        'location' => 'Grand Ballroom, Hotel Harmoni',
-        'address' => 'Jl. Kebangsaan No. 45, Bandung',
-        'maps_url' => 'https://maps.google.com/?q=Bandung',
-    ];
+        $couple = [
+            'groom' => $groomName,
+            'bride' => $brideName,
+            'parents' => [
+                'groom' => $invitation->description ?? 'Bapak Suherman & Ibu Ratna',
+                'bride' => 'Bapak Wijaya & Ibu Sari',
+            ],
+        ];
 
-    $schedule = $schedule ?? [
-        ['title' => 'Akad Nikah', 'time' => '10:00 - 11:30', 'note' => 'Ruang Tulip'],
-        ['title' => 'Resepsi Pernikahan', 'time' => '12:00 - 15:00', 'note' => 'Ballroom Utama'],
-    ];
+        $event = [
+            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2024-12-12',
+            'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00',
+            'location' => $invitation->location ?? 'Masjid Raya Al-Jabbar',
+            'address' => $invitation->address ?? 'Bandung, Jawa Barat',
+            'maps_url' => $invitation->google_maps_url ?? 'https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Masjid Raya Al-Jabbar Bandung'),
+        ];
 
-    $stories = $stories ?? [
-        ['title' => 'Awal Bertemu', 'date' => 'Maret 2022', 'text' => 'Bermula dari perkenalan singkat di bangku perkuliahan, kami menyadari banyak hal menarik yang membuat kami dekat.'],
-        ['title' => 'Menjalin Komitmen', 'date' => 'Juli 2024', 'text' => 'Kami memutuskan untuk melangkah bersama dengan komitmen serius yang matang.'],
-        ['title' => 'Menuju Pernikahan', 'date' => 'Desember 2026', 'text' => 'Hari bahagia yang dinantikan akhirnya tiba untuk menyatukan janji suci kami berdua.'],
-    ];
+        $schedule = [
+            [
+                'title' => 'Akad Nikah',
+                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' - 10:00 WIB',
+                'note' => $invitation->location ?? 'Masjid Raya Al-Jabbar, Bandung'
+            ],
+            [
+                'title' => 'Resepsi',
+                'time' => '11:00 - 14:00 WIB',
+                'note' => $invitation->address ?? 'Grand Ballroom Hilton, Bandung'
+            ]
+        ];
 
-    $gallery = $gallery ?? [
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
-        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
-    ];
-
-    $bg = $bg ?? [
-        'cover' => 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800',
-        'groom' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400',
-        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
-    ];
-@endphp
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan | {{ $couple['groom'] }} & {{ $couple['bride'] }}</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Icons & Animations -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #68856c; 
-            --primary-dark: #4b624f;
-            --accent: #f4f6f4; 
-            --bg-dark: #1b241d; 
-            --text-dark: #3a3b3a;
-            --text-light: #707570;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Montserrat', sans-serif;
-            --font-script: 'Great Vibes', cursive;
+        if (isset($invitation->galleries) && $invitation->galleries->count() > 0) {
+            $gallery = [];
+            foreach ($invitation->galleries as $gal) {
+                $gallery[] = asset('storage/' . $gal->image_path);
+            }
+        } else {
+            $gallery = [
+                asset('assets/templates/wedding-15/images/image_4.jpg'),
+                asset('assets/templates/wedding-15/images/image_5.jpg'),
+                asset('assets/templates/wedding-15/images/image_6.jpg'),
+                asset('assets/templates/wedding-15/images/image_7.jpg'),
+            ];
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { font-family: var(--font-sans); background-color: var(--bg-dark); color: var(--text-dark); display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        $coverUrl = $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : asset('assets/templates/wedding-15/images/image_1.jpg');
+        $bg = [
+            'cover' => $coverUrl,
+            'groom' => asset('assets/templates/wedding-15/images/image_2.jpg'),
+            'bride' => asset('assets/templates/wedding-15/images/image_3.jpg'),
+        ];
+    } else {
+        $couple = [
+            'groom' => 'Arjuna Putra Pratama',
+            'bride' => 'Srikandi Larasati',
+            'parents' => [
+                'groom' => 'Bapak Suherman & Ibu Ratna',
+                'bride' => 'Bapak Wijaya & Ibu Sari',
+            ],
+        ];
 
-        .wrapper { width: 100%; max-width: 480px; background: var(--accent); min-height: 100vh; position: relative; box-shadow: 0 0 40px rgba(0,0,0,0.6); padding: 15px; padding-bottom: 95px; }
+        $event = [
+            'date_iso' => '2024-12-12',
+            'time' => '08:00',
+            'location' => 'Masjid Raya Al-Jabbar',
+            'address' => 'Bandung, Jawa Barat',
+            'maps_url' => 'https://maps.google.com/?q=Masjid+Raya+Al-Jabbar+Bandung',
+        ];
 
-        /* Delicate watercolor background elements */
-        .watercolor-bg-1, .watercolor-bg-2 { position: absolute; width: 250px; height: 250px; border-radius: 50%; filter: blur(60px); z-index: 0; opacity: 0.6; pointer-events: none; }
-        .watercolor-bg-1 { top: 100px; left: -80px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); }
-        .watercolor-bg-2 { bottom: 400px; right: -80px; background: radial-gradient(circle, var(--primary-dark) 0%, transparent 70%); }
+        $schedule = [
+            ['title' => 'Akad Nikah', 'time' => '08:00 - 10:00 WIB', 'note' => 'Masjid Raya Al-Jabbar, Bandung'],
+            ['title' => 'Resepsi', 'time' => '11:00 - 14:00 WIB', 'note' => 'Grand Ballroom Hilton, Bandung'],
+        ];
 
-        #cover { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; height: 100vh; z-index: 9999; background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.85)), url("{{ $bg['cover'] }}") center/cover no-repeat; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 50px 30px; color: var(--text-dark); text-align: center; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); }
-        #cover.opened { transform: translate(-50%, -100%); pointer-events: none; }
-        .cover-title { font-family: var(--font-script); font-size: 3.5rem; color: var(--primary-dark); margin: 15px 0; }
-        .cover-guest-card { background: rgba(255, 255, 255, 0.85); border: 1px solid var(--primary); padding: 25px 20px; border-radius: 30px; width: 100%; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .btn-open { display: inline-flex; align-items: center; gap: 10px; background-color: var(--primary-dark); color: white; font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; padding: 12px 25px; border-radius: 30px; border: none; cursor: pointer; transition: all 0.3s; }
+        $gallery = [
+            asset('assets/templates/wedding-15/images/image_4.jpg'),
+            asset('assets/templates/wedding-15/images/image_5.jpg'),
+            asset('assets/templates/wedding-15/images/image_6.jpg'),
+            asset('assets/templates/wedding-15/images/image_7.jpg'),
+        ];
 
-        /* Floating pill-shaped bottom nav */
-        .bottom-nav-pill { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 380px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-radius: 50px; display: flex; justify-content: space-around; padding: 10px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.5s, visibility 0.5s; border: 1px solid rgba(255,255,255,0.4); }
-        .bottom-nav-pill.visible { opacity: 1; visibility: visible; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-light); font-size: 0.65rem; transition: color 0.3s; }
-        .nav-item i { font-size: 1.1rem; margin-bottom: 2px; }
-        .nav-item.active { color: var(--primary-dark); font-weight: bold; }
-
-        section { padding: 50px 10px; position: relative; text-align: center; z-index: 1; }
-        .section-frame { border: 1px solid rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px); padding: 40px 15px; border-radius: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.02); }
-
-        .section-subtitle { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 8px; font-weight: 600; }
-        .section-title { font-family: var(--font-serif); font-size: 1.8rem; color: var(--text-dark); margin-bottom: 25px; font-weight: 400; }
-        .script-divider { font-family: var(--font-script); font-size: 2.2rem; color: var(--primary-dark); margin: 15px 0; }
-
-        /* Botanical circle frames */
-        .couple-wrapper { margin: 35px 0; }
-        .circle-photo { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 15px; border: 4px solid white; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background-size: cover; background-position: center; }
-
-        .couple-name { font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-dark); margin-bottom: 5px; }
-        .couple-parent { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
-
-        .event-card { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.9); padding: 25px 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.01); margin-bottom: 20px; }
-        .event-card h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text-dark); margin-bottom: 8px; }
-        .btn-action { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-dark); color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; font-weight: 600; margin-top: 10px; }
-
-        .countdown-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
-        .countdown-box { background: white; border: 1px solid rgba(255,255,255,0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .countdown-box span:first-child { font-size: 1.15rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-dark); }
-        .countdown-box span:last-child { font-size: 0.55rem; text-transform: uppercase; color: var(--text-light); }
-
-        .story-timeline { text-align: left; padding-left: 15px; border-left: 2px solid var(--primary); margin-top: 25px; }
-        .story-item { position: relative; margin-bottom: 25px; }
-        .story-item::before { content: ''; position: absolute; left: -21px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary); }
-        .story-date { font-weight: 600; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 3px; }
-        .story-title { font-family: var(--font-serif); font-size: 1rem; margin-bottom: 5px; }
-        .story-content { font-size: 0.75rem; color: var(--text-light); line-height: 1.5; }
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-        .gallery-item { border-radius: 20px; overflow: hidden; aspect-ratio: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-
-        .gift-box { background: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 20px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.9); }
-        .btn-copy { background: var(--primary-dark); color: white; border: none; padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; cursor: pointer; margin-top: 10px; }
-
-        .form-wrap { background: rgba(255,255,255,0.8); padding: 25px 15px; border-radius: 20px; text-align: left; border: 1px solid rgba(255,255,255,0.9); }
-        .form-group { margin-bottom: 12px; }
-        .form-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-        .form-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; background: white; }
-        .btn-submit { width: 100%; padding: 12px; background: var(--primary-dark); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-
-        .wish-list { max-height: 250px; overflow-y: auto; margin-top: 20px; text-align: left; }
-        .wish-card { background: white; padding: 12px; border-radius: 12px; border-left: 4px solid var(--primary); margin-bottom: 10px; }
-        .wish-header { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.8rem; }
-        .wish-name { font-weight: 600; }
-        .wish-status { background: var(--accent); padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; }
-        .wish-content { font-size: 0.75rem; color: var(--text-light); }
-
-        .floater-container { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; height: 0; z-index: 1000; pointer-events: none; }
-        .music-control, .scroll-control { position: absolute; width: 45px; height: 45px; border-radius: 50%; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid var(--primary); display: flex; justify-content: center; align-items: center; cursor: pointer; opacity: 0; visibility: hidden; pointer-events: auto; transition: all 0.5s ease; }
-        .music-control.visible, .scroll-control.visible { opacity: 1; visibility: visible; }
-        .music-control { bottom: 95px; right: 20px; }
-        .scroll-control { bottom: 155px; right: 20px; }
-        .music-control.playing i { animation: spin 4s linear infinite; color: var(--primary-dark); }
-        .scroll-badge { position: absolute; right: 55px; top: 50%; transform: translateY(-50%); background: var(--primary-dark); color: white; font-size: 0.6rem; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        $bg = [
+            'cover' => asset('assets/templates/wedding-15/images/image_1.jpg'),
+            'groom' => asset('assets/templates/wedding-15/images/image_2.jpg'),
+            'bride' => asset('assets/templates/wedding-15/images/image_3.jpg'),
+        ];
+    }
+@endphp
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>{{ $couple['bride'] }} &amp; {{ $couple['groom'] }} | Siger Noir Wedding</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;0,800;1,400&amp;family=Outfit:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #1d100e;
+            color: #f7ddd8;
+            overflow-x: hidden;
+        }
+        body.is-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+        .batik-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            opacity: 0.05;
+        }
+        .text-glow-gold {
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        .glass-card {
+            background: rgba(128, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim { animation: floating 4s ease-in-out infinite; }
+        
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            left: 50%;
+            transform: translateX(100%);
+            z-index: 60;
+            transition: transform 0.5s ease-in-out;
+        }
+        #mobile-menu.open {
+            transform: translateX(-50%);
+        }
     </style>
 </head>
-<body>
+<body class="bg-background text-on-surface selection:bg-siger-gold selection:text-ink-black max-w-[480px] w-full mx-auto relative shadow-2xl border-x border-siger-gold/10 min-h-screen is-locked">
 
-    <div id="cover">
-        <div class="cover-header">
-            <p style="font-size: 0.75rem; letter-spacing: 3px;">WEDDING INVITATION</p>
-            <h1 class="cover-title">{{ $couple['groom'] }} & {{ $couple['bride'] }}</h1>
+    <!-- 1. Cover Section -->
+    <section class="fixed inset-y-0 max-w-[480px] w-full left-1/2 -translate-x-1/2 z-[100] flex items-center justify-center overflow-hidden" id="cover">
+        <div class="absolute inset-0 z-0">
+            <img class="w-full h-full object-cover brightness-[0.3]" src="{{ $bg['cover'] }}"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+            <div class="absolute inset-0 batik-overlay"></div>
         </div>
-        <div class="cover-guest-card">
-            <span style="font-size: 0.7rem; color: var(--text-light); letter-spacing: 1px;">Kpd. Yth Bapak/Ibu/Saudara/i:</span>
-            <h3 style="font-family: var(--font-serif); font-size: 1.3rem; margin-top: 5px;">{{ request()->get('kpd', 'Tamu Undangan') }}</h3>
+        <div class="relative z-10 text-center px-margin-mobile flex flex-col items-center justify-center">
+            <div class="flex justify-center mb-8 float-anim">
+                <span class="material-symbols-outlined text-siger-gold !text-6xl" style="font-variation-settings: 'FILL' 1;">crown</span>
+            </div>
+            <p class="font-label-caps text-label-caps text-siger-gold tracking-[0.3em] uppercase mb-4">The Wedding of</p>
+            <h1 class="font-display-hero-mobile text-display-hero-mobile text-off-white mb-2 leading-none">
+                {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}
+            </h1>
+            <p class="font-headline-md text-headline-md text-siger-gold mb-12 italic">
+                {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('d . m . Y') }}
+            </p>
+            
+            <div class="mb-10 w-full max-w-xs p-6 glass-card rounded-xl">
+                <p class="font-body-md text-on-surface-variant mb-2 italic text-xs">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <h3 class="font-headline-md text-siger-gold border-b border-siger-gold/20 pb-2 text-lg">
+                    {{ request()->get('kpd', 'Tamu Undangan') }}
+                </h3>
+            </div>
+
+            <button class="inline-block bg-siger-gold text-ink-black px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-off-white transition-all transform hover:-translate-y-1" id="btn-open-invitation" onclick="openInvitation()">
+                Buka Undangan
+            </button>
         </div>
-        <button class="btn-open" onclick="openInvitation()">
-            <i class="bi bi-heart"></i> BUKA UNDANGAN
-        </button>
-    </div>
+    </section>
 
-    <div class="wrapper">
-        <div class="watercolor-bg-1"></div>
-        <div class="watercolor-bg-2"></div>
+    <!-- MAIN CONTENT -->
+    <div id="main-content" style="display: none;">
+        <!-- Top Navigation -->
+        <nav class="fixed top-0 max-w-[480px] w-full left-1/2 -translate-x-1/2 z-50 bg-surface/80 backdrop-blur-xl border-b border-siger-gold/20 flex justify-between items-center px-margin-mobile py-4 transition-all duration-500 opacity-0" id="top-nav">
+            <div class="font-headline-md text-headline-md text-siger-gold tracking-widest uppercase">Siger Noir</div>
+            <button class="text-siger-gold" onclick="toggleMobileMenu()">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </nav>
 
-        <audio id="bg-audio" loop preload="auto">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
-        </audio>
+        <!-- Mobile Menu Overlay -->
+        <div class="bg-ink-black flex flex-col items-center justify-center gap-8" id="mobile-menu">
+            <button class="absolute top-6 right-6 text-siger-gold" onclick="toggleMobileMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <a class="font-display-hero-mobile text-display-hero-mobile text-siger-gold" href="#mempelai" onclick="toggleMobileMenu()">Mempelai</a>
+            <a class="font-display-hero-mobile text-display-hero-mobile text-siger-gold" href="#acara" onclick="toggleMobileMenu()">Acara</a>
+            <a class="font-display-hero-mobile text-display-hero-mobile text-siger-gold" href="#cerita" onclick="toggleMobileMenu()">Cerita</a>
+            <a class="font-display-hero-mobile text-display-hero-mobile text-siger-gold" href="#kado" onclick="toggleMobileMenu()">Kirim Kado</a>
+        </div>
 
-        <!-- HERO -->
-        <section id="home">
-            <div class="section-frame">
+        <!-- Hero Section -->
+        <section class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden pt-20" id="home">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover brightness-[0.3]" src="{{ $bg['cover'] }}"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+                <div class="absolute inset-0 batik-overlay"></div>
+            </div>
+            <div class="relative z-10 text-center px-margin-mobile">
                 <span class="section-subtitle">Save The Date</span>
-                <h2>{{ $couple['groom'] }} & {{ $couple['bride'] }}</h2>
+                <h2 class="font-display-hero-mobile text-off-white my-4">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h2>
                 <div class="script-divider">The Wedding Ceremony</div>
                 <h4 style="font-family: var(--font-serif); font-size: 1rem; font-weight: 400; margin-top: 15px;">
                     {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('d.m.y') }}
@@ -188,266 +218,482 @@
             </div>
         </section>
 
-        <!-- MEMPELAI -->
-        <section id="couple-sec">
-            <div class="section-frame">
-                <span class="section-subtitle">Groom & Bride</span>
-                <h2 class="section-title">Mempelai</h2>
-
-                <div class="couple-wrapper" data-aos="fade-up">
-                    <div class="circle-photo" style="background-image: url('{{ $bg['groom'] }}');"></div>
-                    <h3 class="couple-name">{{ $couple['groom'] }}</h3>
-                    <p class="couple-parent">Putra dari<br><strong>{{ $couple['parents']['groom'] }}</strong></p>
-                </div>
-
-                <div class="script-divider">&</div>
-
-                <div class="couple-wrapper" data-aos="fade-up">
-                    <div class="circle-photo" style="background-image: url('{{ $bg['bride'] }}');"></div>
-                    <h3 class="couple-name">{{ $couple['bride'] }}</h3>
-                    <p class="couple-parent">Putri dari<br><strong>{{ $couple['parents']['bride'] }}</strong></p>
+        <!-- 2. Profile Section -->
+        <section class="py-section-gap relative overflow-hidden bg-ink-black" id="mempelai">
+            <div class="absolute top-0 right-0 w-1/3 h-full batik-overlay -z-10"></div>
+            <div class="container mx-auto px-margin-mobile">
+                <div class="flex flex-col gap-16 items-center">
+                    <!-- Groom -->
+                    <div class="w-full text-center">
+                        <div class="relative mb-10 inline-block">
+                            <img class="w-64 h-80 object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-700 mx-auto" src="{{ $bg['groom'] }}"/>
+                            <div class="absolute -top-4 -right-4 w-full h-full border-2 border-siger-gold -z-10"></div>
+                        </div>
+                        <h2 class="font-headline-lg-mobile text-siger-gold mb-2">{{ $couple['groom'] }}</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant italic mb-6">Putra dari {{ $couple['parents']['groom'] }}</p>
+                        <a class="text-siger-gold flex items-center justify-center gap-2 hover:underline" href="#">
+                            <span class="font-label-caps text-label-caps uppercase">@arjunapp</span>
+                            <span class="material-symbols-outlined !text-sm">open_in_new</span>
+                        </a>
+                    </div>
+                    
+                    <div class="py-4">
+                        <span class="font-display-hero-mobile text-headline-lg text-siger-gold/30 italic">&amp;</span>
+                    </div>
+                    
+                    <!-- Bride -->
+                    <div class="w-full text-center">
+                        <div class="relative mb-10 inline-block">
+                            <img class="w-64 h-80 object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-700 mx-auto" src="{{ $bg['bride'] }}"/>
+                            <div class="absolute -bottom-4 -left-4 w-full h-full border-2 border-siger-gold -z-10"></div>
+                        </div>
+                        <h2 class="font-headline-lg-mobile text-siger-gold mb-2">{{ $couple['bride'] }}</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant italic mb-6">Putri dari {{ $couple['parents']['bride'] }}</p>
+                        <a class="text-siger-gold flex items-center justify-center gap-2 hover:underline" href="#">
+                            <span class="material-symbols-outlined !text-sm">open_in_new</span>
+                            <span class="font-label-caps text-label-caps uppercase">@srikandi_ls</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ACARA -->
-        <section id="event-sec">
-            <div class="section-frame">
-                <span class="section-subtitle">Wedding Events</span>
-                <h2 class="section-title">Waktu & Tempat</h2>
-
-                <div class="event-card" data-aos="fade-up">
-                    <h3>{{ $schedule[0]['title'] }}</h3>
-                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">
-                        {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}
-                    </p>
-                    <p style="font-size: 0.8rem; margin-bottom: 5px;"><i class="bi bi-clock"></i> {{ $schedule[0]['time'] }}</p>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">{{ $schedule[0]['note'] }}</p>
+        <!-- 3. Event & Countdown Section -->
+        <section class="py-section-gap bg-deep-maroon relative" id="acara">
+            <div class="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+                <span class="material-symbols-outlined absolute -top-10 -left-10 !text-[300px] text-white rotate-12">admin</span>
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 !text-[300px] text-white -rotate-12">admin</span>
+            </div>
+            <div class="container mx-auto px-margin-mobile relative z-10">
+                <div class="text-center mb-16">
+                    <p class="font-label-caps text-label-caps text-off-white/70 uppercase tracking-[0.4em] mb-4">The Big Day</p>
+                    <h2 class="font-display-hero-mobile text-off-white text-center">Save the Date</h2>
                 </div>
-
-                <div class="event-card" data-aos="fade-up">
-                    <h3>{{ $schedule[1]['title'] }}</h3>
-                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">
-                        {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}
-                    </p>
-                    <p style="font-size: 0.8rem; margin-bottom: 5px;"><i class="bi bi-clock"></i> {{ $schedule[1]['time'] }}</p>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">{{ $schedule[1]['note'] }}</p>
+                
+                <!-- Countdown -->
+                <div class="flex justify-center gap-3 mb-24">
+                    <div class="glass-card p-4 w-20 text-center">
+                        <span class="block font-headline-lg-mobile text-siger-gold" id="days">00</span>
+                        <span class="font-label-caps text-[9px] uppercase text-off-white">Hari</span>
+                    </div>
+                    <div class="glass-card p-4 w-20 text-center">
+                        <span class="block font-headline-lg-mobile text-siger-gold" id="hours">00</span>
+                        <span class="font-label-caps text-[9px] uppercase text-off-white">Jam</span>
+                    </div>
+                    <div class="glass-card p-4 w-20 text-center">
+                        <span class="block font-headline-lg-mobile text-siger-gold" id="minutes">00</span>
+                        <span class="font-label-caps text-[9px] uppercase text-off-white">Menit</span>
+                    </div>
+                    <div class="glass-card p-4 w-20 text-center">
+                        <span class="block font-headline-lg-mobile text-siger-gold" id="seconds">00</span>
+                        <span class="font-label-caps text-[9px] uppercase text-off-white">Detik</span>
+                    </div>
                 </div>
-
-                <div class="event-card" data-aos="fade-up">
-                    <p style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">{{ $event['location'] }}</p>
-                    <p style="font-size: 0.75rem; color: var(--text-light); line-height: 1.5;">{{ $event['address'] }}</p>
-                    <a href="{{ $event['maps_url'] }}" target="_blank" rel="noopener" class="btn-action">
-                        <i class="bi bi-geo-alt"></i> Petunjuk Arah
+                
+                <div class="grid grid-cols-1 gap-12">
+                    <!-- Akad -->
+                    <div class="bg-ink-black/40 p-8 border border-siger-gold/30 hover:border-siger-gold transition-colors group text-center">
+                        <h3 class="font-headline-md text-siger-gold mb-6 border-b border-siger-gold/20 pb-4">{{ $schedule[0]['title'] }}</h3>
+                        <div class="space-y-4 font-body-md text-on-surface text-sm">
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">calendar_today</span>
+                                <p>{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">schedule</span>
+                                <p>Tabuh {{ $schedule[0]['time'] }}</p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">location_on</span>
+                                <p>{{ $schedule[0]['note'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Resepsi -->
+                    <div class="bg-ink-black/40 p-8 border border-siger-gold/30 hover:border-siger-gold transition-colors group text-center">
+                        <h3 class="font-headline-md text-siger-gold mb-6 border-b border-siger-gold/20 pb-4">{{ $schedule[1]['title'] }}</h3>
+                        <div class="space-y-4 font-body-md text-on-surface text-sm">
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">calendar_today</span>
+                                <p>{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">schedule</span>
+                                <p>Tabuh {{ $schedule[1]['time'] }}</p>
+                            </div>
+                            <div class="flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined text-siger-gold">location_on</span>
+                                <p>{{ $schedule[1]['note'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-16 text-center">
+                    <a class="inline-flex items-center justify-center gap-4 bg-siger-gold text-ink-black px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-off-white transition-all w-full text-xs" href="{{ $event['maps_url'] }}" target="_blank">
+                        <span class="material-symbols-outlined">map</span>
+                        Buka Google Maps
                     </a>
                 </div>
-
-                <div class="countdown-container" data-aos="fade-up">
-                    <div class="countdown-box"><span id="days">00</span><span>Hari</span></div>
-                    <div class="countdown-box"><span id="hours">00</span><span>Jam</span></div>
-                    <div class="countdown-box"><span id="minutes">00</span><span>Menit</span></div>
-                    <div class="countdown-box"><span id="seconds">00</span><span>Detik</span></div>
-                </div>
             </div>
         </section>
 
-        <!-- STORIES -->
-        <section id="story-sec">
-            <div class="section-frame">
-                <span class="section-subtitle">Our Journey</span>
-                <h2 class="section-title">Kisah Cinta</h2>
-
-                <div class="story-timeline">
-                    @foreach($stories as $s)
-                    <div class="story-item" data-aos="fade-up">
-                        <div class="story-date">{{ $s['date'] }}</div>
-                        <h4 class="story-title">{{ $s['title'] }}</h4>
-                        <p class="story-content">{{ $s['text'] }}</p>
+        <!-- 4. Gallery, RSVP & Gift Section -->
+        <section class="py-section-gap bg-background" id="cerita">
+            <div class="container mx-auto px-margin-mobile">
+                <div class="mb-24">
+                    <h2 class="font-headline-lg-mobile text-siger-gold mb-12 text-center">Gallery Moments</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4 auto-rows-[160px]">
+                        @foreach ($gallery as $index => $img)
+                        @php
+                            $span = '';
+                            if ($index == 0) $span = 'col-span-2 row-span-2';
+                            elseif ($index == 3) $span = 'col-span-2';
+                        @endphp
+                        <div class="overflow-hidden rounded-xl hover:scale-105 transition-all duration-500 shadow-md cursor-zoom-in {{ $span }}" onclick="openLightbox('{{ $img }}')">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="{{ $img }}" alt="Gallery Image {{ $index+1 }}"/>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-            </div>
-        </section>
-
-        <!-- GALERI -->
-        <section id="gallery-sec">
-            <div class="section-frame">
-                <span class="section-subtitle">Memories</span>
-                <h2 class="section-title">Galeri Foto</h2>
-
-                <div class="gallery-grid">
-                    @foreach($gallery as $img)
-                    <div class="gallery-item" data-aos="zoom-in">
-                        <img src="{{ $img }}" alt="Galeri">
+                
+                <!-- RSVP Form & Gift -->
+                <div class="flex flex-col gap-20">
+                    <div id="rsvp">
+                        <h2 class="font-headline-lg-mobile text-siger-gold mb-8 text-center">Konfirmasi Kehadiran</h2>
+                        <form class="space-y-8 glass-card p-8 rounded-2xl" id="rsvp-form" onsubmit="submitRsvp(event)">
+                            <div>
+                                <label class="block font-label-caps text-[10px] text-siger-gold uppercase mb-2">Nama Lengkap</label>
+                                <input id="nama" class="w-full bg-transparent border-0 border-b border-siger-gold/30 focus:ring-0 focus:border-siger-gold text-on-surface p-2 text-sm" placeholder="Masukkan nama Anda" type="text" required/>
+                            </div>
+                            <div>
+                                <label class="block font-label-caps text-[10px] text-siger-gold uppercase mb-2">Kehadiran</label>
+                                <select id="kehadiran" class="w-full bg-transparent border-0 border-b border-siger-gold/30 focus:ring-0 focus:border-siger-gold text-on-surface p-2 text-sm">
+                                    <option class="bg-background text-on-surface" value="Hadir">Hadir</option>
+                                    <option class="bg-background text-on-surface" value="Tidak Hadir">Berhalangan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-label-caps text-[10px] text-siger-gold uppercase mb-2">Pesan Untuk Mempelai</label>
+                                <textarea id="pesan" class="w-full bg-transparent border-0 border-b border-siger-gold/30 focus:ring-0 focus:border-siger-gold text-on-surface p-2 text-sm" placeholder="Tuliskan harapan dan doa..." rows="4" required></textarea>
+                            </div>
+                            <button class="w-full bg-siger-gold text-ink-black py-4 font-label-caps text-xs uppercase tracking-[0.2em] hover:bg-off-white transition-all rounded-full" type="submit">Kirim Reservasi</button>
+                        </form>
+                        
+                        <div class="mt-8">
+                            <div id="wishList" class="bg-ink-black/50 rounded-2xl p-6 overflow-y-auto max-h-[350px] border border-siger-gold/20 space-y-4">
+                                <div class="bg-surface-container-low p-5 rounded-xl border border-siger-gold/10">
+                                    <p class="font-body-md text-siger-gold font-semibold text-sm">Fajar (Hadir)</p>
+                                    <p class="text-xs text-on-surface-variant italic mt-1">"Lancar jaya berkah melimpah sakinah warahmah selamanya!"</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
-        <!-- RSVP -->
-        <section id="rsvp-sec">
-            <div class="section-frame">
-                <span class="section-subtitle">Presence</span>
-                <h2 class="section-title">Konfirmasi & Ucapan</h2>
-
-                <div class="form-wrap" data-aos="fade-up">
-                    <form id="rsvp-form" onsubmit="submitRsvp(event)">
-                        <div class="form-group">
-                            <label class="form-label">Nama Anda</label>
-                            <input type="text" id="nama" class="form-input" placeholder="Masukkan nama" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Kehadiran</label>
-                            <select id="kehadiran" class="form-input" required>
-                                <option value="Hadir">Hadir</option>
-                                <option value="Tidak Hadir">Berhalangan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Doa & Ucapan</label>
-                            <textarea id="pesan" class="form-input" rows="3" placeholder="Tulis ucapan selamat Anda" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">KIRIM</button>
-                    </form>
-                </div>
-
-                <div class="wish-list">
-                    <div class="wish-card">
-                        <div class="wish-header">
-                            <span class="wish-name">Fajar</span>
-                            <span class="wish-status">Hadir</span>
-                        </div>
-                        <p class="wish-content">Lancar jaya berkah melimpah sakinah warahmah selamanya!</p>
+                    
+                    <!-- Digital Gift -->
+                    <div id="kado">
+                        <h2 class="font-headline-lg-mobile text-siger-gold mb-8 text-center">Kirim Kado</h2>
+                        <p class="font-body-md text-on-surface-variant mb-10 italic text-center text-sm">Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Rekan yang ingin mengirimkan hadiah tanda kasih, dapat melalui nomor rekening di bawah ini:</p>
+                        
+                        @if(isset($invitation) && isset($invitation->bankAccounts) && $invitation->bankAccounts->count() > 0)
+                            <div class="space-y-6">
+                                @foreach($invitation->bankAccounts as $bank)
+                                <div class="bg-ink-black border border-siger-gold/20 p-8 flex justify-between items-center group hover:border-siger-gold transition-all">
+                                    <div>
+                                        <p class="font-label-caps text-label-caps text-siger-gold uppercase mb-1">{{ strtoupper($bank->bank_name) }}</p>
+                                        <p class="font-headline-md text-off-white tracking-wider text-lg">{{ $bank->account_number }}</p>
+                                        <p class="font-body-md text-on-surface-variant text-xs">a.n {{ strtoupper($bank->account_name) }}</p>
+                                    </div>
+                                    <button class="text-siger-gold hover:scale-110 transition-transform" onclick="copyAccount('{{ $bank->account_number }}', this)">
+                                        <span class="material-symbols-outlined">content_copy</span>
+                                    </button>
+                                </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="space-y-6">
+                                <div class="bg-ink-black border border-siger-gold/20 p-8 flex justify-between items-center group hover:border-siger-gold transition-all">
+                                    <div>
+                                        <p class="font-label-caps text-label-caps text-siger-gold uppercase mb-1">Bank BCA</p>
+                                        <p class="font-headline-md text-off-white tracking-wider text-lg">8801 234 567</p>
+                                        <p class="font-body-md text-on-surface-variant text-xs">a.n Arjuna Putra Pratama</p>
+                                    </div>
+                                    <button class="text-siger-gold hover:scale-110 transition-transform" onclick="copyAccount('8801 234 567', this)">
+                                        <span class="material-symbols-outlined">content_copy</span>
+                                    </button>
+                                </div>
+                                <div class="bg-ink-black border border-siger-gold/20 p-8 flex justify-between items-center group hover:border-siger-gold transition-all">
+                                    <div>
+                                        <p class="font-label-caps text-label-caps text-siger-gold uppercase mb-1">Bank Mandiri</p>
+                                        <p class="font-headline-md text-off-white tracking-wider text-lg">123 00 0123 4567</p>
+                                        <p class="font-body-md text-on-surface-variant text-xs">a.n Srikandi Larasati</p>
+                                    </div>
+                                    <button class="text-siger-gold hover:scale-110 transition-transform" onclick="copyAccount('123 00 0123 4567', this)">
+                                        <span class="material-symbols-outlined">content_copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                    <div id="wishList"></div>
                 </div>
             </div>
         </section>
 
-        <div style="text-align: center; padding: 20px 0; font-size: 0.75rem; color: var(--text-light);">
-            Created with <i class="bi bi-heart-fill" style="color: var(--primary-dark);"></i> TemuRuang
-        </div>
+        <!-- Footer -->
+        <footer class="bg-ink-black py-section-gap relative overflow-hidden text-center flex flex-col items-center">
+            <div class="container mx-auto px-margin-mobile text-center flex flex-col items-center">
+                <div class="mb-12">
+                    <span class="material-symbols-outlined text-siger-gold !text-6xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                </div>
+                <h2 class="font-display-hero-mobile text-siger-gold leading-none mb-8">Hatur Nuhun</h2>
+                <div class="w-32 h-px bg-siger-gold mb-12"></div>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-20 italic text-sm">
+                    "Kasep eta mah bawaan orok, pinter mah kudu diajar, soleh mah kudu dibiasakeun. Mugia urang sadaya aya dina lindungan Allah SWT."
+                </p>
+                <p class="font-label-caps text-label-caps text-siger-gold/50 uppercase tracking-widest text-[10px]">
+                    © 2024 Siger Noir Wedding. All Rights Reserved.
+                </p>
+            </div>
+            <!-- Decorative Line Cutting through -->
+            <div class="absolute top-1/2 left-0 w-full h-px bg-siger-gold/10 -z-10 rotate-12"></div>
+        </footer>
+        
+        <!-- Spacer for bottom menu -->
+        <div class="h-28"></div>
     </div>
 
-    <!-- Floating Pill Navigation Bar -->
-    <div class="bottom-nav-pill" id="bottomNav">
-        <a href="#home" class="nav-item active"><i class="bi bi-house"></i><span>Home</span></a>
-        <a href="#couple-sec" class="nav-item"><i class="bi bi-heart"></i><span>Mempelai</span></a>
-        <a href="#event-sec" class="nav-item"><i class="bi bi-calendar"></i><span>Acara</span></a>
-        <a href="#story-sec" class="nav-item"><i class="bi bi-clock-history"></i><span>Kisah</span></a>
-        <a href="#rsvp-sec" class="nav-item"><i class="bi bi-chat-text"></i><span>RSVP</span></a>
+    <!-- Bottom Navigation Bar (Mobile & Desktop Centered) -->
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[432px] z-50 flex justify-around items-center py-3 px-4 bg-ink-black/80 backdrop-blur-md border border-siger-gold/20 rounded-full shadow-lg transform translate-y-32 transition-transform duration-500" id="bottom-nav">
+        <a class="flex flex-col items-center text-siger-gold" href="#cover" onclick="smoothScroll(event, '#cover')">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="font-label-caps text-[9px] mt-1">Home</span>
+        </a>
+        <a class="flex flex-col items-center text-on-surface-variant/70" href="#mempelai" onclick="smoothScroll(event, '#mempelai')">
+            <span class="material-symbols-outlined text-[20px]">favorite</span>
+            <span class="font-label-caps text-[9px] mt-1">Profil</span>
+        </a>
+        <a class="flex flex-col items-center text-on-surface-variant/70" href="#acara" onclick="smoothScroll(event, '#acara')">
+            <span class="material-symbols-outlined text-[20px]">event</span>
+            <span class="font-label-caps text-[9px] mt-1">Acara</span>
+        </a>
+        <a class="flex flex-col items-center text-on-surface-variant/70" href="#cerita" onclick="smoothScroll(event, '#cerita')">
+            <span class="material-symbols-outlined text-[20px]">photo_library</span>
+            <span class="font-label-caps text-[9px] mt-1">Galeri</span>
+        </a>
+    </nav>
+
+    <!-- Floating Action Controls -->
+    <div class="fixed bottom-24 left-1/2 translate-x-[170px] z-[45] flex flex-col gap-3 transform translate-y-32 transition-transform duration-500" id="floating-controls">
+        <!-- Music Toggle Button -->
+        <button class="w-10 h-10 rounded-full bg-deep-maroon/90 text-siger-gold border border-siger-gold/30 flex items-center justify-center shadow-lg active:scale-95 transition-transform" onclick="toggleAudio()">
+            <span class="material-symbols-outlined" id="music-icon">volume_up</span>
+        </button>
+        <!-- Autoscroll Toggle Button -->
+        <button class="w-10 h-10 rounded-full bg-deep-maroon/90 text-siger-gold border border-siger-gold/30 flex items-center justify-center shadow-lg active:scale-95 transition-transform" onclick="toggleAutoscroll()">
+            <span class="material-symbols-outlined" id="autoscroll-icon">play_arrow</span>
+        </button>
     </div>
 
-    <div class="floater-container">
-        <div class="music-control" id="musicControl" onclick="toggleMusic()">
-            <i class="bi bi-disc"></i>
-        </div>
-        <div class="scroll-control" id="scrollControl" onclick="toggleAutoscroll()">
-            <i class="bi bi-chevron-double-down"></i>
-            <span class="scroll-badge">Auto Scroll</span>
-        </div>
+    <!-- Hidden Audio element for background music -->
+    <audio id="bg-music" loop>
+        <source src="{{ asset('musics/sunda-music.mp3') }}" type="audio/mpeg"/>
+    </audio>
+
+    <!-- Lightbox Modal for Photo Preview -->
+    <div id="lightbox" class="fixed inset-y-0 max-w-[480px] w-full left-1/2 -translate-x-1/2 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/80 hover:text-siger-gold text-4xl font-bold transition-colors">&times;</button>
+        <img id="lightbox-img" class="max-w-full max-h-[85vh] object-contain rounded-xl border-2 border-siger-gold/40 shadow-2xl" src="" alt="Preview" onclick="event.stopPropagation()"/>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 50 });
-
-        let isAutoscrolling = false;
-        let autoscrollSpeed = 0.6;
-
+        // Open Invitation Logic
         function openInvitation() {
-            document.getElementById('cover').classList.add('opened');
-            const audio = document.getElementById('bg-audio');
-            audio.play().then(() => {
-                document.getElementById('musicControl').classList.add('playing');
-            }).catch(err => console.log("Blocked."));
-            document.getElementById('bottomNav').classList.add('visible');
-            document.getElementById('musicControl').classList.add('visible');
-            document.body.style.overflow = 'auto';
-            document.getElementById('scrollControl').classList.add('visible');
-            startAutoscroll();
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            const navHeader = document.getElementById('top-nav');
+            const bottomNav = document.getElementById('bottom-nav');
+            const floatingControls = document.getElementById('floating-controls');
+            const audio = document.getElementById('bg-music');
+
+            document.body.classList.remove('is-locked');
+            mainContent.style.display = 'block';
+
+            cover.style.transition = 'all 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+            cover.style.transform = 'translateY(-100%)';
+
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                navHeader.classList.remove('opacity-0');
+                bottomNav.classList.remove('translate-y-32');
+                floatingControls.classList.remove('translate-y-32');
+                
+                audio.play().then(() => {
+                    isPlaying = true;
+                    document.getElementById('music-icon').innerText = 'volume_up';
+                }).catch(err => console.log('Audio play blocked:', err));
+
+                startAutoscroll();
+            }, 500);
         }
 
-        function toggleMusic() {
-            const audio = document.getElementById('bg-audio');
-            const ctrl = document.getElementById('musicControl');
-            if (audio.paused) { audio.play(); ctrl.classList.add('playing'); }
-            else { audio.pause(); ctrl.classList.remove('playing'); }
+        // Audio Toggle
+        let isPlaying = false;
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            if (isPlaying) {
+                audio.pause();
+                icon.innerText = 'volume_off';
+            } else {
+                audio.play();
+                icon.innerText = 'volume_up';
+            }
+            isPlaying = !isPlaying;
         }
 
-        function scrollStep() {
-            if (!isAutoscrolling) return;
-            window.scrollBy(0, autoscrollSpeed);
-            const current = window.innerHeight + window.pageYOffset;
-            if (current >= (document.documentElement.scrollHeight - 5)) { stopAutoscroll(); return; }
-            requestAnimationFrame(scrollStep);
+        // Autoscroll Logic
+        let isScrolling = false;
+        let scrollInterval;
+        function toggleAutoscroll() {
+            const icon = document.getElementById('autoscroll-icon');
+            if (isScrolling) {
+                clearInterval(scrollInterval);
+                icon.innerText = 'play_arrow';
+            } else {
+                scrollInterval = setInterval(() => {
+                    window.scrollBy(0, 1);
+                }, 30);
+                icon.innerText = 'pause';
+            }
+            isScrolling = !isScrolling;
         }
 
         function startAutoscroll() {
-            isAutoscrolling = true;
-            const ctrl = document.getElementById('scrollControl');
-            ctrl.classList.add('active');
-            ctrl.querySelector('i').className = 'bi bi-pause-fill';
-            requestAnimationFrame(scrollStep);
+            isScrolling = true;
+            document.getElementById('autoscroll-icon').innerText = 'pause';
+            scrollInterval = setInterval(() => {
+                window.scrollBy(0, 1);
+            }, 30);
         }
 
         function stopAutoscroll() {
-            isAutoscrolling = false;
-            const ctrl = document.getElementById('scrollControl');
-            ctrl.classList.remove('active');
-            ctrl.querySelector('i').className = 'bi bi-chevron-double-down';
+            if (isScrolling) {
+                clearInterval(scrollInterval);
+                document.getElementById('autoscroll-icon').innerText = 'play_arrow';
+                isScrolling = false;
+            }
         }
 
-        function toggleAutoscroll() {
-            if (isAutoscrolling) stopAutoscroll(); else startAutoscroll();
+        ['wheel', 'touchstart', 'touchmove'].forEach(evt => 
+            window.addEventListener(evt, () => {
+                stopAutoscroll();
+            }, { passive: true })
+        );
+
+        // Copy Account Logic
+        function copyAccount(number, btn) {
+            navigator.clipboard.writeText(number);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'COPIED!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.overflow = 'hidden';
-            initCountdown();
-            ['wheel', 'touchstart'].forEach(evt => {
-                window.addEventListener(evt, () => { if (isAutoscrolling) stopAutoscroll(); }, { passive: true });
-            });
-        });
-
-        function initCountdown() {
-            const target = new Date("{{ $event['date_iso'] ?? '2026-12-12' }}T09:00:00").getTime();
-            setInterval(() => {
-                const now = new Date().getTime();
-                const diff = target - now;
-                if (diff <= 0) return;
-                document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2, '0');
-                document.getElementById('hours').innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-            }, 1000);
-        }
-
+        // RSVP Submit
         function submitRsvp(e) {
             e.preventDefault();
             const name = document.getElementById('nama').value;
-            const status = document.getElementById('kehadiran').value;
+            const presence = document.getElementById('kehadiran')?.value || 'Hadir';
             const msg = document.getElementById('pesan').value;
+
             const card = document.createElement('div');
-            card.className = 'wish-card';
-            card.innerHTML = `<div class="wish-header"><span class="wish-name">${name}</span><span class="wish-status">${status}</span></div><p class="wish-content">${msg}</p>`;
+            card.className = 'bg-surface-container-low p-5 rounded-xl border border-siger-gold/10';
+            card.innerHTML = `<p class="font-body-md text-siger-gold font-semibold text-sm">${name} (${presence})</p><p class="text-xs text-on-surface-variant italic mt-1">"${msg}"</p>`;
+            
             document.getElementById('wishList').prepend(card);
             document.getElementById('rsvp-form').reset();
-            alert("RSVP berhasil dikirim!");
+            alert("Hatur nuhun, ucapan parantos kakintun!");
         }
 
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const items = document.querySelectorAll('.nav-item');
-            let current = '';
-            sections.forEach(sec => {
-                if (pageYOffset >= (sec.offsetTop - 250)) current = sec.getAttribute('id');
+        // Lightbox Logic
+        function openLightbox(src) {
+            stopAutoscroll();
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 300);
+        }
+
+        // Smooth Scroll
+        function smoothScroll(e, selector) {
+            e.preventDefault();
+            stopAutoscroll();
+            document.querySelector(selector).scrollIntoView({
+                behavior: 'smooth'
             });
-            items.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) item.classList.add('active');
+
+            document.querySelectorAll('#bottom-nav a').forEach(a => {
+                a.className = "flex flex-col items-center text-on-surface-variant/70";
+            });
+            e.currentTarget.className = "flex flex-col items-center text-siger-gold";
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date("{{ $event['date_iso'] }}T{{ $event['time'] }}:00").getTime();
+        
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            if (distance <= 0) return;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        };
+        
+        setInterval(updateCountdown, 1000);
+
+        // Scroll Active Nav Link Highlight
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll("main, section");
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            document.querySelectorAll('#bottom-nav a').forEach((a) => {
+                a.className = "flex flex-col items-center text-on-surface-variant/70";
+                const href = a.getAttribute("href");
+                if (href === `#${current}`) {
+                    a.className = "flex flex-col items-center text-siger-gold";
+                }
             });
         });
     </script>

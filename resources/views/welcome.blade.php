@@ -339,72 +339,60 @@
                         </div>
                     </div>
                 </div>
-                <div class="row vs-carousel paket-slider" data-slide-show="3" data-ml-slide-show="3" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-autoplay="false" data-arrows="false">
-                    <!-- Paket Basic -->
-                    <div class="col-xl-3 wow animate__fadeInUp" data-wow-delay="0.25s">
-                        <div class="vs-team__style1" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; background: #fff; padding: 40px 20px; text-align: center;">
-                            <div class="vs-team__content">
-                                <h2 class="vs-team__title" style="font-size: 24px; margin-bottom: 15px;">Basic</h2>
-                                <h3 style="color: #1a7b45; font-size: 32px; font-weight: 700; margin-bottom: 25px;">Rp 49.000</h3>
-                                <ul style="list-style: none; padding: 0; margin-bottom: 30px; color: #666; font-size: 16px;">
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Masa Aktif 1 Bulan</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Tema Standard</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Galeri Foto (Maks 5)</li>
-                                    <li style="margin-bottom: 12px; color: #ccc;"><i class="fa fa-times mr-2"></i> Custom Nama Tamu</li>
-                                </ul>
-                                <a href="#" class="vs-btn2" style="padding: 15px 30px; font-size: 15px; border-radius: 5px;">Pilih Paket</a>
+                <div class="row vs-carousel paket-slider" data-slide-show="3" data-ml-slide-show="3" data-lg-slide-show="3" data-md-show-show="2" data-sm-slide-show="2" data-autoplay="false" data-arrows="false">
+                    @foreach($packages as $package)
+                        @php
+                            $isPlus = $package->name === 'Plus';
+                            $isPremium = $package->name === 'Premium';
+                            $delay = $loop->index * 0.1 + 0.25;
+                        @endphp
+                        <div class="col-xl-4 wow animate__fadeInUp" data-wow-delay="{{ $delay }}s">
+                            <div class="vs-team__style1" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; background: #fff; padding: 30px 20px 40px; text-align: center; border: {{ $isPlus ? '2px solid #1a7b45' : ($isPremium ? '1px solid #1a7b45' : '1px solid #eee') }}; height: 100%; display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+                                <div class="vs-team__content" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                    <div>
+                                        <div style="height: 35px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+                                            @if($isPlus)
+                                                <span style="background: #1a7b45; color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(26,123,69,0.2); display: inline-block;">Rekomendasi Terbaik (Paling Laris)</span>
+                                            @elseif($isPremium)
+                                                <span style="background: #e52e71; color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(229,46,113,0.2); display: inline-block;">Fitur Terlengkap</span>
+                                            @endif
+                                        </div>
+                                        <h2 class="vs-team__title" style="font-size: 26px; margin-bottom: 10px; font-weight: 800; text-transform: uppercase;">{{ $package->name }}</h2>
+                                        <h3 style="color: #1a7b45; font-size: 36px; font-weight: 800; margin-bottom: 25px;">
+                                            Rp {{ number_format($package->price, 0, ',', '.') }}
+                                        </h3>
+                                        <ul style="list-style: none; padding: 0; margin-bottom: 30px; color: #666; font-size: 15px; text-align: left; max-width: 290px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                                            <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Masa Aktif {{ $package->duration_days }} Hari</li>
+                                            <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> <strong>Galeri Foto Tanpa Batas</strong></li>
+                                            <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Fitur RSVP & Google Maps</li>
+                                            <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Buku Tamu & Ucapan Digital</li>
+                                            
+                                            @if($package->name === 'Basic')
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Pilih Maks. <strong>2 Template Premium</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Revisi Maks. <strong>2 Kali</strong> per Template</li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Musik Pengiring Standar</li>
+                                            @elseif($package->name === 'Plus')
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Pilih Maks. <strong>10 Template Premium</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Revisi Maks. <strong>5 Kali</strong> per Template</li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> <strong>Background Musik Kustom (MP3)</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Layanan CS & Bantuan Cepat</li>
+                                            @else
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Pilih Maks. <strong>20 Template Premium</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> <strong>Revisi Tanpa Batas (Unlimited)</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Background Musik Kustom (MP3)</li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> <strong>Dukungan VIP CS Prioritas 24/7</strong></li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Efek Salju & Stardust Premium</li>
+                                                <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Fitur RSVP Terhubung WhatsApp</li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div style="margin-top: auto;">
+                                        <a href="{{ route('register') }}" class="vs-btn2" style="padding: 15px 30px; font-size: 15px; border-radius: 5px; width: 100%; display: block; text-align: center; box-sizing: border-box; background: {{ $isPlus ? '#1a7b45' : '' }}; color: {{ $isPlus ? '#fff' : '' }}; border: {{ $isPlus ? 'none' : '' }};">Mulai Sekarang</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Paket Standard -->
-                    <div class="col-xl-3 wow animate__fadeInUp" data-wow-delay="0.35s">
-                        <div class="vs-team__style1" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; background: #fff; padding: 40px 20px; text-align: center;">
-                            <div class="vs-team__content">
-                                <h2 class="vs-team__title" style="font-size: 24px; margin-bottom: 15px;">Standard</h2>
-                                <h3 style="color: #1a7b45; font-size: 32px; font-weight: 700; margin-bottom: 25px;">Rp 99.000</h3>
-                                <ul style="list-style: none; padding: 0; margin-bottom: 30px; color: #666; font-size: 16px;">
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Masa Aktif 3 Bulan</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Tema Premium</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Galeri Foto (Maks 15)</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Custom Nama Tamu</li>
-                                </ul>
-                                <a href="#" class="vs-btn2" style="padding: 15px 30px; font-size: 15px; border-radius: 5px;">Pilih Paket</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paket Premium -->
-                    <div class="col-xl-3 wow animate__fadeInUp" data-wow-delay="0.45s">
-                        <div class="vs-team__style1" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; background: #fff; padding: 40px 20px; text-align: center; border: 2px solid #1a7b45;">
-                            <div class="vs-team__content">
-                                <span style="background: #1a7b45; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; margin-bottom: 15px; display: inline-block;">Paling Laris</span>
-                                <h2 class="vs-team__title" style="font-size: 24px; margin-bottom: 15px;">Premium</h2>
-                                <h3 style="color: #1a7b45; font-size: 32px; font-weight: 700; margin-bottom: 25px;">Rp 149.000</h3>
-                                <ul style="list-style: none; padding: 0; margin-bottom: 30px; color: #666; font-size: 16px;">
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Masa Aktif 6 Bulan</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Semua Tema</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Galeri Foto (Maks 30)</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Fitur RSVP & Maps</li>
-                                </ul>
-                                <a href="#" class="vs-btn2" style="padding: 15px 30px; font-size: 15px; border-radius: 5px;">Pilih Paket</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paket Exclusive -->
-                    <div class="col-xl-3 wow animate__fadeInUp" data-wow-delay="0.55s">
-                        <div class="vs-team__style1" style="box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; background: #fff; padding: 40px 20px; text-align: center;">
-                            <div class="vs-team__content">
-                                <h2 class="vs-team__title" style="font-size: 24px; margin-bottom: 15px;">Exclusive</h2>
-                                <h3 style="color: #1a7b45; font-size: 32px; font-weight: 700; margin-bottom: 25px;">Rp 249.000</h3>
-                                <ul style="list-style: none; padding: 0; margin-bottom: 30px; color: #666; font-size: 16px;">
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Masa Aktif 1 Tahun</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Semua Tema Eksklusif</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Galeri Foto Unlimited</li>
-                                    <li style="margin-bottom: 12px;"><i class="fa fa-check text-success mr-2"></i> Prioritas Support 24/7</li>
-                                </ul>
-                                <a href="#" class="vs-btn2" style="padding: 15px 30px; font-size: 15px; border-radius: 5px;">Pilih Paket</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 
                 <!-- Custom Navigation Arrows -->

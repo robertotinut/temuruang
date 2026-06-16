@@ -58,10 +58,7 @@ require __DIR__.'/auth.php';
 // Public pages routes
 Route::get('/templates', function () {
     $templates = \App\Models\Template::with('eventType')->where('is_active', true)->get();
-    $groupedTemplates = $templates->groupBy(function($item) {
-        return $item->eventType ? $item->eventType->name : 'Lainnya';
-    });
-    return view('front.templates', compact('groupedTemplates'));
+    return view('front.templates', compact('templates'));
 });
 
 Route::get('/pricing', function () {

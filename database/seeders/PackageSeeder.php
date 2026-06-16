@@ -14,25 +14,28 @@ class PackageSeeder extends Seeder
     {
         $packages = [
             [
-                'name' => 'Free',
-                'price' => 0,
-                'max_guest' => 100,
-                'max_gallery' => 5,
-                'max_template' => 1,
+                'name' => 'Basic',
+                'price' => 49000,
+                'duration_days' => 90,
+                'max_guest' => 999999,
+                'max_gallery' => 999999,
+                'max_template' => 2,
             ],
             [
-                'name' => 'Basic',
-                'price' => 50000,
-                'max_guest' => 500,
-                'max_gallery' => 20,
-                'max_template' => 5,
+                'name' => 'Plus',
+                'price' => 89000,
+                'duration_days' => 180,
+                'max_guest' => 999999,
+                'max_gallery' => 999999,
+                'max_template' => 10,
             ],
             [
                 'name' => 'Premium',
-                'price' => 150000,
-                'max_guest' => 999999, // unlimited representation
+                'price' => 199000,
+                'duration_days' => 365,
+                'max_guest' => 999999,
                 'max_gallery' => 999999,
-                'max_template' => 999999,
+                'max_template' => 20,
             ]
         ];
 

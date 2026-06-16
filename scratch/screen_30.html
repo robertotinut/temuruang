@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Grand Union | Wedding Invitation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&amp;family=Source+Serif+4:ital,wght@0,400;0,700;1,400&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=Special+Elite&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#fed65b",
+                        "inverse-on-surface": "#feeedb",
+                        "on-primary-fixed": "#410000",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-highest": "#efe0cd",
+                        "secondary-fixed-dim": "#e9c349",
+                        "primary-fixed": "#ffdad4",
+                        "on-secondary-container": "#745c00",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#efe0cd",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#e7d8c5",
+                        "on-secondary-fixed": "#241a00",
+                        "parchment-light": "#FAF6F0",
+                        "surface": "#fff8f3",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffe088",
+                        "background": "#fff8f3",
+                        "surface-container-high": "#f5e6d3",
+                        "on-surface-variant": "#5a413d",
+                        "tertiary": "#162b1d",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-surface": "#221a0f",
+                        "on-primary-container": "#ff8371",
+                        "surface-container": "#fbecd8",
+                        "on-tertiary-container": "#95ad99",
+                        "wax-seal-red": "#960018",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#fff2e2",
+                        "tertiary-fixed": "#d0e9d4",
+                        "tertiary-fixed-dim": "#b4cdb8",
+                        "tertiary-container": "#2c4132",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#382f22",
+                        "surface-tint": "#b22b1d",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "primary": "#570000",
+                        "on-tertiary-fixed-variant": "#364c3c",
+                        "outline-variant": "#e2bfb9",
+                        "on-background": "#221a0f",
+                        "on-tertiary-fixed": "#0b2013",
+                        "secondary": "#735c00",
+                        "espresso-dark": "#2B1B17",
+                        "outline": "#8e706c",
+                        "primary-container": "#800000",
+                        "error": "#ba1a1a",
+                        "burnt-orange": "#CC5500",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-bright": "#fff8f3",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1200px",
+                        "stack-overlap": "-40px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["\"Source Serif 4\""],
+                        "label-md": ["Courier Prime"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["Playfair Display"],
+                        "label-sm": ["Courier Prime"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "fontWeight": "900"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @layer utilities {
+            .ornament-corner-gold {
+                background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0C60 0 120 60 120 120V0H0Z' fill='%23fed65b' fill-opacity='0.25'/%3E%3Cpath d='M15 15C45 15 75 45 75 75M30 15C50 15 65 30 65 50M10 10L25 25M120 0L110 10M0 120L10 110' stroke='%23fed65b' stroke-width='2.5'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23fed65b'/%3E%3C/svg%3E");
+                background-size: 100px 100px;
+                background-repeat: no-repeat;
+            }
+            .aged-parchment {
+                background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png"), url("https://www.transparenttextures.com/patterns/parchment.png");
+                background-color: #fbecd8;
+            }
+            .damask-watermark {
+                background-image: url("https://www.transparenttextures.com/patterns/damask-weave.png");
+                background-blend-mode: overlay;
+            }
+            .film-grain {
+                position: relative;
+            }
+            .film-grain::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+                opacity: 0.4;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .section-divider-luxe {
+                height: 40px;
+                background: linear-gradient(to right, transparent, #fed65b, #b22b1d, #fed65b, transparent);
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .section-divider-luxe::after {
+                content: "❈";
+                color: #fed65b;
+                font-size: 24px;
+                background: #221a0f;
+                padding: 0 15px;
+                border: 2px solid #fed65b;
+                border-radius: 50%;
+            }
+            .ornate-container {
+                border: 8px double #fed65b;
+                box-shadow: 0 0 0 4px #570000, 10px 10px 20px rgba(0,0,0,0.2);
+                background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+            }
+            .paper-texture {
+                background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+            }
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .wax-seal {
+            background: radial-gradient(circle, #b22b1d 0%, #960018 100%);
+            box-shadow: 4px 4px 0px rgba(43, 27, 23, 0.4), inset -2px -2px 4px rgba(0,0,0,0.3);
+        }
+
+        .marquee-text {
+            text-shadow: 2px 2px 0px #2B1B17, 0 0 15px rgba(254, 214, 91, 0.5);
+        }
+
+        .polaroid {
+            background: white;
+            padding: 1rem 1rem 3rem 1rem;
+            box-shadow: 6px 6px 0px rgba(43, 27, 23, 0.2);
+            transition: transform 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 50; }
+
+        .ticket-cutout {
+            mask-image: radial-gradient(circle at 0 50%, transparent 15px, black 16px), radial-gradient(circle at 100% 50%, transparent 15px, black 16px);
+            -webkit-mask-image: radial-gradient(circle at 0 50%, transparent 15px, black 16px), radial-gradient(circle at 100% 50%, transparent 15px, black 16px);
+        }
+
+        .filigree-gold-large {
+            width: 150px;
+            height: 150px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 Q 50 10 50 50 Q 50 90 90 90 M10 10 Q 10 50 50 50 Q 90 50 90 10' stroke='%23fed65b' fill='none' stroke-width='1' opacity='0.4'/%3E%3Cpath d='M20 20 C 40 20 50 40 50 50 C 50 60 60 80 80 80' stroke='%23fed65b' fill='none' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E");
+            background-size: contain;
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface aged-parchment selection:bg-wax-seal-red selection:text-white film-grain">
+<!-- OVERLAY LOADER / COVER -->
+<div class="fixed inset-0 z-[100] bg-primary damask-watermark flex flex-col items-center justify-center text-center px-6 transition-transform duration-1000 ease-in-out overflow-hidden" id="cover">
+<div class="absolute top-0 left-0 w-48 h-48 ornament-corner-gold"></div>
+<div class="absolute top-0 right-0 w-48 h-48 ornament-corner-gold rotate-90"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 ornament-corner-gold -rotate-90"></div>
+<div class="absolute bottom-0 right-0 w-48 h-48 ornament-corner-gold rotate-180"></div>
+<!-- Large Center Filigree -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] opacity-10 pointer-events-none">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M100 20 C 140 20 180 60 180 100 C 180 140 140 180 100 180 C 60 180 20 140 20 100 C 20 60 60 20 100 20 M100 40 C 70 40 40 70 40 100 C 40 130 70 160 100 160 C 130 160 160 130 160 100 C 160 70 130 40 100 40" fill="none" stroke="#fed65b" stroke-width="0.5"></path></svg>
+</div>
+<div class="space-y-6 relative z-10">
+<span class="font-label-md text-label-md text-secondary-fixed tracking-[0.4em] uppercase">The Grand Wedding of</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:text-display-lg text-secondary-fixed marquee-text italic px-4">
+            Adrian &amp; Evelyn
+        </h1>
+<p class="font-body-md text-body-md text-parchment-light max-w-xs mx-auto italic opacity-80">
+            A celebration of timeless devotion and classical romance.
+        </p>
+<button class="group relative inline-flex items-center justify-center p-8 mt-12 wax-seal rounded-full transition-transform active:scale-90 hover:scale-110" onclick="openInvitation()">
+<div class="absolute inset-0 rounded-full border-4 border-double border-secondary-fixed/30 group-hover:border-secondary-fixed transition-colors"></div>
+<span class="font-label-md text-label-md text-secondary-fixed font-bold">BUKA UNDANGAN</span>
+</button>
+</div>
+</div>
+<!-- TOP APP BAR -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile py-4 bg-surface/90 backdrop-blur-sm border-b-4 border-double border-espresso-dark hidden" id="main-nav">
+<div class="font-display-lg-mobile text-headline-md text-wax-seal-red italic">Our Grand Union</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-wax-seal-red">history_edu</span>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="max-w-container-max mx-auto relative pt-0 pb-24 overflow-hidden">
+<!-- HERO SECTION -->
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-margin-mobile pt-24 space-y-8 relative">
+<div class="absolute top-0 left-0 w-32 h-32 ornament-corner-gold opacity-40"></div>
+<div class="absolute top-0 right-0 w-32 h-32 ornament-corner-gold rotate-90 opacity-40"></div>
+<div class="relative w-full max-w-3xl ornate-container p-2">
+<div class="absolute inset-0 bg-espresso-dark/5 mix-blend-multiply"></div>
+<img class="w-full aspect-[4/5] md:aspect-video object-cover grayscale brightness-90 border-4 border-espresso-dark" data-alt="A romantic sepia-toned cinematic prewedding photograph of a couple embracing in a vintage library setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRwh4BsoU9HTJ9134sRnZrYNAGsRFYtdOhHZYFwFtHRGuoYyV_hNFXOp4_qFl-SslcWGj0RRf3bFcC0zX0J8xgDBNjFkRRNIcvHeAKhIwaY3mDLeR3OKwkXc_seogs0yMxZ85rsZabT3YcT19JwjBoqoEP9j8FMecL5ScIMgIxFcwxP98LHE9kUnj1hIODRZsusiSuYssRt7nYsoUTrMIDjkbVMaNmtvsR9_5TT_MwWI1Jax1mEamJG7Tnus7oINUiXaGG0INK8iy_"/>
+<div class="absolute -bottom-10 -right-4 bg-parchment-light p-6 border-4 border-double border-secondary-fixed shadow-xl max-w-sm hidden md:block">
+<p class="font-display-lg-mobile text-headline-md text-wax-seal-red italic">"In all the world, there is no heart for me like yours."</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-2">— Maya Angelou</span>
+</div>
+</div>
+<div class="pt-12 md:pt-20 relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 w-48 h-8 damask-watermark opacity-20"></div>
+<h2 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Counting Down to the Gala</h2>
+<div class="flex gap-4 mt-4 font-label-md text-headline-md text-espresso-dark">
+<div class="flex flex-col"><span id="days">00</span><span class="text-xs uppercase opacity-60">Days</span></div>
+<span>:</span>
+<div class="flex flex-col"><span id="hours">00</span><span class="text-xs uppercase opacity-60">Hrs</span></div>
+<span>:</span>
+<div class="flex flex-col"><span id="minutes">00</span><span class="text-xs uppercase opacity-60">Min</span></div>
+</div>
+</div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- MEMPELAI (PROFILES) -->
+<section class="py-24 px-margin-mobile grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center relative">
+<!-- Corner Ornaments -->
+<div class="absolute bottom-0 left-0 w-32 h-32 ornament-corner-gold -rotate-90 opacity-30"></div>
+<div class="absolute bottom-0 right-0 w-32 h-32 ornament-corner-gold rotate-180 opacity-30"></div>
+<!-- Bride -->
+<div class="flex flex-col items-center md:items-end text-center md:text-right space-y-6">
+<div class="relative group">
+<div class="absolute -inset-4 border-4 border-double border-secondary-container rounded-lg rotate-3 group-hover:rotate-0 transition-transform"></div>
+<div class="ornate-container p-1 rotate-1 group-hover:rotate-0 transition-transform">
+<img class="w-64 h-80 object-cover border-2 border-espresso-dark" data-alt="A vintage-style portrait of a bride" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIe1dDTTYC-78-daOjuerXeQd-AGRSY04ym66XdRuIDjWN_Vn45Xlcw7xtv3P7AFPnDO_TgANxAJf8Jiv1TWNE6F0PW7eiIilGljqcQQmTyV50WEyD5nHP5njjbyDyUoEiDWLPs69dLqykW2nTTkkDdcnAm_QtsbU_ZzBO6JNWpNbvUoaHhhOF97muLtPTt9cjEJ9_LCou5ZehCWAGtb_J2frFyDMgo6omquwc9nJbWYUzX5CMtspj7O6fBt6IlVkZ-oup8ehHzPGZ"/>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="font-display-lg-mobile text-headline-lg text-wax-seal-red italic">Evelyn Rosewood</h3>
+<p class="font-body-md text-body-md text-on-surface max-w-sm">Daughter of Mr. Benjamin &amp; Mrs. Clara Rosewood. A soul bound to the arts and the poetic silence of old libraries.</p>
+</div>
+</div>
+<!-- Groom -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left space-y-6">
+<div class="relative group">
+<div class="absolute -inset-4 border-4 border-double border-secondary-container rounded-lg -rotate-3 group-hover:rotate-0 transition-transform"></div>
+<div class="ornate-container p-1 -rotate-1 group-hover:rotate-0 transition-transform">
+<img class="w-64 h-80 object-cover border-2 border-espresso-dark" data-alt="A sophisticated portrait of a groom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfcBUOor7UI3ndoYJqBb3P_GovFAvixEPtKBrwP7fFzLnsaPnIXUKxzlk07OUHjMQQ6tjXRAWq9BI1lWBen7aUGYkGRLhaP0fHowctOh6da12PpsxH4BvAevZGQgr_XVRlEOYU2wGoczTKvEyAwsVxL2qqVHUKZVc-WlJgcDYJYPn0ikuVgmndTer0wutwvOOf37m2kS13zcKqUZB47cfZAL27pQXuAETrRh0iaS8fy74VhMLWRiCqDS_M4w7zNISlBIcT19KFx90a"/>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="font-display-lg-mobile text-headline-lg text-wax-seal-red italic">Adrian Sterling</h3>
+<p class="font-body-md text-body-md text-on-surface max-w-sm">Son of Mr. Arthur &amp; Mrs. Martha Sterling. An architect of dreams and a steadfast guardian of traditional elegance.</p>
+</div>
+</div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- ACARA (THE TICKET) -->
+<section class="py-24 px-margin-mobile relative">
+<div class="absolute top-0 left-0 w-48 h-48 ornament-corner-gold opacity-20"></div>
+<div class="bg-primary damask-watermark p-3 rounded-sm shadow-2xl relative">
+<div class="absolute inset-0 border-4 border-double border-secondary-fixed/30 pointer-events-none"></div>
+<div class="bg-surface-container border-2 border-dashed border-espresso-dark ticket-cutout relative overflow-hidden">
+<div class="p-8 md:p-16 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+<!-- Left: Stamp & Intro -->
+<div class="flex flex-col justify-between border-b md:border-b-0 md:border-r border-dashed border-espresso-dark pb-8 md:pb-0 md:pr-8">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ADMISSION TICKET</span>
+<h2 class="font-display-lg-mobile text-headline-md text-wax-seal-red mt-2 italic">The Wedding Ceremony</h2>
+</div>
+<div class="mt-8 flex items-center gap-4 opacity-50">
+<span class="material-symbols-outlined text-4xl">local_post_office</span>
+<span class="font-label-sm text-xs">OFFICIAL STAMP MMXXIV</span>
+</div>
+</div>
+<!-- Center: Main Info -->
+<div class="md:col-span-2 space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h4 class="font-label-md text-label-md text-wax-seal-red border-b border-espresso-dark/20 pb-2">SACRED COVENANT</h4>
+<p class="mt-4 font-body-lg text-body-lg font-bold">10:00 AM — MIDDAY</p>
+<p class="font-body-md text-body-md mt-2">The Grand Cathedral of St. James</p>
+<p class="font-label-sm text-label-sm italic opacity-70">Strictly Formal Attire</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-wax-seal-red border-b border-espresso-dark/20 pb-2">THE RECEPTION GALA</h4>
+<p class="mt-4 font-body-lg text-body-lg font-bold">06:00 PM — TILL LATE</p>
+<p class="font-body-md text-body-md mt-2">The Sterling Royal Ballroom</p>
+<p class="font-label-sm text-label-sm italic opacity-70">Dinner &amp; Dancing Follows</p>
+</div>
+</div>
+<div class="pt-8 border-t border-double border-espresso-dark flex flex-wrap gap-4">
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-espresso-dark hover:text-wax-seal-red transition-colors underline decoration-double" href="#">
+<span class="material-symbols-outlined">map</span> VIEW LOCATION MAP
+                            </a>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-espresso-dark hover:text-wax-seal-red transition-colors underline decoration-double" href="#">
+<span class="material-symbols-outlined">calendar_today</span> ADD TO CALENDAR
+                            </a>
+</div>
+</div>
+</div>
+<!-- Decorative film strip edge -->
+<div class="h-4 bg-espresso-dark flex justify-around items-center px-4 overflow-hidden opacity-50">
+<div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div>
+<div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div>
+<div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div><div class="w-3 h-2 bg-surface"></div>
+</div>
+</div>
+</div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- TIMELINE -->
+<section class="py-24 px-margin-mobile flex flex-col items-center relative">
+<div class="absolute top-0 right-0 w-32 h-32 ornament-corner-gold rotate-90 opacity-20"></div>
+<h2 class="font-display-lg-mobile text-headline-lg text-wax-seal-red text-center italic mb-16 relative">
+            The Chapter of Us
+            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-1 bg-secondary-fixed/50"></div>
+</h2>
+<div class="relative w-full max-w-lg">
+<!-- Center Line -->
+<div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 border-l-2 border-dashed border-wax-seal-red/30"></div>
+<div class="space-y-24 relative">
+<!-- Phase 1 -->
+<div class="relative flex items-center justify-between">
+<div class="w-[45%] text-right pr-8">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">AUTUMN 2018</span>
+<h4 class="font-headline-md text-headline-md-mobile text-espresso-dark leading-tight">The First Encounter</h4>
+<p class="font-body-md text-body-md mt-2">A rainy afternoon in a Parisian bookshop.</p>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-surface border-4 border-wax-seal-red rounded-full flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined text-wax-seal-red">history_edu</span>
+</div>
+<div class="w-[45%]"></div>
+</div>
+<!-- Phase 2 -->
+<div class="relative flex items-center justify-between">
+<div class="w-[45%]"></div>
+<div class="absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-surface border-4 border-wax-seal-red rounded-full flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined text-wax-seal-red">favorite</span>
+</div>
+<div class="w-[45%] text-left pl-8">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">WINTER 2021</span>
+<h4 class="font-headline-md text-headline-md-mobile text-espresso-dark leading-tight">The Promise</h4>
+<p class="font-body-md text-body-md mt-2">Under the glimmering lights of Venice.</p>
+</div>
+</div>
+<!-- Phase 3 -->
+<div class="relative flex items-center justify-between">
+<div class="w-[45%] text-right pr-8">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">SPRING 2024</span>
+<h4 class="font-headline-md text-headline-md-mobile text-espresso-dark leading-tight">The Eternal Union</h4>
+<p class="font-body-md text-body-md mt-2">Where two paths become a singular journey.</p>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-wax-seal-red border-4 border-double border-secondary-fixed rounded-full flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined text-secondary-fixed">auto_stories</span>
+</div>
+<div class="w-[45%]"></div>
+</div>
+</div>
+</div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- GALLERY COLLAGE -->
+<section class="py-24 px-margin-mobile bg-espresso-dark/10 relative overflow-visible">
+<div class="absolute inset-0 damask-watermark opacity-10 pointer-events-none"></div>
+<h2 class="font-display-lg-mobile text-headline-lg text-wax-seal-red text-center italic mb-24 z-10 relative">Captured Devotion</h2>
+<div class="relative h-[800px] md:h-[1000px] w-full max-w-5xl mx-auto z-10">
+<!-- Polaroid 1 -->
+<div class="absolute top-0 left-0 polaroid -rotate-3 z-10 w-64 md:w-80">
+<img class="w-full h-auto grayscale-50" data-alt="A vintage Polaroid-style photo of a couple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACRzMRqlKSaGBMp_M_8Nklg8Xu52gWqonWC70tdKKBN4I7lvX-1s2UQHfK80cIe79fZeO7K5-vFrQpVGGULoj4Sl0kqwzwUqk2g1PBisdKjbo7TR7nT9mannpOjax0oTeKZFkR2bZyUPodCGHvwp9-kJcfKZOrdnq2xnXFc1xa7UgAbMepfr96i9rlgRX2CL_-Mp7ytn4Ze9j6Jdf3XnJDtNbcEFUTRwExYR4QJtBJI6YhH1S485P7NZ-x6_ZOueeRRw5dFKeMUJJ2"/>
+<p class="mt-4 font-label-md text-label-md italic text-center text-espresso-dark">Paris, 2018</p>
+</div>
+<!-- Film Strip -->
+<div class="absolute top-20 right-0 z-0 opacity-80 rotate-12 hidden md:block">
+<div class="flex flex-col gap-2 p-2 bg-espresso-dark rounded-sm shadow-xl">
+<div class="w-32 h-32 bg-gray-400 overflow-hidden border border-white/20">
+<img class="object-cover w-full h-full grayscale" data-alt="Small cinematic vintage film-strip frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW8yCOIxF-ClbW1O2tFywnChOcP8yxFEtZvOZl7SDFZAFLrcK4qONAzO_zy9QL2gDUUFvvgT0T4qYgVShnJbAhtTw-mPLx9vrgkA6A5kbmRr85izHVcMAaHd0Lp9up71bJzs7uBvXeXimzv0yUDKuq4kRzKq6Gbx7p0MEtqfRaxrxy7tgyE7D-KnrShl-1U4odg93adjv7THoiNqbCLdMZsINkreem5KpSpGJtCBkhI9Nop_G0oILz7WkCF--JoM7AAV4SAMcojs2u"/>
+</div>
+<div class="w-32 h-32 bg-gray-400 overflow-hidden border border-white/20">
+<img class="object-cover w-full h-full grayscale" data-alt="Small cinematic vintage film-strip frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqJa9WXWYhziTc_UTxSifDfrsUWOyQKXyARn4KF0HUKXbanJsMs7OsXmJVvdnRE8IlNuCyPjNuqg2Yio0CoHBWXe6PYnY88LH6Jp8rK3RBYYnvau9tsOgr1ls9ay_RWVOVnrOXYV4MiO3iFyHPV73pc5cS7XlR1bdTJdQEkx7afVhimM8ZNn4zGQbayCEPKT49wlPlVBcV-jXIXLm8xr7jDyXf2rKX1I5zzQlI4opu3M_zjSyk1Mn7WhAnXSiiAPGgNquj3oVao2B-"/>
+</div>
+</div>
+</div>
+<!-- Gold Frame 1 -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-80 md:w-[550px]">
+<div class="p-6 bg-secondary-fixed shadow-[20px_20px_0px_rgba(43,27,23,0.3)] border-4 border-double border-espresso-dark">
+<div class="border-4 border-espresso-dark p-1 bg-surface-container">
+<img class="w-full aspect-video object-cover" data-alt="A large gold-framed photograph" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOgYDfEZdKV8TDqPqJFdUNHzMDqCUn4utMo6SGdqcI_gj0wEu75TMrGqH4iVlA2_oyhtaoymJLi0YjcBDIfHgsLNwrTw4bGJURYHmSbTYPhZHu8M8GPFXydCKoOzDZG5bVS5_e64NxTajyUBG7EqOKkYWc0rZ5INum9w2HgTfFR34ch6YwCKa3cu03zKXe-N8uW3H1dbdMHrELDzQfTRPMFC_1n6bCo8GOcZRK2xxeIu0OJpF1uPqdgP_bApt0b1qs1j8-bmGnLWfN"/>
+</div>
+</div>
+</div>
+<!-- Polaroid 2 -->
+<div class="absolute bottom-10 left-10 polaroid rotate-6 z-10 w-64 md:w-72">
+<img class="w-full h-auto" data-alt="A vintage Polaroid-style photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASkQDkjqbB2pT1aPZourE1jwltvvKdTpKHgYf9R8vdQUKK1SDq2QyHaTP_IQZ6k_o6aZR1qEXwQvOLKGnt6QsWniriAP5p7PwR51G6Fiq6irg2Zs4nlv3IcbModOGBw2Z_FKwr_YUcwb1Q8QoTvrffdo_IXjkOMSnYYDHSe9mK_wDqGkVvT4G89WCLj13FmTj7MBsKTEwsPn9FKRRcf2UE2iATUsLBf9275_SB33vU1Da7TruWJDDVwd38E27dc1unrmXK-CoJliXe"/>
+<p class="mt-4 font-label-md text-label-md italic text-center text-espresso-dark">Summer Solstice</p>
+</div>
+<!-- Scrap Paper Detail -->
+<div class="absolute bottom-20 right-10 bg-parchment-light p-6 w-64 border-4 border-double border-wax-seal-red -rotate-3 z-30 shadow-2xl ornate-container">
+<span class="material-symbols-outlined text-wax-seal-red text-4xl mb-2">attachment</span>
+<p class="font-body-md text-body-md italic text-on-surface-variant">"Moments captured not just in film, but in the very fiber of our souls."</p>
+</div>
+</div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- RSVP & KADO (POSTCARD STYLE) -->
+<section class="py-24 px-margin-mobile relative overflow-hidden">
+<div class="absolute inset-0 damask-watermark opacity-20 pointer-events-none"></div>
+<div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 ornate-container relative z-10">
+<!-- RSVP Form -->
+<div class="p-8 md:p-12 border-b md:border-b-0 md:border-r-4 border-double border-espresso-dark bg-surface">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="font-display-lg-mobile text-headline-md text-wax-seal-red italic">R.S.V.P.</h2>
+<p class="font-label-sm text-label-sm mt-1 uppercase tracking-widest">Kindly Respond</p>
+</div>
+<div class="w-20 h-24 border-2 border-espresso-dark/40 flex flex-col items-center justify-center opacity-40 bg-parchment-light">
+<span class="font-label-sm text-[10px] text-center p-1">PLACE STAMP HERE</span>
+</div>
+</div>
+<form class="space-y-6">
+<div class="border-b border-espresso-dark">
+<label class="font-label-sm text-xs opacity-60">GUEST NAME</label>
+<input class="w-full bg-transparent border-none focus:ring-0 font-label-md text-label-md placeholder:opacity-30 px-0 pb-2" placeholder="Your name here..." type="text"/>
+</div>
+<div class="border-b border-espresso-dark">
+<label class="font-label-sm text-xs opacity-60">ATTENDANCE</label>
+<select class="w-full bg-transparent border-none focus:ring-0 font-label-md text-label-md px-0 pb-2">
+<option>Joyfully Accepts</option>
+<option>Regretfully Declines</option>
+</select>
+</div>
+<div class="border-b border-espresso-dark">
+<label class="font-label-sm text-xs opacity-60">NUMBER OF GUESTS</label>
+<input class="w-full bg-transparent border-none focus:ring-0 font-label-md text-label-md px-0 pb-2" max="5" min="1" type="number" value="1"/>
+</div>
+<button class="w-full py-4 bg-wax-seal-red text-secondary-fixed font-label-md text-label-md uppercase tracking-widest hover:bg-espresso-dark transition-colors border-2 border-double border-secondary-fixed shadow-md" type="submit">
+                        Send RSVP
+                    </button>
+</form>
+</div>
+<!-- Digital Registry (Kado) -->
+<div class="p-8 md:p-12 flex flex-col justify-between bg-parchment-light/80">
+<div>
+<h2 class="font-display-lg-mobile text-headline-md text-espresso-dark italic mb-6">Wedding Registry</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Your presence is our greatest gift. Should you wish to honor us with a token of love, our digital registry is available below.</p>
+<div class="space-y-4">
+<div class="bg-surface p-4 border-2 border-double border-espresso-dark/30 flex justify-between items-center group cursor-pointer hover:border-wax-seal-red transition-all">
+<div>
+<p class="font-label-sm text-xs opacity-50">BANK CENTRAL ASIA</p>
+<p class="font-label-md text-label-md font-bold">123 - 456 - 7890</p>
+<p class="font-body-md text-sm italic">a.n Adrian Sterling</p>
+</div>
+<span class="material-symbols-outlined text-wax-seal-red group-hover:scale-125 transition-transform">content_copy</span>
+</div>
+<div class="bg-surface p-4 border-2 border-double border-espresso-dark/30 flex justify-between items-center group cursor-pointer hover:border-wax-seal-red transition-all">
+<div>
+<p class="font-label-sm text-xs opacity-50">THE ROYAL ENVELOPE</p>
+<p class="font-body-md text-sm italic">Gift Box available at the entrance</p>
+</div>
+<span class="material-symbols-outlined text-wax-seal-red">mail</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t-2 border-dashed border-espresso-dark/20 text-center">
+<span class="font-label-sm text-[10px] tracking-[0.4em] opacity-50">M M X X I V</span>
+</div>
+</div>
+</div>
+<!-- Background Ornaments -->
+<div class="absolute top-0 right-0 w-80 h-80 ornament-corner-gold opacity-15 rotate-90"></div>
+<div class="absolute bottom-0 left-0 w-80 h-80 ornament-corner-gold opacity-15 -rotate-90"></div>
+</section>
+<div class="section-divider-luxe"></div>
+<!-- FOOTER -->
+<footer class="py-24 px-margin-mobile text-center relative">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full damask-watermark opacity-5 pointer-events-none"></div>
+<div class="max-w-2xl mx-auto space-y-12 relative z-10">
+<div class="flex items-center justify-center gap-4">
+<div class="h-1 w-24 bg-gradient-to-r from-transparent to-wax-seal-red"></div>
+<span class="material-symbols-outlined text-wax-seal-red text-4xl">favorite</span>
+<div class="h-1 w-24 bg-gradient-to-l from-transparent to-wax-seal-red"></div>
+</div>
+<div class="space-y-4">
+<h2 class="font-display-lg-mobile text-headline-lg text-wax-seal-red italic">Thank You</h2>
+<p class="font-body-lg text-body-lg italic text-on-surface-variant max-w-lg mx-auto">"True love is a story that never ends, yet it begins anew every single day."</p>
+</div>
+<div class="pt-8 border-t border-double border-espresso-dark/20 w-32 mx-auto">
+<p class="font-label-md text-label-md text-espresso-dark font-bold uppercase tracking-[0.5em]">A &amp; E</p>
+<p class="font-label-sm text-label-sm mt-4 opacity-50">A.D. MMXXIV | Handcrafted with Devotion</p>
+</div>
+</div>
+</footer>
+</main>
+<!-- BOTTOM NAV (Floating Pil) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[80] bg-espresso-dark/95 backdrop-blur-md px-8 py-4 rounded-full border-2 border-secondary-fixed shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex gap-10 items-center hidden" id="bottom-nav">
+<a class="flex flex-col items-center text-secondary-fixed hover:text-wax-seal-red transition-all scale-110" href="#">
+<span class="material-symbols-outlined text-3xl">mail</span>
+<span class="text-[10px] font-label-sm tracking-widest mt-1">INVITE</span>
+</a>
+<a class="flex flex-col items-center text-secondary-fixed/60 hover:text-wax-seal-red transition-all" href="#">
+<span class="material-symbols-outlined text-3xl">photo_library</span>
+<span class="text-[10px] font-label-sm tracking-widest mt-1">GALLERY</span>
+</a>
+<a class="flex flex-col items-center text-secondary-fixed/60 hover:text-wax-seal-red transition-all" href="#">
+<span class="material-symbols-outlined text-3xl">edit_note</span>
+<span class="text-[10px] font-label-sm tracking-widest mt-1">RSVP</span>
+</a>
+</nav>
+<!-- AUDIO CONTROLS -->
+<div class="fixed top-24 right-6 z-[80] hidden" id="audio-control">
+<button class="w-14 h-14 rounded-full bg-secondary-fixed border-4 border-espresso-dark flex items-center justify-center shadow-2xl active:scale-95 transition-all hover:rotate-12" onclick="toggleAudio()">
+<span class="material-symbols-outlined text-espresso-dark text-3xl" id="audio-icon">music_note</span>
+</button>
+</div>
+<!-- AUDIO ELEMENT -->
+<audio id="bg-music" loop="">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg"/>
+</audio>
+<script>
+    // COVER LOGIC
+    function openInvitation() {
+        const cover = document.getElementById('cover');
+        const mainNav = document.getElementById('main-nav');
+        const bottomNav = document.getElementById('bottom-nav');
+        const audioBtn = document.getElementById('audio-control');
+        const music = document.getElementById('bg-music');
+
+        // Hide cover
+        cover.style.transform = 'translateY(-100%)';
+        
+        // Show Navs
+        setTimeout(() => {
+            mainNav.classList.remove('hidden');
+            bottomNav.classList.remove('hidden');
+            audioBtn.classList.remove('hidden');
+            
+            // Play music
+            music.play().catch(e => console.log('Autoplay blocked'));
+            document.body.classList.remove('overflow-hidden');
+        }, 500);
+    }
+
+    // Disable scroll on initial load
+    document.addEventListener('DOMContentLoaded', () => {
+        window.scrollTo(0, 0);
+        document.body.classList.add('overflow-hidden');
+    });
+
+    // COUNTDOWN TIMER
+    const weddingDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000); // 30 days from now
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+    }, 1000);
+
+    // AUDIO TOGGLE
+    let isPlaying = true;
+    function toggleAudio() {
+        const music = document.getElementById('bg-music');
+        const icon = document.getElementById('audio-icon');
+        if (isPlaying) {
+            music.pause();
+            icon.innerText = 'music_off';
+        } else {
+            music.play();
+            icon.innerText = 'music_note';
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // INTERSECTION OBSERVER FOR NAV STATES
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('#bottom-nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id') || '';
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('text-wax-seal-red');
+            link.classList.add('text-secondary-fixed/60');
+        });
+    });
+</script>
+</body></html>

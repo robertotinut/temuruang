@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+    <meta name="description" content="Syarat dan Ketentuan Layanan Virtual Gift Indoinvite | Indoinvite.com">
+<link rel="canonical" href="https://indoinvite.com/artikel/syarat-dan-ketentuan-virtual-gift-indoinvite" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Syarat dan Ketentuan Layanan Virtual Gift Indoinvite | Indoinvite.com" />
+<meta property="og:description" content="Syarat dan Ketentuan Layanan Virtual Gift Indoinvite" />
+<meta property="og:image" content="https://media.indoinvite.com/2db3bf1e16cd47a08843bb881e39cce7:indoinvite-staging/indoinvite-staging/indoinvite-staging/nikah/upload/post/1701731706thum_url.png" />
+<meta property="og:url" content="https://indoinvite.com/artikel/syarat-dan-ketentuan-virtual-gift-indoinvite" />
+<meta property="og:site_name" content="Indoinvite" />
+
+    <title>Syarat dan Ketentuan Layanan Virtual Gift Indoinvite | Indoinvite.com
+</title>
+
+    <!--====== Favicon Icon ======-->
+<link rel="apple-touch-icon" sizes="180x180" href="https://indoinvite.com/images/favicon_indoinvite/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://indoinvite.com/images/favicon_indoinvite/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://indoinvite.com/images/favicon_indoinvite/favicon-16x16.png">
+<link rel="manifest" href="https://indoinvite.com/images/favicon_indoinvite/site.webmanifest">
+
+
+<!--====== Line Icons css ======-->
+
+
+
+<link rel="stylesheet" href="https://indoinvite.com/splide/css/splide.min.css">
+
+
+
+<!--====== Bootstrap css ======-->
+<link rel="stylesheet" href="https://indoinvite.com/base-nikah/assets/css/bootstrap.min.css " />
+
+
+<link rel="stylesheet" href="https://indoinvite.com/landing-page/css/styles.css">
+
+    <style>
+    .pagination {
+        justify-content: center !important;
+        margin-top: 30px;
+    }
+</style>
+    <style>
+        /* Menerapkan animasi ke div */
+        .bounce-right {
+            transition: transform 0.3s ease-in;
+        }
+
+        .bounce-right.hide {
+            transform: translateY(100px);
+            /* Tersembunyi di bawah */
+        }
+
+        .bounce-right.show {
+            transform: translateY(0);
+            /* Muncul kembali */
+        }
+    </style>
+
+    
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NPGJWXK');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    
+
+</head>
+
+<body>
+            
+        <!-- Modal -->
+
+ <div class="modal fade" id="home-login" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-body">
+
+        <form id="home-login-form" action="https://indoinvite.com/register-re" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="O07gbVdIiOqpqu8lJNI8P2G3PGPoIWpyKni0MtPT">            <h3 style="text-align: center; font-size: 20px">Buat Undangan Gratis Hanya 5 Menit</h3>
+            <div style="height: 5px"></div>
+            <p style="text-align: center;">Langkah 1 dari 2: Silahkan login/registrasi untuk membuat undangan spesial. Bebas pilih semua <b>Tema PREMIUM!</b></p>
+            <div style="height: 15px"></div>
+            <div class="form-group col-md-12">
+                <label>Email Aktif</label>
+                <input type="email" required name="email" class="form-control form-edit" value="" placeholder="adi@gmail.com">
+            </div>
+            <div style="height: 10px"></div>
+            <div class="form-group col-md-12">
+                <label>Password</label>
+                <input required type="password" name="password" class="form-control form-edit" value="">
+            </div>
+            <p style="color: red" id="notif-login-re"></p>
+
+        <div style="width: 100%; float: left;    margin-top: 20px;">
+            <button type="submit" style="width: 100%" class="btn btn-primary btn-login-re">Masuk Dan Buat</button>
+        </div>
+
+        </form>
+
+        
+        <div style="height: 100px"></div>
+        
+
+       </div>
+
+
+     </div>
+   </div>
+ </div>
+
+</form>
+
+
+
+ <!--MODAL-->
+        <!-- Modal -->
+
+ <div class="modal fade" id="modal-home-create" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+
+         
+         <form id="action-sub2-base" action="https://indoinvite.com/admin/data-pernikahan/buat-undangan" method="post">
+             <input type="hidden" name="_token" value="O07gbVdIiOqpqu8lJNI8P2G3PGPoIWpyKni0MtPT">
+             <div class="form-group col-md-12">
+                <input type="hidden" name="template_id" id="create-template-id">
+                 <label style="font-size: 12px;">Jenis Acara</label>
+                 <select required name="id_jenis_acara" id="select_acara" class="form-control">
+                        
+
+                        <option value="">-- Pilih Jenis Acara</option>
+                                                  <option value="1">Acara Custom</option>
+                          <option value="2">Pernikahan</option>
+                          <option value="3">Mepandes</option>
+                          <option value="4">Khitanan</option>
+                          <option value="5">Ulang Tahun</option>
+                          <option value="6">Wisuda</option>
+                          <option value="7">Natal</option>
+                          <option value="10">Aqiqah</option>
+                          <option value="9">Halal Bihalal/Bukber</option>
+                          <option value="8">Ucapan Online</option>
+                        
+                 </select>
+             </div>
+             <div style="height: 10px"></div>
+
+             <!--input form sesuai jenis acara-->
+             <div id="inputform"></div>
+
+             <div class="form-group col-md-12">
+                 <label style="font-size: 12px; margin-top: 7px;">No Wa Penerima (No Wa Pemilik Acara) (Menerima notifikasi kehadiran tamu & support admin) (Contoh: 085171563057)</label>
+                 <input type="number" id="wa_id" name="no_wa_penerima" class="form-control" value="">
+                 <label style="font-size: 9px">*Nomor ini tidak akan terlihat di undangan oleh tamu undangan</label>
+             </div>
+
+             
+
+             <div class="form-group col-md-12" id="id_tanggal_acara">
+                 <label style="font-size: 12px;">Tanggal Acara</label>
+                 <input id="date_acara_id" required type="date" min="2026-06-15" name="date_acara" class="form-control">
+             </div>
+
+             <br>
+             <p style="font-size: 10px">*semua data bisa dirubah lagi nanti</p>
+             <p style="font-size: 10px; margin-top: -5px;line-height: 10px;"> *dengan membuat acara, pelanggan dinyatakan bersedia mengikuti <a href="https://indoinvite.com/artikel/syarat-dan-ketentuan-indoinvite" target="_blank">Syarat & Ketentuan</a> di Indoinvite</p>
+             <br>
+
+
+             <!--<input type="checkbox" id="vehicle1" name="vehicle1" required value="Bike">-->
+             <!--<label for="vehicle1">Saya membuat undangan gratis untuk melihat tema yang sesuai. Jika ingin disebar, maka tetap harus diaktifkan dengan harga Rp.69.000</label><br>-->
+
+
+
+             <div class="modal-footer">
+                 
+                 <button type="submit" id="buat-acara-base" onclick="pushData()" class="btn btn-primary">Buat Undangan</button>
+
+             </div>
+             <hr>
+             <div onclick="contactAdmin('Popup Create')" style="display: flex;     margin-top: 15px; margin-top: 15px;
+             border: 1px solid #646464;
+             padding: 10px;
+             border-radius: 10px;">
+                <div>
+                    <div>
+                            <svg viewBox="0 0 32 32" style="    fill: white;
+                            width: 50px;
+                            height: 50px;
+                            padding: 3px;
+                            background-color: #4dc247;
+                            border-radius: 10px;    cursor: pointer;">
+                                <path d=" M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z" fill-rule="evenodd"></path>
+                            </svg>
+                    </div>
+                </div>
+                <div style="    margin-left: 10px;">
+                    <p style="font-weight: 800;     font-size: 14px;">Gak Mau RIBET Minta Di Buatin Admin?</p>
+                    <p style="line-height: 14px;font-size: 12px;">Terima beres Langsung Bagus, Langsung Jadi, Bisa sebar hari ini!</p>
+                </div>
+
+             </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+ </form>
+
+
+
+  <!--MODAL-->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPGJWXK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+            <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container-fluid mx-xl-5">
+            <a class="navbar-brand me-md-0 me-0" href="#"><img src="https://indoinvite.com/landing-page/logo-indoinvite.png"
+                    alt="indoinvite" srcset="" class="img-fluid"></a>
+            <div class="d-flex">
+                <a onclick="openLogin()" style="border-radius: 5px; font-size: 1.1em; padding: 9px 22px 7px 22px !important;" class="btn btn-primary btn-sm btn-xs btn-daftar p-2 p-sm-3 me-2 cta-button" href="#" id="btn-mobile">UJI COBA GRATIS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Home')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com">Home</a>
+                    </li>
+                    <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Harga')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/harga">Harga</a>
+                    </li>
+                    
+                    <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Contoh')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/cari">Contoh</a>
+                    </li>
+                    <li class="nav-item me-3 dropdown">
+                        <a class="nav-link dropdown-toggle " href="#"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tools
+                        </a>
+                        <div class="dropdown-menu border-0 shadow p-3" aria-labelledby="navbarDropdown">
+                            <div class="d-flex flex-md-nowrap flex-wrap align-items-center ">
+                                <a onclick="gaSectionClick('menu_navbar', 'Convert Image Style ')" class="dropdown-item "
+                                    href="https://indoinvite.com/convert-image-style">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7h.01m3.486 1.513h.01m-6.978 0h.01M6.99 12H7m9 4h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 3.043 12.89 9.1 9.1 0 0 0 8.2 20.1a8.62 8.62 0 0 0 3.769.9 2.013 2.013 0 0 0 2.03-2v-.857A2.036 2.036 0 0 1 16 16Z"/>
+                                      </svg>
+                                    Ubah Foto Jadi AI
+                                </a>
+                            </div>
+                            <div class="d-flex flex-md-nowrap flex-wrap align-items-center ">
+                                <a onclick="gaSectionClick('menu_navbar', 'Convert Image Style ')" class="dropdown-item "
+                                    href="https://indoinvite.com/undangan-gpt">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z"/>
+                                      </svg>
+                                    Buat Undangan Di Chat AI
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item me-3 dropdown">
+                        <a class="nav-link dropdown-toggle " href="#"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Template
+                        </a>
+                        <div class="dropdown-menu border-0 shadow p-3" aria-labelledby="navbarDropdown">
+                            <div class="d-flex flex-md-nowrap flex-wrap align-items-center ">
+                                <a onclick="gaSectionClick('menu_navbar', 'Tema Website')" class="dropdown-item "
+                                    href="https://indoinvite.com/tema">
+                                    <svg width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0.163574 15.086V12.914C0.248621 12.914 0.209369 12.8094 0.215911 12.7505C0.284748 12.0475 0.402794 11.3501 0.569182 10.6636C1.24007 7.97887 2.69873 5.55624 4.75759 3.70724C6.81644 1.85823 9.38135 0.667397 12.1225 0.287873C12.391 0.285439 12.6577 0.243558 12.914 0.163574H14.9421C14.9421 0.215911 15.001 0.202827 15.0402 0.209369C15.6205 0.246185 16.1975 0.322688 16.7673 0.438341C19.5706 1.01542 22.1267 2.44563 24.0851 4.53282C26.0434 6.62001 27.3081 9.26195 27.7056 12.0963C27.7161 12.3882 27.76 12.6779 27.8365 12.9598V15.086C27.7972 15.086 27.7907 15.1253 27.7907 15.158C27.7907 15.4589 27.7318 15.7664 27.686 16.0673C27.2173 19.2385 25.6497 22.1443 23.257 24.2776C21.2151 26.1467 18.6482 27.3433 15.9038 27.7056C15.5971 27.7198 15.2926 27.7637 14.9944 27.8365H12.914C12.914 27.7645 12.8225 27.7907 12.7767 27.7841C11.8368 27.6993 10.9077 27.5218 10.0028 27.2542C7.46987 26.4865 5.20964 25.0097 3.48926 22.9983C1.76888 20.9869 0.660257 18.5251 0.294415 15.9038C0.290355 15.6263 0.246288 15.3509 0.163574 15.086ZM4.08881 14.615H1.5832C1.43928 14.615 1.40002 14.6477 1.40656 14.7982C1.40656 15.2299 1.48507 15.6552 1.55703 16.1066C1.95985 18.4984 3.04585 20.7226 4.68413 22.5112C4.77572 22.6159 4.82806 22.6355 4.93928 22.5112C5.71801 21.8257 6.57691 21.237 7.49722 20.758C7.52251 20.7502 7.54582 20.7371 7.56556 20.7195C7.5853 20.7019 7.60099 20.6802 7.61156 20.656C7.62212 20.6318 7.62732 20.6055 7.62678 20.5791C7.62624 20.5526 7.61998 20.5266 7.60843 20.5028C7.09516 18.6453 6.81389 16.7314 6.77105 14.8047C6.77105 14.6411 6.70563 14.615 6.56171 14.615C5.75703 14.6215 4.93273 14.615 4.10843 14.615H4.08881ZM23.8785 14.615H21.4253C21.2552 14.615 21.2028 14.6477 21.1963 14.8243C21.1497 16.7352 20.8707 18.6332 20.3654 20.4767C20.3518 20.5037 20.3444 20.5336 20.3437 20.5639C20.3431 20.5942 20.3493 20.6243 20.3619 20.6519C20.3744 20.6796 20.393 20.704 20.4163 20.7235C20.4396 20.743 20.4669 20.757 20.4963 20.7645C21.3922 21.2374 22.2289 21.815 22.9888 22.4851C23.1196 22.6028 23.1851 22.6094 23.3028 22.4851C25.2197 20.3902 26.3725 17.709 26.5739 14.8767C26.5739 14.6477 26.5215 14.6281 26.3253 14.6281C25.514 14.6215 24.7094 14.615 23.8982 14.615H23.8785ZM4.10843 13.3851H6.53554C6.72526 13.3851 6.78414 13.3524 6.79068 13.1496C6.81028 12.3092 6.8758 11.4706 6.98694 10.6374C7.1323 9.58545 7.3509 8.54491 7.64114 7.52339C7.64114 7.42526 7.6804 7.35329 7.56264 7.29441C6.62184 6.79586 5.74344 6.18757 4.94582 5.48227C4.86731 5.4103 4.82806 5.41685 4.76264 5.48227C4.69722 5.54769 4.50096 5.77012 4.37666 5.92713C2.64426 7.96876 1.61039 10.511 1.42619 13.1823C1.42619 13.3524 1.46544 13.3851 1.62899 13.3851C2.45329 13.3785 3.27105 13.3851 4.10843 13.3851ZM23.8982 13.3851H26.3776C26.5411 13.3851 26.5804 13.3458 26.5739 13.1757C26.5389 12.6595 26.4712 12.146 26.3711 11.6383C25.9421 9.36315 24.8889 7.25208 23.329 5.54114C23.2178 5.41685 23.1654 5.42339 23.0411 5.54114C22.2675 6.22221 21.4154 6.80859 20.5028 7.28787C20.4762 7.29699 20.4519 7.31171 20.4315 7.33103C20.4111 7.35036 20.3951 7.37384 20.3846 7.39989C20.374 7.42594 20.3692 7.45396 20.3704 7.48203C20.3716 7.51011 20.3789 7.5376 20.3916 7.56264C20.8888 9.39177 21.1634 11.2742 21.2094 13.1692C21.2094 13.3393 21.2552 13.4047 21.4449 13.3982C22.243 13.3785 23.0804 13.3851 23.8982 13.3851ZM17.3103 14.615H14.8374C14.6542 14.615 14.615 14.6608 14.615 14.8374V18.9393C14.615 19.1225 14.6673 19.1617 14.8309 19.1682C16.2776 19.2534 17.7018 19.5669 19.0505 20.0972C19.201 20.1561 19.214 20.0972 19.2468 19.9795C19.6882 18.2683 19.934 16.5125 19.9795 14.7458C19.9795 14.5692 19.8944 14.5954 19.7897 14.5954L17.3103 14.615ZM10.7159 14.615H8.23647C8.06638 14.615 8.0075 14.615 8.02058 14.8309C8.06638 15.2561 8.06638 15.6813 8.09909 16.1C8.20017 17.4253 8.41911 18.7389 8.75329 20.0253C8.75329 20.143 8.81217 20.1757 8.94301 20.1234C10.2965 19.5863 11.7282 19.2726 13.1823 19.1944C13.3524 19.1944 13.3785 19.129 13.3785 18.972V14.8636C13.3785 14.6673 13.3131 14.6411 13.143 14.6411C12.3383 14.6215 11.5271 14.615 10.7159 14.615ZM10.6767 13.3851H13.1561C13.3262 13.3851 13.3851 13.3524 13.3785 13.1692V9.08694C13.3785 8.90376 13.3196 8.86451 13.1561 8.85797C11.7587 8.78464 10.3813 8.49327 9.07385 7.99442C8.786 7.88974 8.786 7.88974 8.71404 8.17105C8.3007 9.82003 8.06818 11.5091 8.02058 13.2084C8.02058 13.3589 8.05984 13.3851 8.20376 13.3851C9.02806 13.3785 9.85236 13.3851 10.6767 13.3851ZM17.2841 13.3851H19.7832C19.9402 13.3851 19.9729 13.3393 19.9729 13.1888C19.9729 12.4496 19.8944 11.7103 19.8028 10.9776C19.6858 9.98676 19.5 9.00526 19.2468 8.04021C19.214 7.93554 19.201 7.8832 19.0636 7.93554C17.7025 8.47104 16.2649 8.78682 14.8047 8.87105C14.6477 8.87105 14.615 8.93647 14.615 9.0804V13.1823C14.615 13.3654 14.6804 13.3851 14.8309 13.3785C15.6486 13.3785 16.4664 13.3851 17.2841 13.3851ZM13.3589 4.61871V1.85797C13.3589 1.58974 13.3589 1.5832 13.0907 1.67479C12.3835 1.9209 11.7554 2.35244 11.272 2.92432C10.3609 3.98687 9.66342 5.21525 9.21778 6.54208C9.16544 6.67946 9.21778 6.70563 9.32245 6.74488C10.5429 7.2238 11.8288 7.51495 13.1365 7.60843C13.3262 7.60843 13.3916 7.60843 13.3851 7.37946C13.372 6.47012 13.3785 5.54769 13.3785 4.61871H13.3589ZM14.6019 4.61871V7.37946C14.6019 7.60843 14.6739 7.66077 14.8767 7.62806C15.0795 7.59535 15.2038 7.59535 15.3673 7.57572C16.4895 7.4517 17.5898 7.17662 18.6383 6.75797C18.7365 6.72526 18.7888 6.69255 18.7365 6.56171C18.3311 5.34652 17.7252 4.20774 16.9439 3.19255C16.4149 2.48998 15.6917 1.95778 14.8636 1.66171C14.6804 1.60283 14.6084 1.60937 14.615 1.83834C14.6281 2.76731 14.6215 3.68974 14.6215 4.61871H14.6019ZM13.3589 26.3841V20.5421C13.3589 20.4178 13.3066 20.4047 13.2019 20.4112C11.8547 20.4849 10.5288 20.7789 9.27666 21.2813C9.18507 21.2813 9.14582 21.3468 9.18507 21.4645C9.57954 22.5841 10.1397 23.6382 10.8468 24.5916C11.3228 25.2583 11.9536 25.7994 12.6851 26.1682C12.9016 26.2807 13.1364 26.3538 13.3785 26.3841H13.3589ZM14.6019 26.3841C14.6277 26.3903 14.6546 26.3903 14.6804 26.3841L14.8439 26.3449C15.5609 26.0969 16.1981 25.6609 16.6888 25.0823C17.6018 24.0213 18.3035 22.7956 18.7561 21.4711C18.8084 21.3271 18.7561 21.314 18.6449 21.2813C17.4232 20.7993 16.1346 20.5081 14.8243 20.4178C14.6215 20.4178 14.5954 20.4701 14.5954 20.6468V25.4355L14.6019 26.3841ZM10.5 1.96264C8.76252 2.44573 7.15379 3.30819 5.78974 4.48787C5.69815 4.56638 5.73741 4.59909 5.78974 4.65797C6.48522 5.23998 7.24202 5.74452 8.04675 6.16264C8.33054 5.39344 8.66943 4.64571 9.06077 3.92526C9.46892 3.22144 9.95144 2.56347 10.5 1.96264ZM17.4411 1.96264C17.6112 2.15236 17.7682 2.31591 17.9122 2.49255C18.7589 3.55721 19.4222 4.75556 19.8748 6.03834C19.9337 6.19535 19.9729 6.22152 20.1234 6.12993C20.8405 5.72324 21.5192 5.25247 22.1514 4.72339C22.2823 4.61217 22.2692 4.56638 22.1514 4.46825C21.0297 3.5145 19.75 2.76397 18.3701 2.25049C18.0713 2.10761 17.7605 1.99158 17.4411 1.90376V1.96264ZM17.4739 26.1682C19.2526 25.6722 20.8948 24.7773 22.2757 23.5514C21.6247 22.9848 20.9216 22.481 20.1757 22.0468C19.986 21.9355 19.9206 21.9682 19.8421 22.1711C19.3135 23.6162 18.5092 24.9448 17.4739 26.0832V26.1682ZM10.5066 26.1682C10.3168 25.9393 10.114 25.7168 9.93741 25.4813C9.17015 24.4752 8.56327 23.3563 8.13834 22.1645C8.086 22.0271 8.04675 21.9682 7.8832 22.0664C7.18232 22.4429 6.5148 22.8784 5.88787 23.3682C5.77012 23.4664 5.77012 23.5122 5.88787 23.6103C6.40052 24.0363 6.94268 24.4254 7.5103 24.7748C8.43876 25.3522 9.44882 25.7867 10.5066 26.0636V26.1682Z" />
+                                    </svg>
+                                    Website
+                                </a>
+                                <a onclick="gaSectionClick('menu_navbar', 'Tema Video')" class="dropdown-item "
+                                    href="https://indoinvite.com/contoh/undangan-online-video">
+                                    <svg width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M27.3437 2.73433H7.6562C7.00823 2.72849 6.36558 2.85181 5.7658 3.09709C5.16601 3.34237 4.62111 3.70469 4.1629 4.1629C3.70469 4.62111 3.34237 5.16601 3.09709 5.7658C2.85181 6.36558 2.72849 7.00823 2.73433 7.6562V27.3437C2.72849 27.9917 2.85181 28.6343 3.09709 29.2341C3.34237 29.8339 3.70469 30.3788 4.1629 30.837C4.62111 31.2952 5.16601 31.6575 5.7658 31.9028C6.36558 32.1481 7.00823 32.2714 7.6562 32.2656H27.3437C27.9917 32.2714 28.6343 32.1481 29.2341 31.9028C29.8339 31.6575 30.3788 31.2952 30.837 30.837C31.2952 30.3788 31.6575 29.8339 31.9028 29.2341C32.1481 28.6343 32.2714 27.9917 32.2656 27.3437V7.6562C32.2714 7.00823 32.1481 6.36558 31.9028 5.7658C31.6575 5.16601 31.2952 4.62111 30.837 4.1629C30.3788 3.70469 29.8339 3.34237 29.2341 3.09709C28.6343 2.85181 27.9917 2.72849 27.3437 2.73433ZM31.1718 7.6562V8.20308H28.6671L30.8546 6.01558C31.082 6.53177 31.1904 7.09247 31.1718 7.6562ZM30.2093 5.16245L27.114 8.20308H23.1984L27.5734 3.82808C28.0771 3.85438 28.5702 3.98228 29.0232 4.20407C29.4762 4.42587 29.8797 4.73698 30.2093 5.1187V5.16245ZM17.7296 8.20308L22.1046 3.82808H26.0203L21.6453 8.20308H17.7296ZM12.2609 8.20308L16.6359 3.82808H20.5515L16.1765 8.20308H12.2609ZM6.79214 8.20308L11.1671 3.82808H15.0828L10.7078 8.20308H6.79214ZM7.6562 3.82808H9.61402L5.23902 8.20308H3.82808V7.6562C3.82221 7.15186 3.91723 6.65143 4.10753 6.18433C4.29783 5.71723 4.57959 5.29289 4.93624 4.93624C5.29289 4.57959 5.71723 4.29783 6.18433 4.10753C6.65143 3.91723 7.15186 3.82221 7.6562 3.82808ZM27.3437 31.1718H7.6562C7.15186 31.1777 6.65143 31.0827 6.18433 30.8924C5.71723 30.7021 5.29289 30.4203 4.93624 30.0637C4.57959 29.707 4.29783 29.2827 4.10753 28.8156C3.91723 28.3485 3.82221 27.848 3.82808 27.3437V9.29683H31.1718V27.3437C31.1777 27.848 31.0827 28.3485 30.8924 28.8156C30.7021 29.2827 30.4203 29.707 30.0637 30.0637C29.707 30.4203 29.2827 30.7021 28.8156 30.8924C28.3485 31.0827 27.848 31.1777 27.3437 31.1718Z" />
+                                        <path
+                                            d="M7.49226 28.9845C7.27732 28.9845 7.06451 28.942 6.86607 28.8594C6.66763 28.7768 6.48748 28.6558 6.33601 28.5033C6.18454 28.3508 6.06472 28.1699 5.98347 27.9709C5.90222 27.7719 5.86113 27.5588 5.86257 27.3439V18.3642C5.86257 18.2191 5.80495 18.08 5.70239 17.9775C5.59984 17.8749 5.46074 17.8173 5.3157 17.8173C5.17066 17.8173 5.03156 17.8749 4.929 17.9775C4.82644 18.08 4.76882 18.2191 4.76882 18.3642V27.3439C4.76738 27.7024 4.83676 28.0578 4.97298 28.3894C5.1092 28.7211 5.30958 29.0226 5.56262 29.2767C5.81566 29.5308 6.11637 29.7323 6.44751 29.8699C6.77865 30.0074 7.13369 30.0782 7.49226 30.0782C7.6373 30.0782 7.7764 30.0206 7.87896 29.9181C7.98152 29.8155 8.03913 29.6764 8.03913 29.5314C8.03913 29.3863 7.98152 29.2472 7.87896 29.1447C7.7764 29.0421 7.6373 28.9845 7.49226 28.9845ZM10.3907 28.9845H9.37351C9.22847 28.9845 9.08937 29.0421 8.98681 29.1447C8.88425 29.2472 8.82663 29.3863 8.82663 29.5314C8.82663 29.6764 8.88425 29.8155 8.98681 29.9181C9.08937 30.0206 9.22847 30.0782 9.37351 30.0782H10.3907C10.5357 30.0782 10.6748 30.0206 10.7774 29.9181C10.88 29.8155 10.9376 29.6764 10.9376 29.5314C10.9376 29.3863 10.88 29.2472 10.7774 29.1447C10.6748 29.0421 10.5357 28.9845 10.3907 28.9845ZM22.7173 18.047L15.3126 13.497C15.0585 13.3411 14.7674 13.256 14.4694 13.2503C14.1714 13.2446 13.8773 13.3187 13.6174 13.4647C13.3576 13.6108 13.1415 13.8236 12.9915 14.0812C12.8415 14.3388 12.763 14.6317 12.7641 14.9298V24.0626C12.7641 24.5093 12.9416 24.9378 13.2575 25.2537C13.5734 25.5695 14.0018 25.747 14.4485 25.747C14.755 25.7502 15.0557 25.6627 15.3126 25.4954L22.761 20.9564C23.0052 20.8054 23.2068 20.5946 23.3466 20.3438C23.4865 20.093 23.5599 19.8107 23.5599 19.5236C23.5599 19.2364 23.4865 18.9541 23.3466 18.7033C23.2068 18.4526 23.0052 18.2417 22.761 18.0907L22.7173 18.047ZM22.1376 19.972L14.7001 24.522C14.6115 24.5773 14.5092 24.6066 14.4048 24.6066C14.3003 24.6066 14.198 24.5773 14.1094 24.522C14.0185 24.4708 13.9431 24.396 13.8911 24.3056C13.8391 24.2151 13.8125 24.1123 13.8141 24.0079V14.9298C13.8121 14.8269 13.8387 14.7254 13.8908 14.6366C13.9429 14.5478 14.0186 14.4751 14.1094 14.4267C14.1997 14.3762 14.3014 14.3498 14.4048 14.3501C14.5095 14.351 14.6118 14.3813 14.7001 14.4376L22.1376 18.9767C22.2241 19.0292 22.2957 19.103 22.3455 19.1911C22.3953 19.2792 22.4216 19.3786 22.4219 19.4798C22.4242 19.58 22.3989 19.6789 22.3487 19.7657C22.2986 19.8526 22.2255 19.9239 22.1376 19.972Z" />
+                                    </svg>
+                                    Video
+                                </a>
+                                
+                                <a onclick="gaSectionClick('menu_navbar', 'Tema Desain')" class="dropdown-item "
+                                    href="https://indoinvite.com/contoh/undangan-jasa-desain">
+                                    <svg width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M8.09997 32.4C7.79997 32.4 7.49997 32.4 7.34997 32.25L5.09997 30.9C4.64997 30.75 4.49997 30.3 4.34997 29.85C4.19997 29.4 4.34997 28.95 4.49997 28.65L15 10.35C15.45 9.60001 16.5 9.30001 17.25 9.75001L19.5 11.1C20.25 11.55 20.55 12.6 20.1 13.35L9.44997 31.5C9.14997 32.1 8.69997 32.4 8.09997 32.4ZM15.6 10.65L16.2 10.95L5.69997 29.25V29.4L7.94997 30.75H8.09997L18.6 12.45V12.3L16.35 10.95L15.6 10.65ZM32.55 23.55H28.35C27.9 23.55 27.6 23.25 27.6 22.8C27.6 22.35 27.9 22.05 28.35 22.05H32.4C32.55 21.9 32.55 21.6 32.55 21.6V17.55H25.2C24.75 17.55 24.45 17.25 24.45 16.8C24.45 16.35 24.75 16.05 25.2 16.05H32.55C33.45 16.05 34.05 16.8 34.05 17.55V21.6C34.2 22.35 33.6 23.55 32.55 23.55Z" />
+                                        <path
+                                            d="M20.7 17.55H17.25C16.8 17.55 16.5 17.25 16.5 16.8C16.5 16.35 16.8 16.05 17.25 16.05H20.7C21.15 16.05 21.45 16.35 21.45 16.8C21.45 17.25 21.15 17.55 20.7 17.55ZM23.7 23.55H13.95C13.5 23.55 13.2 23.25 13.2 22.8C13.2 22.35 13.5 22.05 13.95 22.05H23.7C24.15 22.05 24.4499 22.35 24.4499 22.8C24.4499 23.25 24.15 23.55 23.7 23.55ZM8.39995 23.55H3.44995C2.39995 23.55 1.94995 22.2 1.94995 21.6V17.55C1.94995 16.65 2.69995 16.05 3.44995 16.05H11.55C12 16.05 12.3 16.35 12.3 16.8C12.3 17.25 12 17.55 11.55 17.55H3.44995V21.6C3.44995 21.75 3.59995 22.05 3.59995 22.05H8.39995C8.84995 22.05 9.14995 22.35 9.14995 22.8C9.14995 23.25 8.84995 23.55 8.39995 23.55ZM4.34995 35.25C4.04995 35.25 3.74995 35.1 3.59995 34.95C3.44995 34.8 3.29995 34.5 3.29995 33.9L3.74995 30.45C3.89995 29.55 4.79995 28.95 5.69995 29.4L7.94995 30.75C8.39995 31.05 8.69995 31.35 8.69995 31.8C8.69995 32.25 8.54995 32.7 8.09995 32.85L5.09995 34.8C4.79995 35.1 4.64995 35.25 4.34995 35.25ZM5.09995 30.9L4.79995 33.3L6.74995 31.95L5.09995 30.9Z" />
+                                        <path
+                                            d="M26.5501 26.7C26.2501 26.7 25.8001 26.55 25.3501 26.4C25.0501 26.25 24.1501 25.8 18.9001 13.5C18.7501 13.05 18.9001 12.75 19.3501 12.45C19.8001 12.3 20.1001 12.45 20.4001 12.9C23.2501 19.5 25.6501 24.6 26.2501 25.2C26.7001 25.35 26.7001 25.35 27.1501 25.2L27.3001 25.05C27.6001 24.9 28.0501 24.6 28.0501 24.3V24C28.0501 24 28.0501 23.85 27.9001 23.85C27.7501 23.7 27.6001 23.25 27.3001 22.65L26.4001 21L26.2501 20.85L26.1001 20.7C26.1001 20.55 25.9501 20.55 25.9501 20.4L25.5001 19.5C25.5001 19.5 25.5001 19.35 25.3501 19.35C23.1001 15.15 21.4501 12.3 20.5501 10.8C19.9501 9.75002 19.2001 8.55002 18.4501 7.35002C17.7001 6.00002 16.6501 4.35002 15.9001 3.30002C16.5001 5.25002 18.0001 8.55002 18.7501 10.2L19.0501 10.95C19.2001 11.4 19.0501 11.7 18.6001 12C18.1501 12.15 17.8501 12 17.5501 11.55L17.2501 10.8C14.2501 4.05002 13.5001 1.65002 14.8501 0.900017C16.0501 0.300017 16.9501 1.95002 19.6501 6.60002C20.4001 7.80002 21.0001 9.00002 21.6001 9.90002C22.6501 11.4 24.3001 14.4 26.4001 18.6L27.1501 19.95L27.0001 20.4L27.6001 20.1L28.5001 21.75C28.8001 22.35 29.1001 22.8 29.1001 22.95C29.4001 23.55 29.4001 24 29.2501 24.6C28.9501 25.35 28.2001 25.95 27.6001 26.25H27.4501C27.3001 26.55 27.0001 26.7 26.5501 26.7Z" />
+                                        <path
+                                            d="M28.7999 30.45C28.1999 30.45 27.5999 30.15 27.2999 29.7L25.9499 27.6C25.6499 27.15 25.6499 26.7 25.7999 26.25C25.9499 25.8 26.2499 25.5 26.5499 25.2L27.8999 24.6C28.6499 24.15 29.6999 24.6 30.1499 25.35L31.1999 27.45C31.6499 28.2 31.3499 29.25 30.5999 29.85L29.6999 30.45C29.3999 30.3 29.0999 30.45 28.7999 30.45ZM27.2999 26.7L28.6499 28.8C28.7999 28.95 28.7999 28.95 28.9499 28.95L29.8499 28.35C29.9999 28.35 29.9999 28.05 29.9999 28.05L28.9499 25.95C28.9499 25.8 28.7999 25.8 28.7999 25.8L27.4499 26.55L26.8499 27.15L27.2999 26.7Z" />
+                                        <path
+                                            d="M32.7 34.9501C32.4 34.9501 32.1 34.8001 31.95 34.5001C31.8 34.3501 31.35 34.2001 31.05 34.0501C30.3 33.7501 29.25 33.3001 28.65 32.4001C27.75 31.2001 27.9 30.0001 28.95 29.1001L29.1 28.9501C30.45 28.2001 31.65 28.2001 32.4 29.1001C33.75 30.6001 33.45 34.0501 33.45 34.3501C33.45 34.6501 33.15 34.9501 32.7 34.9501ZM29.85 30.0001C29.55 30.3001 29.25 30.6001 29.85 31.3501C30.3 31.9501 30.9 32.2501 31.65 32.5501C31.8 32.5501 31.95 32.7001 31.95 32.7001C31.95 31.6501 31.8 30.4501 31.35 30.0001C30.9 29.7001 30.45 29.7001 29.85 30.0001Z" />
+                                    </svg>
+                                    Jasa Desain
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/tutorial">Tutorial</a>
+                    </li>
+                    <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Artikel')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/artikel">Artikel</a>
+                    </li>
+                                        <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Registrasi')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/register-v2">Registrasi</a>
+                    </li>
+                    <li class="nav-item me-3" onclick="gaSectionClick('menu_navbar', 'Login')">
+                        <a class="nav-link " aria-current="page"
+                            href="https://indoinvite.com/login-v2">Login</a>
+                    </li>
+                                                        </ul>
+                <a onclick="openLogin()" style="border-radius: 6px; font-size: 1.1em; padding: 15px 30px 13px 30px !important;" class="btn btn-primary btn-sm btn-daftar p-3 cta-button" id="btn-daftar">Uji Coba Gratis</a>
+            </div>
+        </div>
+    </nav>
+</header>
+    
+    
+    <div class="container-fluid m-0 p-0">
+        
+<section class="text-gray-700 body-font overflow-hidden border-t border-gray-200">
+    <div style="height: 100px"></div>
+    <div>
+        
+        <div id="blog" class="latest-news-area section" style="margin-top: 100px">
+            <!--======  Start Section Title Five ======-->
+            <div class="section-title-five">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="content">
+                      
+                      <h1 style="font-size: 32px" class="fw-bold">Syarat dan Ketentuan Layanan Virtual Gift Indoinvite</h1>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- row -->
+              </div>
+              <!-- container -->
+            </div>
+            <!--======  End Section Title Five ======-->
+            <div class="container" style="    max-width: 900px;">
+              <img style="width: 100%" loading="lazy" src="https://media.indoinvite.com/2db3bf1e16cd47a08843bb881e39cce7:indoinvite-staging/indoinvite-staging/indoinvite-staging/nikah/upload/post/1701731706thum_url.png" alt="Syarat dan Ketentuan Layanan Virtual Gift Indoinvite">
+              <div class="row" style="margin-top: 80px">
+
+                <span><b>Syarat dan Ketentuan Layanan Virtual Gift Indoinvite</b></span> <p><strong><span style="font-size: 18pt;">Syarat dan Ketentuan Layanan Virtual Gift:</span></strong></p>
+<p><span style="font-size: 14pt;"><strong>Ketentuan Umum:</strong></span></p>
+<p><strong>Definisi:</strong><br>a. Pengguna: Merujuk pada pengguna aplikasi jasa pembuatan undangan online, baik sebagai pemilik acara maupun tamu undangan.<br>b. Gift atau Hadiah Virtual: Merujuk pada stiker berbayar yang dapat dibeli oleh tamu undangan dan dapat dicairkan menjadi oleh pemilik acara.</p>
+<p><strong>Pembelian dan Penggunaan Gift:</strong><br>a. Setiap gift memiliki harga tertentu dalam bentuk koin.<br>b. Pemilik acara tidak bertanggung jawab atas pembelian gift yang dilakukan tanpa izin atau pengetahuan tamu undangan.</p>
+<p><strong>Penukaran Koin:</strong><br>a. Koin yang diperoleh dari pembelian gift dapat dicairkan oleh pemilik acara setelah acara selesai.<br>b. Penukaran koin menjadi uang akan dilakukan sesuai dengan nilai tukar yang ditentukan oleh aplikasi. Kurs penukaran koin saat ini ke pemilik acara sebesar Rp.800/koin (Nilai tukar bisa berubah-ubah tanpa pemberitahuan terlebih dahulu)</p>
+<p><strong>Pembagian Pendapatan:</strong><br>a. Aplikasi akan memotong persentase tertentu dari setiap transaksi pembelian gift sebagai biaya layanan.<br>b. Sisanya akan menjadi pendapatan pemilik acara.</p>
+<p><strong>Batasan Tanggung Jawab:</strong><br>a. Aplikasi tidak bertanggung jawab atas ketidaknyamanan atau kerugian yang mungkin timbul akibat gangguan teknis atau pemakaian yang tidak sah.<br>b. Pemilik acara bertanggung jawab untuk memastikan keakuratan informasi pembayaran yang diberikan kepada tamu undangan.</p>
+<p><strong>Pengakhiran Layanan:</strong><br>a. Aplikasi berhak mengakhiri atau memodifikasi fitur virtual gift tanpa pemberitahuan sebelumnya.<br>b. Pemilik acara dapat menghapus fitur virtual gift dari undangannya jika diinginkan.</p>
+<p><strong>Hak Kekayaan Intelektual:</strong><br>a. Gift virtual dan fitur terkait merupakan hak cipta aplikasi dan tidak boleh disalin, didistribusikan, atau digunakan tanpa izin.</p>
+<p><strong>Persetujuan Pengguna:</strong><br>a. Pengguna setuju untuk mematuhi semua syarat dan ketentuan yang ditetapkan.<br>b. Aplikasi berhak memblokir atau menghapus akun pengguna yang melanggar syarat dan ketentuan.</p>
+<p><strong>Perubahan:</strong><br>a. Aplikasi berhak mengubah syarat dan ketentuan ini tanpa pemberitahuan lebih dahulu ke pengguna.</p>
+<p><strong>Hukum yang Berlaku:</strong><br>a. Syarat dan ketentuan ini tunduk pada hukum yang berlaku di wilayah hukum tempat aplikasi beroperasi.</p>
+<p><br><span style="font-size: 14pt;"><strong>Notifikasi:</strong></span></p>
+<p><strong>Notifikasi Transaksi:</strong><br>a. Aplikasi akan secara otomatis mengirimkan notifikasi via WhatsApp kepada pemilik acara setiap kali terjadi transaksi pembelian gift di acaranya.<br>b. Notifikasi akan mencakup informasi seperti jumlah koin yang diperoleh, jenis gift yang dikirimkan, serta informasi pengirimnya.<br>c. Pemilik acara bertanggung jawab untuk memastikan nomor WhatsApp yang terkait dengan akunnya tetap aktif dan dapat menerima notifikasi.</p>
+<p><strong>Privasi dan Keamanan:</strong><br>a. Informasi pribadi tamu undangan yang terkait dengan transaksi gift akan dijaga kerahasiaannya sesuai dengan kebijakan privasi yang berlaku.<br>b. Pemilik acara diwajibkan untuk menjaga keamanan akun WhatsApp-nya dan tidak membagikan informasi pribadi tersebut kepada pihak ketiga.</p>
+<p><strong>Keluhan dan Dukungan:</strong><br>a. Pemilik acara dapat menghubungi tim dukungan pelanggan melalui aplikasi untuk melaporkan masalah atau keluhan terkait transaksi gift atau notifikasi WhatsApp.</p>
+<p><strong>Keterlambatan Notifikasi:</strong><br>a. Aplikasi tidak bertanggung jawab atas keterlambatan atau kegagalan notifikasi WhatsApp yang disebabkan oleh faktor-faktor di luar kendali aplikasi, seperti gangguan jaringan atau kesalahan sistem WhatsApp.</p>
+<p><strong>Pemberitahuan Perubahan Notifikasi:</strong><br>a. Aplikasi berhak mengubah cara notifikasi WhatsApp dilakukan dan tanpa memberitahukan pemilik acara melalui pemberitahuan di aplikasi atau melalui email.</p>
+<p><br><span style="font-size: 14pt;"><strong>Kebijakan Pengembalian Dana:</strong></span></p>
+<p><strong>Ketentuan Refund:</strong><br>a. Tidak ada fitur refund atau pengembalian dana bagi tamu undangan yang telah mengirimkan virtual gift.</p>
+<p><strong>Konfirmasi Pembelian:</strong><br>a. Sebelum mengirimkan virtual gift, tamu undangan akan diminta untuk mengkonfirmasi pembelian secara seksama.<br>b. Virtual gift yang telah dikonfirmasi oleh tamu undangan dianggap sebagai transaksi yang final dan tidak dapat dibatalkan.</p>
+<p><strong>Pengecualian Khusus:</strong><br>a. Hanya dalam keadaan tertentu yang diakui oleh aplikasi, seperti kesalahan teknis atau ketidaksesuaian virtual gift yang diterima, aplikasi berhak untuk mempertimbangkan pengembalian dana atau kompensasi.</p>
+<p><strong>Klarifikasi Kebijakan Refund:</strong><br>a. Kebijakan refund yang jelas dan rinci akan disediakan oleh aplikasi, dan tamu undangan diharapkan membaca dan memahami kebijakan tersebut sebelum melakukan pembelian gift.</p>
+<p><strong>Ketidakbertanggungjawaban Aplikasi:</strong><br>a. Aplikasi tidak bertanggung jawab atas ketidakpuasan tamu undangan terkait dengan virtual gift yang telah dikirimkan, dan keputusan untuk tidak memberikan refund bersifat final.</p>
+<p><strong>Komunikasi dengan Tim Dukungan:</strong><br>a. Jika tamu undangan mengalami masalah terkait dengan pembelian gift, mereka dapat menghubungi tim dukungan pelanggan untuk mendapatkan bantuan lebih lanjut, walaupun tanpa jaminan refund.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+              </div>
+            </div>
+
+
+                  <!-- End Single News -->
+              </div>
+
+
+
+              </div>
+            </div>
+        
+
+
+    </div>
+
+  </section>
+
+
+
+    </div>
+
+    
+            <div style="height: 100px"></div>
+<footer class="bg-white">
+    <div class="container-lg container-fluid pb-md-3 py-5">
+        <hr>
+        <div class="row gap-md-0 gap-2">
+            <div class="col-lg-4 col-md-4 col-12 mt-3" >
+                <div style="width: 90%">
+                    <a href="#">
+                        <img loading="lazy" src="https://indoinvite.com/landing-page/logo-indoinvite.png " alt="indoinvite logo" class="img-fluid" />
+                    </a>
+                    <p style="font-size: 0.9rem;">Indoinvite, mitra kreatif untuk Anda merancang dan berbagi undangan
+                        digital yang memukau. Jelajahi
+                        koleksi template siap pakai, sesuaikan dengan alat desain intuitif, manfaatkan fitur
+                        canggih, dan
+                        bagikan undangan Anda dengan mudah. Indoinvite, lebih dari sekadar undangan, ciptakan momen
+                        spesial
+                        yang tak terlupakan dengan gaya Anda. Kunjungi situs web atau unduh aplikasi Indoinvite hari
+                        ini!
+                    </p>
+                    <h5 class="fw-bold text-info">Buat Undangan Online TANPA RIBET!</h5>
+                    <div class="d-flex">
+                        <a href="https://play.google.com/store/apps/details?id=com.indoinvite.apps" target="_blank">
+                            <img loading="lazy" style="width:120px;" src="https://indoinvite.com/landing-page/icon/template/playstore.webp"
+                                alt="apps indoinvite">
+                        </a>
+                        <img loading="lazy" src="https://indoinvite.com/landing-page/images/meta.webp" alt="meta" srcset=""
+                            class="img-fluid ms-3">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-12 mt-3">
+                <p class="text-start"><strong>Support Pembayaran</strong></p>
+                <div style="height: 20px"></div>
+                <div class="row pembayaran g-2" style="width: 90%">
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/visa.webp" alt="visa"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/master card.webp"
+                                alt="master card" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/jcb.webp" alt="jcb"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/bca.webp" alt="bca"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/bni.webp" alt="bni"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/mandiri.webp"
+                                alt="mandiri" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/permata.webp"
+                                alt="permata" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/ovo.webp" alt="ovo"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/qris.webp" alt="qris"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/alfamidi.webp"
+                                alt="alfamidi" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/alfamart.webp"
+                                alt="alfamart" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/indomaret.webp"
+                                alt="indomaret" srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/bri.webp" alt="bri"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/dana.webp" alt="dana"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/link.webp" alt="link"
+                                srcset="">
+                        </span>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-3">
+                        <span
+                            class="badge-outline-primary rounded-10 p-2 d-flex align-items-center justify-content-center">
+                            <img loading="lazy" src="https://indoinvite.com/landing-page/images/metodePembayaran/kredivo.webp"
+                                alt="kredivo" srcset="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12 mt-3">
+                <p class="text-start"><strong>Liputan Media Nasional</strong></p>
+                <div style="height: 20px"></div>
+                <span class="badge-outline-primary rounded-10">
+                    <img loading="lazy" src="https://indoinvite.com/landing-page/images/liputan.webp" alt="liputan media indoinvite" srcset=""
+                        class="img-fluid">
+                </span>
+
+                <div class="d-flex align-items-center mt-3">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                      </svg>
+                    <p class="ms-1">
+                        Bali, Indonesia</p>
+                </div>
+
+                <div class="d-flex align-items-center mt-2">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M2.038 5.61A2.01 2.01 0 0 0 2 6v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6c0-.12-.01-.238-.03-.352l-.866.65-7.89 6.032a2 2 0 0 1-2.429 0L2.884 6.288l-.846-.677Z"/>
+                        <path d="M20.677 4.117A1.996 1.996 0 0 0 20 4H4c-.225 0-.44.037-.642.105l.758.607L12 10.742 19.9 4.7l.777-.583Z"/>
+                      </svg>
+                    <p class="ms-1">
+                        info@indoinvite.com
+                    </p>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+
+                    <p class="ms-1">
+                        V.2.14.1
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 pb-md-0 pb-4">
+            <h6 class="m-0"><strong></strong></h6>
+            <div class="d-flex mt-md-0 mt-3">
+                <a href="https://www.facebook.com/profile.php?id=100083399194304" style="padding: 2px 3px !important; border-radius: 5px" class="btn btn-primary rounded-10 d-flex align-items-center justify-content-center me-2">
+                    <img loading="lazy" style="width: 20px;" src="https://indoinvite.com/landing-page/icon/facebook.webp" alt="facebook" class="img-fluid">
+                </a>
+                <a href="https://www.instagram.com/indoinvite" style="padding: 2px 3px !important; border-radius: 5px" class="btn btn-primary rounded-10 d-flex align-items-center justify-content-center me-2">
+                    <img loading="lazy" style="width: 20px;" src="https://indoinvite.com/landing-page/icon/instagram.webp" alt="instagram" class="img-fluid">
+                </a>
+                <a href="https://www.tiktok.com/@indoinviteofficial" style="padding: 2px 3px !important; border-radius: 5px" class="btn btn-primary rounded-10 d-flex align-items-center justify-content-center me-2">
+                    <img loading="lazy" style="width: 20px;" src="https://indoinvite.com/landing-page/icon/tiktok.webp" alt="tiktok" class="img-fluid">
+                </a>
+                <a href="https://t.me/indoinvite_bot" style="padding: 2px 3px !important; border-radius: 5px" class="btn btn-primary rounded-10 d-flex align-items-center justify-content-center ">
+                    <img loading="lazy" style="width: 20px;" src="https://indoinvite.com/landing-page/icon/telegram.webp" alt="telegram" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</footer>
+    
+    
+
+    
+            <div class="block" id="menubawah_id_up">
+    <div id="menu_wa" style="position: fixed; bottom: 80px;
+    right: 20px;
+    z-index: 10;">
+                
+        <div id="wa-point" class="bounce-right d-block d-sm-none" style="    border: 2px solid #fff; position: absolute;right: 73px;top: 37px;background-color: #ff7f00;width: 230px;padding: 2px 5px 0px 15px;font-size: 12px;border-radius: 3px;color: #000000; height: 50px;">
+            <svg onclick="waPointHide()" style="position: absolute;left: -10px;top: -10px;background-color: #fff;border-radius: 100%;" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+              </svg>
+
+            <p style="color: #fff">Klik WA Untuk Dibuatin Dulu, Bayar Pas Sudah Jadi, Hasil Kilat!</p>
+            <div class="position-absolute" style="bottom: 15px; right: -10px; width: 0; height: 0;
+                border-top: 10px solid transparent; border-left: 10px solid #ff7f00; border-bottom: 10px solid transparent;">
+            </div>
+        </div>
+                <div>
+            <p style="font-size: 9px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            background-color: #fff;
+            margin-left: -5px;
+            line-height: 13px;">Mau Dibuatin? <br> Ada Kendala?</p>
+            <div class="glow-wa" style="border-radius:100%;">
+            <a class="a-wa" href="javascript:void(0);" onclick="contactAdmin('floating-wa'); gtag('event', 'floating_wa', {
+                'event_category' : 'home',
+                'event_label' : 'home_page'
+                });">
+                <svg viewBox="0 0 32 32" class="whatsapp-ico">
+                    <path d=" M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z" fill-rule="evenodd"></path>
+                </svg>
+            </a>
+            </div>
+        </div>
+
+    </div>
+
+    <nav class="fixed-bottom bg-light" id="menubawah_id">
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center gap-0">
+                <div class="col-3 text-center" onclick="location.href='https://indoinvite.com';" href="#hero-area">
+                    <button style=" font-size: 9px; font-weight: 500;" type="submit" class="btn color-primary">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+                          </svg>
+                        <p class="m-0">Home</p>
+                    </button>
+                </div>
+                                <div class="col-3 text-center" onclick="location.href='https://indoinvite.com/harga';" href="#services">
+                    <button style="font-size: 9px; font-weight: 500;" type="submit" class="btn color-primary"><svg
+                            class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2" />
+                        </svg>
+                        <p class="m-0">Harga</p>
+                    </button>
+                </div>
+                                <div class="col-3 text-center" onclick="location.href='https://indoinvite.com/tema';" href="#pricing">
+                    <button style="font-size: 9px; font-weight: 500;" type="submit" class="btn color-primary"><svg
+                            class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                        </svg>
+                        <p class="m-0">Template</p>
+                    </button>
+                </div>
+                                <div class="col-3 text-center" onclick="window.location.href = 'https://indoinvite.com/admin/profile'">
+                    <button id="profile_id" style=" font-size: 9px; font-weight: 500;" type="submit"
+                        class="btn color-primary"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2"
+                                d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <p class="m-0">Login</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+<script src="https://indoinvite.com/splide/js/splide.min.js"></script>
+
+
+<script src="https://indoinvite.com/base-nikah/assets/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script src="https://indoinvite.com/landing-page/js/main.js"></script>
+        
+    <script>
+
+
+        function openLogin(idJenisAcara = null, idTemplate = null) {
+            
+                window.dataLayer.push({
+            'event': 'homepage_track',
+            'home_page_klik': 'Buat Gratis Sekarang',
+            'is_login': 'false'
+        });
+        $('#home-login').modal('show');
+        setCreateModal(idJenisAcara, idTemplate);
+                switchJenisAcara(idJenisAcara);
+        }
+
+        function openCreateModal(idJenisAcara = null, idTemplate = null) {
+            $('#modal-home-create').modal('show');
+            setCreateModal(idJenisAcara, idTemplate);
+        }
+
+        function setCreateModal(idJenisAcara = null, idTemplate = null) {
+            if (idJenisAcara) {
+                $('#select_acara').val(idJenisAcara);
+            } else {
+                $('#select_acara').val('');
+            }
+
+            if (idTemplate) {
+                $('#create-template-id').val(idTemplate);
+            } else {
+                $('#create-template-id').val('');
+            }
+        }
+
+        function gaSectionClick(eventName, section) {
+            window.dataLayer.push({
+                'event': eventName,
+                'section': section,
+            });
+        }
+
+        const contactButton = document.getElementById('wa-point');
+        let scrollTimeout;
+
+        // Fungsi untuk menyembunyikan tombol saat di-scroll
+        window.addEventListener('scroll', () => {
+            contactButton.classList.add('hide'); // Sembunyikan tombol
+            contactButton.classList.remove('show');
+
+            // Reset timeout jika ada scrolling lagi
+            clearTimeout(scrollTimeout);
+
+            // Tunggu 500ms setelah scroll berhenti untuk menampilkan tombol
+            scrollTimeout = setTimeout(() => {
+                contactButton.classList.add('show'); // Tampilkan kembali tombol
+                contactButton.classList.remove('hide');
+            }, 500);
+        });
+
+        function waPointHide() {
+            localStorage.setItem('hideWaPoint', '1');
+            $('#wa-point').remove();
+        }
+
+        if (localStorage.getItem('hideWaPoint') == '1') {
+            $('#wa-point').remove();
+        }
+
+        let searchParams = new URLSearchParams(window.location.search)
+        let param = searchParams.get('utm_campaign');
+
+        if (param == 'mobile-app') {
+            // console.log('MASUK CEK UTM');
+            localStorage.setItem('isMobile', true);
+            const now = new Date();
+            now.setFullYear(now.getFullYear() + 10);
+            document.cookie =
+                "is-mobile=yes; path=/; expires=${now.toUTCString()}; secure; samesite=Lax; domain=.indoinvite.com";
+        }
+
+        function getCookieValue(name) {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                const [key, value] = cookies[i].split('=');
+                if (key === name) {
+                    return decodeURIComponent(value);
+                }
+            }
+            return null;
+        }
+    </script>
+
+    
+    <script>
+    // Set konfigurasi global untuk WhatsApp admin
+    window.indoinviteConfig = {
+        whatsappAdmin: '6281910878059'
+    };
+
+    // ===== ADS PARAMETER TRACKING SYSTEM =====
+    // Fungsi untuk menyimpan parameter ads ke localStorage
+    function saveAdsParam(adsValue) {
+        if (!adsValue) return;
+
+        const adsData = {
+            value: adsValue,
+            timestamp: Date.now(),
+            expiry: Date.now() + (365 * 24 * 60 * 60 * 1000) // 365 hari
+        };
+        localStorage.setItem('indoinvite_ads_param', JSON.stringify(adsData));
+
+        // Debug log
+        // console.log('Ads parameter saved:', adsValue);
+    }
+
+    // Fungsi untuk mengambil parameter ads dari localStorage
+    function getAdsParam() {
+        try {
+            const adsDataStr = localStorage.getItem('indoinvite_ads_param');
+            if (!adsDataStr) return null;
+
+            const adsData = JSON.parse(adsDataStr);
+
+            // Cek apakah sudah expired
+            if (Date.now() > adsData.expiry) {
+                localStorage.removeItem('indoinvite_ads_param');
+                return null;
+            }
+
+            return adsData.value;
+        } catch (e) {
+            // Jika ada error parsing, hapus data yang rusak
+            localStorage.removeItem('indoinvite_ads_param');
+            return null;
+        }
+    }
+
+    // Fungsi untuk membersihkan ads param yang expired
+    function cleanupExpiredAdsParam() {
+        try {
+            const adsDataStr = localStorage.getItem('indoinvite_ads_param');
+            if (adsDataStr) {
+                const adsData = JSON.parse(adsDataStr);
+                if (Date.now() > adsData.expiry) {
+                    localStorage.removeItem('indoinvite_ads_param');
+                    // console.log('Expired ads parameter removed');
+                }
+            }
+        } catch (e) {
+            localStorage.removeItem('indoinvite_ads_param');
+        }
+    }
+
+    // Fungsi contactAdmin dengan parameter custom text dan ads tracking
+    function contactAdmin(section, customText = null) {
+        // Ambil parameter ads dari localStorage
+        const adsParam = getAdsParam();
+
+        // Gunakan custom text jika ada, atau default text
+        let textParam = customText || "Halo+indoinvite%2C+saya+mau+buat+undangan+nih%2C+mau+tanya+dong+...";
+
+        // Tambahkan prefix ads jika ada
+        if (adsParam) {
+            textParam = `[${encodeURIComponent(adsParam)}]+${textParam}`;
+            // console.log('ContactAdmin with ads parameter:', adsParam);
+        }
+
+        var url = `https://wa.me/6281910878059?text=${textParam}`;
+        window.open(url, '_blank');
+
+        if (typeof window.dataLayer !== 'undefined') {
+            window.dataLayer.push({
+                'event': 'all_wa_click',
+                'section': section,
+            });
+        }
+    }
+
+    // Inisialisasi tracking ads parameter saat halaman dimuat
+    function initAdsTracking() {
+        // Bersihkan data yang expired terlebih dahulu
+        cleanupExpiredAdsParam();
+
+        // Ambil parameter ads dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const adsParam = urlParams.get('ads');
+
+        // Jika ada parameter ads di URL, simpan ke localStorage
+        if (adsParam) {
+            saveAdsParam(adsParam);
+        }
+
+        // Expose fungsi ke global scope untuk digunakan komponen lain
+        window.getAdsParam = getAdsParam;
+        window.saveAdsParam = saveAdsParam;
+
+        // console.log('Ads tracking system initialized');
+    }
+
+    // Auto-initialize saat DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', initAdsTracking);
+</script>
+
+</body>
+
+</html>

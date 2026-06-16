@@ -1,1485 +1,849 @@
-@php
-    $couple = $couple ?? [
-        'groom' => 'Haris',
-        'bride' => 'Anisa',
-        'parents' => [
-            'groom' => 'Bapak Surono & Ibu Sri Mulyani',
-            'bride' => 'Bapak Budi & Ibu Siti',
-        ],
-    ];
-
-    $event = $event ?? [
-        'date_iso' => '2026-12-12',
-        'time' => '09:00',
-        'location' => 'Omah Kawangan',
-        'address' => 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali',
-        'maps_url' => 'https://maps.google.com/?q=Boyolali',
-    ];
-
-    $schedule = $schedule ?? [
-        ['title' => 'Akad Nikah', 'time' => '09:00 - 10:30', 'note' => 'Lokasi Acara, Omah Kawangan'],
-        ['title' => 'Resepsi Pernikahan', 'time' => '11:00 - 15:00', 'note' => 'Lokasi Acara, Omah Kawangan'],
-    ];
-
-    $stories = $stories ?? [
-        ['title' => 'Pertama Bertemu', 'date' => '09 Jan 2021', 'text' => 'Kami dipertemukan oleh seorang teman dekat, lalu mulai bertukar cerita dan merasa cocok.'],
-        ['title' => 'Mengikat Janji', 'date' => '25 Agt 2022', 'text' => 'Kami sepakat untuk melangkah ke jenjang yang lebih serius dengan pertunangan disaksikan keluarga.'],
-        ['title' => 'Hari Bahagia', 'date' => '12 Des 2026', 'text' => 'Kami mengikat janji suci kami dalam ikatan pernikahan yang sah dan memulai babak baru.'],
-    ];
-
-    $gallery = $gallery ?? [
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
-        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
-    ];
-
-    $bg = $bg ?? [
-        'cover' => 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800',
-        'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
-        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
-    ];
-@endphp
-
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan | {{ $couple['bride'] }} & {{ $couple['groom'] }}</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Waterfall&family=Sacramento&display=swap" rel="stylesheet">
-    
-    <!-- Icons & Animations -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #1d3d5f; /* Deep Navy */
-            --primary-light: #5f7d95;
-            --accent: #f7f4eb; /* Warm Cream */
-            --gold: #c5a880; /* Champagne Gold */
-            --bg-dark: #121110; 
-            --text-dark: #2b3e50;
-            --text-light: #6c7e8d;
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Montserrat', sans-serif;
-            --font-script: 'Sacramento', cursive;
-            --font-waterfall: 'Waterfall', cursive;
-        }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Undangan Pernikahan Rahayu &amp; Satria</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "tertiary": "#cfd0b8",
+                    "on-secondary": "#422b22",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#474836",
+                    "antique-gold": "#B8860B",
+                    "primary-fixed": "#ffe088",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-container": "#d4b1a4",
+                    "surface-tint": "#e9c349",
+                    "secondary-container": "#5d4339",
+                    "surface": "#131313",
+                    "background": "#131313",
+                    "tertiary-fixed": "#e4e4cc",
+                    "on-tertiary-fixed": "#1b1d0e",
+                    "on-secondary-fixed-variant": "#5a4137",
+                    "on-surface": "#e5e2e1",
+                    "primary-container": "#d4af37",
+                    "on-tertiary": "#303221",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-variant": "#353534",
+                    "surface-container": "#201f1f",
+                    "surface-container-high": "#2a2a2a",
+                    "deep-ebony": "#0A0503",
+                    "secondary": "#e3bfb2",
+                    "tertiary-container": "#b4b49d",
+                    "surface-bright": "#393939",
+                    "on-primary-container": "#554300",
+                    "secondary-fixed-dim": "#e3bfb2",
+                    "on-background": "#e5e2e1",
+                    "primary": "#f2ca50",
+                    "secondary-fixed": "#ffdbce",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#131313",
+                    "on-tertiary-container": "#454634",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline": "#99907c",
+                    "surface-container-highest": "#353534",
+                    "on-primary-fixed": "#241a00",
+                    "on-surface-variant": "#d0c5af",
+                    "outline-variant": "#4d4635",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed-dim": "#c8c8b0",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary": "#3c2f00",
+                    "sepia-text": "#A68966",
+                    "primary-fixed-dim": "#e9c349",
+                    "inverse-primary": "#735c00",
+                    "on-secondary-fixed": "#2a170f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "1.25rem",
+                    "gutter": "1rem",
+                    "section-gap": "4rem",
+                    "element-gap": "1.5rem",
+                    "container-max": "480px"
+            },
+            "fontFamily": {
+                    "decorative-script": ["Playfair Display"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-caps": ["Be Vietnam Pro"],
+                    "display-hero": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-hero-mobile": ["Playfair Display"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "decorative-script": ["20px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-hero": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-hero-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A0503;
+            color: #e5e2e1;
             scroll-behavior: smooth;
         }
-
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+        .javanese-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Cline x1='-50' y1='50' x2='50' y2='-50' stroke='%23f2ca50' stroke-width='0.8' opacity='0.08' stroke-dasharray='1 1'/%3E%3Cline x1='0' y1='100' x2='100' y2='0' stroke='%23f2ca50' stroke-width='0.8' opacity='0.08' stroke-dasharray='1 1'/%3E%3Cline x1='50' y1='150' x2='150' y2='50' stroke='%23f2ca50' stroke-width='0.8' opacity='0.08' stroke-dasharray='1 1'/%3E%3Cpath d='M 25,75 C 20,70 18,65 20,60 C 22,55 28,55 30,60 C 32,65 30,70 25,75' fill='%23f2ca50' opacity='0.08'/%3E%3Cpath d='M 75,25 C 70,20 68,15 70,10 C 72,5 78,5 80,10 C 82,15 80,20 75,25' fill='%23f2ca50' opacity='0.08'/%3E%3Cpath d='M 50,50 C 45,45 43,40 45,35 C 47,30 53,30 55,35 C 57,40 55,45 50,50' fill='%23f2ca50' opacity='0.08'/%3E%3Cpath d='M 0,0 C -5,-5 -7,-10 -5,-15 C -3,-20 3,-20 5,-15 C 7,-10 5,-5 0,0' fill='%23f2ca50' opacity='0.08'/%3E%3Cpath d='M 100,100 C 95,95 93,90 95,85 C 97,80 103,80 105,85 C 107,90 105,95 100,100' fill='%23f2ca50' opacity='0.08'/%3E%3Ccircle cx='25' cy='25' r='2' fill='%23f2ca50' opacity='0.15'/%3E%3Cpath d='M 25,21 C 23,21 23,25 25,25 C 27,25 27,21 25,21 Z M 25,29 C 23,29 23,25 25,25 C 27,25 27,29 25,29 Z M 21,25 C 21,23 25,23 25,25 C 25,27 21,27 21,25 Z M 29,25 C 29,23 25,23 25,25 C 25,27 29,27 29,25 Z' fill='%23f2ca50' opacity='0.1'/%3E%3Ccircle cx='75' cy='75' r='2' fill='%23f2ca50' opacity='0.15'/%3E%3Cpath d='M 75,71 C 73,71 73,75 75,75 C 77,75 77,71 75,71 Z M 75,79 C 73,79 73,75 75,75 C 77,75 77,79 75,79 Z M 71,75 C 71,73 75,73 75,75 C 75,77 71,77 71,75 Z M 79,75 C 79,73 75,73 75,75 C 75,77 79,77 79,75 Z' fill='%23f2ca50' opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.15;
         }
-
-        /* Mobile Wrapper with elegant watercolor background pattern */
-        .wrapper {
-            width: 100%;
-            max-width: 480px;
-            background: var(--accent) url('https://images.unsplash.com/photo-1603486002664-a7319421e133?q=80&w=600&auto=format&fit=crop') repeat;
-            min-height: 100vh;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
-            padding: 15px;
-            padding-bottom: 95px; /* bottom nav space */
-            z-index: 1;
+        .ornament-border {
+            border-image: linear-gradient(to bottom, #f2ca50, transparent) 1;
         }
-
-        /* Double-line fine thin border frame */
-        .inner-wrapper {
-            border: 1px solid rgba(30, 61, 95, 0.25);
-            outline: 1px solid rgba(30, 61, 95, 0.15);
-            outline-offset: -5px;
-            min-height: calc(100vh - 30px);
-            width: 100%;
-            border-radius: 8px;
-            position: relative;
-            padding: 10px;
-            background: rgba(253, 251, 247, 0.3);
-            backdrop-filter: blur(2px);
-        }
-
-        /* Fullscreen Cover Page Overlay */
-        #cover {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 100vh;
-            z-index: 9999;
-            background: linear-gradient(rgba(253, 251, 247, 0.72), rgba(253, 251, 247, 0.88)), 
-                        url("{{ $bg['cover'] }}") center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 60px 30px;
-            text-align: center;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        #cover.opened {
-            transform: translate(-50%, -100%);
-            pointer-events: none;
-        }
-
-        /* 3D Envelope Styling */
-        .envelope-container {
-            position: relative;
-            width: 290px;
-            height: 190px;
-            margin: 20px auto;
-            perspective: 1000px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .envelope {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-color: var(--accent);
-            border-radius: 8px;
-            box-shadow: 0 15px 35px rgba(30, 61, 95, 0.15);
-            transform-style: preserve-3d;
-            transition: transform 0.3s;
-            border: 1px solid rgba(197, 168, 128, 0.3);
-        }
-
-        .envelope-container:hover .envelope {
-            transform: scale(1.02);
-        }
-
-        /* Front flaps to form envelope pocket */
-        .envelope::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 145px solid transparent;
-            border-right: 145px solid transparent;
-            border-bottom: 95px solid #eae2d0; /* Darker cream pocket floor */
-            border-radius: 0 0 8px 8px;
-            z-index: 4;
-            pointer-events: none;
-        }
-
-        .envelope-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-top: 95px solid transparent;
-            border-bottom: 95px solid transparent;
-            border-left: 145px solid rgba(226, 219, 190, 0.95);
-            border-radius: 8px 0 0 8px;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .envelope-right {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-top: 95px solid transparent;
-            border-bottom: 95px solid transparent;
-            border-right: 145px solid rgba(226, 219, 190, 0.95);
-            border-radius: 0 8px 8px 0;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        /* Top Flap */
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 145px solid transparent;
-            border-right: 145px solid transparent;
-            border-top: 105px solid #c9be95; /* Darker flap */
-            transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
-        }
-
-        /* Letter Inside */
-        .letter {
-            position: absolute;
-            bottom: 5px;
-            left: 10px;
-            width: 270px;
-            height: 170px;
-            background: white;
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            z-index: 2;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s, opacity 0.8s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border: 2px solid var(--gold);
-            outline: 1px solid rgba(30, 61, 95, 0.1);
-            outline-offset: -4px;
-        }
-
-        /* Wax Seal */
-        .wax-seal {
-            position: absolute;
-            top: 95px;
-            left: 145px;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, #b91c1c 40%, #991b1b 100%);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            z-index: 6;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s ease;
-        }
-
-        .wax-seal::after {
-            content: '💌';
-            font-size: 1.25rem;
-            color: white;
-        }
-
-        /* Active animation classes */
-        .envelope-container.opening .envelope-flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .envelope-container.opening .letter {
-            transform: translateY(-110px);
-            z-index: 4;
-        }
-
-        .envelope-container.opening .wax-seal {
+        .reveal-section {
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            pointer-events: none;
+            transform: translateY(30px) scale(0.95);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
         }
-
-        /* Instruction and hand icon */
-        .open-instruction {
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tapping-hand {
-            font-size: 1.8rem;
-            animation: tap 1.5s infinite ease-in-out;
-        }
-
-        @keyframes tap {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(0.95); }
-        }
-
-        /* Floating background particles style */
-        .floating-particle {
-            position: absolute;
-            bottom: -30px;
-            pointer-events: none;
-            z-index: 1;
-            animation: floatUp 10s linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: inherit;
-            }
-            90% {
-                opacity: inherit;
-            }
-            100% {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Leaf Corner Ornaments extending into frame */
-        .corner-ornament {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .corner-tl { top: 0; left: 0; }
-        .corner-tr { top: 0; right: 0; transform: scaleX(-1); }
-        .corner-bl { bottom: 0; left: 0; transform: scaleY(-1); }
-        .corner-br { bottom: 0; right: 0; transform: scale(-1); }
-
-        /* General Sections */
-        section {
-            padding: 50px 10px;
-            position: relative;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--primary-light);
-            margin-bottom: 8px;
-            font-weight: 600;
-            display: block;
-        }
-
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Central Initials Overlapping Monogram (Hero section) */
-        .names-monogram {
-            position: relative;
-            width: 100%;
-            height: 320px;
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .initial-graphic {
-            position: absolute;
-            width: 170px;
-            height: 170px;
-            opacity: 0.22;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .initial-graphic-2 {
-            position: absolute;
-            width: 170px;
-            height: 170px;
-            opacity: 0.22;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .initial-pos-1 { top: 10px; left: 20%; }
-        .initial-pos-2 { bottom: 10px; right: 20%; }
-
-        .script-name-overlap {
-            font-family: var(--font-script);
-            font-size: 3.8rem;
-            color: var(--primary);
-            z-index: 2;
-            position: relative;
-        }
-        .name-1 { margin-top: -40px; margin-left: -50px; }
-        .name-2 { margin-top: 40px; margin-right: -50px; }
-
-        .union-text {
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            color: var(--text-light);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 5px 0;
-            z-index: 2;
-        }
-
-        /* Countdown display clean text grid without cards */
-        .countdown-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 30px 0 20px;
-        }
-
-        .countdown-num-block {
-            text-align: center;
-        }
-
-        .countdown-num {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
-            color: var(--primary);
-            line-height: 1;
-            font-weight: 300;
-        }
-
-        .countdown-lbl {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--text-light);
-            letter-spacing: 1px;
-            margin-top: 5px;
-            display: block;
-        }
-
-        /* Save the Date button styled like mockup */
-        .btn-pill-navy {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--primary);
-            color: white;
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 12px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(30, 61, 95, 0.2);
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-        .btn-pill-navy:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Mempelai (Couple) Section Wreath/Flower Arch header */
-        .floral-arch-header {
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto 30px auto;
-        }
-
-        .arch-svg {
-            width: 100%;
-            height: auto;
-        }
-
-        /* Mempelai (Couple) Arch Photo frames */
-        .couple-wrapper {
-            margin: 40px auto;
-            max-width: 320px;
-            text-align: center;
-        }
-
-        .arch-photo-container {
-            width: 150px;
-            height: 220px;
-            border-radius: 50% / 35% 35% 65% 65%;
-            margin: 0 auto 20px auto;
-            overflow: hidden;
-            border: 1px solid var(--gold);
-            padding: 4px;
-            background: white;
-            box-shadow: 0 8px 25px rgba(30, 61, 95, 0.08);
-        }
-
-        .arch-photo-container img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50% / 35% 35% 65% 65%;
-            object-fit: cover;
-        }
-
-        .mempelai-nama {
-            font-family: var(--font-script);
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .mempelai-parent {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Clean Boxed Editorial Date Grid */
-        .editorial-date-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 25px 0;
-        }
-        .ed-day-name, .ed-month-name {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary);
-            flex: 1;
-        }
-        .ed-day-name {
-            text-align: right;
-        }
-        .ed-month-name {
-            text-align: left;
-        }
-        .ed-center-box {
-            text-align: center;
-        }
-        .ed-date-num {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 8px 15px;
-            display: inline-block;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-        .ed-year-num {
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-light);
-        }
-
-        /* Event Box & Minimalist Calendar layout */
-        .event-box {
-            background: white;
-            border: 1px solid rgba(30, 61, 95, 0.1);
-            border-radius: 18px;
-            padding: 35px 20px;
-            box-shadow: 0 8px 25px rgba(30, 61, 95, 0.02);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .event-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--primary));
-            border-radius: 18px 18px 0 0;
-        }
-
-        .event-box h3 {
-            font-family: var(--font-serif);
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Ring / Wine outline icons */
-        .event-icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(30, 61, 95, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px auto;
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-
-        /* Timeline Stories style */
-        .story-timeline {
-            position: relative;
-            padding: 20px 0;
-            text-align: left;
-        }
-        .story-timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: rgba(30, 61, 95, 0.15);
-        }
-        .story-node {
-            position: relative;
-            padding-left: 45px;
-            margin-bottom: 30px;
-        }
-        .story-node::before {
-            content: '';
-            position: absolute;
-            left: 16px;
-            top: 5px;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 0 3px rgba(30, 61, 95, 0.15);
-        }
-        .story-node-date {
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--primary-light);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-        .story-node-title {
-            font-family: var(--font-serif);
-            font-size: 1.15rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .story-node-desc {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .gallery-card {
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            border: 3px solid white;
-            box-shadow: 0 4px 15px rgba(30, 61, 95, 0.04);
-            position: relative;
-        }
-        .gallery-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .gallery-card:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Dompet / Gift block */
-        .gift-card {
-            background: white;
-            border: 1px solid rgba(30, 61, 95, 0.1);
-            border-radius: 18px;
-            padding: 30px 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
-            margin-top: 25px;
-        }
-
-        .btn-copy {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 15px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(30, 61, 95, 0.15);
-            transition: all 0.3s;
-        }
-        .btn-copy:hover {
-            background-color: var(--primary-light);
-        }
-
-        /* RSVP Form */
-        .form-wrap {
-            background: white;
-            border: 1px solid rgba(30, 61, 95, 0.1);
-            border-radius: 18px;
-            padding: 30px 20px;
-            text-align: left;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .form-input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #dcdad4;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            background-color: var(--accent);
-            font-family: var(--font-sans);
-            color: var(--text-dark);
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .form-input:focus {
-            border-color: var(--primary);
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 12px rgba(30, 61, 95, 0.2);
-            transition: all 0.3s;
-        }
-        .btn-submit:hover {
-            background-color: var(--primary-light);
-        }
-
-        .wish-list {
-            max-height: 250px;
-            overflow-y: auto;
-            margin-top: 25px;
-        }
-        .wish-card {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-            margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
-        }
-        .wish-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.8rem;
-        }
-        .wish-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        .wish-status {
-            background: rgba(30, 61, 95, 0.05);
-            color: var(--primary);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.65rem;
-            font-weight: 500;
-        }
-        .wish-content {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Solid Navy Floating Bottom Navigation with circular outline buttons */
-        .bottom-nav-navy {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 440px;
-            background: var(--primary);
-            border-radius: 40px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 12px;
-            box-shadow: 0 8px 32px rgba(30, 61, 95, 0.25);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .bottom-nav-navy.visible {
+        .reveal-section.active {
             opacity: 1;
-            visibility: visible;
+            transform: translateY(0) scale(1);
         }
-
-        .nav-item-circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.75);
-            text-decoration: none;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.05);
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-
-        .nav-item-circle i {
-            font-size: 1.05rem;
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
         }
-
-        .nav-item-circle.active {
-            background: white;
-            color: var(--primary);
-            border-color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(242, 202, 80, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px rgba(242, 202, 80, 0.8)); }
         }
-
-        /* Right-Side Stacked Circular outline floating buttons */
-        .floater-container {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 0;
-            z-index: 1000;
-            pointer-events: none;
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite;
         }
-
-        .music-control, .scroll-control {
-            position: absolute;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 4px 15px rgba(30, 61, 95, 0.25);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: auto;
-            transition: all 0.5s ease;
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(3deg); }
         }
-
-        .music-control.visible, .scroll-control.visible {
-            opacity: 1;
-            visibility: visible;
+        .animate-sway {
+            animation: sway 6s ease-in-out infinite;
         }
-
-        .music-control {
-            bottom: 95px;
-            right: 20px;
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(242, 202, 80, 0.5);
         }
-
-        .scroll-control {
-            bottom: 155px;
-            right: 20px;
-        }
-
-        .music-control i, .scroll-control i {
-            font-size: 1.1rem;
-            color: white;
-        }
-
-        .music-control.playing i {
-            animation: spin 3.5s linear infinite;
-        }
-
-        .scroll-control.active i {
-            animation: bounce 1.5s infinite;
-        }
-
-        .scroll-badge {
-            position: absolute;
-            right: 55px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary);
-            color: white;
-            font-size: 0.6rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-            pointer-events: none;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(3px); }
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body>
+<body class="max-w-[480px] mx-auto relative overflow-hidden shadow-2xl bg-deep-ebony">
 
-    <!-- COVER SCREEN -->
-    <div id="cover">
-        <!-- Background leaf/heart particles container -->
-        <div id="cover-particles" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1;"></div>
 
-        <div class="cover-header" style="z-index: 5; margin-bottom: 15px;">
-            <p style="letter-spacing: 4px; font-size: 0.72rem; font-weight: 600; color: var(--primary-light); text-transform: uppercase; margin-bottom: 8px;">The Wedding Of</p>
-            <h1 style="font-family: var(--font-script); font-size: 3.2rem; color: var(--primary); font-weight: 300; margin: 0;">{{ $couple['bride'] }} & {{ $couple['groom'] }}</h1>
-        </div>
 
-        <!-- 3D Envelope Component -->
-        <div class="envelope-container" id="invitation-envelope" onclick="openEnvelope(this)">
-            <div class="envelope">
-                <div class="envelope-flap"></div>
-                <div class="envelope-left"></div>
-                <div class="envelope-right"></div>
-                
-                <!-- Guest Card Letter Inside -->
-                <div class="letter">
-                    <div class="letter-inner">
-                        <p style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); margin-bottom: 4px;">Kepada Yth.</p>
-                        <p style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 8px;">Bapak/Ibu/Saudara/i</p>
-                        <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary); font-weight: 600; margin: 4px 0;">{{ request()->get('kpd', 'Nama Tamu') }}</h3>
-                        <div style="width: 40px; height: 1px; background: var(--gold); margin: 8px auto;"></div>
-                        <p style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light);">di Tempat</p>
-                    </div>
-                </div>
-                
-                <!-- Wax Seal center stamp -->
-                <div class="wax-seal"></div>
+<!-- Audio Control (Floating) -->
+<div class="fixed top-20 right-4 z-[60] hidden" id="audio-control">
+<button class="w-10 h-10 bg-primary/20 backdrop-blur-md rounded-full border border-primary/40 flex items-center justify-center text-primary active:scale-95 duration-150" onclick="toggleAudio()">
+<span class="material-symbols-outlined" id="music-icon">volume_up</span>
+</button>
+</div>
+<!-- COVER SECTION -->
+<section class="h-screen w-full relative overflow-hidden flex flex-col items-center justify-end pb-20 text-center z-50 transition-all duration-1000" id="cover">
+
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-50" data-alt="A cinematic pre-wedding portrait of a Javanese couple in traditional batik royal attire. They stand against a dark, moody background of ancient teak wood carvings. The lighting is low-key, focusing on the intricate gold embroidery of their outfits, creating a sacred and majestic atmosphere. High-end photography style with warm, amber tones." src="{{ asset('assets/templates/wedding-11/images/image_1.jpg') }}"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-deep-ebony via-transparent to-transparent"></div>
+<div class="relative z-10 px-margin-mobile flex flex-col items-center">
+<p class="font-label-caps text-label-caps text-primary tracking-[0.3em] mb-4">WEDDING ANNOUNCEMENT</p>
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-primary gold-glow mb-2 animate-pulse-glow">Rahayu &amp; Satria</h1>
+<div class="w-12 h-px bg-primary/50 mb-6"></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">Kepada Bapak/Ibu/Saudara/i:<br/><span class="text-on-surface font-bold text-lg mt-2 inline-block">Nama Tamu Undangan</span></p>
+<button class="bg-primary px-8 py-3 rounded-full flex items-center gap-3 text-on-primary font-bold tracking-widest text-xs border border-primary-fixed duration-300 hover:scale-105 active:scale-95" onclick="openInvitation()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+                BUKA UNDANGAN
+            </button>
+</div>
+</section>
+<!-- CONTENT WRAPPER (Hidden initially) -->
+<div class="opacity-0 transition-opacity duration-1000 relative" id="main-content">
+<div class="javanese-pattern absolute inset-0 z-0 pointer-events-none opacity-20"></div>
+<!-- TOP APP BAR -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile py-4 max-w-container-max mx-auto">
+<span class="font-decorative-script text-decorative-script text-primary">Rahayu &amp; Satria</span>
+<div class="flex gap-4">
+<button onclick="toggleAudio()" class="active:scale-95 duration-150 transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-primary" id="music-icon-header">volume_up</span>
+</button>
+<button onclick="toggleAutoscroll()" class="active:scale-95 duration-150 transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-primary" id="autoscroll-icon">play_arrow</span>
+</button>
+</div>
+</header>
+<!-- HERO & COUNTDOWN -->
+<section class="pt-32 pb-16 px-margin-mobile relative overflow-hidden" id="Home">
+<!-- Royal Glow Background -->
+<div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent z-0 pointer-events-none"></div>
+
+<!-- Traditional Javanese Gunungan (Right-aligned, cut off, matching screenshot) -->
+<svg class="absolute bottom-0 right-[-65px] w-[260px] h-[400px] text-primary opacity-[0.25] z-0 pointer-events-none animate-sway" viewBox="0 0 120 180" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer Border Path of Gunungan -->
+    <path d="M 60,10 C 48,25 40,40 30,55 C 10,80 25,85 25,105 C 25,120 15,130 15,150 C 15,155 20,160 25,160 L 55,160 L 55,175 L 65,175 L 65,160 L 95,160 C 100,160 105,155 105,150 C 105,130 95,120 95,105 C 95,85 110,80 90,55 C 80,40 72,25 60,10 Z" stroke-width="1.2"/>
+    
+    <!-- Inner border (double outline for Javanese carving feel) -->
+    <path d="M 60,16 C 50,30 43,44 34,58 C 16,81 29,86 29,104 C 29,117 20,126 20,144 C 20,149 24,154 29,154 L 91,154 C 96,154 100,149 100,144 C 100,126 91,117 91,104 C 91,86 104,81 86,58 C 77,44 70,30 60,16 Z" stroke-width="0.6" stroke-dasharray="1.5 1.5" opacity="0.6"/>
+
+    <!-- Gapura (Gate) at the bottom -->
+    <path d="M 45,154 L 45,135 L 75,135 L 75,154" stroke-width="1"/>
+    <!-- Joglo Roof of Gapura -->
+    <path d="M 40,135 L 50,122 L 70,122 L 80,135 Z" fill="currentColor" fill-opacity="0.1" stroke-width="1"/>
+    <path d="M 50,122 L 60,112 L 70,122" stroke-width="0.8"/>
+    <!-- Door arches/lines -->
+    <path d="M 52,154 L 52,142 C 52,139 68,139 68,142 L 68,154" stroke-width="0.6"/>
+    <line x1="60" y1="135" x2="60" y2="154" stroke-width="0.6"/>
+    
+    <!-- Meru / Tree of Life (Pohon Hayat) structure rising from gate -->
+    <path d="M 60,112 L 60,40" stroke-width="1.2"/>
+    
+    <!-- Branches curving out gracefully -->
+    <!-- Level 1 -->
+    <path d="M 60,100 C 48,95 38,98 32,108 C 28,115 32,122 40,118 C 45,115 48,108 48,108" stroke-width="0.6"/>
+    <path d="M 60,100 C 72,95 82,98 88,108 C 92,115 88,122 80,118 C 75,115 72,108 72,108" stroke-width="0.6"/>
+    
+    <!-- Level 2 -->
+    <path d="M 60,85 C 45,78 35,82 30,95 C 26,102 32,108 38,102 C 44,96 46,90 46,90" stroke-width="0.6"/>
+    <path d="M 60,85 C 75,78 85,82 90,95 C 94,102 88,108 82,102 C 76,96 74,90 74,90" stroke-width="0.6"/>
+    
+    <!-- Level 3 -->
+    <path d="M 60,70 C 48,60 38,65 35,78 C 32,84 38,90 42,84 C 46,78 48,73 48,73" stroke-width="0.6"/>
+    <path d="M 60,70 C 72,60 82,65 85,78 C 88,84 82,90 78,84 C 74,78 72,73 72,73" stroke-width="0.6"/>
+
+    <!-- Level 4 -->
+    <path d="M 60,55 C 50,45 42,50 40,60 C 38,65 44,70 46,65 C 48,60 50,57 50,57" stroke-width="0.6"/>
+    <path d="M 60,55 C 70,45 78,50 80,60 C 82,65 76,70 74,65 C 72,60 70,57 70,57" stroke-width="0.6"/>
+
+    <!-- Traditional Javanese Wings (Sayap Gunungan) on the sides -->
+    <path d="M 28,95 C 24,90 24,80 32,82 C 36,83 38,88 36,92 Z" fill="currentColor" fill-opacity="0.15"/>
+    <path d="M 92,95 C 96,90 96,80 88,82 C 84,83 82,88 84,92 Z" fill="currentColor" fill-opacity="0.15"/>
+    
+    <!-- Central Halo/Sun representing divine blessing -->
+    <circle cx="60" cy="70" r="14" stroke="currentColor" stroke-width="0.4" stroke-dasharray="1 2" opacity="0.6"/>
+    <circle cx="60" cy="70" r="10" stroke="currentColor" stroke-width="0.4" opacity="0.4"/>
+</svg>
+
+<!-- Scattered Decorative Javanese Flowers (Floating, matching screenshot) -->
+<div class="absolute top-24 left-16 text-primary/30 pointer-events-none animate-float z-10">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+    </svg>
+</div>
+<div class="absolute top-[230px] left-8 text-primary/45 pointer-events-none animate-float z-10">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+    </svg>
+</div>
+<div class="absolute top-[280px] right-24 text-primary/40 pointer-events-none animate-float z-10">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+    </svg>
+</div>
+<div class="absolute top-[430px] left-20 text-primary/30 pointer-events-none animate-float z-10">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+    </svg>
+</div>
+
+<div class="text-center mb-section-gap relative z-10 reveal-section">
+<!-- Top Diamond Divider -->
+<div class="flex justify-center items-center gap-3 mb-2 opacity-80">
+    <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
+    <span class="text-primary text-[10px]">◆</span>
+    <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+</div>
+<!-- Floral Bud Ornaments -->
+<div class="flex justify-center gap-8 mb-4 opacity-80">
+    <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+    </svg>
+</div>
+
+<p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4 drop-shadow-md">THE WEDDING OF</p>
+<h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Rahayu &amp; Satria</h2>
+
+<!-- Symmetrical Javanese Floral Scroll Dividers & Date (Matching screenshot) -->
+<div class="flex flex-col items-center gap-1 my-6">
+    <!-- Top Scroll (curve up) -->
+    <div class="flex justify-center">
+        <svg width="200" height="24" viewBox="0 0 240 30" fill="none" class="text-primary/80 rotate-180 drop-shadow-md">
+            <path d="M120 15 C100 15 90 20 80 18 C70 16 65 10 50 15 C35 20 20 20 10 12 C5 8 10 5 15 8 C20 11 30 11 40 8 C50 5 60 8 70 12 C80 16 90 10 105 12 Z" fill="currentColor"/>
+            <path d="M75 14 C70 8 62 8 58 12 C54 16 60 20 68 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M45 13 C40 8 32 8 28 12 C24 16 30 20 38 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M120 15 C140 15 150 20 160 18 C170 16 175 10 190 15 C205 20 220 20 230 12 C235 8 230 5 225 8 C220 11 210 11 200 8 C190 5 180 8 170 12 C160 16 150 10 135 12 Z" fill="currentColor"/>
+            <path d="M165 14 C170 8 178 8 182 12 C186 16 180 20 172 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M195 13 C200 8 208 8 212 12 C216 16 210 20 202 16 Z" fill="currentColor" opacity="0.8"/>
+            <circle cx="120" cy="15" r="4" fill="currentColor"/>
+            <circle cx="110" cy="15" r="2" fill="currentColor"/>
+            <circle cx="130" cy="15" r="2" fill="currentColor"/>
+        </svg>
+    </div>
+    
+    <!-- Date with arrows -->
+    <div class="flex justify-center items-center gap-4">
+        <span class="text-primary/60 text-lg">←</span>
+        <span class="font-decorative-script text-primary text-2xl drop-shadow-md tracking-[0.1em] font-semibold">12 . 12 . 2024</span>
+        <span class="text-primary/60 text-lg">→</span>
+    </div>
+
+    <!-- Bottom Scroll -->
+    <div class="flex justify-center">
+        <svg width="200" height="24" viewBox="0 0 240 30" fill="none" class="text-primary/80 drop-shadow-md">
+            <path d="M120 15 C100 15 90 20 80 18 C70 16 65 10 50 15 C35 20 20 20 10 12 C5 8 10 5 15 8 C20 11 30 11 40 8 C50 5 60 8 70 12 C80 16 90 10 105 12 Z" fill="currentColor"/>
+            <path d="M75 14 C70 8 62 8 58 12 C54 16 60 20 68 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M45 13 C40 8 32 8 28 12 C24 16 30 20 38 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M120 15 C140 15 150 20 160 18 C170 16 175 10 190 15 C205 20 220 20 230 12 C235 8 230 5 225 8 C220 11 210 11 200 8 C190 5 180 8 170 12 C160 16 150 10 135 12 Z" fill="currentColor"/>
+            <path d="M165 14 C170 8 178 8 182 12 C186 16 180 20 172 16 Z" fill="currentColor" opacity="0.8"/>
+            <path d="M195 13 C200 8 208 8 212 12 C216 16 210 20 202 16 Z" fill="currentColor" opacity="0.8"/>
+            <circle cx="120" cy="15" r="4" fill="currentColor"/>
+            <circle cx="110" cy="15" r="2" fill="currentColor"/>
+            <circle cx="130" cy="15" r="2" fill="currentColor"/>
+        </svg>
+    </div>
+</div>
+
+<!-- Countdown Timer (Matching screenshot cards) -->
+<div class="grid grid-cols-4 gap-3 px-4">
+    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
+        <span class="font-serif text-2xl font-bold text-primary" id="days">00</span>
+        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">HARI</span>
+    </div>
+    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
+        <span class="font-serif text-2xl font-bold text-primary" id="hours">00</span>
+        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">JAM</span>
+    </div>
+    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
+        <span class="font-serif text-2xl font-bold text-primary" id="minutes">00</span>
+        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">MENIT</span>
+    </div>
+    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
+        <span class="font-serif text-2xl font-bold text-primary" id="seconds">00</span>
+        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">DETIK</span>
+    </div>
+</div>
+</div>
+</section>
+<!-- QUOTE -->
+<section class="py-12 px-margin-mobile bg-surface-container-lowest relative overflow-hidden">
+<div class="javanese-pattern absolute inset-0"></div>
+<div class="relative z-10 text-center flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl" data-icon="auto_stories">auto_stories</span>
+<p class="font-body-md text-on-surface-variant italic leading-relaxed mb-6">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                </p>
+<p class="font-label-caps text-primary tracking-widest">( QS. AR-RUM: 21 )</p>
+</div>
+</section>
+<!-- COUPLE PROFILE -->
+<section class="py-section-gap px-margin-mobile flex flex-col gap-16" id="Couple">
+<!-- Bride -->
+<div class="flex flex-col items-center text-center reveal-section">
+<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
+<img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Close up portrait of a beautiful Javanese bride 'Rahayu' in traditional royal black velvet kebaya with gold thread embroidery and intricate silver hair accessories (Cunduk Mentul). She has a gentle, serene expression. Soft focused background of warm palace lighting. Premium fashion editorial style." src="{{ asset('assets/templates/wedding-11/images/image_2.jpg') }}"/>
+<div class="absolute -bottom-2 -left-2 w-16 h-16 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] bg-primary/20 rotate-45 border border-primary/40"></div>
+</div>
+<h3 class="font-headline-lg-mobile text-primary mb-2">Rahayu Putri Lestari</h3>
+<p class="font-body-md text-on-surface-variant mb-4">Putri Kedua dari</p>
+<p class="font-body-lg text-on-surface">Bapak Sutrisno &amp; Ibu Wahyuni</p>
+</div>
+<!-- Groom -->
+<div class="flex flex-col items-center text-center reveal-section">
+<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
+<img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Portrait of a handsome Javanese groom 'Satria' wearing a traditional black Beskap with gold buttons and a traditional Blangkon headpiece. He stands with dignity and a subtle smile. High-contrast lighting highlights the textures of the fabric. Moody, dark aesthetic with golden hues." src="{{ asset('assets/templates/wedding-11/images/image_3.jpg') }}"/>
+<div class="absolute -bottom-2 -right-2 w-16 h-16 bg-primary/20 -rotate-45 border border-primary/40"></div>
+</div>
+<h3 class="font-headline-lg-mobile text-primary mb-2">Satria Bagus Pradana</h3>
+<p class="font-body-md text-on-surface-variant mb-4">Putra Bungsu dari</p>
+<p class="font-body-lg text-on-surface">Bapak Darmanto &amp; Ibu Sri Rahayu</p>
+</div>
+</section>
+<!-- EVENT SECTION -->
+<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Event">
+<!-- Background Glow -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
+
+<div class="text-center mb-12 reveal-section relative z-10">
+    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Agenda Bahagia</h2>
+    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
+        <span class="text-primary text-[10px]">◆</span>
+        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+    </div>
+</div>
+
+<div class="flex flex-col gap-8 relative z-10">
+    <!-- Akad -->
+    <div class="bg-[#1A1513]/95 border-2 border-primary/40 p-2 rounded-2xl reveal-section shadow-2xl">
+        <div class="border border-dashed border-primary/30 p-6 rounded-xl text-center">
+            <!-- Javanese Split Gate (Candi Bentar) SVG -->
+            <svg class="w-14 h-14 text-primary mx-auto mb-4 filter drop-shadow-md" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M 16,54 L 16,22 L 20,18 L 24,22 L 24,54 Z" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M 14,54 L 26,54" stroke-width="1.8"/>
+                <path d="M 18,22 L 22,22 M 18,30 L 22,30 M 18,38 L 22,38 M 18,46 L 22,46"/>
+                <path d="M 48,54 L 48,22 L 44,18 L 40,22 L 40,54 Z" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M 38,54 L 50,54" stroke-width="1.8"/>
+                <path d="M 46,22 L 42,22 M 46,30 L 42,30 M 46,38 L 42,38 M 46,46 L 42,46"/>
+                <path d="M 14,26 L 26,26 M 38,26 L 50,26" stroke-width="0.8"/>
+                <path d="M 32,28 C 28,24 28,18 32,18 C 36,18 36,24 32,28 Z" fill="currentColor" fill-opacity="0.2"/>
+                <circle cx="32" cy="23" r="1.5" fill="currentColor"/>
+            </svg>
+
+            <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Akad Nikah</h4>
+            <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
+            
+            <p class="text-on-surface font-semibold text-sm mb-1">Kamis, 12 Desember 2024</p>
+            <p class="text-primary text-xs tracking-wider mb-6">Pukul 08.00 - 10.00 WIB</p>
+            
+            <div class="border-t border-primary/20 pt-4 mb-6">
+                <p class="font-body-md text-on-surface font-bold">Masjid Agung Al-Mabrur</p>
+                <p class="text-on-surface-variant/80 text-xs mt-1">Jl. Kerajaan No. 45, Solo, Jawa Tengah</p>
             </div>
-        </div>
-
-        <div class="open-instruction" style="z-index: 5;">
-            <span>Ketuk Amplop untuk Membuka</span>
-            <div class="tapping-hand">👆</div>
+            
+            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="#">
+                <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                LIHAT LOKASI
+            </a>
         </div>
     </div>
 
-    <!-- MAIN WRAPPER -->
-    <div class="wrapper">
-        <div class="inner-wrapper">
+    <!-- Resepsi -->
+    <div class="bg-[#1A1513]/95 border-2 border-primary/40 p-2 rounded-2xl reveal-section shadow-2xl">
+        <div class="border border-dashed border-primary/30 p-6 rounded-xl text-center">
+            <!-- Javanese Royal Umbrella (Payung Agung) SVG -->
+            <svg class="w-14 h-14 text-primary mx-auto mb-4 filter drop-shadow-md" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+                <line x1="32" y1="58" x2="32" y2="10" stroke-width="1.8"/>
+                <path d="M 12,42 C 12,38 52,38 52,42 L 48,45 C 48,43 16,43 16,45 Z" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M 18,30 C 18,27 46,27 46,30 L 43,33 C 43,31 21,31 21,33 Z" fill="currentColor" fill-opacity="0.2"/>
+                <path d="M 24,18 C 24,15 40,15 40,18 L 38,20 C 38,19 26,19 26,20 Z" fill="currentColor" fill-opacity="0.3"/>
+                <path d="M 32,5 L 30,10 L 34,10 Z" fill="currentColor"/>
+                <circle cx="16" cy="45" r="1.5" fill="currentColor"/>
+                <circle cx="24" cy="45" r="1.5" fill="currentColor"/>
+                <circle cx="32" cy="45" r="1.5" fill="currentColor"/>
+                <circle cx="40" cy="45" r="1.5" fill="currentColor"/>
+                <circle cx="48" cy="45" r="1.5" fill="currentColor"/>
+            </svg>
+
+            <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Resepsi Pernikahan</h4>
+            <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
             
-            <audio id="bg-audio" loop preload="auto">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
-            </audio>
-
-            <!-- Background leaves decoration -->
-            <!-- Top Left -->
-            <svg class="corner-ornament corner-tl" viewBox="0 0 100 100">
-                <path d="M0,0 Q35,5 30,35 Q10,30 0,0" fill="var(--primary)" opacity="0.8"/>
-                <path d="M0,0 Q40,15 35,55 Q15,40 0,0" fill="var(--primary)" opacity="0.6"/>
-                <path d="M0,0 Q12,25 20,40" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                <circle cx="20" cy="40" r="1.5" fill="var(--primary)"/>
-            </svg>
-            <!-- Top Right -->
-            <svg class="corner-ornament corner-tr" viewBox="0 0 100 100">
-                <path d="M0,0 Q35,5 30,35 Q10,30 0,0" fill="var(--primary)" opacity="0.8"/>
-                <path d="M0,0 Q40,15 35,55 Q15,40 0,0" fill="var(--primary)" opacity="0.6"/>
-                <path d="M0,0 Q12,25 20,40" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                <circle cx="20" cy="40" r="1.5" fill="var(--primary)"/>
-            </svg>
-            <!-- Bottom Left -->
-            <svg class="corner-ornament corner-bl" viewBox="0 0 100 100">
-                <path d="M0,0 Q35,5 30,35 Q10,30 0,0" fill="var(--primary)" opacity="0.8"/>
-                <path d="M0,0 Q40,15 35,55 Q15,40 0,0" fill="var(--primary)" opacity="0.6"/>
-                <path d="M0,0 Q12,25 20,40" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                <circle cx="20" cy="40" r="1.5" fill="var(--primary)"/>
-            </svg>
-            <!-- Bottom Right -->
-            <svg class="corner-ornament corner-br" viewBox="0 0 100 100">
-                <path d="M0,0 Q35,5 30,35 Q10,30 0,0" fill="var(--primary)" opacity="0.8"/>
-                <path d="M0,0 Q40,15 35,55 Q15,40 0,0" fill="var(--primary)" opacity="0.6"/>
-                <path d="M0,0 Q12,25 20,40" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                <circle cx="20" cy="40" r="1.5" fill="var(--primary)"/>
-            </svg>
-
-            <!-- HERO HOME -->
-            <section id="home">
-                <div class="names-monogram">
-                    <!-- Circular overlay decorative leaves stem wreath -->
-                    <svg class="wreath-overlay" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="42" stroke="var(--primary)" stroke-width="0.8" stroke-dasharray="2 3" />
-                        <path d="M12 50 Q10 40 18 35" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                        <path d="M88 50 Q90 60 82 65" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                        <path d="M50 8 Q60 10 55 18" stroke="var(--primary)" stroke-width="1.2" fill="none"/>
-                        <circle cx="55" cy="18" r="1.5" fill="var(--primary)"/>
-                    </svg>
-
-                    <!-- Initial "Bride" Graphic with Leaves -->
-                    <div class="initial-graphic initial-pos-1">
-                        <svg viewBox="0 0 100 100">
-                            <text x="20" y="85" font-family="var(--font-serif)" font-size="95" fill="var(--gold)" font-weight="300">{{ substr($couple['bride'], 0, 1) }}</text>
-                            <path d="M15 70 Q40 50 75 42" stroke="var(--primary)" stroke-width="1.8" fill="none"/>
-                            <path d="M30 61 L23 66 L23 57 Z" fill="var(--primary)"/>
-                            <path d="M48 51 L56 46 L51 41 Z" fill="var(--primary)"/>
-                        </svg>
-                    </div>
-
-                    <!-- Initial "Groom" Graphic with Leaves -->
-                    <div class="initial-graphic-2 initial-pos-2">
-                        <svg viewBox="0 0 100 100">
-                            <text x="20" y="85" font-family="var(--font-serif)" font-size="95" fill="var(--gold)" font-weight="300">{{ substr($couple['groom'], 0, 1) }}</text>
-                            <path d="M15 70 Q40 50 75 42" stroke="var(--primary)" stroke-width="1.8" fill="none"/>
-                            <path d="M30 61 L23 66 L23 57 Z" fill="var(--primary)"/>
-                            <path d="M48 51 L56 46 L51 41 Z" fill="var(--primary)"/>
-                        </svg>
-                    </div>
-                    
-                    <div class="script-name-overlap name-1">{{ $couple['bride'] }}</div>
-                    <div class="union-text">The Wedding Of</div>
-                    <div class="script-name-overlap name-2">{{ $couple['groom'] }}</div>
-                </div>
-
-                <p style="font-size: 0.8rem; color: var(--text-light); line-height: 1.6; max-width: 300px; margin: 15px auto;" data-aos="fade-up">
-                    Kami akan menikah, dan kami ingin Anda menjadi bagian dari hari istimewa kami!
-                </p>
-
-                <!-- Countdown Text Row (no cards/borders) -->
-                <div class="countdown-row" data-aos="fade-up">
-                    <div class="countdown-num-block">
-                        <span class="countdown-num" id="days">00</span>
-                        <span class="countdown-lbl">Hari</span>
-                    </div>
-                    <div class="countdown-num-block">
-                        <span class="countdown-num" id="hours">00</span>
-                        <span class="countdown-lbl">Jam</span>
-                    </div>
-                    <div class="countdown-num-block">
-                        <span class="countdown-num" id="minutes">00</span>
-                        <span class="countdown-lbl">Menit</span>
-                    </div>
-                    <div class="countdown-num-block">
-                        <span class="countdown-num" id="seconds">00</span>
-                        <span class="countdown-lbl">Detik</span>
-                    </div>
-                </div>
-
-                <p style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--primary); font-weight: 600; margin-top: 10px;" data-aos="fade-up">
-                    {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}
-                </p>
-
-                <a href="#event-sec" class="btn-pill-navy" data-aos="fade-up">
-                    <i class="bi bi-calendar-check"></i> Save The Date
-                </a>
-            </section>
-
-            <!-- MEMPELAI -->
-            <section id="couple-sec">
-                <!-- Golden Floral Arch Wreath Header -->
-                <div class="floral-arch-header" data-aos="fade-down">
-                    <svg viewBox="0 0 200 80" class="arch-svg">
-                        <path d="M 20 75 A 80 80 0 0 1 180 75" stroke="var(--gold)" stroke-width="2" fill="none" />
-                        <path d="M 30 72 C 45 60, 60 45, 80 38 C 100 32, 120 38, 140 45 C 160 52, 168 66, 170 72" stroke="var(--primary)" stroke-width="1.2" fill="none" />
-                        <!-- Roses -->
-                        <circle cx="100" cy="34" r="8" fill="var(--primary)" />
-                        <circle cx="72" cy="40" r="6" fill="var(--primary)" />
-                        <circle cx="128" cy="40" r="6" fill="var(--primary)" />
-                        <!-- Leaves -->
-                        <path d="M 100 34 Q 90 20 85 24 Z" fill="var(--primary-light)" />
-                        <path d="M 100 34 Q 110 20 115 24 Z" fill="var(--primary-light)" />
-                        <path d="M 72 40 Q 60 28 55 33 Z" fill="var(--primary-light)" />
-                        <path d="M 128 40 Q 140 28 145 33 Z" fill="var(--primary-light)" />
-                    </svg>
-                </div>
-
-                <p style="font-size: 0.78rem; line-height: 1.6; color: var(--text-light); margin-bottom: 30px;" data-aos="fade-up">
-                    Assalamualaikum Wr. Wb. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i pada acara pernikahan kami:
-                </p>
-
-                <!-- Bride (Anisa) -->
-                <div class="couple-wrapper" data-aos="fade-up">
-                    <div class="arch-photo-container">
-                        <img src="{{ $bg['bride'] }}" alt="{{ $couple['bride'] }}">
-                    </div>
-                    <h3 class="mempelai-nama">{{ $couple['bride'] }}</h3>
-                    <p class="mempelai-parent">
-                        Putri dari {{ $couple['parents']['bride'] }}
-                    </p>
-                </div>
-
-                <div style="font-family: var(--font-script); font-size: 2.8rem; color: var(--gold); margin: 25px 0;">&</div>
-
-                <!-- Groom (Haris) -->
-                <div class="couple-wrapper" data-aos="fade-up">
-                    <div class="arch-photo-container">
-                        <img src="{{ $bg['groom'] }}" alt="{{ $couple['groom'] }}">
-                    </div>
-                    <h3 class="mempelai-nama">{{ $couple['groom'] }}</h3>
-                    <p class="mempelai-parent">
-                        Putra dari {{ $couple['parents']['groom'] }}
-                    </p>
-                </div>
-            </section>
-
-            <!-- ACARA -->
-            <section id="event-sec">
-                <span class="section-subtitle">Save the Date</span>
-                <h2 class="section-title">Acara Pernikahan</h2>
-
-                <!-- Akad -->
-                <div class="event-box" data-aos="fade-up">
-                    <div class="event-icon-circle"><i class="bi bi-gift"></i></div>
-                    <h3>Akad Nikah</h3>
-                    
-                    <!-- Clean Editorial Date Grid -->
-                    <div class="editorial-date-grid">
-                        <div class="ed-day-name">Sabtu</div>
-                        <div class="ed-center-box">
-                            <div class="ed-date-num">{{ \Carbon\Carbon::parse($event['date_iso'])->format('d') }}</div>
-                            <div class="ed-year-num">{{ \Carbon\Carbon::parse($event['date_iso'])->format('Y') }}</div>
-                        </div>
-                        <div class="ed-month-name">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('M') }}</div>
-                    </div>
-
-                    <p style="font-size: 0.85rem; font-weight: 600;"><i class="bi bi-clock me-1"></i> Pukul {{ $schedule[0]['time'] }} WIB</p>
-                    <p style="font-size: 0.78rem; color: var(--text-light); margin-top: 8px;">{{ $schedule[0]['note'] }}</p>
-                </div>
-
-                <!-- Resepsi -->
-                <div class="event-box" data-aos="fade-up">
-                    <div class="event-icon-circle"><i class="bi bi-suit-spade"></i></div>
-                    <h3>Resepsi</h3>
-                    
-                    <!-- Clean Editorial Date Grid -->
-                    <div class="editorial-date-grid">
-                        <div class="ed-day-name">Sabtu</div>
-                        <div class="ed-center-box">
-                            <div class="ed-date-num">{{ \Carbon\Carbon::parse($event['date_iso'])->format('d') }}</div>
-                            <div class="ed-year-num">{{ \Carbon\Carbon::parse($event['date_iso'])->format('Y') }}</div>
-                        </div>
-                        <div class="ed-month-name">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('M') }}</div>
-                    </div>
-
-                    <p style="font-size: 0.85rem; font-weight: 600;"><i class="bi bi-clock me-1"></i> Pukul {{ $schedule[1]['time'] }} WIB</p>
-                    <p style="font-size: 0.78rem; color: var(--text-light); margin-top: 8px;">{{ $schedule[1]['note'] }}</p>
-                </div>
-
-                <!-- Lokasi Map -->
-                <div class="event-box" data-aos="fade-up">
-                    <div class="event-icon-circle"><i class="bi bi-geo-alt"></i></div>
-                    <h3>Lokasi Acara</h3>
-                    <p style="font-weight: 600; font-size: 0.9rem; color: var(--primary);">{{ $event['location'] }}</p>
-                    <p style="font-size: 0.78rem; color: var(--text-light); margin-top: 5px; line-height: 1.5;">{{ $event['address'] }}</p>
-                    <a href="{{ $event['maps_url'] }}" target="_blank" rel="noopener" class="btn-pill-navy" style="margin-top: 15px;">
-                        <i class="bi bi-map"></i> Lihat Maps
-                    </a>
-                </div>
-            </section>
-
-            <!-- CERITA -->
-            <section id="story-sec">
-                <span class="section-subtitle">Our Journey</span>
-                <h2 class="section-title">Kisah Cinta</h2>
-
-                <div class="story-timeline">
-                    @foreach($stories as $s)
-                    <div class="story-node" data-aos="fade-up">
-                        <div class="story-node-date">{{ $s['date'] }}</div>
-                        <h4 class="story-node-title">{{ $s['title'] }}</h4>
-                        <p class="story-node-desc">{{ $s['text'] }}</p>
-                    </div>
-                    @endforeach
-                </div>
-            </section>
-
-            <!-- GALERI -->
-            <section id="gallery-sec">
-                <span class="section-subtitle">Sweet Memories</span>
-                <h2 class="section-title">Galeri</h2>
-
-                <div class="gallery-grid">
-                    @foreach($gallery as $img)
-                    <div class="gallery-card" data-aos="zoom-in">
-                        <img src="{{ $img }}" alt="Gallery Image">
-                    </div>
-                    @endforeach
-                </div>
-            </section>
-
-            <!-- KADO / REKENING -->
-            <section id="gift-sec">
-                <span class="section-subtitle">Send Love</span>
-                <h2 class="section-title">Kirim Hadiah</h2>
-                <p style="font-size: 0.78rem; color: var(--text-light); line-height: 1.6;">
-                    Doa restu Anda merupakan hadiah terindah untuk kami. Namun, apabila Anda ingin mengirimkan kado/tanda kasih, Anda dapat melakukannya melalui rekening di bawah ini:
-                </p>
-
-                <div class="gift-card" data-aos="fade-up">
-                    <p style="font-weight: 600; font-size: 0.8rem; color: var(--primary); letter-spacing: 1px;">BANK TRANSFER BCA</p>
-                    <h3 style="font-family: var(--font-serif); font-size: 1.45rem; color: var(--primary); margin: 6px 0;">123-456-7890</h3>
-                    <p style="font-size: 0.78rem; color: var(--text-light);">a.n. {{ $couple['groom'] }}</p>
-                    <button class="btn-copy" onclick="copyAccount('123-456-7890')">Salin Rekening</button>
-                </div>
-            </section>
-
-            <!-- RSVP -->
-            <section id="rsvp-sec">
-                <span class="section-subtitle">Presence</span>
-                <h2 class="section-title">RSVP & Ucapan</h2>
-
-                <div class="form-wrap" data-aos="fade-up">
-                    <form id="rsvp-form" onsubmit="submitRsvp(event)">
-                        <div class="form-group">
-                            <label class="form-label">Nama Anda</label>
-                            <input type="text" id="nama" class="form-input" placeholder="Masukkan nama Anda" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Konfirmasi Kehadiran</label>
-                            <select id="kehadiran" class="form-input" required>
-                                <option value="Hadir">Saya Akan Hadir</option>
-                                <option value="Tidak Hadir">Berhalangan Hadir</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Ucapan & Doa</label>
-                            <textarea id="pesan" class="form-input" rows="3" placeholder="Tulis doa selamat Anda..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Kirim Konfirmasi</button>
-                    </form>
-                </div>
-
-                <div class="wish-list" id="wishList">
-                    <div class="wish-card">
-                        <div class="wish-header">
-                            <span class="wish-name">Ari Wibowo</span>
-                            <span class="wish-status">Hadir</span>
-                        </div>
-                        <p class="wish-content">Selamat berbahagia ya Haris & Anisa! Semoga acaranya lancar dari awal sampai akhir, dan menjadi keluarga yang samawa.</p>
-                    </div>
-                    <div class="wish-card">
-                        <div class="wish-header">
-                            <span class="wish-name">Sisca Amelia</span>
-                            <span class="wish-status">Berhalangan</span>
-                        </div>
-                        <p class="wish-content">Selamat menempuh hidup baru! Maaf belum bisa hadir karena di luar kota. Doa terbaik untuk kalian berdua.</p>
-                    </div>
-                    <div id="dynamicWishes"></div>
-                </div>
-            </section>
-
-            <div style="text-align: center; padding: 25px 0 10px 0; font-size: 0.72rem; color: var(--text-light);">
-                Created with <i class="bi bi-heart-fill" style="color: var(--primary);"></i> TemuRuang
+            <p class="text-on-surface font-semibold text-sm mb-1">Kamis, 12 Desember 2024</p>
+            <p class="text-primary text-xs tracking-wider mb-6">Pukul 11.00 - Selesai</p>
+            
+            <div class="border-t border-primary/20 pt-4 mb-6">
+                <p class="font-body-md text-on-surface font-bold">Sasana Krida Heritage</p>
+                <p class="text-on-surface-variant/80 text-xs mt-1">Gedung Kesenian, Solo, Jawa Tengah</p>
             </div>
+            
+            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="#">
+                <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                LIHAT LOKASI
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+<!-- LOVE STORY -->
+<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Story">
+<!-- Background Glow -->
+<div class="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
+
+<div class="text-center mb-16 reveal-section relative z-10">
+    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Kisah Cinta</h2>
+    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
+        <span class="text-primary text-[10px]">◆</span>
+        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+    </div>
+</div>
+
+<div class="relative border-l-2 border-gradient-to-b ml-6 pl-8 space-y-10 z-10">
+    <style>
+        .border-gradient-to-b {
+            border-image: linear-gradient(to bottom, #f2ca50, rgba(242, 202, 80, 0.3) 70%, transparent) 1 100%;
+        }
+    </style>
+
+    <!-- Story 1 -->
+    <div class="relative reveal-section">
+        <!-- 8-Petaled Javanese Flower Node -->
+        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
+            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+            </svg>
+        </div>
+        
+        <!-- Javanese Story Card -->
+        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
+            
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2018 - AWAL PERTEMUAN</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Pertemuan pertama kami yang sederhana di sebuah perpustakaan kota tua, mengawali segalanya dengan sebuah senyuman.</p>
         </div>
     </div>
 
-    <!-- BOTTOM FLOATING NAVIGATION (SOLID NAVY WITH CIRCULAR OUTLINE ITEMS) -->
-    <div class="bottom-nav-navy" id="bottomNav">
-        <a href="#home" class="nav-item-circle active"><i class="bi bi-house"></i></a>
-        <a href="#couple-sec" class="nav-item-circle"><i class="bi bi-heart"></i></a>
-        <a href="#event-sec" class="nav-item-circle"><i class="bi bi-calendar3"></i></a>
-        <a href="#story-sec" class="nav-item-circle"><i class="bi bi-book"></i></a>
-        <a href="#rsvp-sec" class="nav-item-circle"><i class="bi bi-chat-left-dots"></i></a>
-    </div>
-
-    <!-- FLOATING SIDEBAR CONTROLS -->
-    <div class="floater-container">
-        <!-- Floating Music Control -->
-        <div class="music-control" id="musicControl" onclick="toggleMusic()">
-            <i class="bi bi-disc"></i>
+    <!-- Story 2 -->
+    <div class="relative reveal-section">
+        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
+            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+            </svg>
         </div>
-
-        <!-- Floating Autoscroll Control -->
-        <div class="scroll-control" id="scrollControl" onclick="toggleAutoscroll()">
-            <i class="bi bi-chevron-double-down"></i>
-            <span class="scroll-badge">Auto Scroll</span>
+        
+        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
+            
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2021 - MENATA KOMITMEN</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Tiga tahun berjalan, kami memutuskan untuk saling mengenal lebih dalam dan membangun impian yang selaras.</p>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, offset: 50 });
+    <!-- Story 3 -->
+    <div class="relative reveal-section">
+        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
+            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+            </svg>
+        </div>
+        
+        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
+            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
+            
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2024 - MEMINANG</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Restu kedua orang tua menjadi penguat langkah kami untuk melangkah ke jenjang yang lebih suci.</p>
+        </div>
+    </div>
+</div>
+</section>
 
-        let isAutoscrolling = false;
-        let autoscrollSpeed = 0.6;
+<!-- GALLERY -->
+<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Gallery">
+<!-- Background Glow -->
+<div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
 
-        let openingSequenceStarted = false;
-        function openEnvelope(element) {
-            if (openingSequenceStarted) return;
-            openingSequenceStarted = true;
-            
-            element.classList.add('opening');
-            
-            const audio = document.getElementById('bg-audio');
-            audio.play().then(() => {
-                document.getElementById('musicControl').classList.add('playing');
-            }).catch(err => console.log("Audio play blocked by browser."));
-            
+<div class="text-center mb-12 reveal-section relative z-10">
+    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Galeri Foto</h2>
+    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
+        <span class="text-primary text-[10px]">◆</span>
+        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+    </div>
+</div>
+
+<div class="grid grid-cols-2 gap-4 relative z-10 w-full px-4">
+    <!-- Photo 1 (Featured Portrait - Full Width) -->
+    <div class="col-span-2 p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
+        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
+        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
+        <div class="w-full aspect-[4/5] overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="Pre-wedding photo of a Javanese couple walking through a garden of ancient stone ruins." src="{{ asset('assets/templates/wedding-11/images/image_4.jpg') }}"/>
+        </div>
+    </div>
+    
+    <!-- Photo 2 (Square - Left) -->
+    <div class="p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
+        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
+        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
+        <div class="w-full aspect-square overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="Close up detail of a Javanese bride's hand decorated with intricate henna patterns." src="{{ asset('assets/templates/wedding-11/images/image_5.jpg') }}"/>
+        </div>
+    </div>
+
+    <!-- Photo 3 (Square - Right) -->
+    <div class="p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
+        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
+        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
+        <div class="w-full aspect-square overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="A portrait of the groom's traditional Javanese Blangkon and Keris." src="{{ asset('assets/templates/wedding-11/images/image_6.jpg') }}"/>
+        </div>
+    </div>
+
+    <!-- Photo 4 (Wide Landscape - Full Width) -->
+    <div class="col-span-2 p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
+        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
+        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
+        <div class="w-full aspect-[16/10] overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="A black and white artistic shot of the couple's silhouettes." src="{{ asset('assets/templates/wedding-11/images/image_7.jpg') }}"/>
+        </div>
+    </div>
+</div>
+</section>
+<!-- RSVP & WISHES -->
+<section class="py-section-gap px-margin-mobile bg-surface-container-low" id="Wishes">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg-mobile text-primary">Konfirmasi Kehadiran</h2>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-primary/20 mb-12">
+<form class="flex flex-col gap-6" id="rsvp-form">
+<div>
+<label class="font-label-caps text-on-surface-variant mb-2 block">NAMA LENGKAP</label>
+<input class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Masukkan nama anda" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-on-surface-variant mb-2 block">STATUS KEHADIRAN</label>
+<select class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none">
+<option>Hadir</option>
+<option>Tidak Hadir</option>
+<option>Masih Ragu</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-on-surface-variant mb-2 block">PESAN &amp; DOA</label>
+<textarea class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Tuliskan ucapan anda" rows="4"></textarea>
+</div>
+<button class="bg-primary text-on-primary py-3 rounded-full font-bold tracking-widest text-xs hover:shadow-lg transition-all active:scale-95" type="submit">KIRIM UCAPAN</button>
+</form>
+</div>
+<div class="space-y-6 max-h-[400px] overflow-y-auto hide-scrollbar pr-2">
+<div class="bg-surface-container-highest p-4 rounded-lg border-l-4 border-primary/40">
+<p class="font-bold text-sm text-primary">Bambang Wijaya</p>
+<p class="text-xs text-on-surface-variant italic mb-2">3 jam yang lalu</p>
+<p class="text-sm text-on-surface">Selamat menempuh hidup baru ya Rahayu &amp; Satria! Semoga sakinah mawaddah warahmah selamanya.</p>
+</div>
+<div class="bg-surface-container-highest p-4 rounded-lg border-l-4 border-primary/40">
+<p class="font-bold text-sm text-primary">Siti Aminah</p>
+<p class="text-xs text-on-surface-variant italic mb-2">5 jam yang lalu</p>
+<p class="text-sm text-on-surface">Matur nuwun undangannya. InsyaAllah hadir, lancar sampai hari H ya!</p>
+</div>
+</div>
+</section>
+<!-- WEDDING GIFT -->
+<section class="py-section-gap px-margin-mobile">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg-mobile text-primary">Kado Pernikahan</h2>
+<p class="text-on-surface-variant text-sm mt-4">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih, dapat melalui:</p>
+</div>
+<div class="flex flex-col gap-gutter">
+<div class="bg-surface-container p-8 rounded-2xl border border-primary/20 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="account_balance">account_balance</span>
+</div>
+<p class="font-label-caps text-primary mb-4">BANK BCA</p>
+<p class="font-headline-md text-on-surface mb-2" id="acc-number">1234567890</p>
+<p class="text-on-surface-variant text-sm mb-6">A/N RAHAYU PUTRI LESTARI</p>
+<button class="inline-flex items-center gap-2 bg-primary/10 border border-primary/40 text-primary px-6 py-2 rounded-full text-xs font-bold active:bg-primary active:text-on-primary transition-all" onclick="copyAccount('1234567890', this)">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+                        SALIN NOMOR REKENING
+                    </button>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="pt-section-gap pb-32 px-margin-mobile text-center">
+<div class="javanese-pattern absolute inset-x-0 h-24 bottom-24 opacity-5"></div>
+<p class="font-body-md text-on-surface-variant mb-6">Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.</p>
+<h2 class="font-decorative-script text-4xl text-primary gold-glow mb-8">Matur Nuwun</h2>
+<p class="font-label-caps text-sepia-text text-[10px] tracking-widest">RAHAYU &amp; SATRIA — 2024</p>
+</footer>
+<!-- BOTTOM NAV BAR -->
+<nav class="fixed bottom-0 left-0 right-0 w-full max-w-container-max mx-auto bg-surface-container/90 backdrop-blur-lg border-t border-outline-variant/50 shadow-lg flex justify-around items-center py-3 px-2 z-50 rounded-t-full overflow-hidden">
+<div class="javanese-pattern absolute inset-0 z-0 pointer-events-none opacity-25"></div>
+<div class="relative z-10 w-full flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-transform duration-200 scale-110" href="#Home">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100" href="#Couple">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-[10px]">Couple</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100" href="#Event">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-caps text-[10px]">Event</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100" href="#Gallery">
+<span class="material-symbols-outlined" data-icon="collections">collections</span>
+<span class="font-label-caps text-[10px]">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100" href="#Wishes">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-[10px]">Wishes</span>
+</a>
+</div>
+</nav>
+</div>
+<!-- Hidden Audio element for background music -->
+<audio id="bg-music" loop="">
+<source src="{{ asset('assets/templates/wedding-11/wp-content/uploads/2026/01/Jawa-03-Niken-Salindry-KUSUMA-WIJAYA.mp3') }}" type="audio/mpeg"/>
+</audio>
+
+<!-- Lightbox Modal for Photo Preview -->
+<div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/80 hover:text-primary text-4xl font-bold transition-colors">&times;</button>
+    <img id="lightbox-img" class="max-w-full max-h-[85vh] object-contain rounded-xl border-2 border-primary/40 shadow-2xl" src="" alt="Preview" onclick="event.stopPropagation()"/>
+</div>
+
+<script>
+        // Open Invitation Logic
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            const audioControl = document.getElementById('audio-control');
+            const audio = document.getElementById('bg-music');
+
+            document.body.classList.remove('overflow-hidden');
+            document.body.classList.add('overflow-x-hidden');
+
+            cover.style.transform = 'translateY(-100%)';
             setTimeout(() => {
-                document.getElementById('cover').classList.add('opened');
-                document.getElementById('bottomNav').classList.add('visible');
-                document.getElementById('musicControl').classList.add('visible');
-                document.getElementById('scrollControl').classList.add('visible');
-                document.body.style.overflow = 'auto';
-                startAutoscroll();
-            }, 2500);
+                cover.classList.add('hidden');
+                mainContent.classList.remove('opacity-0');
+                audioControl.classList.remove('hidden');
+                audio.play();
+                startCountdown();
+                // Active autoscroll by default
+                toggleAutoscroll();
+            }, 800);
         }
 
-        function createCoverParticles() {
-            const container = document.getElementById('cover-particles');
-            if (!container) return;
-            const icons = ['💙', '🌸', '✨', '🍃', '🤍', '🥂'];
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'floating-particle';
-                particle.innerText = icons[Math.floor(Math.random() * icons.length)];
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.fontSize = (Math.random() * 12 + 12) + 'px';
-                particle.style.animationDelay = (Math.random() * 8) + 's';
-                particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
-                particle.style.opacity = Math.random() * 0.4 + 0.25;
-                container.appendChild(particle);
+        // Audio Toggle
+        let isPlaying = true;
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('music-icon');
+            const iconHeader = document.getElementById('music-icon-header');
+            if (isPlaying) {
+                audio.pause();
+                if(icon) icon.innerText = 'volume_off';
+                if(iconHeader) iconHeader.innerText = 'volume_off';
+            } else {
+                audio.play();
+                if(icon) icon.innerText = 'volume_up';
+                if(iconHeader) iconHeader.innerText = 'volume_up';
             }
+            isPlaying = !isPlaying;
         }
 
-        function toggleMusic() {
-            const audio = document.getElementById('bg-audio');
-            const ctrl = document.getElementById('musicControl');
-            if (audio.paused) { audio.play(); ctrl.classList.add('playing'); }
-            else { audio.pause(); ctrl.classList.remove('playing'); }
-        }
-
-        function scrollStep() {
-            if (!isAutoscrolling) return;
-            window.scrollBy(0, autoscrollSpeed);
-            const current = window.innerHeight + window.pageYOffset;
-            const bottom = document.documentElement.scrollHeight - 5;
-            if (current >= bottom) { stopAutoscroll(); return; }
-            requestAnimationFrame(scrollStep);
-        }
-
-        function startAutoscroll() {
-            isAutoscrolling = true;
-            const ctrl = document.getElementById('scrollControl');
-            ctrl.classList.add('active');
-            ctrl.querySelector('i').className = 'bi bi-pause-fill';
-            requestAnimationFrame(scrollStep);
-        }
-
-        function stopAutoscroll() {
-            isAutoscrolling = false;
-            const ctrl = document.getElementById('scrollControl');
-            ctrl.classList.remove('active');
-            ctrl.querySelector('i').className = 'bi bi-chevron-double-down';
-        }
-
+        // Autoscroll Logic
+        let isScrolling = false;
+        let scrollInterval;
         function toggleAutoscroll() {
-            if (isAutoscrolling) stopAutoscroll(); else startAutoscroll();
+            const icon = document.getElementById('autoscroll-icon');
+            if (isScrolling) {
+                clearInterval(scrollInterval);
+                if(icon) icon.innerText = 'play_arrow';
+            } else {
+                scrollInterval = setInterval(() => {
+                    window.scrollBy(0, 1);
+                }, 30);
+                if(icon) icon.innerText = 'pause';
+            }
+            isScrolling = !isScrolling;
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.overflow = 'hidden';
-            initCountdown();
-            createCoverParticles();
-            ['wheel', 'touchstart'].forEach(evt => {
-                window.addEventListener(evt, () => { if (isAutoscrolling) stopAutoscroll(); }, { passive: true });
-            });
-        });
+        // Stop autoscroll on manual user scroll
+        ['wheel', 'touchmove'].forEach(evt => 
+            window.addEventListener(evt, () => {
+                if (isScrolling) toggleAutoscroll();
+            }, { passive: true })
+        );
 
-        function initCountdown() {
-            const target = new Date("{{ $event['date_iso'] ?? '2026-12-12' }}T09:00:00").getTime();
-            setInterval(() => {
+        // Countdown Logic
+        function startCountdown() {
+            const weddingDate = new Date("Dec 12, 2024 08:00:00").getTime();
+            const x = setInterval(function() {
                 const now = new Date().getTime();
-                const diff = target - now;
-                if (diff <= 0) return;
-                document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2, '0');
-                document.getElementById('hours').innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+                const distance = weddingDate - now;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").innerHTML = "00";
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
+                } else {
+                    document.getElementById("days").innerHTML = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                    document.getElementById("hours").innerHTML = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                    document.getElementById("minutes").innerHTML = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                    document.getElementById("seconds").innerHTML = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+                }
             }, 1000);
         }
 
-        function copyAccount(num) {
-            navigator.clipboard.writeText(num);
-            alert("Nomor rekening berhasil disalin!");
+        // Copy Account Logic
+        function copyAccount(number, btn) {
+            navigator.clipboard.writeText(number);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> TERSALIN';
+            btn.classList.add('bg-primary', 'text-on-primary');
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('bg-primary', 'text-on-primary');
+            }, 2000);
         }
 
-        function submitRsvp(e) {
-            e.preventDefault();
-            const name = document.getElementById('nama').value;
-            const status = document.getElementById('kehadiran').value;
-            const msg = document.getElementById('pesan').value;
-            const card = document.createElement('div');
-            card.className = 'wish-card';
-            card.innerHTML = `<div class="wish-header"><span class="wish-name">${name}</span><span class="wish-status">${status}</span></div><p class="wish-content">${msg}</p>`;
-            document.getElementById('dynamicWishes').prepend(card);
-            document.getElementById('rsvp-form').reset();
-            alert("RSVP dan Ucapan Anda berhasil dikirim!");
-        }
-
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const items = document.querySelectorAll('.nav-item-circle');
-            let current = '';
-            sections.forEach(sec => {
-                if (pageYOffset >= (sec.offsetTop - 250)) current = sec.getAttribute('id');
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-            items.forEach(item => {
-                item.classList.remove('active');
-                // Maps standard menu anchors to section ids
-                let href = item.getAttribute('href');
-                if (href === '#event-sec' && current === 'event-sec') item.classList.add('active');
-                else if (href === '#couple-sec' && current === 'couple-sec') item.classList.add('active');
-                else if (href === '#home' && current === 'home') item.classList.add('active');
-                else if (href === '#story-sec' && current === 'story-sec') item.classList.add('active');
-                else if (href === '#rsvp-sec' && current === 'rsvp-sec') item.classList.add('active');
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Simple smooth scroll for nav
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active state
+                document.querySelectorAll('nav a').forEach(a => {
+                    a.className = "flex flex-col items-center justify-center text-on-surface-variant opacity-70";
+                });
+                this.className = "flex flex-col items-center justify-center text-primary font-bold transition-transform duration-200 scale-110";
             });
         });
+
+        // Lightbox Logic
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 300);
+        }
     </script>
-</body>
-</html>
+</body></html>

@@ -21,7 +21,7 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="event_type_id" class="form-label">Kategori Acara</label>
+                        <label for="event_type_id" class="form-label">Kategori Acara (Event Type)</label>
                         <select class="form-select @error('event_type_id') is-invalid @enderror" id="event_type_id" name="event_type_id" required>
                             <option value="">-- Pilih Kategori --</option>
                             @foreach($eventTypes as $et)
@@ -29,6 +29,23 @@
                             @endforeach
                         </select>
                         @error('event_type_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3" id="theme_category_wrapper">
+                        <label for="theme_category" class="form-label">Tema Desain (Khusus Pernikahan/Umum)</label>
+                        <select class="form-select @error('theme_category') is-invalid @enderror" id="theme_category" name="theme_category">
+                            <option value="">-- Pilih Tema Desain (Opsional) --</option>
+                            <option value="Tradisional (Jawa, Sunda, dll)" {{ old('theme_category', $template->theme_category) == 'Tradisional (Jawa, Sunda, dll)' ? 'selected' : '' }}>Tradisional (Jawa, Sunda, dll)</option>
+                            <option value="Modern & Elegan" {{ old('theme_category', $template->theme_category) == 'Modern & Elegan' ? 'selected' : '' }}>Modern & Elegan</option>
+                            <option value="Minimalis & Klasik" {{ old('theme_category', $template->theme_category) == 'Minimalis & Klasik' ? 'selected' : '' }}>Minimalis & Klasik</option>
+                            <option value="Rustic & Nature" {{ old('theme_category', $template->theme_category) == 'Rustic & Nature' ? 'selected' : '' }}>Rustic & Nature</option>
+                            <option value="Vintage & Retro" {{ old('theme_category', $template->theme_category) == 'Vintage & Retro' ? 'selected' : '' }}>Vintage & Retro</option>
+                            <option value="Religi / Islami" {{ old('theme_category', $template->theme_category) == 'Religi / Islami' ? 'selected' : '' }}>Religi / Islami</option>
+                            <option value="Unik & Kreatif" {{ old('theme_category', $template->theme_category) == 'Unik & Kreatif' ? 'selected' : '' }}>Unik & Kreatif</option>
+                        </select>
+                        @error('theme_category')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

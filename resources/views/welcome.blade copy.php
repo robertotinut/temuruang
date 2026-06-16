@@ -273,11 +273,25 @@
                             <span style="font-size: 1.5rem;">Rp</span>{{ number_format($package->price, 0, ',', '.') }}
                         </h1>
                         <ul class="list-unstyled mb-5 text-start" style="color: #cbd5e1;">
-                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> {{ $package->max_template ?? 'Semua' }} Pilihan Template</li>
-                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> {{ $package->max_guest ?? 'Unlimited' }} Tamu (RSVP)</li>
-                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> {{ $package->max_gallery ?? 'Unlimited' }} Foto Galeri</li>
-                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Fitur Story / Timeline</li>
-                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Buku Tamu Digital</li>
+                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Masa Aktif {{ $package->duration_days }} Hari</li>
+                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Galeri Foto Tanpa Batas (Unlimited)</li>
+                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Fitur RSVP & Google Maps</li>
+                            <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Buku Tamu & Ucapan Digital</li>
+                            
+                            @if($package->name === 'Basic')
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Pilih Maks. <strong>2 Template Premium</strong></li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Revisi Maks. <strong>2 Kali</strong> per Template</li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Musik Pengiring Standar</li>
+                            @elseif($package->name === 'Plus')
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Pilih Maks. <strong>10 Template Premium</strong></li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Revisi Maks. <strong>5 Kali</strong> per Template</li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Musik Latar Kustom (MP3)</li>
+                            @else
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Pilih Maks. <strong>20 Template Premium</strong></li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Revisi Tanpa Batas (Unlimited)</li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Musik Latar Kustom (MP3)</li>
+                                <li class="mb-3"><i class="mdi mdi-check-circle text-success me-2 font-size-18 align-middle"></i> Efek Salju & Stardust Premium</li>
+                            @endif
                         </ul>
                         <a href="{{ route('register') }}" class="btn btn-glass rounded-pill w-100 py-2">Pilih Paket</a>
                     </div>

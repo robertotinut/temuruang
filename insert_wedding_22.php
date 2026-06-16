@@ -8,13 +8,13 @@ $kernel->bootstrap();
 use App\Models\Template;
 
 $t = [
-    'name' => 'Pink Watercolor Floral',
+    'name' => 'Emerald Festive Wedding Design',
     'event_type_id' => 1,
     'slug' => 'wedding-22',
-    'description' => 'Desain romantis dengan bingkai segi enam emas, bunga cat air pink/peach, dan halaman sampul "Buka Undangan".',
+    'description' => 'Nuansa hijau emerald dan emas mewah dengan glassmorphism premium.',
     'is_premium' => false,
     'is_active' => true,
-    'theme_category' => 'Soft & Elegant'
+    'theme_category' => 'Modern & Elegan'
 ];
 
 Template::updateOrCreate(['slug' => $t['slug']], $t);

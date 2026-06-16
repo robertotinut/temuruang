@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&amp;family=Space+Grotesk:wght@600&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary-fixed": "#ffe088",
+                    "secondary": "#5d5f5f",
+                    "surface-dim": "#dbd9e2",
+                    "surface-variant": "#e4e1eb",
+                    "primary": "#00003c",
+                    "primary-fixed": "#e0e0ff",
+                    "surface-container": "#efecf6",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-primary": "#bfc2ff",
+                    "outline-variant": "#c6c5d5",
+                    "on-error": "#ffffff",
+                    "ink-black": "#00001A",
+                    "surface": "#fbf8ff",
+                    "background": "#fbf8ff",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-surface": "#1b1b22",
+                    "on-primary-fixed": "#00006e",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error": "#ba1a1a",
+                    "tertiary": "#735c00",
+                    "on-surface-variant": "#464653",
+                    "outline": "#767684",
+                    "on-primary-container": "#777eea",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#616363",
+                    "on-tertiary": "#ffffff",
+                    "gold-foil": "#D4AF37",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#3239a3",
+                    "surface-container-high": "#eae7f0",
+                    "surface-bright": "#fbf8ff",
+                    "inverse-on-surface": "#f2eff9",
+                    "secondary-container": "#dfe0e0",
+                    "on-primary": "#ffffff",
+                    "paper-white": "#FAFAFA",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#000080",
+                    "primary-fixed-dim": "#bfc2ff",
+                    "midnight-tint": "#000066",
+                    "surface-container-low": "#f5f2fc",
+                    "inverse-surface": "#303037",
+                    "on-background": "#1b1b22",
+                    "surface-container-highest": "#e4e1eb",
+                    "on-tertiary-container": "#4f3e00",
+                    "tertiary-container": "#cca830",
+                    "surface-tint": "#4b53bc",
+                    "on-secondary-fixed-variant": "#454747"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "content-margin": "24px",
+                    "section-gap": "120px",
+                    "gutter": "16px",
+                    "stack-offset": "40px"
+            },
+            "fontFamily": {
+                    "display-grand-mobile": ["Playfair Display"],
+                    "label-caps": ["Space Grotesk"],
+                    "display-grand": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "script-accent": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-grand-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "900"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "display-grand": ["84px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "script-accent": ["42px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FAFAFA; scroll-behavior: smooth; overflow-x: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .gold-border { border: 1px solid #D4AF37; }
+        .gold-gradient { background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C); }
+        .gold-text-gradient {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .parallax-circle { transition: transform 0.2s ease-out; }
+        .grain-overlay {
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            opacity: 0.05;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: rotate-slow 20s linear infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface selection:bg-gold-foil/30">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-transparent flex justify-between items-center px-content-margin py-6">
+<div class="font-script-accent text-script-accent text-gold-foil">N &amp; A</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gold-foil hover:text-gold-foil transition-colors active:scale-95 duration-300">music_note</button>
+<button class="material-symbols-outlined text-gold-foil hover:text-gold-foil transition-colors active:scale-95 duration-300">menu</button>
+</div>
+</header>
+<!-- Cover Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-paper-white" id="cover">
+<div class="grain-overlay"></div>
+<!-- Background Ornaments -->
+<div class="absolute -top-20 -left-20 opacity-20 pointer-events-none">
+<svg class="text-gold-foil" fill="none" height="400" viewbox="0 0 100 100" width="400">
+<path d="M50 0C50 27.6142 27.6142 50 0 50C27.6142 50 50 72.3858 50 100C50 72.3858 72.3858 50 100 50C72.3858 50 50 27.6142 50 0Z" fill="currentColor"></path>
+</svg>
+</div>
+<!-- Asymmetric Photo Collage -->
+<div class="relative w-full max-w-6xl mx-auto px-content-margin grid grid-cols-12 gap-4 items-center mb-16">
+<!-- Main Photo -->
+<div class="col-span-12 md:col-span-6 z-20 transform md:-rotate-2">
+<div class="relative p-3 bg-white shadow-2xl gold-border">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A cinematic portrait of a sophisticated couple in high-fashion wedding attire standing against a minimalist white gallery wall. The groom wears a sharp navy tuxedo while the bride is in a structured contemporary lace gown. The lighting is soft and directional, creating elegant shadows that emphasize the high-end editorial aesthetic of the scene. The mood is one of quiet, modern luxury and deep romantic connection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmHeF02Bg2ubkn7S02dUxp2l7U2yGjCWk21VCIa9_TQ1JdhkQD7AbuEEjfIo-hwLVa31l21yPhgMnbYfF4Cssfw1lA46eSTOPVBNUv66O35hrgXHJ68L8yhxs1Br_S1ThFWEOV69uAVrKHLSc52CndI7gwyjRz7abcehkAmBlVbnYqnsdC6Tp1c-FkO6mbo9Yqi77xCAsiW04h8MlkmavJPpQgfQj-i2dMdUQzQCOtcprp1oSfMyUMy8iq0xupvhP7Cqxftku4E_g"/>
+</div>
+</div>
+<!-- Secondary Photos -->
+<div class="col-span-6 md:col-span-3 mt-12 md:-mt-24 z-30">
+<div class="relative rounded-full overflow-hidden border-2 border-gold-foil aspect-square shadow-xl parallax-circle" style="transform: translateY(-20px);">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a groom's hands gently holding a bride's hand, showcasing intricate gold jewelry and a classic diamond ring. The background consists of soft white silk fabric with subtle navy blue floral patterns. The lighting is warm and festive, highlighting the delicate textures and the shimmering quality of the gold foil accents. The overall style is elegant and focused on the intimate details of a high-society wedding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJXF19H1ONnwCk--fvP_udobe_AhJ53CQVvwJPPF9RnwSWU_NDV-JCGx6zBDxoG4VRYrb4zOpTwy8zaHn5mwIIvl5prhLNJFC1VyAFTun9V-X33Xb4v0kKHIJhQr_sm5SFt4Z45N_g9vBwc1A1xf4cB9UTQuAu498s3EgYGR3ZiQhPYeT5ad9HkAGey8we4Xz8cNoe0INOeE1qXwYPlsYR2be__rNjRQL9VN6CYW1ESYWiyIe7UR7me1GRVeQ7FRxBHobL_8ASKrw"/>
+</div>
+</div>
+<div class="col-span-6 md:col-span-3 mt-6 md:mt-48 z-10">
+<div class="relative p-2 bg-white gold-border shadow-lg transform rotate-6">
+<img class="w-full aspect-square object-cover" data-alt="An artistic, blurred shot of a wedding celebration with golden bokeh lights and navy blue streamers in a grand ballroom. The atmosphere is festive and full of energy, with silhouettes of guests dancing in the background. The foreground features a sharp gold-trimmed invitation card resting on a crisp white table. The lighting is dramatic and celebratory, perfectly capturing the Meriah soul of a gala event." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpTClHT_k_2wzq0y-6WOINxcIIVS7SUzm3WS2tTlz_y1_ertGucWeS1ja7YhQN5bd7Fh9mCXfPahQ552vK2wQS8nOx1vVJl9vGJ2ePIRYHHtzaXfZTDEv6-eU160OQi3D48dGE_M2bI2QgVkcLHR3fpPu1pP2aL23OHkEzL2ruRISkEYSTznCEnH83Mg3fFcCT979fQCjcnBQIkb8wpZzHFHknvQ37-ai-IK1PLYNbAAZ8FKBjjBrScknbzETqgLx4gUyc1-cnbfA"/>
+</div>
+</div>
+</div>
+<!-- Hebboh Typography -->
+<div class="relative z-40 text-center px-4 max-w-4xl mx-auto">
+<span class="font-label-caps text-label-caps text-gold-foil mb-4 block tracking-[0.3em]">THE WEDDING OF</span>
+<h1 class="flex flex-col items-center justify-center gap-2">
+<span class="font-display-grand text-display-grand md:text-[120px] text-primary leading-[0.8] font-black uppercase tracking-tighter">Naurah</span>
+<span class="font-script-accent text-script-accent text-gold-foil text-6xl md:text-8xl -my-4 md:-my-8 italic">&amp;</span>
+<span class="font-display-grand text-display-grand md:text-[120px] text-primary leading-[0.8] font-black uppercase tracking-tighter">Arya</span>
+</h1>
+<p class="mt-8 font-body-lg text-body-lg text-secondary max-w-lg mx-auto">
+                Celebrating the union of two souls in a grand symphony of love, tradition, and modern elegance.
+            </p>
+<div class="mt-12 flex flex-col items-center gap-6">
+<a class="group relative inline-flex items-center justify-center px-10 py-4 font-label-caps text-label-caps text-paper-white bg-primary overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95" href="#hero">
+<span class="relative z-10">BUKA UNDANGAN</span>
+<div class="absolute inset-0 bg-gold-foil translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="relative z-10 ml-2 material-symbols-outlined transition-transform group-hover:translate-x-1">celebration</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Hero Section with Countdown -->
+<section class="relative min-h-[707px] bg-primary flex flex-col items-center justify-center py-section-gap overflow-hidden" id="hero">
+<!-- Botanical Line Art -->
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<svg class="text-gold-foil h-full" fill="none" viewbox="0 0 200 200">
+<path d="M100 0C100 0 120 40 180 60C120 80 100 200 100 200C100 200 80 80 20 60C80 40 100 0 100 0Z" stroke="currentColor" stroke-width="0.5"></path>
+<path d="M50 50C50 50 60 70 90 80C60 90 50 150 50 150C50 150 40 90 10 80C40 70 50 50 50 50Z" stroke="currentColor" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="absolute bottom-0 left-0 w-1/3 h-full opacity-10 pointer-events-none rotate-180">
+<svg class="text-gold-foil h-full" fill="none" viewbox="0 0 200 200">
+<path d="M100 0C100 0 120 40 180 60C120 80 100 200 100 200C100 200 80 80 20 60C80 40 100 0 100 0Z" stroke="currentColor" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="relative z-20 text-center px-content-margin">
+<h2 class="font-headline-lg text-headline-lg text-paper-white mb-12">Counting down to our big day</h2>
+<!-- Countdown Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 items-center" id="countdown">
+<div class="flex flex-col items-center p-6 bg-primary-container border border-gold-foil/30 rounded-xl min-w-[120px] shadow-2xl">
+<span class="font-display-grand text-headline-lg text-gold-foil leading-none mb-2" id="days">00</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">Days</span>
+</div>
+<div class="flex flex-col items-center p-6 bg-primary-container border border-gold-foil/30 rounded-xl min-w-[120px] shadow-2xl">
+<span class="font-display-grand text-headline-lg text-gold-foil leading-none mb-2" id="hours">00</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">Hours</span>
+</div>
+<div class="flex flex-col items-center p-6 bg-primary-container border border-gold-foil/30 rounded-xl min-w-[120px] shadow-2xl">
+<span class="font-display-grand text-headline-lg text-gold-foil leading-none mb-2" id="minutes">00</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">Minutes</span>
+</div>
+<div class="flex flex-col items-center p-6 bg-primary-container border border-gold-foil/30 rounded-xl min-w-[120px] shadow-2xl">
+<span class="font-display-grand text-headline-lg text-gold-foil leading-none mb-2" id="seconds">00</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">Seconds</span>
+</div>
+</div>
+<!-- Event Details Anchor -->
+<div class="mt-16 text-paper-white/80 space-y-2">
+<p class="font-headline-md text-headline-md text-gold-foil">SATURDAY, 15 JUNE 2024</p>
+<p class="font-body-md text-body-md tracking-widest uppercase">The Grand Ballroom, Mulia Senayan</p>
+</div>
+</div>
+<!-- Gold Foil Splatter Decor -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+<div class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold-foil rounded-full"></div>
+<div class="absolute top-1/2 right-1/3 w-3 h-3 bg-gold-foil rounded-full blur-[1px]"></div>
+<div class="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-gold-foil rounded-full"></div>
+</div>
+</section>
+<!-- Navigation Pil (Bottom) -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-8 items-center z-50 bg-primary/60 backdrop-blur-md rounded-full px-8 py-4 border border-gold-foil/30 shadow-xl">
+<button class="material-symbols-outlined text-gold-foil scale-110 transition-all duration-500 ease-out">home</button>
+<button class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all">favorite</button>
+<button class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all">event</button>
+<button class="material-symbols-outlined text-secondary-fixed-dim hover:text-gold-foil transition-all">celebration</button>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-section-gap relative overflow-hidden bg-primary border-t border-gold-foil/20 flex flex-col items-center text-center px-content-margin">
+<div class="font-display-grand text-display-grand text-paper-white mb-4 text-4xl md:text-6xl">Naurah &amp; Arya</div>
+<p class="font-label-caps text-label-caps text-gold-foil mb-8 tracking-widest uppercase">2024 NAURAH &amp; ARYA — CREATED WITH LOVE</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary-fixed-dim hover:text-paper-white transition-opacity duration-300" href="#">Digital Invitation</a>
+<a class="font-label-caps text-label-caps text-secondary-fixed-dim hover:text-paper-white transition-opacity duration-300" href="#">Privacy Policy</a>
+</div>
+</footer>
+<script>
+        // Parallax Effect for Circular Images
+        window.addEventListener('scroll', () => {
+            const circles = document.querySelectorAll('.parallax-circle');
+            const scroll = window.pageYOffset;
+            circles.forEach(circle => {
+                const speed = 0.15;
+                circle.style.transform = `translateY(${scroll * speed}px)`;
+            });
+        });
+
+        // Simple Countdown Logic
+        const targetDate = new Date("June 15, 2024 09:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<p class='text-gold-foil text-3xl font-display-grand'>THE JOURNEY HAS BEGUN</p>";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Music Toggle Interaction
+        const musicBtn = document.querySelector('.material-symbols-outlined:first-of-type');
+        let isPlaying = false;
+        musicBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                musicBtn.style.animation = 'rotate-slow 3s linear infinite';
+                musicBtn.style.color = '#D4AF37';
+            } else {
+                musicBtn.style.animation = 'none';
+                musicBtn.style.color = '#D4AF37';
+            }
+        });
+    </script>
+</body></html>

@@ -1,668 +1,917 @@
 @php
-    $couple = $couple ?? [
-        'groom' => 'Haris',
-        'bride' => 'Anisa',
-        'parents' => [
-            'groom' => 'Bapak Surono & Ibu Sri Mulyani',
-            'bride' => 'Bapak Budi & Ibu Siti',
-        ],
-    ];
+    // If $invitation is passed, map its properties and relations
+    if (isset($invitation)) {
+        $names = explode('&', $invitation->title);
+        $groomName = trim($names[0] ?? 'Elias');
+        $brideName = trim($names[1] ?? 'Jada');
 
-    $event = $event ?? [
-        'date_iso' => '2026-12-12',
-        'time' => '09:00',
-        'location' => 'Omah Kawangan',
-        'address' => 'Depan Asrama Brimob Boyolali, Kawangan, Boyolali',
-        'maps_url' => 'https://maps.google.com/?q=Boyolali',
-    ];
+        $couple = [
+            'groom' => $groomName,
+            'bride' => $brideName,
+            'parents' => [
+                'groom' => $invitation->description ?? 'Bpk. Ahmad Suherman & Ibu Sari Widowati',
+                'bride' => 'Bpk. Hendra Wijaya & Ibu Linda Permata',
+            ],
+        ];
 
-    $schedule = $schedule ?? [
-        ['title' => 'Akad Nikah', 'time' => '09:00 - 10:30', 'note' => 'Lokasi Acara, Omah Kawangan'],
-        ['title' => 'Resepsi Pernikahan', 'time' => '11:00 - 15:00', 'note' => 'Lokasi Acara, Omah Kawangan'],
-    ];
+        $event = [
+            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2024-05-12',
+            'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00',
+            'location' => $invitation->location ?? 'Grand Ballroom Hotel Mulia',
+            'address' => $invitation->address ?? 'Jl. Asia Afrika, Senayan, Jakarta',
+            'maps_url' => $invitation->google_maps_url ?? 'https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Grand Ballroom Hotel Mulia, Senayan, Jakarta'),
+        ];
 
-    $stories = $stories ?? [
-        ['title' => 'Pertama Bertemu', 'date' => '09 Jan 2021', 'text' => 'Kami dipertemukan oleh seorang teman dekat, lalu mulai bertukar cerita dan merasa cocok.'],
-        ['title' => 'Mengikat Janji', 'date' => '25 Agt 2022', 'text' => 'Kami sepakat untuk melangkah ke jenjang yang lebih serius dengan pertunangan disaksikan keluarga.'],
-        ['title' => 'Hari Bahagia', 'date' => '12 Des 2026', 'text' => 'Kami mengikat janji suci kami dalam ikatan pernikahan yang sah dan memulai babak baru.'],
-    ];
+        $schedule = [
+            [
+                'title' => 'Akad Nikah',
+                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' - 10:00 WIB',
+                'note' => $invitation->location ?? 'Masjid Agung Al-Barkah, Jl. Veteran No. 1, Bekasi'
+            ],
+            [
+                'title' => 'Resepsi Pernikahan',
+                'time' => '11:00 - 14:00 WIB',
+                'note' => $invitation->address ?? 'Grand Ballroom Hotel Mulia, Jl. Asia Afrika, Jakarta'
+            ]
+        ];
 
-    $gallery = $gallery ?? [
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400',
-        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400'
-    ];
+        if (isset($invitation->stories) && $invitation->stories->count() > 0) {
+            $stories = [];
+            foreach ($invitation->stories as $story) {
+                $stories[] = [
+                    'title' => $story->title,
+                    'date' => $story->date,
+                    'text' => $story->content
+                ];
+            }
+        } else {
+            $stories = [
+                ['title' => 'Pertemuan Pertama', 'date' => 'Agustus 2021', 'text' => 'Di sebuah sudut kota, takdir mempertemukan dua jiwa yang tak saling mengenal, namun merasa begitu akrab.'],
+                ['title' => 'Membangun Mimpi', 'date' => 'Januari 2023', 'text' => 'Setiap tawa dan air mata menjadi pondasi bagi istana cinta yang sedang kita bangun bersama.'],
+                ['title' => 'Janji Suci', 'date' => 'Mei 2024', 'text' => 'Dua cincin, satu janji, dan selamanya untuk saling menjaga dalam ikatan yang diberkati.'],
+            ];
+        }
 
-    $bg = $bg ?? [
-        'cover' => 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800',
-        'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
-        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
-    ];
+        if (isset($invitation->galleries) && $invitation->galleries->count() > 0) {
+            $gallery = [];
+            foreach ($invitation->galleries as $gal) {
+                $gallery[] = asset('storage/' . $gal->image_path);
+            }
+        } else {
+            $gallery = [
+                asset('assets/templates/wedding-29/images/image_10.jpg'),
+                asset('assets/templates/wedding-29/images/image_11.jpg'),
+                asset('assets/templates/wedding-29/images/image_12.jpg'),
+                asset('assets/templates/wedding-29/images/image_13.jpg'),
+            ];
+        }
+
+        $coverUrl = $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : asset('assets/templates/wedding-29/images/image_1.jpg');
+        $bg = [
+            'cover' => $coverUrl,
+            'hero' => asset('assets/templates/wedding-29/images/image_2.jpg'),
+            'hero_small_1' => asset('assets/templates/wedding-29/images/image_3.jpg'),
+            'hero_small_2' => asset('assets/templates/wedding-29/images/image_4.jpg'),
+            'story_1' => asset('assets/templates/wedding-29/images/image_5.jpg'),
+            'story_2' => asset('assets/templates/wedding-29/images/image_6.jpg'),
+            'story_3' => asset('assets/templates/wedding-29/images/image_7.jpg'),
+            'groom' => asset('assets/templates/wedding-29/images/image_8.jpg'),
+            'bride' => asset('assets/templates/wedding-29/images/image_9.jpg'),
+        ];
+
+        if (isset($invitation->comments)) {
+            $wishes = [];
+            foreach ($invitation->comments as $comment) {
+                $wishes[] = [
+                    'name' => $comment->name,
+                    'status' => $comment->status,
+                    'message' => $comment->message
+                ];
+            }
+        } else {
+            $wishes = [
+                ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat ya Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah. Bahagia selamanya!'],
+                ['name' => 'Rafi Alfian', 'status' => 'Hadir', 'message' => 'Happy wedding bro! Lancar-lancar sampe hari H ya. See you there!'],
+            ];
+        }
+
+        if (isset($invitation->bankAccounts) && $invitation->bankAccounts->count() > 0) {
+            $gifts = [];
+            foreach ($invitation->bankAccounts as $bank) {
+                $gifts[] = [
+                    'bank' => $bank->bank_name,
+                    'name' => $bank->account_name,
+                    'account' => $bank->account_number
+                ];
+            }
+        } else {
+            $gifts = [
+                ['bank' => 'BCA', 'name' => 'Elias Putra', 'account' => '123 456 7890'],
+                ['bank' => 'Mandiri', 'name' => 'Jada Amira', 'account' => '098 765 4321'],
+            ];
+        }
+
+        $musicUrl = $invitation->music ? asset('storage/' . $invitation->music) : asset('musics/love-story-taylor-swift-sax-cover-by-leon-chen-rdlfx2fnhok.mp3');
+    } else {
+        // Fallback / Demo values
+        $couple = [
+            'groom' => 'Elias',
+            'bride' => 'Jada',
+            'parents' => [
+                'groom' => 'Bpk. Ahmad Suherman & Ibu Sari Widowati',
+                'bride' => 'Bpk. Hendra Wijaya & Ibu Linda Permata',
+            ],
+        ];
+
+        $event = [
+            'date_iso' => '2024-05-12',
+            'time' => '08:00',
+            'location' => 'Grand Ballroom Hotel Mulia',
+            'address' => 'Jl. Asia Afrika, Senayan, Jakarta',
+            'maps_url' => 'https://maps.google.com/?q=Hotel+Mulia+Senayan',
+        ];
+
+        $schedule = [
+            ['title' => 'Akad Nikah', 'time' => '08:00 - 10:00 WIB', 'note' => 'Masjid Agung Al-Barkah, Jl. Veteran No. 1, Bekasi'],
+            ['title' => 'Resepsi Pernikahan', 'time' => '11:00 - 14:00 WIB', 'note' => 'Grand Ballroom Hotel Mulia, Jl. Asia Afrika, Jakarta'],
+        ];
+
+        $stories = [
+            ['title' => 'Pertemuan Pertama', 'date' => 'Agustus 2021', 'text' => 'Di sebuah sudut kota, takdir mempertemukan dua jiwa yang tak saling mengenal, namun merasa begitu akrab.'],
+            ['title' => 'Membangun Mimpi', 'date' => 'Januari 2023', 'text' => 'Setiap tawa dan air mata menjadi pondasi bagi istana cinta yang sedang kita bangun bersama.'],
+            ['title' => 'Janji Suci', 'date' => 'Mei 2024', 'text' => 'Dua cincin, satu janji, dan selamanya untuk saling menjaga dalam ikatan yang diberkati.'],
+        ];
+
+        $gallery = [
+            asset('assets/templates/wedding-29/images/image_10.jpg'),
+            asset('assets/templates/wedding-29/images/image_11.jpg'),
+            asset('assets/templates/wedding-29/images/image_12.jpg'),
+            asset('assets/templates/wedding-29/images/image_13.jpg'),
+        ];
+
+        $bg = [
+            'cover' => asset('assets/templates/wedding-29/images/image_1.jpg'),
+            'hero' => asset('assets/templates/wedding-29/images/image_2.jpg'),
+            'hero_small_1' => asset('assets/templates/wedding-29/images/image_3.jpg'),
+            'hero_small_2' => asset('assets/templates/wedding-29/images/image_4.jpg'),
+            'story_1' => asset('assets/templates/wedding-29/images/image_5.jpg'),
+            'story_2' => asset('assets/templates/wedding-29/images/image_6.jpg'),
+            'story_3' => asset('assets/templates/wedding-29/images/image_7.jpg'),
+            'groom' => asset('assets/templates/wedding-29/images/image_8.jpg'),
+            'bride' => asset('assets/templates/wedding-29/images/image_9.jpg'),
+        ];
+
+        $wishes = [
+            ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat ya Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah. Bahagia selamanya!'],
+            ['name' => 'Rafi Alfian', 'status' => 'Hadir', 'message' => 'Happy wedding bro! Lancar-lancar sampe hari H ya. See you there!'],
+        ];
+
+        $gifts = [
+            ['bank' => 'BCA', 'name' => 'Elias Putra', 'account' => '123 456 7890'],
+            ['bank' => 'Mandiri', 'name' => 'Jada Amira', 'account' => '098 765 4321'],
+        ];
+
+        $musicUrl = asset('musics/love-story-taylor-swift-sax-cover-by-leon-chen-rdlfx2fnhok.mp3');
+    }
 @endphp
-
 <!DOCTYPE html>
-<html lang="id">
+<html class="scroll-smooth" lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan | {{ $couple['bride'] }} & {{ $couple['groom'] }}</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Undangan Pernikahan | {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</title>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Outfit:wght@400;600&amp;family=Libre+Franklin:wght@400&amp;family=Epilogue:wght@300&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     
-    <!-- Tailwind CSS v3 -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        'rustic-blue': '#2b4c7e',
-                        'rustic-gold': '#c5a880',
-                        'rustic-cream': '#fbf9f5',
+                        "outline-variant": "#bfc9c3",
+                        "on-tertiary-fixed": "#002115",
+                        "surface-container-highest": "#e5e2db",
+                        "secondary-fixed-dim": "#b9cbb9",
+                        "surface-bright": "#fcf9f2",
+                        "tertiary-fixed-dim": "#a8cfbc",
+                        "inverse-primary": "#95d3ba",
+                        "on-background": "#1c1c18",
+                        "primary-container": "#064e3b",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "secondary-container": "#d2e4d2",
+                        "emerald-deep": "#064E3B",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#ebe8e1",
+                        "primary": "#003527",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#0e3427",
+                        "surface": "#fcf9f2",
+                        "on-tertiary": "#ffffff",
+                        "gold-dust": "#D4AF37",
+                        "mint-accent": "#D1FAE5",
+                        "surface-tint": "#2b6954",
+                        "inverse-on-surface": "#f3f0e9",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#294e3f",
+                        "on-secondary-container": "#566758",
+                        "error": "#ba1a1a",
+                        "secondary": "#526254",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2db",
+                        "sage-muted": "#7A8B7B",
+                        "on-secondary-fixed": "#101f13",
+                        "on-tertiary-container": "#93baa7",
+                        "inverse-surface": "#31312c",
+                        "on-surface-variant": "#404944",
+                        "secondary-fixed": "#d5e7d5",
+                        "alabaster-white": "#FAF9F6",
+                        "on-primary-fixed": "#002117",
+                        "tertiary-fixed": "#c3ecd7",
+                        "surface-container": "#f1eee7",
+                        "on-secondary-fixed-variant": "#3b4b3d",
+                        "on-surface-variant": "#404944",
+                        "primary-fixed-dim": "#95d3ba",
+                        "surface-container-low": "#f6f3ec",
+                        "warm-beige-bg": "#F4F1EA",
+                        "tertiary-container": "#274b3c",
+                        "surface-dim": "#dcdad3",
+                        "background": "#fcf9f2",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#1c1c18"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter-md": "1.5rem",
+                        "section-gap": "5rem",
+                        "margin-page": "2rem",
+                        "stack-overlap": "-2rem"
                     },
                     fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Montserrat"', 'sans-serif'],
+                        "label-caps": ["Outfit"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "couple-name": ["Playfair Display"],
+                        "body-md": ["Libre Franklin"],
+                        "headline-lg": ["Playfair Display"],
+                        "script-grand": ["Epilogue"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "couple-name": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+                        "script-grand": ["48px", {"lineHeight": "56px", "fontWeight": "300"}]
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Alpine.js v3 -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- AOS.js -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS Styles -->
     <style>
-        [x-cloak] { display: none !important; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .washi-tape {
+            background: rgba(209, 250, 229, 0.6);
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L10 5 L20 0 L30 5 L40 0 L50 5 L60 0 L70 5 L80 0 L90 5 L100 0 V20 L90 15 L80 20 L70 15 L60 20 L50 15 L40 20 L30 15 L20 20 L10 15 L0 20 Z" fill="black"/></svg>');
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L10 5 L20 0 L30 5 L40 0 L50 5 L60 0 L70 5 L80 0 L90 5 L100 0 V20 L90 15 L80 20 L70 15 L60 20 L50 15 L40 20 L30 15 L20 20 L10 15 L0 20 Z" fill="black"/></svg>');
+            mask-repeat: repeat-x;
+            -webkit-mask-repeat: repeat-x;
+        }
+        .polaroid {
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.1);
+        }
+        .gold-sparkle {
+            background-image: radial-gradient(circle, #D4AF37 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
         
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
+        body.cover-active {
+            overflow: hidden;
+            height: 100vh;
         }
 
-        /* Wishes list scrollbar */
-        #wishes-container::-webkit-scrollbar {
-            width: 4px;
-        }
-        #wishes-container::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        #wishes-container::-webkit-scrollbar-thumb {
-            background: #c5a880;
-            border-radius: 4px;
-        }
+        .timeline-scroll::-webkit-scrollbar { display: none; }
+        .timeline-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Pulsing ring animation for cover button */
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(0.96);
-                box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.6);
-            }
-            70% {
-                transform: scale(1.02);
-                box-shadow: 0 0 0 12px rgba(197, 168, 128, 0);
-            }
-            100% {
-                transform: scale(0.96);
-                box-shadow: 0 0 0 0 rgba(197, 168, 128, 0);
-            }
+        /* Floating action controls */
+        .floater-container {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            z-index: 200;
+            display: none;
+            pointer-events: none;
         }
-        .btn-pulse {
-            animation: pulse-ring 2s infinite ease-in-out;
+        .floater-container.visible { display: block; }
+        .floater-inner {
+            position: absolute;
+            right: 20px;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            pointer-events: auto;
         }
+        .float-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(6, 78, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #D4AF37;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        .float-btn:hover { background: #D4AF37; color: #064E3B; }
+        .float-btn.paused .material-symbols-outlined { color: #7A8B7B; }
+        .float-btn.scrolling { background: #D4AF37; color: #064E3B; }
+        
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: rotate-slow 20s linear infinite; }
 
-        /* Custom decorative background overlay pattern */
-        .navy-floral-pattern {
-            background-color: #fbf9f5;
-            background-image: radial-gradient(#2b4c7e 0.5px, transparent 0.5px), radial-gradient(#2b4c7e 0.5px, #fbf9f5 0.5px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.02;
+        /* Lightbox modal centering */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
         }
     </style>
 </head>
-<body 
-    x-data="{ 
-        isOpen: false, 
-        isMuted: false,
-        playMusic() {
-            let audio = document.getElementById('bg-audio');
-            if (audio) {
-                audio.muted = this.isMuted;
-                audio.play().catch(e => console.log('Audio autoplay blocked'));
-            }
-        },
-        toggleMute() {
-            this.isMuted = !this.isMuted;
-            let audio = document.getElementById('bg-audio');
-            if (audio) {
-                audio.muted = this.isMuted;
-            }
-        }
-    }"
-    class="bg-[#111c2e] font-sans antialiased text-gray-800 flex justify-center items-center min-h-screen overflow-x-hidden"
-    :class="isOpen ? 'overflow-y-auto' : 'overflow-hidden h-screen'"
->
+<body class="bg-background text-on-background font-body-md cover-active max-w-[480px] w-full mx-auto shadow-2xl border-x border-emerald-deep/10 relative selection:bg-gold-dust/30">
 
-    <!-- Hidden Audio Player -->
+    <!-- Audio Element -->
     <audio id="bg-audio" loop preload="auto">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+        <source src="{{ $musicUrl }}" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Music Toggle Button -->
-    <div 
-        x-show="isOpen"
-        x-cloak
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 scale-90"
-        x-transition:enter-end="opacity-100 scale-100"
-        class="fixed bottom-6 right-6 z-40"
-    >
-        <button 
-            @click="toggleMute()" 
-            class="w-12 h-12 bg-white/90 backdrop-blur-md border border-rustic-gold/30 rounded-full shadow-lg flex items-center justify-center transition-colors duration-300"
-            :class="isMuted ? 'text-gray-400' : 'text-rustic-blue hover:text-rustic-gold'"
-        >
-            <!-- Playing Icon -->
-            <svg x-show="!isMuted" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-            </svg>
-            <!-- Muted Icon -->
-            <svg x-show="isMuted" x-cloak class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l6 6 1.27-1.27L4.27 3zM14 7h4V3h-6v5.18l2 2z"/>
-            </svg>
-        </button>
-    </div>
-
-    <!-- COVER SCREEN (Fullscreen overlay sliding out) -->
-    <div 
-        class="fixed inset-y-0 left-1/2 w-full max-w-md h-screen bg-rustic-cream z-50 flex flex-col justify-between items-center py-14 px-8 shadow-2xl transition-all duration-[1200ms] ease-in-out transform -translate-x-1/2"
-        :class="isOpen ? '-translate-y-full pointer-events-none' : 'translate-y-0'"
-    >
-        <!-- Top Floral Accent -->
-        <div class="absolute top-0 left-0 w-48 h-48 text-rustic-blue/15 pointer-events-none select-none">
-            <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
-                <path d="M0,0 Q35,10 55,55 Q10,35 0,0" />
-                <path d="M0,0 Q15,40 55,55 Q40,15 0,0" opacity="0.6" />
-                <circle cx="20" cy="20" r="1.5" class="text-rustic-gold/40" />
-                <circle cx="35" cy="15" r="1" class="text-rustic-gold/40" />
-            </svg>
+    <!-- ==================== OVERLAY COVER ==================== -->
+    <section class="fixed inset-0 z-[100] bg-emerald-deep flex flex-col justify-between items-center py-14 px-8 overflow-hidden max-w-[480px] w-full mx-auto shadow-2xl" id="cover">
+        <div class="absolute inset-0 gold-sparkle opacity-20"></div>
+        <!-- Decorative Botanicals -->
+        <div class="absolute -top-10 -left-10 w-64 h-64 rotate-12 opacity-40">
+            <span class="material-symbols-outlined text-[160px] text-mint-accent">local_florist</span>
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-64 h-64 -rotate-12 opacity-40">
+            <span class="material-symbols-outlined text-[160px] text-gold-dust">spa</span>
         </div>
 
-        <!-- Header -->
-        <div class="text-center relative z-10 mt-4">
-            <p class="text-[10px] uppercase tracking-[0.25em] text-rustic-gold font-sans font-bold mb-2">The Wedding Invitation</p>
-            <h1 class="font-serif text-4xl text-rustic-blue font-light tracking-wide">{{ $couple['bride'] }} & {{ $couple['groom'] }}</h1>
-        </div>
-
-        <!-- Arch Frame Profile Cover -->
-        <div class="relative w-44 h-64 my-6 z-10">
-            <!-- Decorative Back Border -->
-            <div class="absolute inset-0 border border-rustic-gold rounded-t-full -translate-x-2 translate-y-2 pointer-events-none"></div>
-            <!-- Inner Arch Image -->
-            <div class="w-full h-full rounded-t-full overflow-hidden border border-rustic-gold/40 bg-white p-1.5 shadow-md">
-                <img src="{{ $bg['cover'] }}" class="w-full h-full object-cover rounded-t-full" alt="Wedding Cover">
-            </div>
-        </div>
-
-        <!-- Guest Info & Trigger Button -->
-        <div class="w-full text-center relative z-10 flex flex-col items-center mb-4">
-            <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-2 font-sans font-medium">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div class="relative z-10 text-center w-full">
+            <p class="font-label-caps text-label-caps text-mint-accent tracking-[0.3em] mb-6">UNDANGAN PERNIKAHAN</p>
+            <h1 class="font-couple-name text-couple-name text-white mb-2 leading-none text-5xl tracking-tighter uppercase font-bold">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h1>
+            <p class="font-script-grand text-script-grand text-gold-dust italic mb-8">Menuju Kebahagiaan Abadi</p>
             
-            <!-- Glassmorphism Guest Card -->
-            <div class="bg-white/40 backdrop-blur-md border border-white/40 shadow-sm px-6 py-3.5 rounded-2xl w-full max-w-[280px] mb-6">
-                <h3 class="font-serif text-lg text-rustic-blue font-bold tracking-wide">
-                    {{ request('to', request('kpd', 'Nama Tamu Undangan')) }}
-                </h3>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl py-4 px-6 mb-8 inline-block max-w-xs mx-auto">
+                <p class="font-label-caps text-label-caps text-white mb-1">UNTUK TAMU KAMI</p>
+                <p class="font-headline-lg text-lg text-white font-bold truncate">{{ request()->get('kpd', 'Sahabat & Keluarga Tercinta') }}</p>
             </div>
             
-            <button 
-                @click="
-                    isOpen = true; 
-                    playMusic();
-                    setTimeout(() => { AOS.init({ duration: 1000, once: true }); }, 200);
-                "
-                class="btn-pulse px-8 py-3.5 bg-rustic-blue text-white rounded-full font-sans text-[10px] tracking-widest uppercase font-semibold border border-rustic-gold/30 hover:bg-rustic-blue/90 transition duration-300 shadow-md cursor-pointer"
-            >
-                Buka Undangan
+            <div>
+                <button class="bg-gold-dust text-primary font-label-caps text-label-caps px-10 py-5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-3 mx-auto border border-white/10" id="btn-open" onclick="unlockInvitation()">
+                    <span class="material-symbols-outlined">mail</span>
+                    BUKA UNDANGAN
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="opacity-0 transition-opacity duration-1000 hidden pb-24" id="main-content">
+        <!-- Top App Bar -->
+        <header class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-[40] flex justify-between items-center px-6 h-16 bg-surface/85 backdrop-blur-md border-b border-emerald-deep/5">
+            <div class="font-couple-name text-lg text-emerald-deep font-bold tracking-tighter">{{ $couple['groom'][0] }} &amp; {{ $couple['bride'][0] }}</div>
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-emerald-deep text-lg">favorite</span>
+            </div>
+        </header>
+
+        <!-- HERO SECTION: COLLAGE -->
+        <section class="relative pt-24 pb-12 overflow-hidden" id="hero">
+            <div class="absolute inset-0 -z-10 opacity-30 pointer-events-none">
+                <span class="material-symbols-outlined absolute top-20 left-[10%] text-[100px] text-sage-muted rotate-12">eco</span>
+                <span class="material-symbols-outlined absolute bottom-40 right-[15%] text-[80px] text-tertiary-fixed-dim -rotate-12">filter_vintage</span>
+            </div>
+
+            <div class="px-6">
+                <div class="grid grid-cols-12 gap-3 relative">
+                    <!-- Main Polaroid -->
+                    <div class="col-span-12 z-20 reveal-up">
+                        <div class="polaroid bg-white p-4 pb-12 rotate-[-2deg] relative border border-emerald-deep/5">
+                            <div class="washi-tape absolute -top-4 left-1/4 w-32 h-8 z-30"></div>
+                            <img class="w-full aspect-[4/5] object-cover rounded-sm" src="{{ $bg['hero'] }}" alt="Selamanya Bersama"/>
+                            <p class="font-script-grand text-center mt-6 text-emerald-deep text-lg italic">Selamanya Bersama</p>
+                        </div>
+                    </div>
+                    <!-- Offset Small Polaroid 1 -->
+                    <div class="col-span-6 mt-4 reveal-up">
+                        <div class="polaroid bg-white p-3 pb-8 rotate-[3deg] relative border border-emerald-deep/5">
+                            <div class="washi-tape absolute -right-6 top-1/2 w-24 h-6 rotate-90 z-30 opacity-60"></div>
+                            <img class="w-full aspect-square object-cover rounded-sm" src="{{ $bg['hero_small_1'] }}" alt="Detail"/>
+                        </div>
+                    </div>
+                    <!-- Offset Small Polaroid 2 -->
+                    <div class="col-span-6 mt-4 reveal-up">
+                        <div class="polaroid bg-white p-3 pb-8 rotate-[-1deg] border border-emerald-deep/5">
+                            <img class="w-full aspect-[3/4] object-cover rounded-sm" src="{{ $bg['hero_small_2'] }}" alt="Moments"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 max-w-sm mx-auto reveal-up">
+                    <h2 class="font-headline-lg-mobile text-emerald-deep text-2xl mb-4 uppercase font-bold">Momen Berbahagia</h2>
+                    <p class="text-sage-muted text-sm leading-relaxed italic">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORIES SECTION -->
+        <section class="py-16 bg-surface relative overflow-hidden text-center" id="story">
+            <div class="absolute inset-0 gold-sparkle opacity-5 pointer-events-none"></div>
+            <div class="px-6 relative">
+                <div class="text-center mb-12 reveal-up">
+                    <h2 class="font-script-grand text-4xl text-emerald-deep leading-none mb-2 font-bold uppercase">Kisah Cinta</h2>
+                    <p class="font-label-caps text-label-caps text-gold-dust tracking-[0.4em] text-[10px]">OUR JOURNEY TOGETHER</p>
+                </div>
+
+                <div class="relative max-w-sm mx-auto pl-6 border-l border-sage-muted/30 space-y-12 text-left">
+                    @foreach($stories as $i => $s)
+                    <!-- Entry -->
+                    <div class="relative reveal-up">
+                        <!-- Node -->
+                        <div class="w-6 h-6 bg-emerald-deep rounded-full border-4 border-white shadow-sm flex items-center justify-center absolute -left-[39px] top-1">
+                            <span class="material-symbols-outlined text-white text-[10px] font-bold">favorite</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <span class="font-label-caps text-gold-dust text-[10px] tracking-wider font-bold">{{ strtoupper($s['date']) }}</span>
+                                <h3 class="font-headline-lg-mobile text-base text-emerald-deep font-bold mt-1">{{ $s['title'] }}</h3>
+                                <p class="text-sage-muted text-xs leading-relaxed italic mt-1.5">"{{ $s['text'] }}"</p>
+                            </div>
+                            
+                            <!-- Story polaroid image wrapper -->
+                            <div class="polaroid bg-white p-2.5 pb-8 rotate-[-2deg] w-full max-w-[200px] border border-emerald-deep/5 relative shadow-md">
+                                <div class="washi-tape absolute -top-2 left-1/4 w-20 h-5 z-20 opacity-70"></div>
+                                <img class="w-full aspect-square object-cover rounded-sm" src="{{ $bg['story_' . ($i + 1)] ?? $gallery[$i % count($gallery)] }}" alt="{{ $s['title'] }}"/>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- COUPLE PROFILES -->
+        <section class="py-16 bg-surface-container-low overflow-hidden text-center" id="couple">
+            <div class="px-6 max-w-sm mx-auto flex flex-col items-center">
+                
+                <!-- Groom -->
+                <div class="reveal-up flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="polaroid bg-white p-3 pb-10 rotate-[-3deg] relative z-10 w-64 border border-emerald-deep/5">
+                            <img class="w-full aspect-square object-cover rounded-sm" src="{{ $bg['groom'] }}" alt="Groom"/>
+                        </div>
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-gold-dust/20 rounded-full blur-xl -z-10"></div>
+                    </div>
+                    <h3 class="font-couple-name text-2xl text-emerald-deep font-bold mb-1">{{ $couple['groom'] }} Putra</h3>
+                    <p class="font-label-caps text-[9px] text-gold-dust mb-3 tracking-widest font-bold">PUTRA DARI</p>
+                    <p class="font-body-md text-xs text-sage-muted leading-relaxed">{{ $couple['parents']['groom'] }}</p>
+                </div>
+
+                <!-- Divider -->
+                <div class="my-8 reveal-up">
+                    <span class="material-symbols-outlined text-gold-dust text-5xl rotate-45">all_inclusive</span>
+                </div>
+
+                <!-- Bride -->
+                <div class="reveal-up flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <div class="polaroid bg-white p-3 pb-10 rotate-[3deg] relative z-10 w-64 border border-emerald-deep/5">
+                            <img class="w-full aspect-square object-cover rounded-sm" src="{{ $bg['bride'] }}" alt="Bride"/>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-mint-accent/30 rounded-full blur-xl -z-10"></div>
+                    </div>
+                    <h3 class="font-couple-name text-2xl text-emerald-deep font-bold mb-1">{{ $couple['bride'] }} Amira</h3>
+                    <p class="font-label-caps text-[9px] text-gold-dust mb-3 tracking-widest font-bold">PUTRI DARI</p>
+                    <p class="font-body-md text-xs text-sage-muted leading-relaxed">{{ $couple['parents']['bride'] }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT DETAILS (Agenda Bahagia) -->
+        <section class="py-16 relative overflow-hidden text-center" id="events">
+            <div class="px-6 max-w-sm mx-auto">
+                <div class="text-center mb-10 reveal-up">
+                    <p class="font-label-caps text-gold-dust tracking-[0.4em] text-[10px] font-bold mb-2">SAVE THE DATE</p>
+                    <h2 class="font-headline-lg-mobile text-emerald-deep text-2xl font-bold uppercase">Agenda Bahagia</h2>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Akad -->
+                    <div class="reveal-up relative group">
+                        <div class="absolute -inset-1 bg-sage-muted/15 rounded-3xl blur-md"></div>
+                        <div class="relative bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center border border-outline-variant/30 text-center">
+                            <span class="material-symbols-outlined text-4xl text-emerald-deep mb-4">church</span>
+                            <h3 class="font-headline-lg-mobile text-lg text-emerald-deep font-bold mb-1">Akad Nikah</h3>
+                            <div class="w-12 h-[1px] bg-gold-dust mb-4"></div>
+                            <p class="font-label-bold text-[10px] text-sage-muted tracking-wider block mb-1 uppercase">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</p>
+                            <p class="font-body-md text-xs text-on-background mb-4">Pukul {{ $schedule[0]['time'] }}</p>
+                            <p class="font-body-md text-xs text-emerald-deep font-bold mb-1">{{ $schedule[0]['note'] }}</p>
+                            
+                            <a class="inline-flex items-center gap-1.5 text-gold-dust font-label-bold text-xs hover:underline mt-4 font-bold" href="{{ $event['maps_url'] }}" target="_blank">
+                                <span class="material-symbols-outlined text-xs">location_on</span>
+                                GOOGLE MAPS
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Resepsi -->
+                    <div class="reveal-up relative group">
+                        <div class="absolute -inset-1 bg-emerald-deep/10 rounded-3xl blur-md"></div>
+                        <div class="relative bg-emerald-deep p-6 rounded-2xl shadow-md flex flex-col items-center text-center">
+                            <span class="material-symbols-outlined text-4xl text-gold-dust mb-4">celebration</span>
+                            <h3 class="font-headline-lg-mobile text-lg text-white font-bold mb-1">Resepsi</h3>
+                            <div class="w-12 h-[1px] bg-gold-dust mb-4"></div>
+                            <p class="font-label-bold text-[10px] text-mint-accent tracking-wider block mb-1 uppercase">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</p>
+                            <p class="font-body-md text-xs text-white/90 mb-4">Pukul {{ $schedule[1]['time'] }}</p>
+                            <p class="font-body-md text-xs text-mint-accent font-bold mb-1">{{ $schedule[1]['note'] }}</p>
+                            
+                            <a class="inline-flex items-center gap-1.5 text-gold-dust font-label-bold text-xs hover:underline mt-4 font-bold" href="{{ $event['maps_url'] }}" target="_blank">
+                                <span class="material-symbols-outlined text-xs">location_on</span>
+                                GOOGLE MAPS
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section class="py-16 bg-warm-beige-bg text-center" id="gallery">
+            <div class="px-6 max-w-sm mx-auto">
+                <div class="text-center mb-10 reveal-up">
+                    <h2 class="font-script-grand text-3xl text-emerald-deep font-bold uppercase">Momen Indah</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Photo 1 -->
+                    <div class="col-span-2 reveal-up">
+                        <div class="polaroid bg-white p-2 pb-6 rotate-1 border border-emerald-deep/5 cursor-zoom-in" onclick="openLightbox('{{ $gallery[0] }}')">
+                            <img class="w-full aspect-[4/3] object-cover rounded-sm" src="{{ $gallery[0] }}" alt="Gallery 1"/>
+                        </div>
+                    </div>
+                    <!-- Photo 2 -->
+                    <div class="reveal-up">
+                        <div class="polaroid bg-white p-2 pb-6 rotate-[-2deg] border border-emerald-deep/5 cursor-zoom-in" onclick="openLightbox('{{ $gallery[1] }}')">
+                            <img class="w-full aspect-square object-cover rounded-sm" src="{{ $gallery[1] }}" alt="Gallery 2"/>
+                        </div>
+                    </div>
+                    <!-- Photo 3 -->
+                    <div class="reveal-up">
+                        <div class="polaroid bg-white p-2 pb-6 rotate-[3deg] border border-emerald-deep/5 cursor-zoom-in" onclick="openLightbox('{{ $gallery[2] }}')">
+                            <img class="w-full aspect-square object-cover rounded-sm" src="{{ $gallery[2] }}" alt="Gallery 3"/>
+                        </div>
+                    </div>
+                    <!-- Photo 4 -->
+                    <div class="col-span-2 reveal-up">
+                        <div class="polaroid bg-white p-2 pb-8 rotate-[-1deg] relative border border-emerald-deep/5 cursor-zoom-in" onclick="openLightbox('{{ $gallery[3] ?? $gallery[0] }}')">
+                            <div class="washi-tape absolute top-0 right-4 w-20 h-6 -rotate-12 opacity-80"></div>
+                            <img class="w-full h-32 object-cover rounded-sm" src="{{ $gallery[3] ?? $gallery[0] }}" alt="Gallery 4"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KADO DIGITAL (Wedding Gift) -->
+        <section class="py-16 px-6 bg-warm-beige-bg/50 backdrop-blur-sm border-t border-b border-gold-dust/20" id="registry">
+            <div class="max-w-sm mx-auto text-center">
+                <div class="text-center mb-8" data-aos="fade-up">
+                    <span class="text-[10px] uppercase tracking-widest text-gold-dust font-label-caps font-bold mb-1 block">Wedding Gift</span>
+                    <h2 class="font-headline-lg-mobile text-2xl text-emerald-deep font-bold uppercase">Kado Digital</h2>
+                    <div class="w-12 h-[1px] bg-gold-dust mx-auto mt-2"></div>
+                </div>
+
+                <p class="text-xs text-sage-muted font-body-md italic max-w-xs mx-auto leading-relaxed mb-6" data-aos="fade-up">
+                    Doa restu Anda adalah kado terindah bagi kami. Namun bagi Anda yang ingin memberikan tanda kasih secara digital, silakan transfer melalui rekening berikut:
+                </p>
+
+                <div class="space-y-4 w-full">
+                    @foreach($gifts as $g)
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gold-dust/30 text-center relative overflow-hidden" data-aos="fade-up">
+                        <p class="text-[9px] text-gold-dust uppercase tracking-widest font-label-caps font-bold mb-1">{{ $g['bank'] }}</p>
+                        <h3 class="font-headline-lg-mobile text-lg text-emerald-deep font-bold tracking-wider mb-1">{{ $g['account'] }}</h3>
+                        <p class="text-[10px] text-sage-muted uppercase tracking-wide">A.N {{ $g['name'] }}</p>
+                        <button class="mt-4 px-5 py-2.5 border border-gold-dust text-gold-dust hover:bg-gold-dust hover:text-emerald-deep rounded-full text-[9px] font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer" onclick="copyAccount('{{ $g['account'] }}', this)">
+                            Salin Rekening
+                        </button>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & TAMU SECTION -->
+        <section class="py-16 px-6 text-center" id="rsvp">
+            <div class="max-w-sm mx-auto">
+                <div class="bg-white rounded-[2rem] p-6 shadow-xl border border-emerald-deep/5 relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-gold-dust/5 rounded-full blur-2xl"></div>
+                    <div class="text-center mb-8 reveal-up">
+                        <span class="material-symbols-outlined text-3xl text-emerald-deep mb-2">mail_outline</span>
+                        <h2 class="font-headline-lg-mobile text-xl text-emerald-deep font-bold mb-2 uppercase">Konfirmasi Kehadiran</h2>
+                        <p class="font-body-md text-xs text-sage-muted leading-relaxed">Kehadiran dan doa restu Anda adalah berkah bagi kami.</p>
+                    </div>
+
+                    <form class="space-y-4 text-left reveal-up" id="rsvp-form" onsubmit="submitRsvp(event)">
+                        <div>
+                            <label class="block font-label-caps text-[9px] text-emerald-deep mb-1 font-bold">NAMA LENGKAP</label>
+                            <input class="w-full bg-surface border-0 border-b border-gold-dust/30 focus:border-emerald-deep focus:ring-0 text-xs p-3 focus:outline-none rounded-none text-gray-700" placeholder="Masukkan nama Anda" type="text" id="rsvp-nama" required/>
+                        </div>
+                        <div>
+                            <label class="block font-label-caps text-[9px] text-emerald-deep mb-1 font-bold">KEHADIRAN</label>
+                            <select class="w-full bg-surface border-0 border-b border-gold-dust/30 focus:border-emerald-deep focus:ring-0 text-xs p-3 focus:outline-none rounded-none text-gray-700" id="rsvp-kehadiran">
+                                <option value="Hadir">Saya Akan Hadir</option>
+                                <option value="Tidak Hadir">Berhalangan Hadir</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-label-caps text-[9px] text-emerald-deep mb-1 font-bold">PESAN &amp; DOA RESTU</label>
+                            <textarea class="w-full bg-surface border border-gold-dust/20 focus:border-emerald-deep focus:ring-0 text-xs p-3 rounded-lg resize-none h-24 text-gray-700 placeholder-gray-300 focus:outline-none" placeholder="Tuliskan ucapan dan doa hangat Anda..." id="rsvp-pesan" required></textarea>
+                        </div>
+                        <button class="w-full bg-emerald-deep text-white font-label-caps text-[10px] tracking-widest font-bold py-4 rounded-full hover:bg-primary transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer" type="submit">
+                            KIRIM KONFIRMASI
+                            <span class="material-symbols-outlined text-sm">send</span>
+                        </button>
+                    </form>
+
+                    <div class="mt-12 text-left reveal-up">
+                        <h3 class="font-label-caps text-gold-dust text-center mb-6 tracking-[0.2em] text-[10px] font-bold">BUKU TAMU</h3>
+                        <div class="space-y-4 max-h-60 overflow-y-auto pr-1.5 custom-scrollbar" id="wishes-container">
+                            @foreach($wishes as $w)
+                            <div class="bg-alabaster-white p-4 rounded-xl border border-emerald-deep/5 relative text-left">
+                                <p class="font-label-bold text-[9px] text-emerald-deep mb-1 uppercase font-bold">{{ $w['name'] }} ({{ $w['status'] }})</p>
+                                <p class="text-xs text-on-surface-variant italic leading-relaxed">"{{ $w['message'] }}"</p>
+                            </div>
+                            @endforeach
+                            <div id="wishList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="flex flex-col items-center text-center w-full bg-surface-container-low py-16 px-6 border-t border-outline-variant/30">
+            <h2 class="font-script-grand text-3xl text-emerald-deep font-bold mb-4">E &amp; J</h2>
+            <p class="font-body-md text-xs text-tertiary max-w-[280px] leading-relaxed mx-auto italic mb-8">Terima kasih telah menjadi bagian dari perjalanan cinta kami. Sampai jumpa di hari bahagia!</p>
+            <p class="font-body-md text-[9px] text-sage-muted/60">With Love, Elias &amp; Jada 2024</p>
+            <p class="font-body-md text-[8px] text-sage-muted/40 mt-2">Created with <span class="text-gold-dust">♥</span> TemuRuang</p>
+        </footer>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-8 items-center z-50 bg-[#003527]/90 backdrop-blur-md rounded-full px-8 py-3.5 border border-gold-dust/30 shadow-xl" id="bottomNav">
+            <a class="material-symbols-outlined text-gold-dust scale-110 transition-all duration-500 ease-out hover:scale-125" href="#hero" onclick="smoothScroll(event, '#hero', this)">favorite</a>
+            <a class="material-symbols-outlined text-white/55 hover:text-gold-dust transition-all hover:scale-125" href="#couple" onclick="smoothScroll(event, '#couple', this)">person</a>
+            <a class="material-symbols-outlined text-white/55 hover:text-gold-dust transition-all hover:scale-125" href="#events" onclick="smoothScroll(event, '#events', this)">event</a>
+            <a class="material-symbols-outlined text-white/55 hover:text-gold-dust transition-all hover:scale-125" href="#gallery" onclick="smoothScroll(event, '#gallery', this)">photo_library</a>
+        </nav>
+    </main>
+
+    <!-- Floating Action Controls (Music and Scroll) -->
+    <div class="floater-container" id="floaterContainer">
+        <div class="floater-inner">
+            <!-- Autoscroll Control -->
+            <button class="float-btn" id="scrollControl" onclick="toggleAutoscroll()" title="Mulai Autoscroll">
+                <span class="material-symbols-outlined">keyboard_double_arrow_down</span>
+            </button>
+            <!-- Music Control -->
+            <button class="float-btn animate-spin-slow" id="musicControl" onclick="toggleMusic()" title="Pause Music">
+                <span class="material-symbols-outlined">music_note</span>
             </button>
         </div>
-
-        <!-- Bottom Floral Accent -->
-        <div class="absolute bottom-0 right-0 w-48 h-48 text-rustic-blue/15 pointer-events-none select-none rotate-180">
-            <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
-                <path d="M0,0 Q35,10 55,55 Q10,35 0,0" />
-                <path d="M0,0 Q15,40 55,55 Q40,15 0,0" opacity="0.6" />
-                <circle cx="20" cy="20" r="1.5" class="text-rustic-gold/40" />
-                <circle cx="35" cy="15" r="1" class="text-rustic-gold/40" />
-            </svg>
-        </div>
     </div>
 
-    <!-- MAIN INVITATION FRAME CONTAINER (Mockup Device Phone Container) -->
-    <div class="w-full max-w-md min-h-screen bg-rustic-cream shadow-2xl relative flex flex-col justify-start">
-        
-        <!-- Subtle Pattern Overlay background -->
-        <div class="absolute inset-0 navy-floral-pattern pointer-events-none z-0"></div>
-
-        <!-- HALAMAN HERO SECTION -->
-        <div class="py-20 px-8 text-center relative z-10 min-h-screen flex flex-col justify-center items-center">
-            <!-- Leaf SVG Ornament top -->
-            <div class="text-rustic-blue/10 w-24 h-12 mb-6">
-                <svg viewBox="0 0 100 50" class="w-full h-full fill-current mx-auto">
-                    <path d="M50,0 Q20,10 0,40 Q40,30 50,50 Q60,30 100,40 Q80,10 50,0" />
-                </svg>
-            </div>
-
-            <!-- Inisial Monogram -->
-            <div class="w-24 h-24 border border-rustic-gold/40 rounded-full flex items-center justify-center relative mb-8 shadow-sm bg-white/20 backdrop-blur-sm">
-                <!-- Inner dotted line border -->
-                <div class="absolute inset-1.5 border border-dashed border-rustic-gold/30 rounded-full"></div>
-                <span class="font-serif text-3xl text-rustic-blue tracking-wide">A & H</span>
-            </div>
-
-            <p class="text-[10px] uppercase tracking-[0.25em] text-rustic-gold font-sans font-bold mb-2">The Marriage Of</p>
-            <h2 class="font-serif text-4xl text-rustic-blue font-light tracking-wide mb-6">Anisa & Haris</h2>
-
-            <!-- Verse / Poetic Quote -->
-            <div data-aos="fade-up" class="px-4 text-center max-w-xs mx-auto mt-4 mb-10">
-                <p class="font-serif italic text-[13px] text-gray-600 leading-relaxed">
-                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
-                </p>
-                <p class="text-[9px] font-sans uppercase tracking-widest text-rustic-gold mt-3 font-bold">- Q.S. Ar-Rum: 21 -</p>
-            </div>
-
-            <!-- Countdown Timer Card -->
-            <div 
-                x-data="{
-                    expiry: new Date('{{ $event['date_iso'] }}T09:00:00').getTime(),
-                    days: '00',
-                    hours: '00',
-                    minutes: '00',
-                    seconds: '00',
-                    init() {
-                        setInterval(() => {
-                            let now = new Date().getTime();
-                            let diff = this.expiry - now;
-                            if (diff < 0) return;
-                            this.days = String(Math.floor(diff / 86400000)).padStart(2, '0');
-                            this.hours = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-                            this.minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-                            this.seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-                        }, 1000);
-                    }
-                }"
-                class="w-full mt-4"
-                data-aos="fade-up"
-                data-aos-delay="200"
-            >
-                <p class="text-[10px] uppercase tracking-widest text-rustic-gold font-sans font-bold mb-4">Menuju Hari Bahagia</p>
-                <div class="grid grid-cols-4 gap-3 max-w-[290px] mx-auto">
-                    <!-- Days -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl py-3.5 px-2 shadow-sm border border-rustic-gold/15 text-center flex flex-col justify-center">
-                        <span x-text="days" class="text-xl font-serif font-bold text-rustic-blue">00</span>
-                        <span class="text-[9px] uppercase font-sans tracking-widest text-gray-400 mt-1">Hari</span>
-                    </div>
-                    <!-- Hours -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl py-3.5 px-2 shadow-sm border border-rustic-gold/15 text-center flex flex-col justify-center">
-                        <span x-text="hours" class="text-xl font-serif font-bold text-rustic-blue">00</span>
-                        <span class="text-[9px] uppercase font-sans tracking-widest text-gray-400 mt-1">Jam</span>
-                    </div>
-                    <!-- Minutes -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl py-3.5 px-2 shadow-sm border border-rustic-gold/15 text-center flex flex-col justify-center">
-                        <span x-text="minutes" class="text-xl font-serif font-bold text-rustic-blue">00</span>
-                        <span class="text-[9px] uppercase font-sans tracking-widest text-gray-400 mt-1">Menit</span>
-                    </div>
-                    <!-- Seconds -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl py-3.5 px-2 shadow-sm border border-rustic-gold/15 text-center flex flex-col justify-center">
-                        <span x-text="seconds" class="text-xl font-serif font-bold text-rustic-blue">00</span>
-                        <span class="text-[9px] uppercase font-sans tracking-widest text-gray-400 mt-1">Detik</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom arrow navigation hint -->
-            <div class="mt-16 text-gray-400 text-xs flex flex-col items-center gap-1 animate-bounce">
-                <span>Scroll ke Bawah</span>
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- SEKSI PROFIL MEMPELAI (The Couple) -->
-        <div class="py-20 px-8 bg-white/40 backdrop-blur-sm relative z-10 border-t border-b border-rustic-gold/10" id="mempelai">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest text-rustic-gold font-sans font-bold mb-2 block">Introducing</span>
-                <h2 class="font-serif text-3xl text-rustic-blue">Kedua Mempelai</h2>
-                <div class="w-16 h-[1px] bg-rustic-gold mx-auto mt-4"></div>
-            </div>
-
-            <!-- Mempelai Wanita (Bride) -->
-            <div class="text-center mb-16">
-                <!-- Arch shaped photo container with absolute offsets -->
-                <div class="relative w-44 h-64 mx-auto mb-6" data-aos="fade-up">
-                    <div class="absolute inset-0 border border-rustic-gold rounded-t-full -translate-x-2.5 translate-y-2.5 pointer-events-none"></div>
-                    <div class="w-full h-full rounded-t-full overflow-hidden border border-rustic-gold bg-white p-1.5 shadow-sm relative z-10">
-                        <img src="{{ $bg['bride'] }}" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" alt="{{ $couple['bride'] }}">
-                    </div>
-                </div>
-
-                <h3 class="font-serif text-3xl text-rustic-blue font-bold mt-4 tracking-wide" data-aos="fade-up">
-                    {{ $couple['bride'] }}
-                </h3>
-                <p class="text-[9px] text-rustic-gold uppercase tracking-[0.2em] font-sans font-bold mt-1.5 mb-3" data-aos="fade-up" data-aos-delay="100">
-                    Mempelai Wanita
-                </p>
-                <p class="text-xs text-gray-500 font-serif italic max-w-xs mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-                    Putri tercinta dari pasangan:<br>
-                    <span class="font-sans font-bold text-gray-700 not-italic text-[10px] uppercase tracking-wider block mt-1">{{ $couple['parents']['bride'] }}</span>
-                </p>
-            </div>
-
-            <!-- Ampersand -->
-            <div class="text-5xl font-serif text-rustic-gold/40 my-12 text-center" data-aos="zoom-in">
-                &
-            </div>
-
-            <!-- Mempelai Pria (Groom) -->
-            <div class="text-center">
-                <!-- Arch shaped photo container with offset -->
-                <div class="relative w-44 h-64 mx-auto mb-6" data-aos="fade-up">
-                    <div class="absolute inset-0 border border-rustic-gold rounded-t-full translate-x-2.5 translate-y-2.5 pointer-events-none"></div>
-                    <div class="w-full h-full rounded-t-full overflow-hidden border border-rustic-gold bg-white p-1.5 shadow-sm relative z-10">
-                        <img src="{{ $bg['groom'] }}" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" alt="{{ $couple['groom'] }}">
-                    </div>
-                </div>
-
-                <h3 class="font-serif text-3xl text-rustic-blue font-bold mt-4 tracking-wide" data-aos="fade-up">
-                    {{ $couple['groom'] }}
-                </h3>
-                <p class="text-[9px] text-rustic-gold uppercase tracking-[0.2em] font-sans font-bold mt-1.5 mb-3" data-aos="fade-up" data-aos-delay="100">
-                    Mempelai Pria
-                </p>
-                <p class="text-xs text-gray-500 font-serif italic max-w-xs mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-                    Putra tercinta dari pasangan:<br>
-                    <span class="font-sans font-bold text-gray-700 not-italic text-[10px] uppercase tracking-wider block mt-1">{{ $couple['parents']['groom'] }}</span>
-                </p>
-            </div>
-        </div>
-
-        <!-- SEKSI KISAH CINTA (Our Journey) -->
-        @if(!empty($stories))
-        <div class="py-20 px-8 relative z-10" id="kisah">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest text-rustic-gold font-sans font-bold mb-2 block">Our Story</span>
-                <h2 class="font-serif text-3xl text-rustic-blue">Kisah Cinta Kami</h2>
-                <div class="w-16 h-[1px] bg-rustic-gold mx-auto mt-4"></div>
-            </div>
-
-            <div class="max-w-sm mx-auto relative pl-6 border-l border-rustic-gold/30 space-y-8 text-left">
-                @foreach($stories as $index => $s)
-                <div class="relative" data-aos="fade-up">
-                    <!-- Timeline Node circle -->
-                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-rustic-cream border-2 border-rustic-blue flex items-center justify-center z-10 shadow-sm">
-                        <div class="w-1.5 h-1.5 rounded-full bg-rustic-gold"></div>
-                    </div>
-                    
-                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl shadow-sm border border-rustic-gold/15">
-                        <span class="text-[9px] text-rustic-gold font-sans font-bold uppercase tracking-wider block mb-1">{{ $s['date'] }}</span>
-                        <h3 class="font-serif text-base text-rustic-blue font-bold mb-2">{{ $s['title'] }}</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed font-sans">{{ $s['text'] }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-
-        <!-- SEKSI DETAIL ACARA & AKSES MAPS -->
-        <div class="py-20 px-8 bg-[#f5f1e8]/70 backdrop-blur-sm relative z-10 border-t border-b border-rustic-gold/10" id="acara">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest text-rustic-gold font-sans font-bold mb-2 block">Events</span>
-                <h2 class="font-serif text-3xl text-rustic-blue">Agenda Acara</h2>
-                <div class="w-16 h-[1px] bg-rustic-gold mx-auto mt-4"></div>
-            </div>
-
-            <div class="space-y-8 max-w-sm mx-auto">
-                <!-- Akad Card -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-rustic-gold/15 relative overflow-hidden" data-aos="fade-up">
-                    <!-- Subtle border corner flourish decoration -->
-                    <div class="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-rustic-gold/15 rounded-tl-2xl"></div>
-                    
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="w-10 h-10 rounded-full bg-rustic-cream flex items-center justify-center text-rustic-blue border border-rustic-gold/20 shadow-sm">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-lg text-rustic-blue font-bold tracking-wide">Akad Nikah</h3>
-                            <p class="text-[9px] text-rustic-gold uppercase tracking-widest font-sans font-bold">Sakral & Suci</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-3 text-xs text-gray-600 font-sans">
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Tanggal:</span>
-                            <span class="flex-1">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Waktu:</span>
-                            <span class="flex-1">Pukul {{ $schedule[0]['time'] ?? '09:00 - 10:30' }} WIB</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Lokasi:</span>
-                            <span class="flex-1">{{ $schedule[0]['note'] ?? $event['location'] }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resepsi Card -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-rustic-gold/15 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <!-- Corner accent -->
-                    <div class="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-rustic-gold/15 rounded-tl-2xl"></div>
-
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="w-10 h-10 rounded-full bg-rustic-cream flex items-center justify-center text-rustic-blue border border-rustic-gold/20 shadow-sm">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-serif text-lg text-rustic-blue font-bold tracking-wide">Resepsi</h3>
-                            <p class="text-[9px] text-rustic-gold uppercase tracking-widest font-sans font-bold">Walimatul Ursy</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-3 text-xs text-gray-600 font-sans">
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Tanggal:</span>
-                            <span class="flex-1">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Waktu:</span>
-                            <span class="flex-1">Pukul {{ $schedule[1]['time'] ?? '11:00 - 15:00' }} WIB</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <span class="font-semibold text-rustic-blue w-20">Lokasi:</span>
-                            <span class="flex-1">{{ $schedule[1]['note'] ?? $event['location'] }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Venue Map Details Card -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-rustic-gold/15 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="font-serif text-base text-rustic-blue font-bold mb-2">Lokasi Utama</h4>
-                    <p class="text-xs text-gray-700 font-bold mb-1">{{ $event['location'] }}</p>
-                    <p class="text-[10px] text-gray-500 mb-5 leading-relaxed px-2 font-sans">{{ $event['address'] }}</p>
-                    
-                    <a 
-                        href="{{ $event['maps_url'] }}" 
-                        target="_blank" 
-                        rel="noopener"
-                        class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 w-full bg-rustic-blue hover:bg-rustic-gold text-white font-sans text-[10px] tracking-widest uppercase font-bold rounded-xl transition-all duration-500 shadow-sm border border-rustic-gold/20 cursor-pointer"
-                    >
-                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Lihat Google Maps
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEKSI GALERI FOTO (Gallery) -->
-        @if(!empty($gallery))
-        <div class="py-20 px-8 relative z-10" id="galeri">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest text-rustic-gold font-sans font-bold mb-2 block">Our Gallery</span>
-                <h2 class="font-serif text-3xl text-rustic-blue">Galeri Kebahagiaan</h2>
-                <div class="w-16 h-[1px] bg-rustic-gold mx-auto mt-4"></div>
-            </div>
-
-            <!-- Grid photos with gold offsets -->
-            <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto" data-aos="fade-up">
-                @foreach($gallery as $index => $img)
-                <div class="overflow-hidden rounded-2xl border border-rustic-gold/20 shadow-sm aspect-[4/5] bg-white p-1">
-                    <img src="{{ $img }}" class="w-full h-full object-cover rounded-xl transition-transform duration-700 hover:scale-105" alt="Gallery {{ $index }}">
-                </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-
-        <!-- SEKSI RSVP FORM & BUKU TAMU -->
-        <div 
-            class="py-20 px-8 bg-white/40 backdrop-blur-sm relative z-10 border-t border-rustic-gold/10" 
-            id="rsvp" 
-            x-data="{
-                name: '',
-                status: 'Hadir',
-                message: '',
-                wishes: [
-                    { name: 'Rian & Dini', status: 'Hadir', message: 'Selamat ya Anisa dan Haris! Lancar sampai hari H ya. Semoga menjadi keluarga sakinah, mawaddah, warahmah.', time: '1 jam yang lalu' },
-                    { name: 'Kurniawan', status: 'Hadir', message: 'Happy wedding brother! Selamat menempuh perjalanan baru. Semoga bahagia selamanya!', time: '3 jam yang lalu' },
-                    { name: 'Siti Rahma', status: 'Tidak Hadir', message: 'Selamat berbahagia untuk kalian berdua! Mohon maaf saya sekeluarga berhalangan hadir langsung.', time: 'Kemarin' }
-                ],
-                submitWish() {
-                    if (this.name.trim() === '' || this.message.trim() === '') return;
-                    this.wishes.unshift({
-                        name: this.name,
-                        status: this.status,
-                        message: this.message,
-                        time: 'Baru saja'
-                    });
-                    this.name = '';
-                    this.message = '';
-                    alert('Terima kasih! RSVP dan doa restu Anda telah berhasil dikirim.');
-                }
-            }"
-        >
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest text-rustic-gold font-sans font-bold mb-2 block">RSVP & Guestbook</span>
-                <h2 class="font-serif text-3xl text-rustic-blue">Buku Tamu & RSVP</h2>
-                <div class="w-16 h-[1px] bg-rustic-gold mx-auto mt-4"></div>
-            </div>
-
-            <!-- RSVP Form Card -->
-            <div class="max-w-sm mx-auto bg-white rounded-2xl p-6 shadow-sm border border-rustic-gold/15 mb-10" data-aos="fade-up">
-                <form @submit.prevent="submitWish()">
-                    <div class="mb-5">
-                        <label class="block text-[9px] font-sans font-bold text-rustic-gold uppercase tracking-wider mb-1">Nama Lengkap</label>
-                        <input 
-                            type="text" 
-                            x-model="name"
-                            required
-                            placeholder="Tulis nama Anda di sini"
-                            class="w-full bg-transparent border-b border-rustic-gold/30 focus:border-rustic-blue py-2 text-xs font-sans placeholder-gray-300 focus:outline-none transition-colors duration-300 text-gray-700"
-                        >
-                    </div>
-                    
-                    <div class="mb-5">
-                        <label class="block text-[9px] font-sans font-bold text-rustic-gold uppercase tracking-wider mb-1">Konfirmasi Kehadiran</label>
-                        <select 
-                            x-model="status"
-                            required
-                            class="w-full bg-transparent border-b border-rustic-gold/30 focus:border-rustic-blue py-2 text-xs font-sans focus:outline-none transition-colors duration-300 text-gray-700"
-                        >
-                            <option value="Hadir">Saya Akan Hadir</option>
-                            <option value="Tidak Hadir">Berhalangan Hadir</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-[9px] font-sans font-bold text-rustic-gold uppercase tracking-wider mb-1">Doa Restu & Ucapan</label>
-                        <textarea 
-                            x-model="message"
-                            required
-                            rows="3"
-                            placeholder="Tulis ucapan selamat & doa restu tulus Anda..."
-                            class="w-full bg-transparent border-b border-rustic-gold/30 focus:border-rustic-blue py-2 text-xs font-sans placeholder-gray-300 focus:outline-none transition-colors duration-300 resize-none text-gray-700"
-                        ></textarea>
-                    </div>
-                    
-                    <button 
-                        type="submit"
-                        class="w-full py-3.5 bg-rustic-blue hover:bg-rustic-gold text-white font-sans text-[10px] tracking-widest uppercase font-bold rounded-xl transition-all duration-500 shadow-sm cursor-pointer"
-                    >
-                        Kirim Konfirmasi
-                    </button>
-                </form>
-            </div>
-
-            <!-- Wishes Feed (Guestbook Feed) -->
-            <div class="max-w-sm mx-auto" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="font-serif text-lg text-rustic-blue font-bold mb-5 text-left border-b border-rustic-gold/10 pb-2">Doa & Ucapan</h3>
-                <div class="space-y-4 max-h-[300px] overflow-y-auto pr-1 text-left" id="wishes-container">
-                    <template x-for="wish in wishes" :key="wish.name + wish.time">
-                        <div class="bg-white p-4 rounded-xl border border-rustic-gold/10 text-left relative overflow-hidden shadow-sm">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="font-serif font-bold text-rustic-blue text-sm" x-text="wish.name"></span>
-                                <span class="text-[8px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold" 
-                                      :class="wish.status === 'Hadir' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'"
-                                      x-text="wish.status"></span>
-                            </div>
-                            <p class="text-xs text-gray-600 leading-relaxed font-sans" x-text="wish.message"></p>
-                            <span class="text-[8px] text-gray-400 mt-2 block" x-text="wish.time"></span>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </div>
-
-        <!-- DYNAMIC FOOTER SECTION -->
-        <div class="py-16 px-8 bg-[#111c2e] text-center relative z-10 text-white border-t border-rustic-gold/20">
-            <!-- Dotted Ring monogram overlay -->
-            <div class="w-16 h-16 border border-rustic-gold/30 rounded-full flex items-center justify-center relative mb-6 mx-auto">
-                <div class="absolute inset-1 border border-dashed border-rustic-gold/20 rounded-full"></div>
-                <span class="font-serif text-lg text-rustic-gold tracking-wide">A & H</span>
-            </div>
-            
-            <p class="font-serif italic text-sm text-gray-300 leading-relaxed max-w-xs mx-auto mb-6">
-                Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
-            </p>
-            
-            <h3 class="font-serif text-2xl text-rustic-gold font-light tracking-wide mb-2">Anisa & Haris</h3>
-            <p class="text-[8px] uppercase tracking-widest text-gray-500 font-sans">© 2026 TemuRuang. All Rights Reserved.</p>
-        </div>
-
+    <!-- Lightbox Modal -->
+    <div class="fixed inset-0 bg-black/95 z-[200] hidden flex-col items-center justify-center p-4 transition-opacity duration-300 opacity-0" id="lightbox" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors cursor-pointer" onclick="closeLightbox()">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+        <img class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" id="lightbox-img" src="" alt="Zoomed Momen"/>
     </div>
 
-    <!-- AOS.js script inclusion & initialization -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait for user interaction to run complete AOS trigger
-            // This guarantees page layout renders beautifully once cover slides up
+        let isAutoscrolling = false;
+        let scrollSpeed = 0.65; // speed parameter
+
+        function scrollStep() {
+            if (!isAutoscrolling) return;
+            window.scrollBy(0, scrollSpeed);
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+                stopAutoscroll();
+            } else {
+                requestAnimationFrame(scrollStep);
+            }
+        }
+
+        function startAutoscroll() {
+            isAutoscrolling = true;
+            const ctrl = document.getElementById('scrollControl');
+            ctrl.classList.add('scrolling');
+            ctrl.querySelector('.material-symbols-outlined').textContent = 'pause';
+            requestAnimationFrame(scrollStep);
+        }
+
+        function stopAutoscroll() {
+            isAutoscrolling = false;
+            const ctrl = document.getElementById('scrollControl');
+            ctrl.classList.remove('scrolling');
+            ctrl.querySelector('.material-symbols-outlined').textContent = 'keyboard_double_arrow_down';
+        }
+
+        function toggleAutoscroll() {
+            if (isAutoscrolling) stopAutoscroll(); else startAutoscroll();
+        }
+
+        function unlockInvitation() {
+            const cover = document.getElementById('cover');
+            const main = document.getElementById('main-content');
+            const floater = document.getElementById('floaterContainer');
+            
+            cover.classList.add('transition-all', 'duration-1000', '-translate-y-full', 'opacity-0');
+            setTimeout(() => {
+                cover.style.display = 'none';
+                main.classList.remove('hidden');
+                main.classList.remove('opacity-0');
+                document.body.classList.remove('cover-active');
+                floater.classList.add('visible');
+                
+                // Play audio
+                const audio = document.getElementById('bg-audio');
+                audio.play().catch(e => console.log("Audio autoplay blocked"));
+                
+                // Trigger scroll reveals
+                triggerReveal();
+            }, 800);
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bg-audio');
+            const ctrl = document.getElementById('musicControl');
+            if (audio.paused) {
+                audio.play();
+                ctrl.querySelector('.material-symbols-outlined').textContent = 'music_note';
+                ctrl.classList.remove('paused');
+                ctrl.classList.add('animate-spin-slow');
+            } else {
+                audio.pause();
+                ctrl.querySelector('.material-symbols-outlined').textContent = 'music_off';
+                ctrl.classList.add('paused');
+                ctrl.classList.remove('animate-spin-slow');
+            }
+        }
+
+        function copyAccount(text, btn) {
+            navigator.clipboard.writeText(text.replace(/\s/g, '')).then(() => {
+                const oldContent = btn.innerHTML;
+                btn.innerHTML = 'DISALIN';
+                alert('Nomor rekening berhasil disalin!');
+                setTimeout(() => {
+                    btn.innerHTML = oldContent;
+                }, 2000);
+            });
+        }
+
+        function submitRsvp(e) {
+            e.preventDefault();
+            const name = document.getElementById('rsvp-nama').value;
+            const status = document.getElementById('rsvp-kehadiran').value;
+            const msg = document.getElementById('rsvp-pesan').value;
+
+            const card = document.createElement('div');
+            card.className = 'bg-alabaster-white p-4 rounded-xl border border-emerald-deep/5 relative text-left';
+            card.innerHTML = `<p class="font-label-bold text-[9px] text-emerald-deep mb-1 uppercase font-bold">${name} (${status})</p><p class="text-xs text-on-surface-variant italic leading-relaxed">"${msg}"</p>`;
+            
+            document.getElementById('wishList').prepend(card);
+            document.getElementById('rsvp-form').reset();
+            alert('Konfirmasi kehadiran dan ucapan berhasil dikirim!');
+        }
+
+        function openLightbox(src) {
+            stopAutoscroll();
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.add('opacity-100');
+            }, 50);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('opacity-100');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 300);
+        }
+
+        function smoothScroll(e, selector, el) {
+            e.preventDefault();
+            stopAutoscroll();
+            
+            document.querySelectorAll('#bottomNav a').forEach(a => {
+                a.classList.remove('text-gold-dust', 'scale-110');
+                a.classList.add('text-white/55');
+            });
+            el.classList.remove('text-white/55');
+            el.classList.add('text-gold-dust', 'scale-110');
+
+            document.querySelector(selector).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll Reveal Observer
+        function triggerReveal() {
+            const revealElements = document.querySelectorAll('.reveal-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            ['wheel', 'touchmove'].forEach(evt => {
+                window.addEventListener(evt, () => { if (isAutoscrolling) stopAutoscroll(); }, { passive: true });
+            });
+
+            // Navigation highlight on scroll
+            window.addEventListener('scroll', () => {
+                let current = "";
+                const sections = document.querySelectorAll("section");
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 250) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                document.querySelectorAll('#bottomNav a').forEach((a) => {
+                    a.classList.remove('text-gold-dust', 'scale-110');
+                    a.classList.add('text-white/55');
+                    const href = a.getAttribute("href");
+                    if (href === `#${current}`) {
+                        a.classList.remove('text-white/55');
+                        a.classList.add('text-gold-dust', 'scale-110');
+                    }
+                });
+            });
         });
     </script>
 </body>

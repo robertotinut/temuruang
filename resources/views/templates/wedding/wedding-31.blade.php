@@ -1,44 +1,145 @@
 @php
-    $couple = $couple ?? [
-        'groom' => 'Raden',
-        'bride' => 'Ayu',
-        'parents' => [
-            'groom' => 'Bapak Kusuma & Ibu Ningrum',
-            'bride' => 'Bapak Sudarsono & Ibu Sriwati',
-        ],
-    ];
+    // If $invitation is passed, map its properties and relations
+    if (isset($invitation)) {
+        $names = explode('&', $invitation->title);
+        $groomName = trim($names[0] ?? 'Raden');
+        $brideName = trim($names[1] ?? 'Ayu');
 
-    $event = $event ?? [
-        'date_iso' => '2026-11-15',
-        'time' => '08:00',
-        'location' => 'Pendopo Dalem Mangkubumen',
-        'address' => 'Jl. Ngasem No. 12, Kraton, Yogyakarta',
-        'maps_url' => 'https://maps.google.com/?q=Yogyakarta',
-    ];
+        $couple = [
+            'groom' => $groomName,
+            'bride' => $brideName,
+            'parents' => [
+                'groom' => $invitation->description ?? 'Bapak Kusuma & Ibu Ningrum',
+                'bride' => 'Bapak Sudarsono & Ibu Sriwati',
+            ],
+        ];
 
-    $schedule = $schedule ?? [
-        ['title' => 'Akad Nikah', 'time' => '08:00 - 10:00', 'note' => 'Pendopo Dalem Mangkubumen'],
-        ['title' => 'Panggih & Resepsi', 'time' => '11:00 - 14:00', 'note' => 'Pendopo Dalem Mangkubumen'],
-    ];
+        $event = [
+            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2026-11-15',
+            'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00',
+            'location' => $invitation->location ?? 'Pendopo Dalem Mangkubumen',
+            'address' => $invitation->address ?? 'Jl. Ngasem No. 12, Kraton, Yogyakarta',
+            'maps_url' => $invitation->google_maps_url ?? 'https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Pendopo Dalem Mangkubumen, Yogyakarta'),
+        ];
 
-    $stories = $stories ?? [
-        ['title' => 'Awal Perkenalan', 'date' => 'Maret 2022', 'text' => 'Bermula dari perjumpaan sederhana yang membawa kesan mendalam di hati.'],
-        ['title' => 'Lamaran', 'date' => 'Agustus 2025', 'text' => 'Dengan niat suci, dua keluarga besar bersilaturahmi untuk mengikat janji.'],
-        ['title' => 'Pernikahan', 'date' => 'November 2026', 'text' => 'Puncak janji suci kami untuk mengarungi bahtera rumah tangga bersama.'],
-    ];
+        $schedule = [
+            [
+                'title' => 'Akad Nikah',
+                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' - 10:00 WIB',
+                'note' => $invitation->location ?? 'Pendopo Dalem Mangkubumen'
+            ],
+            [
+                'title' => 'Panggih & Resepsi',
+                'time' => '11:00 - 14:00 WIB',
+                'note' => $invitation->address ?? 'Pendopo Dalem Mangkubumen'
+            ]
+        ];
 
-    $gallery = $gallery ?? [
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400',
-        'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400'
-    ];
+        if (isset($invitation->stories) && $invitation->stories->count() > 0) {
+            $stories = [];
+            foreach ($invitation->stories as $story) {
+                $stories[] = [
+                    'title' => $story->title,
+                    'date' => $story->date,
+                    'text' => $story->content
+                ];
+            }
+        } else {
+            $stories = [
+                ['title' => 'Awal Perkenalan', 'date' => 'Maret 2022', 'text' => 'Bermula dari perjumpaan sederhana yang membawa kesan mendalam di hati.'],
+                ['title' => 'Lamaran', 'date' => 'Agustus 2025', 'text' => 'Dengan niat suci, dua keluarga besar bersilaturahmi untuk mengikat janji.'],
+                ['title' => 'Pernikahan', 'date' => 'November 2026', 'text' => 'Puncak janji suci kami untuk mengarungi bahtera rumah tangga bersama.'],
+            ];
+        }
 
-    $bg = $bg ?? [
-        'cover' => 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800',
-        'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
-        'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
-    ];
+        if (isset($invitation->galleries) && $invitation->galleries->count() > 0) {
+            $gallery = [];
+            foreach ($invitation->galleries as $gal) {
+                $gallery[] = asset('storage/' . $gal->image_path);
+            }
+        } else {
+            $gallery = [
+                'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400',
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
+                'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
+                'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400'
+            ];
+        }
+
+        $coverUrl = $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800';
+        $bg = [
+            'cover' => $coverUrl,
+            'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
+            'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
+        ];
+
+        if (isset($invitation->comments)) {
+            $wishes = [];
+            foreach ($invitation->comments as $comment) {
+                $wishes[] = [
+                    'name' => $comment->name,
+                    'status' => $comment->status,
+                    'message' => $comment->message
+                ];
+            }
+        } else {
+            $wishes = [
+                ['name' => 'Keluarga Bpk. Budi', 'status' => 'Hadir', 'message' => 'Nderek mangayubagya, mugi dados keluarga ingkang sakinah, mawaddah, warahmah.'],
+                ['name' => 'Siti', 'status' => 'Tidak Hadir', 'message' => 'Pangapunten dereng saged rawuh, namung saged ngaturaken donga pangestu.'],
+            ];
+        }
+
+        $musicUrl = $invitation->music ? asset('storage/' . $invitation->music) : asset('assets/templates/wedding-11/wp-content/uploads/2026/01/Jawa-03-Niken-Salindry-KUSUMA-WIJAYA.mp3');
+    } else {
+        // Fallback / Demo values
+        $couple = [
+            'groom' => 'Raden',
+            'bride' => 'Ayu',
+            'parents' => [
+                'groom' => 'Bapak Kusuma & Ibu Ningrum',
+                'bride' => 'Bapak Sudarsono & Ibu Sriwati',
+            ],
+        ];
+
+        $event = [
+            'date_iso' => '2026-11-15',
+            'time' => '08:00',
+            'location' => 'Pendopo Dalem Mangkubumen',
+            'address' => 'Jl. Ngasem No. 12, Kraton, Yogyakarta',
+            'maps_url' => 'https://maps.google.com/?q=Yogyakarta',
+        ];
+
+        $schedule = [
+            ['title' => 'Akad Nikah', 'time' => '08:00 - 10:00', 'note' => 'Pendopo Dalem Mangkubumen'],
+            ['title' => 'Panggih & Resepsi', 'time' => '11:00 - 14:00', 'note' => 'Pendopo Dalem Mangkubumen'],
+        ];
+
+        $stories = [
+            ['title' => 'Awal Perkenalan', 'date' => 'Maret 2022', 'text' => 'Bermula dari perjumpaan sederhana yang membawa kesan mendalam di hati.'],
+            ['title' => 'Lamaran', 'date' => 'Agustus 2025', 'text' => 'Dengan niat suci, dua keluarga besar bersilaturahmi untuk mengikat janji.'],
+            ['title' => 'Pernikahan', 'date' => 'November 2026', 'text' => 'Puncak janji suci kami untuk mengarungi bahtera rumah tangga bersama.'],
+        ];
+
+        $gallery = [
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400',
+            'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400',
+            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400'
+        ];
+
+        $bg = [
+            'cover' => 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800',
+            'groom' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400',
+            'bride' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400',
+        ];
+
+        $wishes = [
+            ['name' => 'Keluarga Bpk. Budi', 'status' => 'Hadir', 'message' => 'Nderek mangayubagya, mugi dados keluarga ingkang sakinah, mawaddah, warahmah.'],
+            ['name' => 'Siti', 'status' => 'Tidak Hadir', 'message' => 'Pangapunten dereng saged rawuh, namung saged ngaturaken donga pangestu.'],
+        ];
+
+        $musicUrl = asset('assets/templates/wedding-11/wp-content/uploads/2026/01/Jawa-03-Niken-Salindry-KUSUMA-WIJAYA.mp3');
+    }
 @endphp
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
@@ -152,7 +253,7 @@
 >
 <!-- Hidden Audio Player -->
 <audio id="bg-audio" loop preload="auto">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+    <source src="{{ $musicUrl }}" type="audio/mpeg">
 </audio>
 
 <!-- MAIN APP CONTAINER -->
@@ -363,10 +464,7 @@
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-jawa-gold/30 mb-8" data-aos="fade-up"
                  x-data="{
                     name: '', status: 'Hadir', message: '',
-                    wishes: [
-                        { name: 'Keluarga Bpk. Budi', status: 'Hadir', message: 'Nderek mangayubagya, mugi dados keluarga ingkang sakinah, mawaddah, warahmah.' },
-                        { name: 'Siti', status: 'Tidak Hadir', message: 'Pangapunten dereng saged rawuh, namung saged ngaturaken donga pangestu.' }
-                    ],
+                    wishes: @json($wishes),
                     submitWish() {
                         if(!this.name || !this.message) return;
                         this.wishes.unshift({ name: this.name, status: this.status, message: this.message });

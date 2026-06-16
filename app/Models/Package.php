@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Package extends Model
 {
     protected $fillable = [
-        'name', 'price', 'max_guest', 'max_gallery', 'max_template', 'is_active'
+        'name', 'price', 'duration_days', 'max_guest', 'max_gallery', 'max_template', 'is_active'
     ];
 
     public function subscriptions()

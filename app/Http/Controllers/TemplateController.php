@@ -30,6 +30,7 @@ class TemplateController extends Controller
             'description' => 'nullable|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'preview_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'theme_category' => 'nullable|string|max:255',
         ]);
 
         $data = [
@@ -39,6 +40,7 @@ class TemplateController extends Controller
             'description' => $request->description,
             'is_premium' => $request->has('is_premium') ? true : false,
             'is_active' => $request->has('is_active') ? true : false,
+            'theme_category' => $request->theme_category,
         ];
 
         if ($request->hasFile('thumbnail')) {
@@ -68,6 +70,7 @@ class TemplateController extends Controller
             'description' => 'nullable|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'preview_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'theme_category' => 'nullable|string|max:255',
         ]);
 
         $data = [
@@ -77,6 +80,7 @@ class TemplateController extends Controller
             'description' => $request->description,
             'is_premium' => $request->has('is_premium') ? true : false,
             'is_active' => $request->has('is_active') ? true : false,
+            'theme_category' => $request->theme_category,
         ];
 
         if ($request->hasFile('thumbnail')) {

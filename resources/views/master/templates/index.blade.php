@@ -38,6 +38,7 @@
                             <th>Thumbnail</th>
                             <th>Name</th>
                             <th>Kategori</th>
+                            <th>Tema</th>
                             <th>Slug</th>
                             <th>Premium</th>
                             <th>Status</th>
@@ -57,6 +58,13 @@
                             </td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->eventType ? $item->eventType->name : '-' }}</td>
+                            <td>
+                                @if($item->theme_category)
+                                    <span class="badge bg-success bg-soft text-success">{{ $item->theme_category }}</span>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
                             <td><code>{{ $item->slug }}</code></td>
                             <td>
                                 @if($item->is_premium)
