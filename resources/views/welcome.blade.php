@@ -13,9 +13,9 @@
                                 <a class="vs-btn2 wow animate__fadeInUp" data-wow-delay="0.95s" href="#">Lihat Template<i class="far fa-long-arrow-right"></i></a>
                                 <span class="dot-shape"></span>
                             </div> 
-                            <span class="shape-mockup hero-shep2 moving" style="left: -110px; bottom: -30px;"><img src="{{ asset('assets_landingpage/img/shapes/clean1.png') }}" alt="hero element"></span>
+                            <span class="shape-mockup hero-shep2 moving d-none d-md-block" style="left: -110px; bottom: -30px;"><img src="{{ asset('assets_landingpage/img/shapes/clean1.png') }}" alt="hero element"></span>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 d-none d-lg-block">
                             <div class="vs-hero__image position-relative">
                                 <div class="main-img vs-carousel" data-fade="true" data-autoplay="true">
                                     <div class="slide-item">
@@ -25,8 +25,8 @@
                                         <img src="{{ asset('assets_landingpage/img/hero/slider-2.png') }}" alt="Hero Image" style="border-radius: 10px; width: 100%;">
                                     </div>
                                 </div>
-                              <span class="shape-mockup hero-shep3 custome-sheap1 wow animate__zoomIn" data-wow-delay="0.90s" style="left: -50px; bottom: 0;"><img src="{{ asset('assets_landingpage/img/shapes/hero-shep-1-1.svg') }}" alt="hero element"></span>
-                              <span class="shape-mockup hero-shep4 custome-sheap1 wow animate__zoomIn" data-wow-delay="0.80s" style="left: -130px; bottom: 0;"><img src="{{ asset('assets_landingpage/img/shapes/hero-shep-1-2.svg') }}" alt="hero element"></span>
+                              <span class="shape-mockup hero-shep3 custome-sheap1 wow animate__zoomIn d-none d-md-block" data-wow-delay="0.90s" style="left: -50px; bottom: 0;"><img src="{{ asset('assets_landingpage/img/shapes/hero-shep-1-1.svg') }}" alt="hero element"></span>
+                              <span class="shape-mockup hero-shep4 custome-sheap1 wow animate__zoomIn d-none d-md-block" data-wow-delay="0.80s" style="left: -130px; bottom: 0;"><img src="{{ asset('assets_landingpage/img/shapes/hero-shep-1-2.svg') }}" alt="hero element"></span>
                               <span class="shape-mockup hero-shep5 spin d-lg-block d-none" style="left: 75px; top: 90px;"><img src="{{ asset('assets_landingpage/img/shapes/circle-1.png') }}" alt="hero element"></span>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                 <div class="bubble"></div>
                 <div class="bubble"></div>
             </div>
-            <span class="shape-mockup wow animate__fadeInLeft" data-wow-delay="0.80s" style="left: 0px; top: 60px;"><img src="{{ asset('assets_landingpage/img/shapes/hero-sheap3.png') }}" alt="Hero element"></span>
+            <span class="shape-mockup wow animate__fadeInLeft d-none d-md-block" data-wow-delay="0.80s" style="left: 0px; top: 60px;"><img src="{{ asset('assets_landingpage/img/shapes/hero-sheap3.png') }}" alt="Hero element"></span>
         </section>
         <!-- Hero Area End -->
         <!-- Counter Area -->
@@ -51,15 +51,13 @@
                 <div class="row align-items-center justify-content-sm-center">
                     <div class="col-md-auto">
                         <div class="vs-counter__inner">
-                            <div class="play-video">
-                                <a href="https://www.youtube.com/watch?v=moYayPRgaY0" class="play-btn2 popup-video"><i class="fas fa-play"></i></a>
-                            </div>
                             <div class="vs-counter__content">
                                 <div class="wow animate__fadeInUp" data-wow-delay="0.25s">
                                     <div class="title-area title-anime animation-style1">
                                       <span class="sec-subtitle justify-content-center title-anime__title">TENTANG TEMURUANG</span>
                                       <h2 class="sec-title title-anime__title">UNDANGAN DIGITAL TERBAIK</h2>
                                     </div>
+                                    <p style="color: #fff; font-size: 15px; line-height: 1.7; max-width: 400px;">Kami membantu Anda membuat undangan digital yang elegan, cepat, dan mudah untuk setiap momen spesial dalam hidup Anda.</p>
                                 </div>
                             </div>
                             <span class="shape-mockup  custom-sheap" style="left: -35%; top: 0px;"><img src="{{ asset('assets_landingpage/img/shapes/counter-shep2.png') }}" alt="counter element"></span>
@@ -77,7 +75,7 @@
                                                     <h2 class="media-title h3 counter-number" data-count="950">00</h2>
                                                     <span class="count-icon">+</span>
                                                 </div>
-                                                <p class="media-text">Happpy client</p>
+                                                <p class="media-text">Klien Puas</p>
                                             </div>
                                         </div>
                                     </div>
@@ -88,10 +86,10 @@
                                             <span class="counter-icon"><img src="{{ asset('assets_landingpage/img/icon/counter-icon-1-2.svg') }}" alt="icon"></span>
                                             <div class="media-counter">
                                                 <div class="media-count">
-                                                    <h2 class="media-title h3 counter-number" data-count="45">00</h2>
+                                                    <h2 class="media-title h3 counter-number" data-count="50">00</h2>
                                                     <span class="count-icon">+</span>
                                                 </div>
-                                                <p class="media-text">Award Winner</p>
+                                                <p class="media-text">Template Tersedia</p>
                                             </div>
                                         </div>
                                     </div>
@@ -102,10 +100,10 @@
                                             <span class="counter-icon"><img src="{{ asset('assets_landingpage/img/icon/counter-icon-1-3.svg') }}" alt="icon"></span>
                                             <div class="media-counter">
                                                 <div class="media-count">
-                                                    <h2 class="media-title h3 counter-number" data-count="400">00</h2>
+                                                    <h2 class="media-title h3 counter-number" data-count="5000">00</h2>
                                                     <span class="count-icon">+</span>
                                                 </div>
-                                                <p class="media-text">Completed Project</p>
+                                                <p class="media-text">Undangan Terkirim</p>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +117,7 @@
                                                     <h2 class="media-title h3 counter-number" data-count="100">00</h2>
                                                     <span class="count-icon">+</span>
                                                 </div>
-                                                <p class="media-text">Team Member</p>
+                                                <p class="media-text">Kota Terjangkau</p>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +180,7 @@
                             <div class="about-inner wow animate__fadeInUp" data-wow-delay="0.25s">
                                 <a class="vs-btn2" href="#">Lihat Detail <i class="far fa-long-arrow-right"></i></a>
                                 <div class="author-box">
-                                    <img src="{{ asset('assets_landingpage/img/about/author-img.jpg') }}" alt="author image">
+                                    <img src="{{ asset('assets_landingpage/img/about/author-img.jpg') }}" alt="author image" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
                                     <div class="author-content">
                                         <h2 class="title h5">Tim TemuRuang</h2>
                                         <p class="desi">Customer Support</p>
