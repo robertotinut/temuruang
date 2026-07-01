@@ -20,6 +20,7 @@ $fallbacks = [
     'wedding-19' => 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=400', // Elegant dress detail
     'wedding-20' => 'https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=400', // Elegant table setting
     'wedding-28' => 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=400', // Emerald and gold
+    'wedding-32' => 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400', // Royal maroon elegance
     'birthday-01' => 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=400', // Colorful balloons
     'seminar-01' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=400', // Corporate tech seminar
     'reuni-01' => 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=400', // Nostalgia reunion
