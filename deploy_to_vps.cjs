@@ -48,13 +48,18 @@ const conn = new Client();
 conn.on('ready', () => {
     console.log('✅ Connected! Creating remote folders on VPS...');
     
-    // Create the remote gsap subdirectory to avoid SFTP upload errors
-    conn.exec('sudo mkdir -p /var/www/temuruang/public/assets/templates/wedding-32/gsap && sudo chown -R ubuntu:ubuntu /var/www/temuruang/public/assets/templates/wedding-32', (err, stream) => {
+    // Create the remote gsap subdirectory and temporarily chown the whole project directory to ubuntu so SFTP can upload files
+    conn.exec('sudo mkdir -p /var/www/temuruang/public/assets/templates/wedding-32/gsap && sudo chown -R ubuntu:ubuntu /var/www/temuruang', (err, stream) => {
         if (err) {
             console.error('Error creating directory:', err);
             conn.end();
             return;
         }
+        stream.on('data', (data) => {
+            console.log('STDOUT:', data.toString());
+        }).stderr.on('data', (data) => {
+            console.error('STDERR:', data.toString());
+        });
         stream.on('close', () => {
             console.log('✅ Remote directories created/checked! Opening SFTP...');
             conn.sftp((err, sftp) => {

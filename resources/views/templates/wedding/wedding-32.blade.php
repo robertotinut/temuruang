@@ -919,7 +919,7 @@
       .portrait-wrap { top: 240px; width: 55%; left: 15px; }
       .name-card { top: 44%; width: 44%; min-height: 230px; padding-top: 25px; }
       .hydrangea { top: 525px; left: 46%; width: 28%; }
-      .date-card { height: 130px; top: 545px; padding-top: 12px; }
+      .date-card { height: 130px; top: 565px; padding-top: 12px; }
     }
     
     /* =================== COUPLE SECTION =================== */
