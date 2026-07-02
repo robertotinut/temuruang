@@ -166,10 +166,13 @@
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Parisienne&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root {
@@ -524,155 +527,400 @@
       text-align: center;
     }
     
-    /* =================== HERO SECTION =================== */
-    .hero-section {
+    /* =================== GSAP HERO SECTION =================== */
+    .section.stage {
       padding: 0;
-      min-height: 100svh;
-      background: linear-gradient(180deg, #f7e8ec 0%, #f3dce3 100%);
     }
-    
-    .hero-section:before {
+    .stage {
+      position: relative;
+      width: 100%;
+      height: min(100svh, 920px);
+      min-height: 760px;
+      max-height: 920px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 246, 214, .07), transparent 34%),
+        radial-gradient(circle at 0% 70%, rgba(255, 218, 168, .06), transparent 30%),
+        linear-gradient(180deg, #8a243a 0%, #6f1627 45%, #4a0f19 100%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .44);
+    }
+
+    .stage::before,
+    .stage::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 16% 14%, rgba(255,255,255,.65), transparent 26%), radial-gradient(circle at 78% 32%, rgba(255,255,255,.48), transparent 24%);
+      pointer-events: none;
+      z-index: 0;
     }
-    
-    .satin-left { left: -48px; top: 122px; width: 37%; opacity: .90; z-index: 2; filter: drop-shadow(0 12px 18px rgba(80,30,40,.08)); }
-    .satin-right { right: -32px; top: 184px; width: 32%; opacity: .90; z-index: 2; filter: drop-shadow(0 12px 18px rgba(80,30,40,.08)); }
-    
-    .hero-envelope {
-      left: 50%;
-      top: 24px;
-      transform: translateX(-50%);
-      width: 81%;
-      z-index: 3;
-      filter: drop-shadow(0 18px 24px rgba(79,20,31,.18));
+
+    .stage::before {
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.045), transparent 10%, transparent 90%, rgba(0,0,0,.14)),
+        radial-gradient(circle at 50% 50%, transparent 45%, rgba(0,0,0,.18) 100%);
+      mix-blend-mode: soft-light;
     }
-    
-    /* Dynamic Arched Name Card */
-    .hero-card-container {
+
+    .stage::after {
+      border: 1px solid rgba(255, 246, 227, .08);
+      box-shadow: inset 0 0 60px rgba(0,0,0,.18);
+    }
+
+    .grain-layer {
       position: absolute;
-      left: 50%;
-      top: 170px;
-      transform: translateX(-50%);
-      width: 55%;
-      z-index: 5;
-      filter: drop-shadow(0 16px 22px rgba(79, 20, 31, .18));
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .15;
+      background-image:
+        repeating-radial-gradient(circle at 20% 20%, rgba(255,255,255,.16) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 4px);
+      mix-blend-mode: overlay;
     }
-    
-    .hero-card-bg {
-      width: 100%;
-      display: block;
-    }
-    
-    .hero-card-text {
+
+    .ambient {
       position: absolute;
-      top: 14%;
-      left: 10%;
-      right: 10%;
-      bottom: 12%;
-      background: #faf3e8; /* Warm paper cream masking the original names */
+      z-index: 0;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      filter: blur(36px);
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .ambient-1 { left: -80px; top: 140px; background: #fff0c2; }
+    .ambient-2 { right: -95px; bottom: 85px; background: #ff9d9d; } /* adjusted to maroon palette */
+
+    .asset,
+    .piece {
+      position: absolute;
+      user-select: none;
+      -webkit-user-drag: none;
+      transform-origin: center center;
+      will-change: transform, opacity;
+    }
+    
+    .piece { 
+      z-index: 3; 
+      opacity: 0; /* Hide initially for GSAP entrance animation */
+    }
+    
+    .envelope {
       z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 80px 80px 0 0;
+      width: 73%;
+      left: 13.5%;
+      top: 64px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .25));
     }
     
-    .card-wedding-of {
-      font-size: 7px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #9c6873;
-      margin: 0 0 4px 0;
-      font-family: 'Cormorant Garamond', Georgia, serif;
+    .flower-left {
+      z-index: 5;
+      width: 53%;
+      left: 6px;
+      top: 44px;
+      height: auto;
+      filter: drop-shadow(0 14px 13px rgba(0,0,0,.18));
     }
     
-    .card-groom-name, .card-bride-name {
-      font-family: 'Great Vibes', cursive;
-      font-size: 44px;
-      line-height: 1.05;
-      color: #6d0f21;
-      font-weight: 600;
-      text-shadow: 0 2px 4px rgba(111,22,39,0.15);
-      margin: 4px 0;
+    .butterfly {
+      z-index: 6;
+      width: 24%;
+      right: 28px;
+      top: 72px;
+      height: auto;
+      filter: drop-shadow(0 8px 8px rgba(0,0,0,.15));
     }
     
-    .card-ampersand-char {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: 22px;
-      color: #d4af7a;
-      font-weight: 700;
-      margin: 2px 0;
+    .flower-right {
+      z-index: 3; /* Render behind name-card to keep text fully visible */
+      width: 42%;
+      right: -4px;
+      top: 284px;
+      height: auto;
+      filter: drop-shadow(0 13px 12px rgba(0,0,0,.17));
     }
     
-    .hero-date { left: 8px; top: 445px; width: 33%; z-index: 6; }
-    .hero-monogram { right: 22px; top: 484px; width: 31%; z-index: 6; }
+    .portrait-wrap {
+      z-index: 7;
+      width: 52%;
+      left: 24px;
+      top: 350px;
+      aspect-ratio: 1 / 1.25;
+      filter: drop-shadow(0 16px 15px rgba(0,0,0,.28));
+    }
     
-    .hero-monogram-badge {
+    .photo-frame {
       position: absolute;
-      right: 20px;
-      top: 470px;
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #7a1327, #440915);
-      border: 2.5px solid #d4af7a;
-      box-shadow: 0 8px 20px rgba(111, 22, 39, 0.35), inset 0 0 10px rgba(0,0,0,0.3);
-      display: grid;
-      place-items: center;
-      z-index: 10;
-      transform: rotate(-8deg);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 2;
+      pointer-events: none;
+      margin-top: -10px;
+      margin-left: -20px;
     }
-    .hero-monogram-badge span {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 26px;
-      font-style: italic;
-      color: #ffdce2;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-    .hero-date-badge {
+    
+    .photo-oval {
       position: absolute;
-      left: 16px;
-      top: 440px;
-      width: 72px;
-      height: 72px;
+      z-index: 1;
+      left: 18%;
+      top: 25.5%;
+      width: 61%;
+      height: 58.5%;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ffffff, #fdf6f8);
-      border: 2px solid #d4af7a;
-      box-shadow: 0 8px 20px rgba(111, 22, 39, 0.25);
-      display: grid;
-      place-items: center;
-      z-index: 10;
-      transform: rotate(8deg);
+      overflow: hidden;
+      background: #a7a29b;
+      box-shadow: inset 0 0 25px rgba(0,0,0,.25);
+    }
+    
+    .photo-oval img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(.93) brightness(.92) sepia(.15);
+      transform: scale(1.06);
+    }
+    
+    .name-card {
+      z-index: 4;
+      right: 24px;
+      top: 424px;
+      width: 49%;
+      height: 306px;
+      padding: 38px 22px 25px 22px;
+      color: #1a0f0d; /* Very dark brown for maximum readability */
       text-align: center;
-      line-height: 1.1;
+      background: #fffdf9; /* Solid high-contrast background */
+      border: 2px dotted rgba(53, 41, 27, .9);
+      box-shadow: 0 20px 28px rgba(0,0,0,.22);
     }
-    .hero-date-badge span {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #7a1327;
+    
+    .name-card::before {
+      content: "";
+      position: absolute;
+      inset: -16px -13px auto auto;
+      width: 105%;
+      height: 94px;
+      z-index: -1;
+      border-radius: 38px 38px 0 0;
+      border-top: 3px double rgba(79, 59, 40, .25);
+      opacity: .42;
     }
-    .hero-date-badge small {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #8f5462;
+    
+    .name-card::after {
+      content: "";
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      width: 76%;
+      height: 52px;
+      transform: translateX(-50%);
+      border-radius: 999px 999px 0 0;
+      background:
+        radial-gradient(circle at 10px 35px, transparent 11px, rgba(255,255,255,.92) 12px 18px, transparent 19px) 0 0 / 28px 44px repeat-x;
+      filter: drop-shadow(0 3px 1px rgba(0,0,0,.05));
+    }
+    
+    .lace {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      width: 21px;
+      opacity: .85;
+      pointer-events: none;
+      background:
+        radial-gradient(circle, rgba(70,49,32,.4) 0 2px, transparent 2.5px) center / 6px 8px repeat-y;
+    }
+    
+    .lace-left { left: -2px; }
+    .lace-right { right: -2px; }
+    
+    .mini-label {
       display: block;
+      margin-bottom: 4px;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #3b2c25; /* Darker, high contrast */
+      font-weight: 700;
     }
-    .hero-lily { left: 8px; top: 128px; width: 35%; z-index: 4; }
-    .hero-floral-right { right: -4px; top: 132px; width: 36%; z-index: 5; }
-    .hero-floral-pink { left: 18px; top: 310px; width: 28%; z-index: 4; }
-    .hero-butterflies { right: 18px; top: 338px; width: 24%; z-index: 6; opacity: .92; }
-    .hero-key { left: 44px; top: 403px; font-size: 40px; color: #7e1f30; opacity: .86; z-index: 7; transform: rotate(16deg); }
-    .hero-carriage { left: 30px; bottom: 72px; width: 82%; opacity: .28; z-index: 1; }
+    
+    .name-card h1 {
+      margin: 0;
+      font-family: "Great Vibes", "Parisienne", cursive;
+      font-weight: 400;
+      font-size: clamp(24px, 7vw, 36px);
+      line-height: 1;
+      color: #1a0f0d; /* Very dark */
+      text-shadow: 0 1px 0 #fff;
+      word-wrap: break-word;
+    }
+    
+    .name-card h1 span {
+      display: inline-block;
+      margin: 6px 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: .6em;
+      font-weight: 700;
+      color: #3b2c25; /* Very dark */
+    }
+    
+    .name-card p {
+      margin: 12px 0 0;
+      font-family: "Parisienne", "Great Vibes", cursive;
+      font-size: clamp(16px, 4vw, 20px);
+      letter-spacing: .06em;
+      color: #1a0f0d; /* Very dark */
+      font-weight: 600;
+    }
+    
+    .date-card {
+      z-index: 3;
+      left: 42px;
+      top: 625px; /* positioned relative to top to maintain consistent gap under portrait-wrap */
+      width: 44%;
+      height: 145px;
+      padding-top: 15px;
+      text-align: center;
+      color: #1a0f0d; /* Very dark */
+      background: #fffdf9; /* Solid high-contrast background */
+      border: 2px solid rgba(76, 61, 42, .75);
+      box-shadow: 0 20px 30px rgba(0,0,0,.2);
+      margin-top: -80px;
+    }
+    
+    .date-card span {
+      display: block;
+      font-family: "Parisienne", "Great Vibes", cursive;
+      font-size: 24px;
+    }
+    
+    .date-card strong {
+      display: block;
+      margin-top: 8px;
+      font-family: "Great Vibes", "Parisienne", cursive;
+      font-size: clamp(28px, 7vw, 36px);
+      font-weight: 700;
+      line-height: .9;
+      color: #1a0f0d; /* Very dark */
+    }
+    
+    .date-card em {
+      display: block;
+      margin-top: 8px;
+      font-family: "Parisienne", cursive;
+      font-size: 22px;
+      font-style: normal;
+      color: #1a0f0d; /* Very dark */
+      font-weight: 600;
+    }
+    
+    .hydrangea {
+      z-index: 8;
+      width: 31%;
+      left: 34.5%;
+      top: 620px;
+      height: auto;
+      filter: drop-shadow(0 12px 10px rgba(0,0,0,.22));
+    }
+    
+    .music-disc {
+      z-index: 5;
+      right: 10px;
+      bottom: 140px;
+      width: 34%;
+      aspect-ratio: 1 / 1;
+      border: 0;
+      cursor: pointer;
+      color: #74685e;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 67%, #4a2909 0 13%, transparent 14%),
+        radial-gradient(circle, #fdf4e6 0 52%, transparent 53%),
+        conic-gradient(from 20deg, #f7ecdb, #fffaf1, #eadbca, #fff7eb, #efe1cf, #f7ecdb);
+      box-shadow:
+        inset 0 0 0 3px rgba(73, 53, 32, .65),
+        inset 0 0 0 22px rgba(255,255,255,.28),
+        0 18px 24px rgba(0,0,0,.26);
+    }
+    
+    .music-disc::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(82, 61, 38, .36);
+    }
+    
+    .disc-copy {
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Great Vibes", "Parisienne", cursive;
+      font-size: clamp(31px, 9.2vw, 44px);
+      line-height: 1.04;
+    }
+    
+    .disc-play {
+      position: absolute;
+      left: 50%;
+      bottom: 31px;
+      width: 0;
+      height: 0;
+      transform: translateX(-37%);
+      border-left: 21px solid #fff7ed;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+    }
+    
+    .music-disc.is-playing { animation: discSpin 5.5s linear infinite; }
+    .music-disc.is-playing .disc-copy, .music-disc.is-playing .disc-play { animation: counterSpin 5.5s linear infinite; }
+    
+    @keyframes discSpin { to { transform: rotate(360deg); } }
+    @keyframes counterSpin { to { transform: rotate(-360deg); } }
+    
+    .corner {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-color: rgba(74, 62, 46, .42);
+    }
+    .corner-a { top: 11px; left: 11px; border-top: 3px double; border-left: 3px double; border-top-left-radius: 11px; }
+    .corner-b { top: 11px; right: 11px; border-top: 3px double; border-right: 3px double; border-top-right-radius: 11px; }
+    .corner-c { bottom: 11px; left: 11px; border-bottom: 3px double; border-left: 3px double; border-bottom-left-radius: 11px; }
+    .corner-d { bottom: 11px; right: 11px; border-bottom: 3px double; border-right: 3px double; border-bottom-right-radius: 11px; }
+
+    @media (max-width: 430px) {
+      .stage { max-height: none; min-height: 720px; }
+      .envelope { top: 8%; left: 13.5%; width: 73%; }
+      .flower-left { top: 5%; left: 6%; width: 44%; }
+      .butterfly { top: 9%; right: 8%; width: 22%; }
+      .flower-right { top: 32%; right: -4%; width: 36%; }
+      .portrait-wrap { top: 345px; left: 18px; width: 52%; }
+      .name-card { top: 421px; right: 16px; width: 51%; height: 304px; }
+      .hydrangea { top: 610px; left: 34%; width: 32%; }
+      .date-card { left: 32px; top: 615px; width: 44%; height: 140px; padding-top: 15px; }
+    }
+
+    @media (max-height: 780px) {
+      .stage { min-height: 700px; }
+      .envelope { top: 7%; width: 68%; left: 16%; }
+      .flower-left { top: 5%; width: 40%; left: 4%; }
+      .butterfly { top: 8%; width: 20%; right: 8%; }
+      .flower-right { top: 30%; width: 32%; right: -4%; }
+      .portrait-wrap { top: 240px; width: 55%; left: 15px; }
+      .name-card { top: 44%; width: 44%; min-height: 230px; padding-top: 25px; }
+      .hydrangea { top: 525px; left: 46%; width: 28%; }
+      .date-card { height: 130px; top: 545px; padding-top: 12px; }
+    }
     
     /* =================== COUPLE SECTION =================== */
     .couple-section {
@@ -1087,19 +1335,18 @@
       z-index: 2;
     }
 
+    /* Removed drop cap styling to keep capital letter normal */
     .story-text::first-letter {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 38px;
-      font-weight: 700;
-      color: #7a1327;
-      float: left;
-      line-height: 0.8;
-      margin-right: 8px;
-      margin-bottom: -2px;
-      padding: 4px 6px;
-      background: rgba(212, 175, 122, 0.18);
-      border: 1px solid rgba(212, 175, 122, 0.5);
-      border-radius: 4px;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      float: none;
+      line-height: inherit;
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: none;
     }
 
     .story-quote-bg {
@@ -1705,19 +1952,21 @@
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     
-    /* Creative Staggered & Tilted Layout */
-    .timeline-row:nth-child(odd) {
-      transform: rotate(-3deg) translateX(-8px);
+    /* Straight, clean layout (no rotation as requested) */
+    .timeline-row {
       border-left: 5px solid #d4af7a;
+      transform: none !important;
+    }
+    .timeline-row:nth-child(odd) {
+      transform: none;
     }
     .timeline-row:nth-child(even) {
-      transform: rotate(3deg) translateX(8px);
-      border-right: 5px solid #d4af7a;
+      transform: none;
     }
     
     .timeline-row:hover {
       background: #ffffff;
-      transform: rotate(0deg) scale(1.04) !important;
+      transform: scale(1.04) !important;
       box-shadow: 0 16px 35px rgba(111, 22, 39, 0.22);
       border-color: #d4af7a;
       z-index: 5;
@@ -2263,14 +2512,14 @@
       justify-content: center;
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 38px;
-      font-style: italic;
+      font-style: normal; /* Straightened monogram */
       border: 3px solid #d4af7a;
       box-shadow: 0 10px 25px rgba(111,22,39,0.3);
     }
     
     .closing-date { position: relative; z-index: 2; margin-top: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: #8c4c5c; text-transform: uppercase; }
     
-    .closing-names { position: relative; z-index: 2; font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 700; color: var(--maroon); margin: 16px 0 10px; }
+    .closing-names { position: relative; z-index: 2; font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 700; color: var(--maroon); margin: 16px 0 10px; font-style: normal; /* Straightened name */ }
     
     .closing-footer {
       background: linear-gradient(90deg, #7d1128, #5d0f1f);
@@ -2392,6 +2641,9 @@
               let audio = document.getElementById('bg-audio');
               if (audio) { audio.play().catch(e => console.log('Autoplay blocked')); }
               setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 250);
+              setTimeout(() => {
+                if (typeof window.animateWithGsap === 'function') window.animateWithGsap();
+              }, 400);
             "
           >LET'S OPEN</button>
         </div>
@@ -2415,35 +2667,43 @@
 
       <!-- =================== MAIN PAGE CONTENT =================== -->
       <div class="content" :class="isOpen ? 'is-visible' : ''">
-        <!-- 1. HERO SECTION -->
-        <section class="section hero-section" id="home">
-          <img src="{{ $assetBase }}/satin_left.png" class="asset satin-left" alt="" />
-          <img src="{{ $assetBase }}/satin_right.png" class="asset satin-right" alt="" />
-          <img src="{{ $assetBase }}/envelope_open.png" class="asset hero-envelope" alt="Open envelope" />
-          
-          <!-- Dynamic Arched Text Overlaid on Card Background -->
-          <div class="hero-card-container">
-            <img src="{{ $assetBase }}/card_names.png" class="hero-card-bg" alt="Card Background" />
-            <div class="hero-card-text">
-              <span class="card-wedding-of">The Wedding of</span>
-              <span class="card-groom-name">{{ $couple['groom'] }}</span>
-              <span class="card-ampersand-char">&amp;</span>
-              <span class="card-bride-name">{{ $couple['bride'] }}</span>
+        <!-- 1. HERO SECTION (GSAP VINTAGE) -->
+        <section class="section stage" id="home">
+          <div class="ambient ambient-1"></div>
+          <div class="ambient ambient-2"></div>
+          <div class="grain-layer"></div>
+
+          <img class="piece asset envelope float-slow" src="{{ $assetBase }}/gsap/envelope-vintage.png" alt="Amplop vintage" draggable="false" />
+          <img class="piece asset flower-left float-medium" src="{{ $assetBase }}/gsap/flowers-left.png" alt="Rangkaian bunga kiri" draggable="false" />
+          <img class="piece asset butterfly float-butterfly" src="{{ $assetBase }}/gsap/butterfly.png" alt="Kupu-kupu" draggable="false" />
+          <img class="piece asset flower-right float-soft" src="{{ $assetBase }}/gsap/flowers-right.png" alt="Rangkaian bunga kanan" draggable="false" />
+
+          <div class="piece portrait-wrap float-soft">
+            <div class="photo-oval">
+              <img src="{{ !empty($gallery) ? $gallery[0] : 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=500&auto=format&fit=crop' }}" alt="Foto pasangan" draggable="false" />
             </div>
+            <img class="asset photo-frame" src="{{ $assetBase }}/gsap/photo-frame-oval.png" alt="Pigura foto vintage" draggable="false" />
           </div>
-          
-          <div class="asset hero-date-badge">
-            <span>{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('d') }}<small>{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('M') }}</small></span>
-          </div>
-          <div class="asset hero-monogram-badge">
-            <span>{{ substr($couple['groom'], 0, 1) }}&amp;{{ substr($couple['bride'], 0, 1) }}</span>
-          </div>
-          <img src="{{ $assetBase }}/flower_lily.png" class="asset hero-lily" alt="" />
-          <img src="{{ $assetBase }}/flower_burgundy_gold.png" class="asset hero-floral-right" alt="" />
-          <img src="{{ $assetBase }}/flower_pink_burgundy.png" class="asset hero-floral-pink" alt="" />
-          <img src="{{ $assetBase }}/butterflies.png" class="asset hero-butterflies" alt="" />
-          <div class="asset hero-key">⌘</div>
-          <img src="{{ $assetBase }}/carriage.png" class="asset hero-carriage" alt="" />
+
+          <article class="piece name-card float-card" aria-label="Nama pasangan">
+            <div class="lace lace-left"></div>
+            <div class="lace lace-right"></div>
+            <span class="mini-label">The Wedding of</span>
+            <h1>{{ $couple['groom'] }}<br><span>&amp;</span><br>{{ $couple['bride'] }}</h1>
+            <p>{{ \Carbon\Carbon::parse($event['date_iso'])->format('d . m . Y') }}</p>
+          </article>
+
+          <article class="piece date-card float-card" aria-label="Tanggal acara">
+            <div class="corner corner-a"></div>
+            <div class="corner corner-b"></div>
+            <div class="corner corner-c"></div>
+            <div class="corner corner-d"></div>
+            <span>{{ \Carbon\Carbon::parse($event['date_iso'])->format('d') }}</span>
+            <strong>{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('M') }}</strong>
+            <em>{{ \Carbon\Carbon::parse($event['date_iso'])->format('Y') }}</em>
+          </article>
+
+          <img class="piece asset hydrangea float-medium" src="{{ $assetBase }}/gsap/hydrangea.png" alt="Bunga hydrangea" draggable="false" />
         </section>
 
         <!-- 2. COUPLE SECTION -->
@@ -2603,7 +2863,7 @@
 
         <!-- 6. EVENTS SECTION -->
         <section class="section events-section" id="events">
-          <div class="title-combo"><span>Rangkaian Acara</span> The Wedding</div>
+          <div class="title-combo"><span>Rangkaian Acara</span> Pernikahan</div>
           <img src="{{ $assetBase }}/flower_burgundy_gold.png" class="event-flower-top" alt="" />
           <img src="{{ $assetBase }}/flower_pink_burgundy.png" class="event-flower-bottom" alt="" />
           
@@ -2654,77 +2914,10 @@
           </div>
         </section>
 
-        <!-- 8. DRESSCODE SECTION -->
-        <section class="section dresscode-section" id="dresscode">
-          <div class="dresscode-card reveal-up">
-            <!-- Corner edge florals (Di tepi-tepi) so they NEVER cover the text -->
-            <!-- <img src="{{ $assetBase }}/bunga%20pojok%20kiri%20atas.png" class="dress-flower-left" alt="" /> -->
-            <!-- <img src="{{ $assetBase }}/bunga%20pojok%20kanan%20atas.png" class="dress-flower-right" alt="" /> -->
-            <div class="dress-title">Dresscode</div>
-            <div class="event-divider" style="margin: 8px auto 14px;"></div>
-            <p class="dress-caption">Kehadiran Anda adalah hadiah terindah bagi kami. Untuk menyempurnakan keindahan momen bahagia ini, kami mengharapkan kesediaan Bapak/Ibu/Saudara/i untuk mengenakan busana palet warna berikut.</p>
-            
-            <div class="attire-grid">
-              <div class="attire-box">
-                <div class="attire-icon-circle">
-                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffdce2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                    <path d="M12 12l-4 -3v6l4 -3z" fill="#d4af7a" stroke="none" />
-                    <path d="M12 12l4 -3v6l4 -3z" fill="#d4af7a" stroke="none" />
-                    <circle cx="12" cy="12" r="1.5" fill="#fff" stroke="none" />
-                  </svg>
-                </div>
-                <h4>Gentlemen</h4>
-                <p>Formal Suit, Tuxedo, or Batik in Maroon / Charcoal palette</p>
-              </div>
-              <div class="attire-box">
-                <div class="attire-icon-circle">
-                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffdce2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3a3 3 0 0 0 -3 3v2a3 3 0 0 0 6 0v-2a3 3 0 0 0 -3 -3z" />
-                    <path d="M9 8h6l3 12h-12l3 -12z" fill="#d4af7a" fill-opacity="0.3" stroke="#d4af7a" />
-                    <path d="M12 12v3" stroke="#fff" />
-                  </svg>
-                </div>
-                <h4>Ladies</h4>
-                <p>Evening Gown, Kebaya, or Formal Dress in Cream / Terracotta palette</p>
-              </div>
-            </div>
-
-            <div class="swatch-row">
-              <div class="swatch-item"><span class="swatch sw1"></span><span class="swatch-label">Maroon</span></div>
-              <div class="swatch-item"><span class="swatch sw2"></span><span class="swatch-label">Charcoal</span></div>
-              <div class="swatch-item"><span class="swatch sw3"></span><span class="swatch-label">Cream</span></div>
-              <div class="swatch-item"><span class="swatch sw4"></span><span class="swatch-label">Terracotta</span></div>
-            </div>
-          </div>
-        </section>
+        <!-- 8. DRESSCODE SECTION REMOVED -->
 
         <!-- 9. RSVP & WISHES SECTION (Interactive Guestbook via AlpineJS) -->
-        <div x-data="{
-          wishes: @json($wishes),
-          name: '',
-          attend: 'Ya, saya akan hadir',
-          message: '',
-          rsvpName: '',
-          rsvpCount: 1,
-          rsvpAttend: 'Ya, saya akan hadir',
-          submitRSVP() {
-            if (!this.rsvpName) return;
-            alert('Konfirmasi kehadiran berhasil dikirim untuk ' + this.rsvpName);
-            this.rsvpName = '';
-          },
-          submitWish() {
-            if (!this.name || !this.message) return;
-            this.wishes.unshift({
-              name: this.name,
-              status: this.attend,
-              message: this.message
-            });
-            this.name = '';
-            this.message = '';
-            alert('Terima kasih atas ucapan dan doa Anda!');
-          }
-        }">
+        <div x-data="rsvpComponent({!! json_encode($wishes) !!})">
           <!-- RSVP Section -->
           <section class="section rsvp-section" id="rsvp">
             <div class="section-title-script">Konfirmasi Kehadiran Anda</div>
@@ -2929,5 +3122,120 @@
       }
     }
   </script>
+    <!-- Bottom Scripts -->
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('rsvpComponent', (initialWishes) => ({
+          wishes: initialWishes || [],
+          name: '',
+          attend: 'Ya, saya akan hadir',
+          message: '',
+          rsvpName: '',
+          rsvpCount: 1,
+          rsvpAttend: 'Ya, saya akan hadir',
+          submitRSVP() {
+            if (!this.rsvpName) return;
+            alert('Konfirmasi kehadiran berhasil dikirim untuk ' + this.rsvpName);
+            this.rsvpName = '';
+          },
+          submitWish() {
+            if (!this.name || !this.message) return;
+            this.wishes.unshift({
+              name: this.name,
+              status: this.attend,
+              message: this.message
+            });
+            this.name = '';
+            this.message = '';
+            alert('Terima kasih atas ucapan dan doa Anda!');
+          }
+        }));
+      });
+
+      window.animateWithGsap = function() {
+        if (!window.gsap) return;
+        
+        const stage = document.getElementById('home');
+        const pieces = [...stage.querySelectorAll('.piece')];
+        const stageRect = stage.getBoundingClientRect();
+        const startX = stageRect.width / 2;
+        const startY = stageRect.height + 120;
+
+        function randomBetween(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        // Set initial position at the bottom center and scale down
+        pieces.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const localCenterX = rect.left - stageRect.left + rect.width / 2;
+          const localCenterY = rect.top - stageRect.top + rect.height / 2;
+
+          gsap.set(el, {
+            x: startX - localCenterX + randomBetween(-18, 18),
+            y: startY - localCenterY + randomBetween(0, 80),
+            scale: randomBetween(0.58, 0.74),
+            opacity: 0,
+            rotate: randomBetween(-13, 13),
+            transformOrigin: 'center center'
+          });
+        });
+
+        // Entrance timeline
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        tl.to('#home .envelope', {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.05,
+          ease: 'back.out(1.4)'
+        })
+        .to(['#home .flower-left', '#home .flower-right'], {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: 'back.out(1.65)'
+        }, '-=0.58')
+        .to(['#home .portrait-wrap', '#home .name-card'], {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.05,
+          stagger: 0.13,
+          ease: 'back.out(1.4)'
+        }, '-=0.55')
+        .to(['#home .date-card', '#home .hydrangea', '#home .butterfly'], {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.05,
+          stagger: 0.11,
+          ease: 'back.out(1.55)'
+        }, '-=0.45')
+        .add(window.startFloatingAnimations, '>-0.1');
+      };
+
+      window.startFloatingAnimations = function() {
+        if (!window.gsap) return;
+        
+        gsap.to('#home .float-slow', { y: '-=8', duration: 4.2, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('#home .float-medium', { y: '-=11', x: '+=2', duration: 3.2, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('#home .float-soft', { y: '+=7', rotate: '+=1.2', duration: 3.7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('#home .float-card', { y: '-=5', duration: 4.6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('#home .float-butterfly', { x: '-=13', y: '+=9', rotate: '-=7', duration: 2.7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      };
+    </script>
+  </div>
 </body>
 </html>
