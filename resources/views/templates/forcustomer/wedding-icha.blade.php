@@ -3051,7 +3051,7 @@
         <!-- 8. DRESSCODE SECTION REMOVED -->
 
         <!-- 9. RSVP & WISHES SECTION (Interactive Guestbook via AlpineJS) -->
-        <div x-data="rsvpComponent({!! json_encode($wishes) !!})">
+        <div x-data="rsvpComponent(@js($wishes))">
           <!-- RSVP Section -->
           <section class="section rsvp-section" id="rsvp">
             <div class="section-title-script">Konfirmasi Kehadiran Anda</div>
