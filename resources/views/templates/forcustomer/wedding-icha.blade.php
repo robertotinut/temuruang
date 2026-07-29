@@ -46,8 +46,8 @@
         ];
 
         $event = [
-            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2026-08-29',
-            'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00',
+            'date_iso' => '2026-08-29',
+            'time' => '08:00',
             'location' => $invitation->location ?? 'Kediaman Mempelai Wanita',
             'address' => $invitation->address ?? 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya',
             'maps_url' => $invitation->google_maps_url ?? 'https://maps.app.goo.gl/q76d4cNEiL39H6dC6',
@@ -56,12 +56,12 @@
         $schedule = [
             [
                 'title' => 'Akad Nikah',
-                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' WIB',
+                'time' => '08.00 WIB',
                 'note' => $invitation->location ?? 'Kediaman Mempelai Wanita'
             ],
             [
                 'title' => 'Resepsi',
-                'time' => '12:00 WIB',
+                'time' => '16.00 WIB',
                 'note' => $invitation->address ?? 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya'
             ]
         ];
@@ -129,7 +129,7 @@
 
         $schedule = [
             ['title' => 'Akad Nikah', 'time' => '08.00 WIB', 'note' => 'Kediaman Mempelai Wanita'],
-            ['title' => 'Resepsi', 'time' => '12.00 WIB', 'note' => 'Kediaman Mempelai Wanita'],
+            ['title' => 'Resepsi', 'time' => '16.00 WIB', 'note' => 'Kediaman Mempelai Wanita'],
         ];
 
         $stories = $defaultStories;
@@ -148,7 +148,7 @@
     
     // Dynamic Calendar Calculation
     $eventDate = \Carbon\Carbon::parse($event['date_iso']);
-    $calendarMonth = $eventDate->translatedFormat('F');
+    $calendarMonth = $eventDate->locale('id')->translatedFormat('F');
     $calendarYear = $eventDate->format('Y');
     $activeDay = (int)$eventDate->format('j');
     
@@ -2811,7 +2811,7 @@
             <div class="corner corner-c"></div>
             <div class="corner corner-d"></div>
             <span style="margin-bottom:-20px;">&nbsp;</span>
-            <strong>{{ \Carbon\Carbon::parse($event['date_iso'])->format('d') }} - {{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('M') }}</strong>
+            <strong>{{ \Carbon\Carbon::parse($event['date_iso'])->format('d') }} - {{ \Carbon\Carbon::parse($event['date_iso'])->locale('id')->translatedFormat('M') }}</strong>
             <em>{{ \Carbon\Carbon::parse($event['date_iso'])->format('Y') }}</em>
           </article>
 
@@ -2955,7 +2955,7 @@
               type="button"
               @click="
                 const start = '{{ str_replace('-', '', $event['date_iso']) }}T010000Z';
-                const end = '{{ str_replace('-', '', $event['date_iso']) }}T040000Z';
+                const end = '{{ str_replace('-', '', $event['date_iso']) }}T110000Z';
                 const text = encodeURIComponent('Wedding {{ $couple['groom'] }} & {{ $couple['bride'] }}');
                 const details = encodeURIComponent('Akad & Resepsi {{ $couple['groom'] }} dan {{ $couple['bride'] }}');
                 const location = encodeURIComponent('{{ $event['address'] }}');
@@ -3009,7 +3009,7 @@
               <div class="event-divider"></div>
               
               <div class="event-time-box">
-                <div class="event-date-text">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</div>
+                <div class="event-date-text">{{ \Carbon\Carbon::parse($event['date_iso'])->locale('id')->translatedFormat('l, d F Y') }}.</div>
                 <div class="event-clock-text">{{ $sch['time'] }}</div>
               </div>
               
@@ -3039,11 +3039,8 @@
             </div> -->
 
             <div class="timeline-list">
-              <div class="timeline-row"><span>08.00 WIB</span><p>Akad Nikah Utama</p></div>
-              <div class="timeline-row"><span>09.30 WIB</span><p>Sesi Foto Bersama Keluarga</p></div>
-              <div class="timeline-row"><span>19.00 WIB</span><p>Resepsi Pembukaan</p></div>
-              <div class="timeline-row"><span>19.30 WIB</span><p>Sesi Ramah Tamah & Hiburan</p></div>
-              <div class="timeline-row"><span>21.00 WIB</span><p>Penutupan Acara</p></div>
+              <div class="timeline-row"><span>08.00 WIB</span><p>Akad Nikah</p></div>
+              <div class="timeline-row"><span>16.00 WIB</span><p>Resepsi</p></div>
             </div>
           </div>
         </section>
@@ -3177,7 +3174,7 @@
             <div class="closing-monogram">
               <span>♥</span>
             </div>
-            <div class="closing-date">{{ \Carbon\Carbon::parse($event['date_iso'])->translatedFormat('l, d F Y') }}</div>
+            <div class="closing-date">{{ \Carbon\Carbon::parse($event['date_iso'])->locale('id')->translatedFormat('l, d F Y') }}</div>
             <div class="closing-names">Icha &amp; Surya</div>
           </div>
 

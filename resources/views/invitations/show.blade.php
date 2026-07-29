@@ -343,7 +343,22 @@
                                         @foreach($invitation->guests as $guest)
                                         @php
                                             $link = url('/' . $invitation->slug . '?kpd=' . urlencode($guest->name) . ($guest->group ? '&group=' . urlencode($guest->group) : ''));
-                                            $waText = "Halo {$guest->name},\n\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami.\n\nBerikut link undangan untuk Anda:\n{$link}\n\nTerima kasih.";
+                                            if ($invitation->custom_view_path === 'wedding-icha') {
+                                                $waText = "Yth. {$guest->name}\n\n"
+                                                    . "Assalamualaikum Warahmatullahi Wabarakatuh\n\n"
+                                                    . "Dengan memohon Rahmat dan Ridho Allah SWT, dan tanpa mengurangi rasa hormat melalui pesan ini kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:\n\n"
+                                                    . "Icha Alifia Yokendy Putri & Pamunkas Surya Merdeka\n\n"
+                                                    . "Berikut link undangan kami, untuk informasi lengkap acara dapat dikunjungi melalui:\n"
+                                                    . "{$link}\n\n"
+                                                    . "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n"
+                                                    . "Mohon maaf, undangan hanya dibagikan melalui pesan ini.\n\n"
+                                                    . "Terima kasih banyak atas perhatiannya.\n"
+                                                    . "Wassalamualaikum Warahmatullahi Wabarakatuh\n\n"
+                                                    . "Hormat kami,\n"
+                                                    . "Icha & Surya";
+                                            } else {
+                                                $waText = "Halo {$guest->name},\n\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami.\n\nBerikut link undangan untuk Anda:\n{$link}\n\nTerima kasih.";
+                                            }
                                         @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
