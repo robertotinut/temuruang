@@ -66,6 +66,14 @@ Route::get('/pricing', function () {
     return view('front.pricing', compact('packages'));
 });
 
+Route::post('/{invitation:slug}/rsvp', [\App\Http\Controllers\PublicInvitationInteractionController::class, 'storeRsvp'])
+    ->middleware('throttle:10,1')
+    ->name('invitation.rsvp.store');
+
+Route::post('/{invitation:slug}/guest-book', [\App\Http\Controllers\PublicInvitationInteractionController::class, 'storeGuestBook'])
+    ->middleware('throttle:10,1')
+    ->name('invitation.guest-book.store');
+
 // Public Invitation Route
 Route::get('/{slug}', function (string $slug) {
     $invitation = \App\Models\Invitation::with(['eventType', 'template', 'galleries', 'stories', 'rsvps', 'guestBooks'])

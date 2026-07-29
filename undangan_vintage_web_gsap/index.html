@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vintage Invitation Asset Page</title>
+  <meta name="description" content="Single page undangan vintage dengan asset terpisah dan animasi GSAP." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="invitation-shell" aria-label="Vintage wedding invitation preview">
+    <section class="stage" id="stage">
+      <div class="ambient ambient-1"></div>
+      <div class="ambient ambient-2"></div>
+      <div class="grain-layer"></div>
+
+      <button class="open-gate" id="openGate" type="button" aria-label="Buka undangan">
+        <span class="gate-ring"></span>
+        <span class="gate-play"></span>
+        <span class="gate-text">Tap to Open</span>
+      </button>
+
+      <img class="piece asset envelope float-slow" src="assets/envelope-vintage.png" alt="Amplop vintage" draggable="false" />
+      <img class="piece asset flower-left float-medium" src="assets/flowers-left.png" alt="Rangkaian bunga kiri" draggable="false" />
+      <img class="piece asset butterfly float-butterfly" src="assets/butterfly.png" alt="Kupu-kupu" draggable="false" />
+      <img class="piece asset flower-right float-soft" src="assets/flowers-right.png" alt="Rangkaian bunga kanan" draggable="false" />
+
+      <div class="piece portrait-wrap float-soft">
+        <div class="photo-oval">
+          <img src="assets/couple-placeholder.svg" alt="Foto pasangan" draggable="false" />
+        </div>
+        <img class="asset photo-frame" src="assets/photo-frame-oval.png" alt="Pigura foto vintage" draggable="false" />
+      </div>
+
+      <article class="piece name-card float-card" aria-label="Nama pasangan">
+        <div class="lace lace-left"></div>
+        <div class="lace lace-right"></div>
+        <span class="mini-label">The Wedding of</span>
+        <h1>Difa<br><span>&amp;</span><br>Ridwan</h1>
+        <p>08 . 12 . 2026</p>
+      </article>
+
+      <article class="piece date-card float-card" aria-label="Tanggal acara">
+        <div class="corner corner-a"></div>
+        <div class="corner corner-b"></div>
+        <div class="corner corner-c"></div>
+        <div class="corner corner-d"></div>
+        <span>08</span>
+        <strong>Desember</strong>
+        <em>2026</em>
+      </article>
+
+      <img class="piece asset hydrangea float-medium" src="assets/hydrangea.png" alt="Bunga hydrangea" draggable="false" />
+
+      <button class="piece music-disc float-disc" id="musicDisc" type="button" aria-label="Play music">
+        <span class="disc-copy">Play<br>Music</span>
+        <span class="disc-play"></span>
+      </button>
+
+      <audio id="weddingAudio" src="assets/music.mp3" loop preload="none"></audio>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

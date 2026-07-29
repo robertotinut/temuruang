@@ -28,9 +28,13 @@
 
     // If $invitation is passed, map its properties and relations
     if (isset($invitation)) {
-        $names = explode('&', $invitation->title);
-        $groomName = $names[0];
-        $brideName = $names[1];
+        $names = array_map('trim', explode('&', $invitation->title, 2));
+        $groomName = count($names) === 2 && $names[0] !== ''
+            ? $names[0]
+            : 'Icha Alifia Yokendy Putri';
+        $brideName = count($names) === 2 && $names[1] !== ''
+            ? $names[1]
+            : 'Pamunkas Surya Merdeka';
 
         $couple = [
             'groom' => $groomName,
@@ -90,20 +94,17 @@
             $gallery = [];
         }
 
-        if (isset($invitation->comments)) {
+        if ($invitation->relationLoaded('guestBooks')) {
             $wishes = [];
-            foreach ($invitation->comments as $comment) {
+            foreach ($invitation->guestBooks->sortByDesc('created_at')->take(20) as $guestBook) {
                 $wishes[] = [
-                    'name' => $comment->name,
-                    'status' => $comment->status,
-                    'message' => $comment->message
+                    'name' => $guestBook->guest_name,
+                    'status' => 'Ucapan & Doa',
+                    'message' => $guestBook->message
                 ];
             }
         } else {
-            $wishes = [
-                ['name' => 'Keluarga Bpk. Budi', 'status' => 'Ya, saya akan hadir', 'message' => 'Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.'],
-                ['name' => 'Siti', 'status' => 'Maaf, tidak bisa hadir', 'message' => 'Maaf tidak bisa hadir, semoga lancar dan bahagia selalu.'],
-            ];
+            $wishes = [];
         }
 
         $musicUrl = asset('assets/templates/wedding-32/KEMBANG JUWITA - PAWESTRI - OFFICIAL MUSIC VIDEO.mp3');
@@ -159,6 +160,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Undangan {{ $couple['groom'] }} & {{ $couple['bride'] }}</title>
   <meta name="description" content="Wedding invitation - {{ $couple['groom'] }} & {{ $couple['bride'] }}" />
@@ -3069,7 +3071,9 @@
               <label class="option-box">
                 <input type="radio" value="Maaf, tidak bisa hadir" x-model="rsvpAttend" /> Maaf, tidak bisa hadir
               </label>
-              <button class="form-btn" type="submit">KONFIRMASI KEHADIRAN</button>
+              <button class="form-btn" type="submit" :disabled="submittingRsvp">
+                <span x-text="submittingRsvp ? 'MENGIRIM...' : 'KONFIRMASI KEHADIRAN'"></span>
+              </button>
             </form>
           </section>
 
@@ -3082,16 +3086,12 @@
               <label>NAMA ANDA
                 <input type="text" x-model="name" placeholder="Tulis nama Anda" required />
               </label>
-              <label>KEHADIRAN
-                <select x-model="attend" style="border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; background: rgba(255,255,255,0.08); color: #fff; width: 100%; padding: 12px 14px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; outline: none; margin-top: 6px;">
-                  <option value="Ya, saya akan hadir">Ya, saya akan hadir</option>
-                  <option value="Maaf, tidak bisa hadir">Maaf, tidak bisa hadir</option>
-                </select>
-              </label>
               <label>TULIS UCAPAN / DOA ANDA...
                 <textarea rows="4" x-model="message" placeholder="Tuliskan ucapan / doa di sini..." required></textarea>
               </label>
-              <button class="form-btn" type="submit">KIRIM UCAPAN</button>
+              <button class="form-btn" type="submit" :disabled="submittingWish">
+                <span x-text="submittingWish ? 'MENGIRIM...' : 'KIRIM UCAPAN'"></span>
+              </button>
               
               <div class="latest-title">♥ UCAPAN TERBARU ♥</div>
               <div class="latest-box" style="display: flex; flex-direction: column; gap: 10px; max-height: 250px; overflow-y: auto;">
@@ -3254,29 +3254,81 @@
     <!-- Bottom Scripts -->
     <script>
       document.addEventListener('alpine:init', () => {
+        const rsvpUrl = @json(isset($invitation) ? route('invitation.rsvp.store', ['invitation' => $invitation->slug]) : null);
+        const guestBookUrl = @json(isset($invitation) ? route('invitation.guest-book.store', ['invitation' => $invitation->slug]) : null);
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
         Alpine.data('rsvpComponent', (initialWishes) => ({
           wishes: initialWishes || [],
           name: '',
-          attend: 'Ya, saya akan hadir',
           message: '',
           rsvpName: '',
           rsvpCount: 1,
           rsvpAttend: 'Ya, saya akan hadir',
-          submitRSVP() {
-            if (!this.rsvpName) return;
-            alert('Konfirmasi kehadiran berhasil dikirim untuk ' + this.rsvpName);
-            this.rsvpName = '';
-          },
-          submitWish() {
-            if (!this.name || !this.message) return;
-            this.wishes.unshift({
-              name: this.name,
-              status: this.attend,
-              message: this.message
+          submittingRsvp: false,
+          submittingWish: false,
+          async sendRequest(url, payload) {
+            if (!url) {
+              throw new Error('Form hanya dapat digunakan dari halaman undangan yang sudah dibuat.');
+            }
+
+            const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+              },
+              body: JSON.stringify(payload)
             });
-            this.name = '';
-            this.message = '';
-            alert('Terima kasih atas ucapan dan doa Anda!');
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+              const validationMessage = result.errors
+                ? Object.values(result.errors).flat()[0]
+                : null;
+              throw new Error(validationMessage || result.message || 'Data gagal dikirim. Silakan coba lagi.');
+            }
+
+            return result;
+          },
+          async submitRSVP() {
+            if (!this.rsvpName) return;
+            this.submittingRsvp = true;
+
+            try {
+              await this.sendRequest(rsvpUrl, {
+                guest_name: this.rsvpName,
+                guest_count: Number(this.rsvpCount),
+                attendance_status: this.rsvpAttend === 'Ya, saya akan hadir' ? 'Hadir' : 'Tidak Hadir'
+              });
+              alert('Konfirmasi kehadiran berhasil dikirim untuk ' + this.rsvpName);
+              this.rsvpName = '';
+              this.rsvpCount = 1;
+            } catch (error) {
+              alert(error.message);
+            } finally {
+              this.submittingRsvp = false;
+            }
+          },
+          async submitWish() {
+            if (!this.name || !this.message) return;
+            this.submittingWish = true;
+
+            try {
+              const result = await this.sendRequest(guestBookUrl, {
+                guest_name: this.name,
+                message: this.message
+              });
+              this.wishes.unshift(result.wish);
+              this.name = '';
+              this.message = '';
+              alert('Terima kasih atas ucapan dan doa Anda!');
+            } catch (error) {
+              alert(error.message);
+            } finally {
+              this.submittingWish = false;
+            }
           }
         }));
       });

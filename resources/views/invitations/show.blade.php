@@ -1,11 +1,61 @@
 @extends('layouts.app')
 
+@push('styles')
+<style>
+    .invitation-page-header { margin-bottom: 1rem; }
+    .invitation-info-card .card-body { padding: 1.35rem; }
+    .invitation-summary-card .card-body { padding: 1.15rem 1.25rem; }
+    .invitation-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .65rem;
+    }
+    .invitation-summary-item {
+        min-width: 0;
+        padding: .7rem .5rem;
+        text-align: center;
+        background: #f8f9fc;
+        border: 1px solid #e8eaf1;
+        border-radius: 9px;
+    }
+    .invitation-summary-item strong {
+        display: block;
+        margin-bottom: .2rem;
+        font-size: 1.05rem;
+        line-height: 1;
+        color: #343a40;
+    }
+    .invitation-summary-item span {
+        display: block;
+        overflow: hidden;
+        color: #74788d;
+        font-size: .72rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .invitation-management-card .card-body { padding-top: 1rem; }
+    .invitation-management-card .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+    }
+    .invitation-management-card .nav-link { white-space: nowrap; }
+    @media (max-width: 767.98px) {
+        .invitation-page-header { align-items: flex-start !important; gap: .75rem; }
+        .invitation-info-card .d-flex.align-items-start { gap: .75rem; }
+        .invitation-info-card img { width: 82px !important; height: 82px !important; margin-right: 0 !important; }
+        .invitation-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+</style>
+@endpush
+
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+        <div class="page-title-box d-flex align-items-center justify-content-between invitation-page-header">
             <h4 class="mb-sm-0 font-size-18">Detail Undangan</h4>
-            <div class="page-title-right">
+            <div class="page-title-right d-flex gap-2">
                 <a href="{{ route('invitations.index') }}" class="btn btn-secondary btn-sm"><i class="mdi mdi-arrow-left me-1"></i> Kembali</a>
                 <a href="{{ route('invitations.edit', $invitation->id) }}" class="btn btn-info btn-sm"><i class="mdi mdi-pencil me-1"></i> Edit</a>
             </div>
@@ -16,7 +66,7 @@
 <!-- Invitation Info -->
 <div class="row">
     <div class="col-xl-8">
-        <div class="card">
+        <div class="card invitation-info-card">
             <div class="card-body">
                 <div class="d-flex align-items-start">
                     @if($invitation->cover_image)
@@ -54,39 +104,37 @@
     </div>
 
     <div class="col-xl-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Ringkasan</h5>
-            </div>
+        <div class="card invitation-summary-card">
             <div class="card-body">
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Total RSVP</span>
-                    <span class="badge bg-primary rounded-pill">{{ $invitation->rsvps->count() }}</span>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="card-title mb-0">Ringkasan</h5>
+                    <span class="text-muted font-size-12">Respons tamu</span>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Hadir</span>
-                    <span class="badge bg-success rounded-pill">{{ $invitation->rsvps->where('attendance_status', 'Hadir')->count() }}</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Tidak Hadir</span>
-                    <span class="badge bg-danger rounded-pill">{{ $invitation->rsvps->where('attendance_status', 'Tidak Hadir')->count() }}</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Masih Ragu</span>
-                    <span class="badge bg-warning rounded-pill">{{ $invitation->rsvps->where('attendance_status', 'Masih Ragu')->count() }}</span>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Total Tamu</span>
-                    <span class="fw-bold">{{ $invitation->rsvps->sum('guest_count') }} orang</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Guest Book</span>
-                    <span class="badge bg-info rounded-pill">{{ $invitation->guestBooks->count() }} pesan</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span class="text-muted">Galeri</span>
-                    <span class="badge bg-secondary rounded-pill">{{ $invitation->galleries->count() }} foto</span>
+                <div class="invitation-summary-grid">
+                    <div class="invitation-summary-item">
+                        <strong class="text-primary">{{ $invitation->rsvps->count() }}</strong>
+                        <span>Total RSVP</span>
+                    </div>
+                    <div class="invitation-summary-item">
+                        <strong class="text-success">{{ $invitation->rsvps->where('attendance_status', 'Hadir')->count() }}</strong>
+                        <span>Hadir</span>
+                    </div>
+                    <div class="invitation-summary-item">
+                        <strong class="text-danger">{{ $invitation->rsvps->where('attendance_status', 'Tidak Hadir')->count() }}</strong>
+                        <span>Tidak Hadir</span>
+                    </div>
+                    <div class="invitation-summary-item">
+                        <strong class="text-warning">{{ $invitation->rsvps->where('attendance_status', 'Masih Ragu')->count() }}</strong>
+                        <span>Masih Ragu</span>
+                    </div>
+                    <div class="invitation-summary-item">
+                        <strong>{{ $invitation->rsvps->sum('guest_count') }}</strong>
+                        <span>Total Tamu</span>
+                    </div>
+                    <div class="invitation-summary-item">
+                        <strong>{{ $invitation->guestBooks->count() }}</strong>
+                        <span>Ucapan</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +144,7 @@
 <!-- Tabs: Gallery, Story, RSVP, Guest Book -->
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card invitation-management-card">
             <div class="card-body">
                 <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
                     <li class="nav-item">
