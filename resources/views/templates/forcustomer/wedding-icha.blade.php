@@ -1072,7 +1072,7 @@
       width: 150px;
       height: 150px;
       margin: 0 auto 18px;
-      border: 4px solid #fff;
+      border: 0;
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
@@ -1600,8 +1600,8 @@
     
     .calendar-flower-top {
       position: absolute;
-      right: -20px;
-      top: -20px;
+      right: -24px;
+      top: -48px;
       width: 100px;
       opacity: 0.85;
       pointer-events: none;
@@ -2342,11 +2342,14 @@
       position: relative;
       max-width: 360px;
       margin: 20px auto;
-      padding: 38px 20px 32px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1.5px solid rgba(212, 175, 122, 0.65);
-      border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(111, 22, 39, 0.15);
+      padding: 34px 18px 24px;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(118, 85, 66, .48), transparent 34%),
+        radial-gradient(circle at 92% 90%, rgba(87, 55, 49, .5), transparent 38%),
+        linear-gradient(145deg, #392b24, #211a17);
+      border: 1px solid rgba(212, 175, 122, 0.45);
+      border-radius: 18px;
+      box-shadow: 0 20px 45px rgba(34, 21, 18, 0.3);
       backdrop-filter: blur(10px);
     }
     
@@ -2354,8 +2357,8 @@
       content: "";
       position: absolute;
       inset: 8px;
-      border: 1px dashed rgba(180, 115, 128, 0.35);
-      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 122, 0.2);
+      border-radius: 12px;
       pointer-events: none;
     }
     
@@ -2396,24 +2399,44 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      max-width: 320px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-auto-rows: 72px;
+      gap: 8px;
+      max-width: 324px;
       margin: 0 auto;
     }
     
     .gallery-photo {
-      height: 160px;
-      background: #fff;
-      box-shadow: 0 8px 20px rgba(111,22,39,0.18);
+      height: auto;
+      min-height: 0;
+      background: #211a17;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.28);
       display: grid;
       place-items: center;
       color: #8e5664;
-      border-radius: 12px;
+      border-radius: 6px;
       overflow: hidden;
-      border: 4px solid #fff;
+      border: 0;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: zoom-in;
+    }
+
+    .gallery-photo:nth-child(1),
+    .gallery-photo:nth-child(2) {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .gallery-photo:nth-child(3),
+    .gallery-photo:nth-child(4),
+    .gallery-photo:nth-child(5) {
+      grid-column: span 2;
+    }
+
+    .gallery-photo:nth-child(6),
+    .gallery-photo:nth-child(7) {
+      grid-column: span 3;
+      grid-row: span 2;
     }
     
     .gallery-photo:hover {
@@ -2654,7 +2677,7 @@
       .attire-box h4 { font-size: 14px; }
       .attire-box p { font-size: 11.5px; }
       .maroon-form { padding: 28px 16px 24px; }
-      .gallery-grid { grid-template-columns: 1fr; max-width: 260px; }
+      .gallery-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); max-width: 320px; }
       .couple-headline-side { font-size: 17px; }
       .faded-vb { width: 48px; height: 48px; }
       .faded-vb span { font-size: 18px; }
@@ -3040,7 +3063,10 @@
 
             <div class="timeline-list">
               <div class="timeline-row"><span>08.00 WIB</span><p>Akad Nikah</p></div>
-              <div class="timeline-row"><span>16.00 WIB</span><p>Resepsi</p></div>
+              <div class="timeline-row"><span>09.30 WIB</span><p>Sesi Foto Bersama Keluarga</p></div>
+              <div class="timeline-row"><span>16.00 WIB</span><p>Resepsi Pembukaan</p></div>
+              <div class="timeline-row"><span>16.30 WIB</span><p>Sesi Ramah Tamah &amp; Hiburan</p></div>
+              <div class="timeline-row"><span>19.00 WIB</span><p>Penutupan Acara</p></div>
             </div>
           </div>
         </section>
@@ -3113,7 +3139,6 @@
           <div class="event-divider" style="margin: 0 auto 20px;"></div>
 
           <div class="gallery-card reveal-up">
-            <div class="album-book">♥ ALBUM MOMEN ♥</div>
             <div class="gallery-grid">
               @for($index = 1; $index <= 7; $index++)
                 <div
