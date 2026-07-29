@@ -3,6 +3,61 @@
 @push('styles')
     <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        #datatable {
+            min-width: 960px;
+        }
+
+        #datatable_wrapper {
+            width: 100%;
+        }
+
+        #datatable_wrapper .dataTables_scrollBody {
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        #datatable_wrapper .dataTables_scrollBody::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #datatable_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background: #b9bec9;
+            border-radius: 999px;
+        }
+
+        @media (max-width: 575.98px) {
+            .invitations-card .card-body {
+                padding: 1rem .75rem;
+            }
+
+            #datatable_wrapper > .row:first-child > div,
+            #datatable_wrapper > .row:last-child > div {
+                width: 100%;
+                text-align: left !important;
+            }
+
+            #datatable_wrapper .dataTables_length,
+            #datatable_wrapper .dataTables_filter {
+                margin-bottom: .75rem;
+                text-align: left;
+            }
+
+            #datatable_wrapper .dataTables_filter label {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+            }
+
+            #datatable_wrapper .dataTables_filter input {
+                min-width: 0;
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -32,9 +87,9 @@
             </div>
         @endif
 
-        <div class="card">
+        <div class="card invitations-card">
             <div class="card-body">
-                <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
+                <table id="datatable" class="table table-bordered nowrap" style="width: 100%;">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -130,7 +185,10 @@
     <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#datatable').DataTable();
+            $('#datatable').DataTable({
+                scrollX: true,
+                autoWidth: false
+            });
         });
     </script>
 @endpush
