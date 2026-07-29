@@ -1069,31 +1069,47 @@
     .couple-photo-wrap {
       position: relative;
       z-index: 1;
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 18px;
-      border: 0;
-      border-radius: 50%;
+      width: 178px;
+      height: 224px;
+      margin: 0 auto 22px;
+      padding: 5px;
+      border: 2px solid #d4af7a;
+      border-radius: 92px 92px 10px 10px;
+      background: linear-gradient(145deg, #f4dfb4, #9b713d 48%, #e8c78a);
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow:
+        0 13px 28px rgba(0,0,0,0.34),
+        inset 0 0 0 2px rgba(255,255,255,.28);
+    }
+
+    .couple-photo-wrap:after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 9px;
+      border: 1px solid rgba(255, 231, 184, .8);
+      border-radius: 82px 82px 5px 5px;
+      pointer-events: none;
     }
 
     .couple-photo {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 84px 84px 5px 5px;
+      filter: saturate(.96) contrast(1.03);
     }
 
     .couple-tablet.groom .couple-photo {
       object-position: 55% 30%;
       transform-origin: 55% 30%;
-      transform: scale(1.3);
+      transform: scale(1.13);
     }
 
     .couple-tablet.bride .couple-photo {
       object-position: 68% 31%;
       transform-origin: 68% 31%;
-      transform: scale(1.55);
+      transform: scale(1.27);
     }
     
     .person-role-tag {
