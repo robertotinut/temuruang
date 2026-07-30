@@ -41,7 +41,7 @@
             'bride' => $brideName,
             'parents' => [
                 'groom' => "Bapak Yoyok Kristianto dan Ibu Enik Sa'adah",
-                'bride' => 'Bapak Maliyat Kustor dan Ibu Sudarni',
+                'bride' => 'Bapak Maliyat Kustur dan Ibu Sudarni',
             ],
         ];
 
@@ -115,7 +115,7 @@
             'bride' => 'Pamunkas Surya Merdeka',
             'parents' => [
                 'groom' => "Bapak Yoyok Kristianto dan Ibu Enik Sa'adah",
-                'bride' => 'Bapak Maliyat Kustor dan Ibu Sudarni',
+                'bride' => 'Bapak Maliyat Kustur dan Ibu Sudarni',
             ],
         ];
 
