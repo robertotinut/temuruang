@@ -2861,11 +2861,11 @@
         <!-- 2. COUPLE SECTION -->
         <section class="section couple-section" id="couple">
           <div class="couple-headline">
-            <span class="couple-headline-side left">Bride</span>
+            <span class="couple-headline-side left">Mempelai Wanita</span>
             <div class="faded-vb">
               <span>{{ substr($couple['groom'], 0, 1) }}</span>&<span>{{ substr($couple['bride'], 0, 1) }}</span>
             </div>
-            <span class="couple-headline-side right">Groom</span>
+            <span class="couple-headline-side right">Mempelai Pria</span>
           </div>
 
           <div class="proclamation-box reveal-up">
@@ -2881,7 +2881,7 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cewek-image.jpeg" alt="Foto mempelai wanita" />
               </div>
-              <span class="person-role-tag">The Bride</span>
+              <span class="person-role-tag">Mempelai Wanita</span>
               <h2 class="tablet-name">{{ $couple['groom'] }}</h2>
               <p class="tablet-parents">Putri dari<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
             </div>
@@ -2898,7 +2898,7 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cowok-image.jpeg" alt="Foto mempelai pria" />
               </div>
-              <span class="person-role-tag">The Groom</span>
+              <span class="person-role-tag">Mempelai Pria</span>
               <h2 class="tablet-name">{{ $couple['bride'] }}</h2>
               <p class="tablet-parents">Putra dari<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
             </div>
