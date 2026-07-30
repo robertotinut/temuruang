@@ -2883,7 +2883,7 @@
               </div>
               <span class="person-role-tag">The Bride</span>
               <h2 class="tablet-name">{{ $couple['groom'] }}</h2>
-              <p class="tablet-parents">The Daughter of<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
+              <p class="tablet-parents">Putri dari<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
             </div>
 
             <!-- Ampersand Diamond -->
@@ -2900,7 +2900,7 @@
               </div>
               <span class="person-role-tag">The Groom</span>
               <h2 class="tablet-name">{{ $couple['bride'] }}</h2>
-              <p class="tablet-parents">The Son of<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
+              <p class="tablet-parents">Putra dari<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
             </div>
 
             
@@ -3186,16 +3186,16 @@
               <div class="bank-top"><strong>BCA</strong><span>💳</span></div>
               <div class="bank-label">NOMOR REKENING</div>
               <div class="bank-number">0882523550</div>
-              <div class="bank-owner">a.n. Icha Alifia Y. P.</div>
+              <div class="bank-owner">a.n. Icha Alifia</div>
               <button class="copy-btn" data-copy="0882523550" type="button" onclick="salinNorek(this, '0882523550')">SALIN</button>
             </div>
 
             <div class="bank-card">
-              <div class="bank-top"><strong>SHOPEEPAY</strong><span>💳</span></div>
-              <div class="bank-label">NOMOR</div>
-              <div class="bank-number">085856833060</div>
-              <div class="bank-owner">a.n. Icha Alifia Y. P.</div>
-              <button class="copy-btn" data-copy="085856833060" type="button" onclick="salinNorek(this, '085856833060')">SALIN</button>
+              <div class="bank-top"><strong>BNI</strong><span>💳</span></div>
+              <div class="bank-label">NOMOR REKENING</div>
+              <div class="bank-number">2009745871</div>
+              <div class="bank-owner">a.n. Icha Alifia</div>
+              <button class="copy-btn" data-copy="2009745871" type="button" onclick="salinNorek(this, '2009745871')">SALIN</button>
             </div>
 
             <!-- <div class="gift-footer">♥ KIRIM KADO FISIK? KONFIRMASI KE NOMOR YANG TERSEDIA ♥</div> -->
