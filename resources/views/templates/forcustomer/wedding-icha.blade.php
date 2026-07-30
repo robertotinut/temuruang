@@ -2861,11 +2861,11 @@
         <!-- 2. COUPLE SECTION -->
         <section class="section couple-section" id="couple">
           <div class="couple-headline">
-            <span class="couple-headline-side left">Mempelai Wanita</span>
+            <span class="couple-headline-side left">Bride</span>
             <div class="faded-vb">
               <span>{{ substr($couple['groom'], 0, 1) }}</span>&<span>{{ substr($couple['bride'], 0, 1) }}</span>
             </div>
-            <span class="couple-headline-side right">Mempelai Pria</span>
+            <span class="couple-headline-side right">Groom</span>
           </div>
 
           <div class="proclamation-box reveal-up">
@@ -2881,9 +2881,9 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cewek-image.jpeg" alt="Foto mempelai wanita" />
               </div>
-              <span class="person-role-tag">Mempelai Wanita</span>
+              <span class="person-role-tag">The Bride</span>
               <h2 class="tablet-name">{{ $couple['groom'] }}</h2>
-              <p class="tablet-parents">Putri tunggal dari<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
+              <p class="tablet-parents">The Daughter of<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
             </div>
 
             <!-- Ampersand Diamond -->
@@ -2898,9 +2898,9 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cowok-image.jpeg" alt="Foto mempelai pria" />
               </div>
-              <span class="person-role-tag">Mempelai Pria</span>
+              <span class="person-role-tag">The Groom</span>
               <h2 class="tablet-name">{{ $couple['bride'] }}</h2>
-              <p class="tablet-parents">Putra ketiga dari<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
+              <p class="tablet-parents">The Son of<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
             </div>
 
             
@@ -2964,7 +2964,7 @@
             <div class="gratitude-signoff"><span style="font-size:25px;font-weight:normal;">Icha </span><span>&</span><span style="font-size:25px;font-weight:normal;">Surya</span></div>
           </div>
 
-          <div class="title-combo count-title"><span>Menuju</span> Hari Bahagia</div>
+          <div class="title-combo count-title"><span>Counting</span> Days</div>
           <div class="count-frame reveal-up">
             <div class="count-grid" 
                  x-data="{
@@ -3002,14 +3002,14 @@
                 window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${start}/${end}&details=${details}&location=${location}`,'_blank');
               "
             >
-              Tambahkan ke Kalender
+              Add to Calendar
             </button>
           </div>
         </section>
 
         <!-- 5. CALENDAR SECTION (Dynamic Calendar Month Grid) -->
         <section class="section calendar-section" id="calendar">
-          <div class="title-combo"><span>Catat</span> Tanggalnya</div>
+          <div class="title-combo"><span>Save</span> The Date</div>
           
           <div class="calendar-card reveal-up">
             <img src="{{ $assetBase }}/flower_pink_burgundy.png" class="calendar-flower-top" alt="" />
@@ -3044,7 +3044,7 @@
           @foreach($schedule as $index => $sch)
             <div class="event-card @if($index % 2 == 0) arch @else shield @endif reveal-up">
               <div class="event-badge-icon">♥</div>
-              <span class="event-script-sub">Informasi Acara</span>
+              <span class="event-script-sub">Save The Date</span>
               <h3 class="event-title">{{ $sch['title'] }}</h3>
               <div class="event-divider"></div>
               
@@ -3065,7 +3065,7 @@
 
         <!-- 7. TIMELINE SECTION -->
         <section class="section timeline-section" id="timeline">
-          <div class="title-combo"><span>Susunan</span> Acara</div>
+          <div class="title-combo"><span>Wedding</span> Timeline</div>
           
           <div class="timeline-card reveal-up">
             <!-- <img src="{{ $assetBase }}/flower-left.png" class="timeline-flower-left" alt="" />
@@ -3149,8 +3149,8 @@
 
         <!-- 10. GALLERY SECTION -->
         <section class="section gallery-section" id="gallery">
-          <div class="title-combo"><span>Momen</span> Kami</div>
-          <div class="gallery-label" style="margin-top: 10px;">Galeri Foto</div>
+          <div class="title-combo"><span>Our</span> Moment</div>
+          <div class="gallery-label" style="margin-top: 10px;">Galeri</div>
           <div class="event-divider" style="margin: 0 auto 20px;"></div>
 
           <div class="gallery-card reveal-up">
@@ -3173,8 +3173,8 @@
 
         <!-- 11. GIFT SECTION -->
         <section class="section gift-section" id="gift">
-          <div class="section-title-script">Hadiah Pernikahan</div>
-          <p class="section-note gift-note">Bagi Anda yang ingin memberikan tanda kasih kepada kedua mempelai, dapat menggunakan nomor rekening berikut.</p>
+          <div class="section-title-script">Gift</div>
+          <p class="section-note gift-note">For those of you who want to give a token of love to the bride and groom, you can use the account number below.</p>
 
           <div class="gift-card-wrap reveal-up">
             <div class="gift-tabs">
@@ -3207,10 +3207,10 @@
           <div class="closing-topline"></div>
           
           <div class="closing-card reveal-up">
-            <div class="closing-title">Sampai Jumpa</div>
+            <div class="closing-title">See You</div>
             <div class="event-divider" style="margin: 14px auto 18px;"></div>
             <p class="closing-copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
-            <div class="closing-thanks">Terima Kasih</div>
+            <div class="closing-thanks">Thank You</div>
             <div class="closing-monogram">
               <span>♥</span>
             </div>
@@ -3246,12 +3246,12 @@
       <!-- Quick Nav dropdown -->
       <nav class="quick-nav" id="quickNav">
         <a href="#top" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'}); return false;">Home</a>
-        <a href="#couple" onclick="document.getElementById('couple').scrollIntoView({behavior: 'smooth'}); return false;">Mempelai</a>
-        <a href="#story" onclick="document.getElementById('story').scrollIntoView({behavior: 'smooth'}); return false;">Kisah</a>
-        <a href="#events" onclick="document.getElementById('events').scrollIntoView({behavior: 'smooth'}); return false;">Acara</a>
-        <a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'}); return false;">Galeri</a>
-        <a href="#gift" onclick="document.getElementById('gift').scrollIntoView({behavior: 'smooth'}); return false;">Hadiah</a>
-        <a href="#closing" onclick="document.getElementById('closing').scrollIntoView({behavior: 'smooth'}); return false;">Penutup</a>
+        <a href="#couple" onclick="document.getElementById('couple').scrollIntoView({behavior: 'smooth'}); return false;">Couple</a>
+        <a href="#story" onclick="document.getElementById('story').scrollIntoView({behavior: 'smooth'}); return false;">Story</a>
+        <a href="#events" onclick="document.getElementById('events').scrollIntoView({behavior: 'smooth'}); return false;">Event</a>
+        <a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'}); return false;">Gallery</a>
+        <a href="#gift" onclick="document.getElementById('gift').scrollIntoView({behavior: 'smooth'}); return false;">Gift</a>
+        <a href="#closing" onclick="document.getElementById('closing').scrollIntoView({behavior: 'smooth'}); return false;">Closing</a>
       </nav>
     </div>
   </div>
