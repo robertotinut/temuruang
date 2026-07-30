@@ -50,7 +50,7 @@
             'time' => '08:00',
             'location' => $invitation->location ?? 'Kediaman Mempelai Wanita',
             'address' => $invitation->address ?? 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya',
-            'maps_url' => $invitation->google_maps_url ?? 'https://maps.app.goo.gl/q76d4cNEiL39H6dC6',
+            'maps_url' => 'https://maps.app.goo.gl/MNJZgHTxTkzjqtweA',
         ];
 
         $schedule = [
@@ -124,7 +124,7 @@
             'time' => '08:00',
             'location' => 'Kediaman Mempelai Wanita',
             'address' => 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya',
-            'maps_url' => 'https://maps.app.goo.gl/q76d4cNEiL39H6dC6',
+            'maps_url' => 'https://maps.app.goo.gl/MNJZgHTxTkzjqtweA',
         ];
 
         $schedule = [
@@ -2465,11 +2465,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.18);
+      transform: scale(1.02);
       transition: transform 0.3s ease;
     }
 
-    .gallery-photo:hover img { transform: scale(1.25); }
+    .gallery-photo:nth-child(1) img { object-position: 50% 35%; }
+    .gallery-photo:nth-child(2) img { object-position: 50% 54%; }
+    .gallery-photo:nth-child(3) img { object-position: 68% 43%; }
+    .gallery-photo:nth-child(4) img { object-position: 50% 50%; }
+    .gallery-photo:nth-child(5) img { object-position: 50% 57%; }
+    .gallery-photo:nth-child(6) img { object-position: 50% 67%; }
+    .gallery-photo:nth-child(7) img { object-position: 50% 57%; }
+
+    .gallery-photo:hover img { transform: scale(1.07); }
 
     .gallery-preview {
       position: fixed;
