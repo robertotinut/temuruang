@@ -48,21 +48,21 @@
         $event = [
             'date_iso' => '2026-08-29',
             'time' => '08:00',
-            'location' => $invitation->location ?? 'Kediaman Mempelai Wanita',
-            'address' => $invitation->address ?? 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya',
-            'maps_url' => 'https://maps.app.goo.gl/MNJZgHTxTkzjqtweA',
+            'location' => 'Wisma Indah 2 K6/40',
+            'address' => 'Wisma Indah 2 K6/40, Gunung Anyar Tambak, Surabaya',
+            'maps_url' => 'https://maps.app.goo.gl/yzAQ9oycNHSSnprn7',
         ];
 
         $schedule = [
             [
                 'title' => 'Akad Nikah',
                 'time' => '08.00 WIB',
-                'note' => $invitation->location ?? 'Kediaman Mempelai Wanita'
+                'note' => 'Wisma Indah 2 K6/40'
             ],
             [
                 'title' => 'Resepsi',
-                'time' => '16.00 WIB',
-                'note' => $invitation->address ?? 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya'
+                'time' => '16.00 WIB - Selesai',
+                'note' => 'Wisma Indah 2 K6/40'
             ]
         ];
 
@@ -122,14 +122,14 @@
         $event = [
             'date_iso' => '2026-08-29',
             'time' => '08:00',
-            'location' => 'Kediaman Mempelai Wanita',
-            'address' => 'Wisma Indah 2 K6 No. 40 Gunung Anyar Tambak, Surabaya',
-            'maps_url' => 'https://maps.app.goo.gl/MNJZgHTxTkzjqtweA',
+            'location' => 'Wisma Indah 2 K6/40',
+            'address' => 'Wisma Indah 2 K6/40, Gunung Anyar Tambak, Surabaya',
+            'maps_url' => 'https://maps.app.goo.gl/yzAQ9oycNHSSnprn7',
         ];
 
         $schedule = [
-            ['title' => 'Akad Nikah', 'time' => '08.00 WIB', 'note' => 'Kediaman Mempelai Wanita'],
-            ['title' => 'Resepsi', 'time' => '16.00 WIB', 'note' => 'Kediaman Mempelai Wanita'],
+            ['title' => 'Akad Nikah', 'time' => '08.00 WIB', 'note' => 'Wisma Indah 2 K6/40'],
+            ['title' => 'Resepsi', 'time' => '16.00 WIB - Selesai', 'note' => 'Wisma Indah 2 K6/40'],
         ];
 
         $stories = $defaultStories;
@@ -3086,10 +3086,8 @@
 
             <div class="timeline-list">
               <div class="timeline-row"><span>08.00 WIB</span><p>Akad Nikah</p></div>
-              <div class="timeline-row"><span>09.30 WIB</span><p>Sesi Foto Bersama Keluarga</p></div>
-              <div class="timeline-row"><span>16.00 WIB</span><p>Resepsi Pembukaan</p></div>
-              <div class="timeline-row"><span>16.30 WIB</span><p>Sesi Ramah Tamah &amp; Hiburan</p></div>
-              <div class="timeline-row"><span>19.00 WIB</span><p>Penutupan Acara</p></div>
+              <div class="timeline-row"><span>12.30 WIB</span><p>Temu Manten</p></div>
+              <div class="timeline-row"><span>16.00 WIB - Selesai</span><p>Resepsi Pernikahan</p></div>
             </div>
           </div>
         </section>
