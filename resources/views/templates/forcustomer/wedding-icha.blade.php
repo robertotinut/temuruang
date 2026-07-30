@@ -40,15 +40,15 @@
             'groom' => $groomName,
             'bride' => $brideName,
             'parents' => [
-                'groom' => 'Bpk. Yoyok Kristianto & Ibu Enik Sa`adah',
-                'bride' => 'Bapak Maliyat Kustor & Ibu Sudarni',
+                'groom' => "Bapak Yoyok Kristianto dan Ibu Enik Sa'adah",
+                'bride' => 'Bapak Maliyat Kustor dan Ibu Sudarni',
             ],
         ];
 
         $event = [
             'date_iso' => '2026-08-29',
             'time' => '08:00',
-            'location' => 'Wisma Indah 2 K6/40',
+            'location' => 'Wisma Indah 2',
             'address' => 'Wisma Indah 2 K6/40, Gunung Anyar Tambak, Surabaya',
             'maps_url' => 'https://maps.app.goo.gl/yzAQ9oycNHSSnprn7',
         ];
@@ -57,12 +57,12 @@
             [
                 'title' => 'Akad Nikah',
                 'time' => '08.00 WIB',
-                'note' => 'Wisma Indah 2 K6/40'
+                'note' => 'Wisma Indah 2'
             ],
             [
                 'title' => 'Resepsi',
-                'time' => '16.00 WIB - Selesai',
-                'note' => 'Wisma Indah 2 K6/40'
+                'time' => '16.00 WIB – selesai',
+                'note' => 'Wisma Indah 2'
             ]
         ];
 
@@ -114,22 +114,22 @@
             'groom' => 'Icha Alifia Yokendy Putri ',
             'bride' => 'Pamunkas Surya Merdeka',
             'parents' => [
-                'groom' => 'Bpk. Yoyok Kristianto & Ibu Enik Sa`adah',
-                'bride' => 'Bapak Maliyat Kustor & Ibu Sudarni',
+                'groom' => "Bapak Yoyok Kristianto dan Ibu Enik Sa'adah",
+                'bride' => 'Bapak Maliyat Kustor dan Ibu Sudarni',
             ],
         ];
 
         $event = [
             'date_iso' => '2026-08-29',
             'time' => '08:00',
-            'location' => 'Wisma Indah 2 K6/40',
+            'location' => 'Wisma Indah 2',
             'address' => 'Wisma Indah 2 K6/40, Gunung Anyar Tambak, Surabaya',
             'maps_url' => 'https://maps.app.goo.gl/yzAQ9oycNHSSnprn7',
         ];
 
         $schedule = [
-            ['title' => 'Akad Nikah', 'time' => '08.00 WIB', 'note' => 'Wisma Indah 2 K6/40'],
-            ['title' => 'Resepsi', 'time' => '16.00 WIB - Selesai', 'note' => 'Wisma Indah 2 K6/40'],
+            ['title' => 'Akad Nikah', 'time' => '08.00 WIB', 'note' => 'Wisma Indah 2'],
+            ['title' => 'Resepsi', 'time' => '16.00 WIB – selesai', 'note' => 'Wisma Indah 2'],
         ];
 
         $stories = $defaultStories;
@@ -137,7 +137,7 @@
         $gallery = [];
 
         $wishes = [
-            ['name' => 'Keluarga Bpk. Budi', 'status' => 'Ya, saya akan hadir', 'message' => 'Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.'],
+            ['name' => 'Keluarga Bapak Budi', 'status' => 'Ya, saya akan hadir', 'message' => 'Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.'],
             ['name' => 'Siti', 'status' => 'Maaf, tidak bisa hadir', 'message' => 'Maaf tidak bisa hadir, semoga lancar dan bahagia selalu.'],
         ];
 
@@ -2352,30 +2352,22 @@
     }
     
     /* =================== GALLERY =================== */
-    .gallery-section { position: relative; padding: 40px 16px; text-align: center; }
+    .gallery-section { position: relative; padding: 40px 8px; text-align: center; }
     
     .gallery-card {
       position: relative;
-      max-width: 360px;
-      margin: 20px auto;
-      padding: 34px 18px 24px;
-      background:
-        radial-gradient(circle at 12% 8%, rgba(118, 85, 66, .48), transparent 34%),
-        radial-gradient(circle at 92% 90%, rgba(87, 55, 49, .5), transparent 38%),
-        linear-gradient(145deg, #392b24, #211a17);
-      border: 1px solid rgba(212, 175, 122, 0.45);
-      border-radius: 18px;
-      box-shadow: 0 20px 45px rgba(34, 21, 18, 0.3);
-      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 414px;
+      margin: 14px auto 20px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
     
     .gallery-card:before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(212, 175, 122, 0.2);
-      border-radius: 12px;
-      pointer-events: none;
+      content: none;
     }
     
     .album-book {
@@ -2416,7 +2408,7 @@
       z-index: 2;
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      grid-template-rows: repeat(5, 72px);
+      grid-template-rows: repeat(5, clamp(76px, 22vw, 94px));
       grid-template-areas:
         "photo1 photo1 photo1 photo2 photo2 photo2"
         "photo1 photo1 photo1 photo2 photo2 photo2"
@@ -2424,7 +2416,8 @@
         "photo6 photo6 photo6 photo7 photo7 photo7"
         "photo6 photo6 photo6 photo7 photo7 photo7";
       gap: 8px;
-      max-width: 324px;
+      width: 100%;
+      max-width: 414px;
       margin: 0 auto;
     }
     
@@ -2433,10 +2426,10 @@
       width: 100%;
       height: 100%;
       min-height: 0;
-      background: #211a17;
+      background: #eadde0;
       box-shadow: 0 8px 20px rgba(0,0,0,0.28);
       color: #8e5664;
-      border-radius: 6px;
+      border-radius: 8px;
       overflow: hidden;
       border: 0;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -2688,7 +2681,8 @@
       .calendar-grid .day-cell { font-size: 15px; height: 34px; }
       .event-card { padding: 38px 18px 30px; }
       .event-title { font-size: 28px; }
-      .timeline-card, .dresscode-card, .gallery-card, .gift-card-wrap, .closing-card { padding: 38px 14px 26px; }
+      .timeline-card, .dresscode-card, .gift-card-wrap, .closing-card { padding: 38px 14px 26px; }
+      .gallery-card { padding: 0; }
       .timeline-row { padding: 14px 10px; gap: 6px; }
       .timeline-row p { font-size: 15px; }
       .dress-flower-left { top: -16px; left: -16px; width: 95px; }
@@ -2867,11 +2861,11 @@
         <!-- 2. COUPLE SECTION -->
         <section class="section couple-section" id="couple">
           <div class="couple-headline">
-            <span class="couple-headline-side left">Bride</span>
+            <span class="couple-headline-side left">Mempelai Wanita</span>
             <div class="faded-vb">
               <span>{{ substr($couple['groom'], 0, 1) }}</span>&<span>{{ substr($couple['bride'], 0, 1) }}</span>
             </div>
-            <span class="couple-headline-side right">Groom</span>
+            <span class="couple-headline-side right">Mempelai Pria</span>
           </div>
 
           <div class="proclamation-box reveal-up">
@@ -2887,9 +2881,9 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cewek-image.jpeg" alt="Foto mempelai wanita" />
               </div>
-              <span class="person-role-tag">The Bride</span>
+              <span class="person-role-tag">Mempelai Wanita</span>
               <h2 class="tablet-name">{{ $couple['groom'] }}</h2>
-              <p class="tablet-parents">The Daughter of<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
+              <p class="tablet-parents">Putri tunggal dari<br /><strong>{{ $couple['parents']['groom'] }}</strong></p>
             </div>
 
             <!-- Ampersand Diamond -->
@@ -2904,9 +2898,9 @@
               <div class="couple-photo-wrap">
                 <img class="couple-photo" src="{{ $assetBase }}/cowok-image.jpeg" alt="Foto mempelai pria" />
               </div>
-              <span class="person-role-tag">The Groom</span>
+              <span class="person-role-tag">Mempelai Pria</span>
               <h2 class="tablet-name">{{ $couple['bride'] }}</h2>
-              <p class="tablet-parents">The Son of<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
+              <p class="tablet-parents">Putra ketiga dari<br /><strong>{{ $couple['parents']['bride'] }}</strong></p>
             </div>
 
             
@@ -2924,7 +2918,7 @@
                       <br>
 <div class="proclamation-box reveal-up">
             <!-- <div class="basmala">Assalamu'alaikum Wr. Wb.</div> -->
-            <p class="couple-intro">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir." <br><i> QS. Ar-Rum : 21</i></p>
+            <p class="couple-intro">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”<br><i>QS. Ar-Rum: 21</i></p>
             <!-- <p class="couple-intro">Dengan segala kerendahan hati dan dengan ungkapan syukur atas limpahan rahmat Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.</p> -->
             <br>
           </div>
@@ -2966,11 +2960,11 @@
             <img src="{{ $assetBase }}/flower_lily.png" class="gratitude-flower" alt="" />
             <img src="{{ $assetBase }}/kupu2.png" class="gratitude-butterfly" alt="" />
             <h3 class="gratitude-title">Ungkapan Terima Kasih</h3>
-            <p class="gratitude-text">"Terima kasih karena selalu membersamai kami hingga di titik ini. Besar harapan kami agar doa dan restu Anda menjadi bagian dari awal kisah baru kami sebagai keluarga kecil yang berbahagia."</p>
+            <p class="gratitude-text">“Terima kasih karena selalu membersamai kami hingga titik ini. Besar harapan kami agar doa dan restu Anda menjadi bagian dari awal kisah baru kami sebagai keluarga kecil yang berbahagia.”</p>
             <div class="gratitude-signoff"><span style="font-size:25px;font-weight:normal;">Icha </span><span>&</span><span style="font-size:25px;font-weight:normal;">Surya</span></div>
           </div>
 
-          <div class="title-combo count-title"><span>Counting</span> Days</div>
+          <div class="title-combo count-title"><span>Menuju</span> Hari Bahagia</div>
           <div class="count-frame reveal-up">
             <div class="count-grid" 
                  x-data="{
@@ -3008,14 +3002,14 @@
                 window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${start}/${end}&details=${details}&location=${location}`,'_blank');
               "
             >
-              Add to Calendar
+              Tambahkan ke Kalender
             </button>
           </div>
         </section>
 
         <!-- 5. CALENDAR SECTION (Dynamic Calendar Month Grid) -->
         <section class="section calendar-section" id="calendar">
-          <div class="title-combo"><span>Save</span> The Date</div>
+          <div class="title-combo"><span>Catat</span> Tanggalnya</div>
           
           <div class="calendar-card reveal-up">
             <img src="{{ $assetBase }}/flower_pink_burgundy.png" class="calendar-flower-top" alt="" />
@@ -3050,7 +3044,7 @@
           @foreach($schedule as $index => $sch)
             <div class="event-card @if($index % 2 == 0) arch @else shield @endif reveal-up">
               <div class="event-badge-icon">♥</div>
-              <span class="event-script-sub">Save The Date</span>
+              <span class="event-script-sub">Informasi Acara</span>
               <h3 class="event-title">{{ $sch['title'] }}</h3>
               <div class="event-divider"></div>
               
@@ -3071,7 +3065,7 @@
 
         <!-- 7. TIMELINE SECTION -->
         <section class="section timeline-section" id="timeline">
-          <div class="title-combo"><span>Wedding</span> Timeline</div>
+          <div class="title-combo"><span>Susunan</span> Acara</div>
           
           <div class="timeline-card reveal-up">
             <!-- <img src="{{ $assetBase }}/flower-left.png" class="timeline-flower-left" alt="" />
@@ -3087,7 +3081,7 @@
             <div class="timeline-list">
               <div class="timeline-row"><span>08.00 WIB</span><p>Akad Nikah</p></div>
               <div class="timeline-row"><span>12.30 WIB</span><p>Temu Manten</p></div>
-              <div class="timeline-row"><span>16.00 WIB - Selesai</span><p>Resepsi Pernikahan</p></div>
+              <div class="timeline-row"><span>16.00 WIB – selesai</span><p>Resepsi Pernikahan</p></div>
             </div>
           </div>
         </section>
@@ -3155,8 +3149,8 @@
 
         <!-- 10. GALLERY SECTION -->
         <section class="section gallery-section" id="gallery">
-          <div class="title-combo"><span>Our</span> Moment</div>
-          <div class="gallery-label" style="margin-top: 10px;">Galeri</div>
+          <div class="title-combo"><span>Momen</span> Kami</div>
+          <div class="gallery-label" style="margin-top: 10px;">Galeri Foto</div>
           <div class="event-divider" style="margin: 0 auto 20px;"></div>
 
           <div class="gallery-card reveal-up">
@@ -3170,7 +3164,7 @@
                   @click="openPreview({{ $index - 1 }})"
                   @keydown.enter.prevent="openPreview({{ $index - 1 }})"
                 >
-                  <img src="{{ $assetBase }}/g-{{ $index }}.jpeg" alt="Gallery {{ $index }}" />
+                  <img src="{{ $assetBase }}/g-{{ $index }}.jpeg" alt="Foto galeri {{ $index }}" />
                 </div>
               @endfor
             </div>
@@ -3179,8 +3173,8 @@
 
         <!-- 11. GIFT SECTION -->
         <section class="section gift-section" id="gift">
-          <div class="section-title-script">Gift</div>
-          <p class="section-note gift-note">For those of you who want to give a token of love to the bride and groom, you can use the account number below.</p>
+          <div class="section-title-script">Hadiah Pernikahan</div>
+          <p class="section-note gift-note">Bagi Anda yang ingin memberikan tanda kasih kepada kedua mempelai, dapat menggunakan nomor rekening berikut.</p>
 
           <div class="gift-card-wrap reveal-up">
             <div class="gift-tabs">
@@ -3213,10 +3207,10 @@
           <div class="closing-topline"></div>
           
           <div class="closing-card reveal-up">
-            <div class="closing-title">See You</div>
+            <div class="closing-title">Sampai Jumpa</div>
             <div class="event-divider" style="margin: 14px auto 18px;"></div>
-            <p class="closing-copy">MERUPAKAN SUATU KEHORMATAN DAN KEBAHAGIAAN BAGI KAMI APABILA BAPAK/IBU/SAUDARA/I BERKENAN HADIR UNTUK MEMBERIKAN DOA RESTU KEPADA KAMI.</p>
-            <div class="closing-thanks">Thank You</div>
+            <p class="closing-copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
+            <div class="closing-thanks">Terima Kasih</div>
             <div class="closing-monogram">
               <span>♥</span>
             </div>
@@ -3252,12 +3246,12 @@
       <!-- Quick Nav dropdown -->
       <nav class="quick-nav" id="quickNav">
         <a href="#top" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'}); return false;">Home</a>
-        <a href="#couple" onclick="document.getElementById('couple').scrollIntoView({behavior: 'smooth'}); return false;">Couple</a>
-        <a href="#story" onclick="document.getElementById('story').scrollIntoView({behavior: 'smooth'}); return false;">Story</a>
-        <a href="#events" onclick="document.getElementById('events').scrollIntoView({behavior: 'smooth'}); return false;">Event</a>
-        <a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'}); return false;">Gallery</a>
-        <a href="#gift" onclick="document.getElementById('gift').scrollIntoView({behavior: 'smooth'}); return false;">Gift</a>
-        <a href="#closing" onclick="document.getElementById('closing').scrollIntoView({behavior: 'smooth'}); return false;">Closing</a>
+        <a href="#couple" onclick="document.getElementById('couple').scrollIntoView({behavior: 'smooth'}); return false;">Mempelai</a>
+        <a href="#story" onclick="document.getElementById('story').scrollIntoView({behavior: 'smooth'}); return false;">Kisah</a>
+        <a href="#events" onclick="document.getElementById('events').scrollIntoView({behavior: 'smooth'}); return false;">Acara</a>
+        <a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'}); return false;">Galeri</a>
+        <a href="#gift" onclick="document.getElementById('gift').scrollIntoView({behavior: 'smooth'}); return false;">Hadiah</a>
+        <a href="#closing" onclick="document.getElementById('closing').scrollIntoView({behavior: 'smooth'}); return false;">Penutup</a>
       </nav>
     </div>
   </div>
@@ -3477,7 +3471,7 @@
     <img
       class="gallery-preview-image"
       :src="previewIndex !== null ? galleryImages[previewIndex] : ''"
-      :alt="previewIndex !== null ? `Gallery ${previewIndex + 1}` : 'Gallery preview'"
+      :alt="previewIndex !== null ? `Foto galeri ${previewIndex + 1}` : 'Pratinjau galeri'"
     />
     <button type="button" class="gallery-preview-nav gallery-preview-next" aria-label="Foto berikutnya" @click="movePreview(1)">›</button>
   </div>
