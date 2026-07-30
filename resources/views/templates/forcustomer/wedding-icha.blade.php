@@ -3150,7 +3150,7 @@
         <!-- 10. GALLERY SECTION -->
         <section class="section gallery-section" id="gallery">
           <div class="title-combo"><span>Our</span> Moment</div>
-          <div class="gallery-label" style="margin-top: 10px;">Galeri</div>
+          <div class="gallery-label" style="margin-top: 10px;">Gallery</div>
           <div class="event-divider" style="margin: 0 auto 20px;"></div>
 
           <div class="gallery-card reveal-up">
