@@ -288,7 +288,8 @@
         #Home .grid.grid-cols-4 span:last-child { color:#ead9b2; }
         #Home { padding-top:5rem; padding-bottom:4.5rem; }
         #cover { min-height:100svh; padding-bottom:8rem !important; }
-        #cover .cover-bottom-left, #cover .cover-bottom-right, #cover .cover-bottom-divider { bottom:3rem; }
+        #cover .cover-copy { margin-bottom:72px !important; }
+        #cover .cover-bottom-left, #cover .cover-bottom-right, #cover .cover-bottom-divider { bottom:5rem; }
         #Home > svg { display:none; }
         #Home > img.absolute { width:7.5rem; top:3.5rem; opacity:.72; }
         #Home .reveal-section { margin-bottom:1.5rem; }
