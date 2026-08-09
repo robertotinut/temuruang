@@ -163,9 +163,9 @@
         }
         .cover-modern-overlay {
             background:
-                linear-gradient(to bottom, rgba(0,0,0,.22) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.02) 55%, rgba(0,0,0,.20) 100%);
+                linear-gradient(to bottom, rgba(0,0,0,.28) 0%, rgba(0,0,0,.18) 28%, rgba(0,0,0,.12) 42%, rgba(0,0,0,.30) 58%, rgba(0,0,0,.42) 78%, rgba(0,0,0,.52) 100%),
+                radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.18) 100%);
         }
-        .text-readability-overlay { position:absolute; left:50%; top:58%; transform:translate(-50%,-50%); width:100%; height:48%; pointer-events:none; background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,rgba(0,0,0,.28) 35%,rgba(0,0,0,.10) 60%,transparent 78%); z-index:1; }
         .cover-piece {
             position: absolute;
             pointer-events: none;
@@ -313,7 +313,6 @@
 <img class="cover-photo w-full h-full object-cover" data-alt="Foto pembukaan pasangan pengantin" src="{{ asset('assets/templates/wedding-11/pembukaan-image.jpeg') }}"/>
 </div>
 <div class="cover-modern-overlay absolute inset-0"></div>
-<div class="text-readability-overlay"></div>
 <div class="cover-light-wash"></div>
 <div class="cover-dust"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
