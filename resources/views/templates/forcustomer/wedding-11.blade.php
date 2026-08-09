@@ -286,10 +286,21 @@
         #Home .grid.grid-cols-4 > div:nth-child(2){animation-delay:.1s} #Home .grid.grid-cols-4 > div:nth-child(3){animation-delay:.2s} #Home .grid.grid-cols-4 > div:nth-child(4){animation-delay:.3s}
         #Home .grid.grid-cols-4 span:first-child { color:#e7bd55; text-shadow:0 2px 8px rgba(0,0,0,.8); }
         #Home .grid.grid-cols-4 span:last-child { color:#ead9b2; }
-        .home-light-beam { position:absolute; top:0; left:50%; transform:translateX(-50%); width:65%; height:42%; pointer-events:none; background:radial-gradient(ellipse at top center,rgba(255,197,100,.20),rgba(188,110,35,.08) 40%,transparent 70%); filter:blur(16px); z-index:1; animation:homeGlow 5s ease-in-out infinite; }
+        #Home { padding-top:5rem; padding-bottom:4.5rem; }
+        #Home > svg { display:none; }
+        #Home > img.absolute { width:7.5rem; top:3.5rem; opacity:.72; }
+        #Home .reveal-section { margin-bottom:1.5rem; }
+        .home-monogram { width:76px;height:76px;margin:0 auto 10px; }
+        #Home .reveal-section h2 { font-size:clamp(44px,11vw,58px); margin-bottom:1rem; }
+        #Home .reveal-section > div:nth-of-type(3) { margin-top:1rem!important; margin-bottom:1rem!important; }
+        #Home .grid.grid-cols-4 { gap:.5rem; padding-left:.5rem; padding-right:.5rem; }
+        #Home .grid.grid-cols-4 > div { padding-top:1rem; padding-bottom:1rem; border-radius:14px; }
+        #Home .home-bottom-ornament { width:250px; margin-top:1.5rem; }
+        nav.fixed { border-radius:22px 22px 0 0!important; padding-top:1rem!important; padding-bottom:1rem!important; }
+        .home-light-beam { position:absolute; top:0; left:50%; transform:translateX(-50%); width:72%; height:44%; pointer-events:none; background:radial-gradient(ellipse at 50% 0%,rgba(255,190,90,.28),rgba(186,111,32,.14) 25%,transparent 55%),linear-gradient(to bottom,rgba(255,190,90,.12),transparent 70%); filter:blur(16px); z-index:1; animation:homeGlow 5s ease-in-out infinite; }
         .home-dust { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
         .home-dust i { position:absolute; bottom:18%; width:3px; height:3px; border-radius:50%; background:rgba(255,205,90,.55); box-shadow:0 0 6px rgba(255,190,70,.3); animation:homeDust 10s linear infinite; }
-        .home-dust i:nth-child(1){left:18%;animation-delay:-3s}.home-dust i:nth-child(2){left:29%;width:2px;height:2px;animation-duration:12s;animation-delay:-8s}.home-dust i:nth-child(3){left:41%;animation-duration:9s;animation-delay:-4s}.home-dust i:nth-child(4){left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:-10s}.home-dust i:nth-child(5){left:68%;animation-duration:11s;animation-delay:-6s}.home-dust i:nth-child(6){left:80%;width:2px;height:2px;animation-duration:9s;animation-delay:-2s}.home-dust i:nth-child(7){left:88%;animation-duration:12s;animation-delay:-7s}
+        .home-dust i:nth-child(1){left:18%;animation-delay:-3s}.home-dust i:nth-child(2){left:29%;width:2px;height:2px;animation-duration:12s;animation-delay:-8s}.home-dust i:nth-child(3){left:41%;animation-duration:9s;animation-delay:-4s}.home-dust i:nth-child(4){left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:-10s}.home-dust i:nth-child(5){left:68%;animation-duration:11s;animation-delay:-6s}.home-dust i:nth-child(6){left:80%;width:2px;height:2px;animation-duration:9s;animation-delay:-2s}.home-dust i:nth-child(7){left:88%;animation-duration:12s;animation-delay:-7s}.home-dust i:nth-child(8){left:24%;width:2px;height:2px;animation-duration:10s;animation-delay:-5s}.home-dust i:nth-child(9){left:35%;animation-duration:14s;animation-delay:-11s}.home-dust i:nth-child(10){left:48%;width:2px;height:2px;animation-duration:8s;animation-delay:-1s}.home-dust i:nth-child(11){left:60%;animation-duration:12s;animation-delay:-9s}.home-dust i:nth-child(12){left:73%;width:2px;height:2px;animation-duration:10s;animation-delay:-6s}.home-dust i:nth-child(13){left:83%;animation-duration:13s;animation-delay:-4s}.home-dust i:nth-child(14){left:44%;width:4px;height:4px;animation-duration:11s;animation-delay:-7s}.home-dust i:nth-child(15){left:64%;width:2px;height:2px;animation-duration:9s;animation-delay:-3s}.home-dust i:nth-child(16){left:52%;animation-duration:14s;animation-delay:-12s}
         .home-monogram { width:58px;height:58px;margin:0 auto 18px;border:1px solid rgba(226,184,75,.65);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e2b84b;font:32px/1 Georgia,serif;letter-spacing:-.12em;animation:homeMonoIn .8s cubic-bezier(.16,1,.3,1) .3s both,homeMonoPulse 5s ease-in-out 1.5s infinite; }
         #Home .home-bottom-ornament { display:block;width:210px;height:auto;margin:28px auto 0;opacity:.78;animation:homeFadeIn .8s ease 1.2s both; }
         header.fixed { background:rgba(24,15,9,.94)!important; border-bottom-color:rgba(210,165,65,.28)!important; }
@@ -377,7 +388,7 @@
 </header>
 <!-- HERO & COUNTDOWN -->
 <section class="pt-32 pb-16 px-margin-mobile relative overflow-hidden" id="Home">
-<div class="home-light-beam"></div><div class="home-dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="home-light-beam"></div><div class="home-dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <img class="absolute top-20 left-0 w-20 opacity-30 pointer-events-none z-10" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
 <img class="absolute top-20 right-0 w-20 opacity-30 pointer-events-none z-10" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kanan%20atas.png') }}" alt="" />
 <!-- Royal Glow Background -->
