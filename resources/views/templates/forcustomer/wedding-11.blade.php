@@ -210,9 +210,9 @@
             margin-bottom: 12px;
             color: #f2ca50;
             font-family: "Be Vietnam Pro", sans-serif;
-            font-size: 10px;
+            font-size: 13px;
             font-weight: 600;
-            letter-spacing: .26em;
+            letter-spacing: .22em;
         }
         .cover-eyebrow::before,
         .cover-eyebrow::after {
