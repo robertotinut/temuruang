@@ -180,7 +180,7 @@
         .cover-top-center { top: 8px; left: 50%; width: 38%; transform: translateX(-50%); animation-delay: .26s; }
         .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation-delay: .5s; }
         .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation-delay: .56s; }
-        .cover-bottom-divider { bottom: 5.5%; left: 50%; width: 44%; transform: translateX(-50%); animation-delay: .66s; }
+        .cover-bottom-divider { bottom: 1.5%; left: 50%; width: 55%; transform: translateX(-50%); animation-delay: .66s; }
         .cover-copy {
             z-index: 4;
         }
@@ -191,8 +191,8 @@
             transform: translateY(20px);
             animation: coverTextIn .9s ease .9s forwards;
             border-radius: 18px;
-            background: linear-gradient(180deg, rgba(10,5,3,.12), rgba(10,5,3,.38));
-            backdrop-filter: blur(1px);
+            background: linear-gradient(180deg, rgba(10,5,3,.34), rgba(10,5,3,.62));
+            backdrop-filter: blur(3px);
         }
         .cover-eyebrow {
             display: inline-flex;
@@ -255,7 +255,7 @@
 </button>
 </div>
 <!-- COVER SECTION -->
-<section class="h-screen w-full relative overflow-hidden flex flex-col items-center justify-end pb-20 text-center z-50 transition-all duration-1000" id="cover">
+<section class="h-screen w-full relative overflow-hidden flex flex-col items-center justify-end pb-10 text-center z-50 transition-all duration-1000" id="cover">
 
 <div class="absolute inset-0 z-0">
 <img class="cover-photo w-full h-full object-cover" data-alt="Foto pembukaan pasangan pengantin" src="{{ asset('assets/templates/wedding-11/pembukaan-image.jpeg') }}"/>
