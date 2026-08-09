@@ -180,7 +180,15 @@
         .cover-top-center { top: 8px; left: 50%; width: 38%; transform: translateX(-50%); animation-delay: .26s; }
         .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation-delay: .5s; }
         .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation-delay: .56s; }
-        .cover-bottom-divider { bottom: 1.5%; left: 50%; width: 55%; transform: translateX(-50%); animation-delay: .66s; }
+        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation-delay: .66s; }
+        .cover-eyebrow-floating {
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            white-space: nowrap;
+        }
         .cover-copy {
             z-index: 4;
         }
@@ -193,7 +201,7 @@
             border-radius: 18px;
             background: transparent;
             backdrop-filter: none;
-            margin-bottom: 18px;
+            margin-bottom: -8px;
         }
         .cover-eyebrow {
             display: inline-flex;
@@ -268,8 +276,8 @@
 <img class="cover-piece cover-bottom-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
 <img class="cover-piece cover-bottom-right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20kanan.png') }}" alt="" />
 <img class="cover-piece cover-bottom-divider" src="{{ asset('assets/templates/wedding-11/newassets/NEW/hiasan%20tengah%201.png') }}" alt="" />
+<p class="cover-eyebrow cover-eyebrow-floating">THE WEDDING OF</p>
 <div class="cover-copy relative z-10 flex flex-col items-center">
-<p class="cover-eyebrow">THE WEDDING OF</p>
 <h1 class="cover-title font-display-hero-mobile text-primary gold-glow mb-2">Surya &amp; Icha</h1>
 <p class="cover-recipient font-body-md">Kepada Bapak/Ibu/Saudara/i:<br/><span>{{ $guestName }}</span></p>
 <button class="cover-button bg-primary px-8 py-3 rounded-full flex items-center gap-3 text-on-primary font-bold tracking-widest text-xs border border-primary-fixed duration-300 hover:scale-105 active:scale-95" onclick="openInvitation()">
