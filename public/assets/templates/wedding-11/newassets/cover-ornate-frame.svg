@@ -1,0 +1,115 @@
+<svg width="480" height="720" viewBox="0 0 480 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5b341d"/>
+      <stop offset=".45" stop-color="#b1793f"/>
+      <stop offset="1" stop-color="#3a1f12"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d3d18"/>
+      <stop offset=".35" stop-color="#e0a95a"/>
+      <stop offset=".65" stop-color="#8c5526"/>
+      <stop offset="1" stop-color="#f2ca75"/>
+    </linearGradient>
+    <linearGradient id="velvet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4b0711"/>
+      <stop offset=".5" stop-color="#a31728"/>
+      <stop offset="1" stop-color="#30040a"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="5" flood-color="#050100" flood-opacity=".55"/>
+    </filter>
+    <g id="flower">
+      <ellipse cx="0" cy="-13" rx="8" ry="18" fill="#9b0f22" stroke="#e0a95a" stroke-width="1"/>
+      <ellipse cx="12" cy="-5" rx="8" ry="17" fill="#7b0a18" stroke="#d89a50" stroke-width="1" transform="rotate(42 12 -5)"/>
+      <ellipse cx="-12" cy="-5" rx="8" ry="17" fill="#b61c2d" stroke="#d89a50" stroke-width="1" transform="rotate(-42 -12 -5)"/>
+      <ellipse cx="8" cy="10" rx="8" ry="16" fill="#8a0d1d" stroke="#d89a50" stroke-width="1" transform="rotate(-24 8 10)"/>
+      <ellipse cx="-8" cy="10" rx="8" ry="16" fill="#c43a3d" stroke="#d89a50" stroke-width="1" transform="rotate(24 -8 10)"/>
+      <circle cx="0" cy="0" r="7" fill="#e0a95a"/>
+      <circle cx="0" cy="0" r="3" fill="#4a210e"/>
+    </g>
+    <g id="leafSpray">
+      <path d="M0 0C10-17 22-26 37-29C27-13 15-4 0 0Z" fill="#b6813d"/>
+      <path d="M0 0C8-10 16-14 26-12C18-5 10 0 0 0Z" fill="#d4a25a" transform="rotate(28)"/>
+      <path d="M0 0C8-13 18-20 30-21C22-8 12-1 0 0Z" fill="#8d5b2e" transform="rotate(-25)"/>
+    </g>
+    <g id="carve">
+      <path d="M0 24C18 0 39 0 56 22C37 15 18 16 0 24Z" fill="url(#gold)" opacity=".9"/>
+      <path d="M8 20C20 10 32 10 45 20" stroke="#3a1f12" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      <path d="M18 18C20 8 25 4 32 2C32 13 27 18 18 18Z" fill="#d6a15a"/>
+    </g>
+  </defs>
+
+  <rect x="18" y="24" width="444" height="672" rx="10" stroke="url(#gold)" stroke-width="2" opacity=".72"/>
+  <rect x="30" y="38" width="420" height="644" rx="6" stroke="#6b3f20" stroke-width="1" opacity=".6"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M62 34H188L176 54H74L62 34Z" fill="url(#wood)"/>
+    <path d="M292 34H418L406 54H304L292 34Z" fill="url(#wood)"/>
+    <path d="M74 54H176C151 80 112 82 74 54Z" fill="url(#velvet)"/>
+    <path d="M304 54H406C368 82 329 80 304 54Z" fill="url(#velvet)"/>
+    <path d="M45 62H65V515H45V62Z" fill="url(#wood)"/>
+    <path d="M415 62H435V515H415V62Z" fill="url(#wood)"/>
+    <path d="M56 62C30 103 26 152 43 211C56 256 54 301 36 346C22 383 27 430 52 486" stroke="url(#gold)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M424 62C450 103 454 152 437 211C424 256 426 301 444 346C458 383 453 430 428 486" stroke="url(#gold)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M55 72C78 109 77 148 51 190C33 221 37 260 63 306C84 342 82 385 55 438" stroke="url(#velvet)" stroke-width="12" stroke-linecap="round" opacity=".92"/>
+    <path d="M425 72C402 109 403 148 429 190C447 221 443 260 417 306C396 342 398 385 425 438" stroke="url(#velvet)" stroke-width="12" stroke-linecap="round" opacity=".92"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M180 36C196 18 220 10 240 10C260 10 284 18 300 36H180Z" fill="url(#wood)"/>
+    <path d="M228 42H252L260 78H220L228 42Z" fill="url(#gold)"/>
+    <ellipse cx="240" cy="42" rx="34" ry="20" fill="#eadbb2" opacity=".92"/>
+    <path d="M206 42H274" stroke="#5b341d" stroke-width="2"/>
+    <path d="M240 10V84" stroke="#8c5526" stroke-width="2"/>
+    <path d="M222 84C236 96 244 96 258 84" stroke="#d6a15a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <use href="#flower" x="54" y="58" transform="scale(.88)"/>
+    <use href="#flower" x="426" y="58" transform="scale(.88)"/>
+    <use href="#flower" x="58" y="455" transform="scale(.9)"/>
+    <use href="#flower" x="422" y="455" transform="scale(.9)"/>
+    <use href="#leafSpray" x="72" y="49" transform="rotate(-30)"/>
+    <use href="#leafSpray" x="408" y="49" transform="scale(-1 1) rotate(-30)"/>
+    <use href="#leafSpray" x="76" y="448" transform="rotate(-18)"/>
+    <use href="#leafSpray" x="404" y="448" transform="scale(-1 1) rotate(-18)"/>
+  </g>
+
+  <g opacity=".95" filter="url(#softShadow)">
+    <path d="M97 92V193" stroke="#e2bc76" stroke-width="3" stroke-linecap="round"/>
+    <path d="M383 92V193" stroke="#e2bc76" stroke-width="3" stroke-linecap="round"/>
+    <path d="M91 121H103L99 198H95L91 121Z" fill="url(#gold)"/>
+    <path d="M377 121H389L385 198H381L377 121Z" fill="url(#gold)"/>
+    <circle cx="97" cy="204" r="6" fill="#d6a15a"/>
+    <circle cx="383" cy="204" r="6" fill="#d6a15a"/>
+  </g>
+
+  <g filter="url(#softShadow)" opacity=".96">
+    <use href="#carve" x="162" y="223"/>
+    <use href="#carve" x="318" y="223" transform="scale(-1 1)"/>
+    <path d="M160 247C192 229 221 227 240 240C259 227 288 229 320 247" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M190 281H290" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M218 280C224 265 234 257 240 257C246 257 256 265 262 280" fill="url(#gold)"/>
+    <path d="M205 320C224 329 256 329 275 320" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M240 300C231 313 228 326 240 338C252 326 249 313 240 300Z" fill="url(#gold)" opacity=".9"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M64 516H196C163 551 105 552 64 516Z" fill="url(#velvet)"/>
+    <path d="M284 516H416C375 552 317 551 284 516Z" fill="url(#velvet)"/>
+    <path d="M60 508H206L190 535H75L60 508Z" fill="url(#wood)"/>
+    <path d="M274 508H420L405 535H290L274 508Z" fill="url(#wood)"/>
+    <path d="M166 528C187 497 216 482 240 482C264 482 293 497 314 528H166Z" fill="url(#wood)"/>
+    <use href="#flower" x="92" y="512" transform="scale(.82)"/>
+    <use href="#flower" x="388" y="512" transform="scale(.82)"/>
+    <use href="#flower" x="240" y="512" transform="scale(.75)"/>
+  </g>
+
+  <g opacity=".82" filter="url(#softShadow)">
+    <path d="M59 507C43 530 34 556 32 585" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M421 507C437 530 446 556 448 585" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M44 583C62 574 77 576 89 590C71 604 56 601 44 583Z" fill="url(#gold)"/>
+    <path d="M436 583C418 574 403 576 391 590C409 604 424 601 436 583Z" fill="url(#gold)"/>
+  </g>
+</svg>
