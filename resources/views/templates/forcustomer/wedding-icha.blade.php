@@ -2863,7 +2863,7 @@
           <div class="couple-headline">
             <span class="couple-headline-side left">Mempelai Wanita</span>
             <div class="faded-vb">
-              <span>{{ substr($couple['groom'], 0, 1) }}</span>&<span>{{ substr($couple['bride'], 0, 1) }}</span>
+              <span>I</span>&<span>S</span>
             </div>
             <span class="couple-headline-side right">Mempelai Pria</span>
           </div>

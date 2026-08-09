@@ -11,7 +11,7 @@
 <title>Undangan Pernikahan Surya &amp; Icha</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;600&amp;family=Cormorant+Garamond:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -304,13 +304,11 @@
         .home-dust { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
         .home-dust i { position:absolute; bottom:18%; width:3px; height:3px; border-radius:50%; background:rgba(255,205,90,.55); box-shadow:0 0 6px rgba(255,190,70,.3); animation:homeDust 10s linear infinite; }
         .home-dust i:nth-child(1){left:18%;animation-delay:-3s}.home-dust i:nth-child(2){left:29%;width:2px;height:2px;animation-duration:12s;animation-delay:-8s}.home-dust i:nth-child(3){left:41%;animation-duration:9s;animation-delay:-4s}.home-dust i:nth-child(4){left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:-10s}.home-dust i:nth-child(5){left:68%;animation-duration:11s;animation-delay:-6s}.home-dust i:nth-child(6){left:80%;width:2px;height:2px;animation-duration:9s;animation-delay:-2s}.home-dust i:nth-child(7){left:88%;animation-duration:12s;animation-delay:-7s}.home-dust i:nth-child(8){left:24%;width:2px;height:2px;animation-duration:10s;animation-delay:-5s}.home-dust i:nth-child(9){left:35%;animation-duration:14s;animation-delay:-11s}.home-dust i:nth-child(10){left:48%;width:2px;height:2px;animation-duration:8s;animation-delay:-1s}.home-dust i:nth-child(11){left:60%;animation-duration:12s;animation-delay:-9s}.home-dust i:nth-child(12){left:73%;width:2px;height:2px;animation-duration:10s;animation-delay:-6s}.home-dust i:nth-child(13){left:83%;animation-duration:13s;animation-delay:-4s}.home-dust i:nth-child(14){left:44%;width:4px;height:4px;animation-duration:11s;animation-delay:-7s}.home-dust i:nth-child(15){left:64%;width:2px;height:2px;animation-duration:9s;animation-delay:-3s}.home-dust i:nth-child(16){left:52%;animation-duration:14s;animation-delay:-12s}
-        .home-monogram { position:relative;width:82px;height:82px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#e2b84b;font:70px/.7 'Cormorant Garamond',Georgia,serif;letter-spacing:-.28em;text-shadow:0 2px 10px rgba(0,0,0,.7),0 0 12px rgba(226,184,75,.2); }
-        .home-monogram::before { content:""; position:absolute; inset:7px 5px 4px 9px; border:1px solid rgba(226,184,75,.75); border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-32deg); }
-        .home-monogram::after { content:"❧"; position:absolute; bottom:1px; left:3px; font:22px/1 Georgia,serif; color:#d9aa45; transform:rotate(-25deg); }
-        .home-monogram span { position:relative; z-index:1; transform:none; margin-left:.08em; }
-        .home-monogram .monogram-amp { display:inline; position:static; margin:0 .08em; font:inherit; letter-spacing:0; }
-        .home-monogram .monogram-i { margin-left:0; transform:none; }
-        #Couple { background-color:#160d08; background-image:url("{{ asset('assets/templates/wedding-11/newassets/NEW/bg%20part%20mempelai.png') }}"); background-position:center top; background-size:100% 100%; background-repeat:no-repeat; }
+        .home-monogram { position:relative; width:110px; height:110px; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; }
+        .home-monogram::before { content:""; position:absolute; inset:0; border:1.5px solid rgba(226,184,75,.6); border-radius:50%; }
+        .home-monogram::after { content:""; position:absolute; inset:4px; border:1px solid rgba(226,184,75,.3); border-radius:50%; }
+        .home-monogram .monogram-text { position:relative; z-index:1; font-family:'Cormorant Garamond',Georgia,serif; font-size:48px; font-weight:300; font-style:italic; color:#e2b84b; letter-spacing:0.02em; line-height:1; text-shadow:0 2px 10px rgba(0,0,0,.7),0 0 14px rgba(226,184,75,.25); }
+        .home-monogram .monogram-amp { font-family:'Cormorant Garamond',Georgia,serif; font-size:28px; font-weight:300; font-style:italic; color:rgba(226,184,75,.7); margin:0 2px; vertical-align:middle; }
         #Couple > div { position:relative; z-index:1; }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
@@ -492,7 +490,7 @@
     </svg>
 </div>
 
-<div class="home-monogram">S<span class="monogram-amp">&amp;</span><span class="monogram-i">I</span></div>
+<div class="home-monogram"><span class="monogram-text">S<span class="monogram-amp">&amp;</span>I</span></div>
 <p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4 drop-shadow-md">THE WEDDING OF</p>
 <h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Surya &amp; Icha</h2>
 
@@ -570,7 +568,7 @@
 </div>
 </section>
 <!-- COUPLE PROFILE -->
-<section class="py-section-gap px-margin-mobile flex flex-col gap-16" id="Couple">
+<section class="py-section-gap px-margin-mobile flex flex-col gap-16" id="Couple" style="background-color:#160d08; background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg part mempelai.png') }}'); background-position:center top; background-size:cover; background-repeat:no-repeat;">
 <!-- Groom -->
 <div class="flex flex-col items-center text-center reveal-section">
 <div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
