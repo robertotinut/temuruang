@@ -183,7 +183,7 @@
         .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation-delay: .66s; }
         .cover-eyebrow-floating {
             position: absolute;
-            top: 43%;
+            top: 17%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
