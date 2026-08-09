@@ -310,7 +310,7 @@
         .home-monogram span { position:relative; z-index:1; transform:none; margin-left:.08em; }
         .home-monogram .monogram-amp { display:inline; position:static; margin:0 .08em; font:inherit; letter-spacing:0; }
         .home-monogram .monogram-i { margin-left:0; transform:none; }
-        #Couple { background:#160d08 url("{{ asset('assets/templates/wedding-11/newassets/NEW/bg%20part%20mempelai.png') }}") center top/cover no-repeat; }
+        #Couple { background-color:#160d08; background-image:url("{{ asset('assets/templates/wedding-11/newassets/NEW/bg%20part%20mempelai.png') }}"); background-position:center top; background-size:100% 100%; background-repeat:no-repeat; }
         #Couple > div { position:relative; z-index:1; }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
