@@ -307,7 +307,7 @@
         .home-monogram { position:relative;width:82px;height:82px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#e2b84b;font:70px/.7 'Cormorant Garamond',Georgia,serif;letter-spacing:-.28em;text-shadow:0 2px 10px rgba(0,0,0,.7),0 0 12px rgba(226,184,75,.2); }
         .home-monogram::before { content:""; position:absolute; inset:7px 5px 4px 9px; border:1px solid rgba(226,184,75,.75); border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-32deg); }
         .home-monogram::after { content:"❧"; position:absolute; bottom:1px; left:3px; font:22px/1 Georgia,serif; color:#d9aa45; transform:rotate(-25deg); }
-        .home-monogram span { position:relative; z-index:1; transform:translateX(-8px) translateY(8px); }
+        .home-monogram span { position:relative; z-index:1; transform:none; margin-left:.08em; }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
         #Home .home-bottom-corner { position:absolute; bottom:3.7rem; width:5.5rem; height:auto; opacity:.78; z-index:2; pointer-events:none; }
@@ -488,9 +488,9 @@
     </svg>
 </div>
 
-<div class="home-monogram">R<span>S</span></div>
+<div class="home-monogram">S<span>&amp; I</span></div>
 <p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4 drop-shadow-md">THE WEDDING OF</p>
-<h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Rahayu &amp; Satria</h2>
+<h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Surya &amp; Icha</h2>
 
 <!-- Symmetrical Javanese Floral Scroll Dividers & Date (Matching screenshot) -->
 <div class="flex flex-col items-center gap-1 my-6">
@@ -552,8 +552,6 @@
     </div>
 </div>
 <img class="home-bottom-ornament" src="{{ asset('assets/templates/wedding-11/newassets/NEW/hiasan%20tengah%201.png') }}" alt="" />
-<img class="home-bottom-corner left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
-<img class="home-bottom-corner right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
 </div>
 </section>
 <!-- QUOTE -->
