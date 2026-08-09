@@ -287,8 +287,8 @@
         #Home .grid.grid-cols-4 span:first-child { color:#e7bd55; text-shadow:0 2px 8px rgba(0,0,0,.8); }
         #Home .grid.grid-cols-4 span:last-child { color:#ead9b2; }
         #Home { padding-top:5rem; padding-bottom:4.5rem; }
-        #cover { padding-bottom:4rem !important; }
-        #cover .cover-bottom-left, #cover .cover-bottom-right, #cover .cover-bottom-divider { bottom:1rem; }
+        #cover { min-height:100svh; padding-bottom:6rem !important; }
+        #cover .cover-bottom-left, #cover .cover-bottom-right, #cover .cover-bottom-divider { bottom:2rem; }
         #Home > svg { display:none; }
         #Home > img.absolute { width:7.5rem; top:3.5rem; opacity:.72; }
         #Home .reveal-section { margin-bottom:1.5rem; }
