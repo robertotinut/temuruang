@@ -8,7 +8,7 @@
 <meta charset="utf-8"/>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Undangan Pernikahan Rahayu &amp; Satria</title>
+<title>Undangan Pernikahan Surya &amp; Icha</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
@@ -388,7 +388,7 @@
 <div class="javanese-pattern absolute inset-0 z-0 pointer-events-none opacity-20"></div>
 <!-- TOP APP BAR -->
 <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile py-4 max-w-container-max mx-auto">
-<span class="font-decorative-script text-decorative-script text-primary">Rahayu &amp; Satria</span>
+<span class="font-decorative-script text-decorative-script text-primary">Surya &amp; Icha</span>
 <div class="flex gap-4">
 <button onclick="toggleAudio()" class="active:scale-95 duration-150 transition-transform hover:scale-110">
 <span class="material-symbols-outlined text-primary" id="music-icon-header">volume_up</span>
@@ -512,7 +512,7 @@
     <!-- Date with arrows -->
     <div class="flex justify-center items-center gap-4">
         <span class="text-primary/60 text-lg">←</span>
-        <span class="font-decorative-script text-primary text-2xl drop-shadow-md tracking-[0.1em] font-semibold">12 . 12 . 2024</span>
+        <span class="font-decorative-script text-primary text-2xl drop-shadow-md tracking-[0.1em] font-semibold">29 . 08 . 2026</span>
         <span class="text-primary/60 text-lg">→</span>
     </div>
 
@@ -567,25 +567,25 @@
 </section>
 <!-- COUPLE PROFILE -->
 <section class="py-section-gap px-margin-mobile flex flex-col gap-16" id="Couple">
-<!-- Bride -->
-<div class="flex flex-col items-center text-center reveal-section">
-<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
-<img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai wanita" src="{{ asset('assets/templates/wedding-11/cewek-image.jpeg') }}"/>
-<div class="absolute -bottom-2 -left-2 w-16 h-16 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] bg-primary/20 rotate-45 border border-primary/40"></div>
-</div>
-<h3 class="font-headline-lg-mobile text-primary mb-2">Rahayu Putri Lestari</h3>
-<p class="font-body-md text-on-surface-variant mb-4">Putri Kedua dari</p>
-<p class="font-body-lg text-on-surface">Bapak Sutrisno &amp; Ibu Wahyuni</p>
-</div>
 <!-- Groom -->
 <div class="flex flex-col items-center text-center reveal-section">
 <div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
 <img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai pria" src="{{ asset('assets/templates/wedding-11/cowok-image.jpeg') }}"/>
+<div class="absolute -bottom-2 -left-2 w-16 h-16 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] bg-primary/20 rotate-45 border border-primary/40"></div>
+</div>
+<h3 class="font-headline-lg-mobile text-primary mb-2">Pamunkas Surya Merdeka</h3>
+<p class="font-body-md text-on-surface-variant mb-4">Anak dari</p>
+<p class="font-body-lg text-on-surface">Bapak Maliyat Kustur &amp; Ibu Sudarmi</p>
+</div>
+<!-- Bride -->
+<div class="flex flex-col items-center text-center reveal-section">
+<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
+<img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai wanita" src="{{ asset('assets/templates/wedding-11/cewek-image.jpeg') }}"/>
 <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-primary/20 -rotate-45 border border-primary/40"></div>
 </div>
-<h3 class="font-headline-lg-mobile text-primary mb-2">Satria Bagus Pradana</h3>
-<p class="font-body-md text-on-surface-variant mb-4">Putra Bungsu dari</p>
-<p class="font-body-lg text-on-surface">Bapak Darmanto &amp; Ibu Sri Rahayu</p>
+<h3 class="font-headline-lg-mobile text-primary mb-2">Icha Alifia Yokendy Putri</h3>
+<p class="font-body-md text-on-surface-variant mb-4">Anak dari</p>
+<p class="font-body-lg text-on-surface">Bapak Yoyok Kristianto &amp; Ibu Eni Sa’adah</p>
 </div>
 </section>
 <!-- EVENT SECTION -->
@@ -622,15 +622,15 @@
             <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Akad Nikah</h4>
             <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
             
-            <p class="text-on-surface font-semibold text-sm mb-1">Kamis, 12 Desember 2024</p>
-            <p class="text-primary text-xs tracking-wider mb-6">Pukul 08.00 - 10.00 WIB</p>
+            <p class="text-on-surface font-semibold text-sm mb-1">Sabtu, 29 Agustus 2026</p>
+            <p class="text-primary text-xs tracking-wider mb-6">Pukul 08.00 WIB</p>
             
             <div class="border-t border-primary/20 pt-4 mb-6">
-                <p class="font-body-md text-on-surface font-bold">Masjid Agung Al-Mabrur</p>
-                <p class="text-on-surface-variant/80 text-xs mt-1">Jl. Kerajaan No. 45, Solo, Jawa Tengah</p>
+                <p class="font-body-md text-on-surface font-bold">Wisma Indah 2 K6/40</p>
+                <p class="text-on-surface-variant/80 text-xs mt-1">Gunung Anyar Tambak, Surabaya</p>
             </div>
             
-            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="#">
+            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="https://maps.app.goo.gl/yzAQ9oycNHSSnprn7" target="_blank" rel="noopener">
                 <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
                 LIHAT LOKASI
             </a>
@@ -657,15 +657,15 @@
             <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Resepsi Pernikahan</h4>
             <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
             
-            <p class="text-on-surface font-semibold text-sm mb-1">Kamis, 12 Desember 2024</p>
-            <p class="text-primary text-xs tracking-wider mb-6">Pukul 11.00 - Selesai</p>
+            <p class="text-on-surface font-semibold text-sm mb-1">Minggu, 6 September 2026</p>
+            <p class="text-primary text-xs tracking-wider mb-6">Pukul 13.00 WIB - selesai</p>
             
             <div class="border-t border-primary/20 pt-4 mb-6">
-                <p class="font-body-md text-on-surface font-bold">Sasana Krida Heritage</p>
-                <p class="text-on-surface-variant/80 text-xs mt-1">Gedung Kesenian, Solo, Jawa Tengah</p>
+                <p class="font-body-md text-on-surface font-bold">RM. Tenda Biru</p>
+                <p class="text-on-surface-variant/80 text-xs mt-1">Jombor, Sukoharjo</p>
             </div>
             
-            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="#">
+            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="https://maps.app.goo.gl/YR59uUjYsMXk2Fi47?g_st=aw" target="_blank" rel="noopener">
                 <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
                 LIHAT LOKASI
             </a>
@@ -708,8 +708,8 @@
             <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
             <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
             
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2018 - AWAL PERTEMUAN</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Pertemuan pertama kami yang sederhana di sebuah perpustakaan kota tua, mengawali segalanya dengan sebuah senyuman.</p>
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER I — ONCE UPON A TIME</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Sebelum saling mengenal, kami hanyalah dua orang asing yang menjalani hidup di dunia masing-masing. Kami tidak pernah tahu bahwa langkah-langkah kecil yang kami ambil saat itu perlahan sedang membawa kami menuju satu tujuan yang sama.</p>
         </div>
     </div>
 
@@ -725,8 +725,8 @@
             <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
             <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
             
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2021 - MENATA KOMITMEN</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Tiga tahun berjalan, kami memutuskan untuk saling mengenal lebih dalam dan membangun impian yang selaras.</p>
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER II — THE JOURNEY</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Tidak semua kisah dimulai dengan keyakinan. Kadang, ia bertumbuh melalui pertanyaan, perbedaan, dan pilihan-pilihan yang tidak selalu mudah. Kami memilih untuk tetap berjalan ke arah yang sama.</p>
         </div>
     </div>
 
@@ -742,8 +742,8 @@
             <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
             <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
             
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">2024 - MEMINANG</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Restu kedua orang tua menjadi penguat langkah kami untuk melangkah ke jenjang yang lebih suci.</p>
+            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER III — THE PROMISE</span>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Harapan yang dulu kami simpan dalam doa bertumbuh menjadi langkah yang siap kami jalani—Bersama, Selamanya.</p>
         </div>
     </div>
 </div>
@@ -862,9 +862,9 @@
 <span class="material-symbols-outlined text-6xl text-primary" data-icon="account_balance">account_balance</span>
 </div>
 <p class="font-label-caps text-primary mb-4">BANK BCA</p>
-<p class="font-headline-md text-on-surface mb-2" id="acc-number">1234567890</p>
-<p class="text-on-surface-variant text-sm mb-6">A/N RAHAYU PUTRI LESTARI</p>
-<button class="inline-flex items-center gap-2 bg-primary/10 border border-primary/40 text-primary px-6 py-2 rounded-full text-xs font-bold active:bg-primary active:text-on-primary transition-all" onclick="copyAccount('1234567890', this)">
+<p class="font-headline-md text-on-surface mb-2" id="acc-number">826532247</p>
+<p class="text-on-surface-variant text-sm mb-6">A/N PAMUNKAS SURYA MERDEKA</p>
+<button class="inline-flex items-center gap-2 bg-primary/10 border border-primary/40 text-primary px-6 py-2 rounded-full text-xs font-bold active:bg-primary active:text-on-primary transition-all" onclick="copyAccount('826532247', this)">
 <span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
                         SALIN NOMOR REKENING
                     </button>
@@ -1062,7 +1062,7 @@
 
         // Countdown Logic
         function startCountdown() {
-            const weddingDate = new Date("Dec 12, 2024 08:00:00").getTime();
+            const weddingDate = new Date("Aug 29, 2026 08:00:00").getTime();
             const x = setInterval(function() {
                 const now = new Date().getTime();
                 const distance = weddingDate - now;
