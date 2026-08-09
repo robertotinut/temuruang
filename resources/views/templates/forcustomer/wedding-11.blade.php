@@ -262,12 +262,12 @@
 <img class="cover-photo w-full h-full object-cover" data-alt="Foto pembukaan pasangan pengantin" src="{{ asset('assets/templates/wedding-11/pembukaan-image.jpeg') }}"/>
 </div>
 <div class="cover-modern-overlay absolute inset-0"></div>
-<img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/new/pojok%20kiri%20atas.png') }}" alt="" />
-<img class="cover-piece cover-top-right" src="{{ asset('assets/templates/wedding-11/newassets/new/pojok%20kanan%20atas.png') }}" alt="" />
-<img class="cover-piece cover-top-center" src="{{ asset('assets/templates/wedding-11/newassets/new/atas%20tengah.png') }}" alt="" />
-<img class="cover-piece cover-bottom-left" src="{{ asset('assets/templates/wedding-11/newassets/new/pojok%20kiri%20bawah.png') }}" alt="" />
-<img class="cover-piece cover-bottom-right" src="{{ asset('assets/templates/wedding-11/newassets/new/pojok%20kiri%20kanan.png') }}" alt="" />
-<img class="cover-piece cover-bottom-divider" src="{{ asset('assets/templates/wedding-11/newassets/new/hiasan%20tengah%201.png') }}" alt="" />
+<img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
+<img class="cover-piece cover-top-right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kanan%20atas.png') }}" alt="" />
+<img class="cover-piece cover-top-center" src="{{ asset('assets/templates/wedding-11/newassets/NEW/atas%20tengah.png') }}" alt="" />
+<img class="cover-piece cover-bottom-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
+<img class="cover-piece cover-bottom-right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20kanan.png') }}" alt="" />
+<img class="cover-piece cover-bottom-divider" src="{{ asset('assets/templates/wedding-11/newassets/NEW/hiasan%20tengah%201.png') }}" alt="" />
 <div class="cover-copy relative z-10 flex flex-col items-center">
 <p class="cover-eyebrow">THE WEDDING OF</p>
 <h1 class="cover-title font-display-hero-mobile text-primary gold-glow mb-2">Surya &amp; Icha</h1>
@@ -1036,3 +1036,4 @@
         }
     </script>
 </body></html>
+
