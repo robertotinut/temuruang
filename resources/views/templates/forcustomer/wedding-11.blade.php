@@ -172,15 +172,19 @@
             z-index: 2;
             opacity: 0;
             filter: drop-shadow(0 12px 14px rgba(0,0,0,.55));
-            animation: coverPieceIn .9s cubic-bezier(.2,.8,.2,1) forwards;
+            animation-duration: 1s;
+            animation-timing-function: cubic-bezier(.2,.8,.2,1);
+            animation-fill-mode: forwards;
         }
-        .cover-top-left { top: 0; left: 0; width: 31%; animation-delay: .12s; }
-        .cover-top-right { top: 0; right: 0; width: 31%; animation-delay: .18s; }
+        .cover-top-left { top: 0; left: 0; width: 31%; animation: coverLeftIn 1s .15s forwards; }
+        .cover-top-right { top: 0; right: 0; width: 31%; animation: coverRightIn 1s .22s forwards; }
         /* The center asset already contains its own hanging lamp. */
-        .cover-top-center { top: 8px; left: 50%; width: 38%; transform: translateX(-50%); animation-delay: .26s; }
-        .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation-delay: .5s; }
-        .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation-delay: .56s; }
-        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation-delay: .66s; }
+        .cover-top-center { top: 8px; left: 50%; width: 38%; transform: translateX(-50%); animation: coverTopIn 1s .55s forwards; }
+        .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation: coverBottomIn 1s .8s forwards; }
+        .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation: coverBottomIn 1s .86s forwards; }
+        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation: coverDividerIn 1s 1.08s forwards; }
+        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.32),transparent 28%),linear-gradient(180deg,transparent 18%,rgba(255,196,92,.08) 48%,transparent 70%); mix-blend-mode:screen; animation:lampFlicker 5s ease-in-out infinite; }
+        .cover-dust { position:absolute; inset:22% 12% 25%; z-index:3; pointer-events:none; opacity:.5; background-image:radial-gradient(circle,rgba(255,215,115,.8) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,236,169,.55) 0 1px,transparent 2px); background-size:97px 113px,137px 151px; animation:dustFloat 9s ease-in-out infinite alternate; }
         .cover-eyebrow-floating {
             position: absolute;
             top: 20%;
@@ -248,6 +252,13 @@
         @keyframes coverPieceIn {
             to { opacity: .96; }
         }
+        @keyframes coverLeftIn { from{opacity:0;transform:translateX(-35%)}to{opacity:.96;transform:translateX(0)} }
+        @keyframes coverRightIn { from{opacity:0;transform:translateX(35%)}to{opacity:.96;transform:translateX(0)} }
+        @keyframes coverTopIn { from{opacity:0;transform:translate(-50%,-28%)}to{opacity:.96;transform:translate(-50%,0)} }
+        @keyframes coverBottomIn { from{opacity:0;transform:translateY(30%)}to{opacity:.96;transform:translateY(0)} }
+        @keyframes coverDividerIn { from{opacity:0;transform:translate(-50%,35%)}to{opacity:.96;transform:translate(-50%,0)} }
+        @keyframes lampFlicker { 0%,100%{opacity:.72} 48%{opacity:.82} 52%{opacity:.68} 55%{opacity:.78} }
+        @keyframes dustFloat { from{transform:translateY(5px);opacity:.28} to{transform:translateY(-10px);opacity:.58} }
         @keyframes coverTextIn {
             to { opacity: 1; transform: translateY(0); }
         }
@@ -270,6 +281,8 @@
 <img class="cover-photo w-full h-full object-cover" data-alt="Foto pembukaan pasangan pengantin" src="{{ asset('assets/templates/wedding-11/pembukaan-image.jpeg') }}"/>
 </div>
 <div class="cover-modern-overlay absolute inset-0"></div>
+<div class="cover-light-wash"></div>
+<div class="cover-dust"></div>
 <img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
 <img class="cover-piece cover-top-right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kanan%20atas.png') }}" alt="" />
 <img class="cover-piece cover-top-center" src="{{ asset('assets/templates/wedding-11/newassets/NEW/atas%20tengah.png') }}" alt="" />
