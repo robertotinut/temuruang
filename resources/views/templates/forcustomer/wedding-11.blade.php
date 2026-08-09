@@ -123,13 +123,20 @@
         }
         .reveal-section {
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
         .reveal-section.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
+        .delay-1 { transition-delay: 0.12s !important; }
+        .delay-2 { transition-delay: 0.24s !important; }
+        .delay-3 { transition-delay: 0.36s !important; }
+        .delay-4 { transition-delay: 0.48s !important; }
+        .delay-5 { transition-delay: 0.60s !important; }
+        .delay-6 { transition-delay: 0.72s !important; }
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -615,7 +622,7 @@
 <!-- COUPLE PROFILE -->
 <section class="pt-section-gap pb-28 px-margin-mobile flex flex-col gap-14" id="Couple" style="background-color:#160d08; background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg part mempelai.png') }}'); background-position:center top; background-size:cover; background-repeat:no-repeat;">
 <!-- Groom -->
-<div class="flex flex-col items-center text-center reveal-section">
+<div class="flex flex-col items-center text-center reveal-section delay-1">
 <div class="relative w-56 h-64 mb-6 rounded-t-full border-2 p-1.5 overflow-hidden animate-float" style="border-color:rgba(208,164,66,.45);background:rgba(42,42,42,.6);">
 <img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai pria" src="{{ asset('assets/templates/wedding-11/cowok-image.jpeg') }}"/>
 <div class="absolute bottom-0 left-0 right-0 h-12" style="background:linear-gradient(to top,rgba(22,13,8,.7),transparent);"></div>
@@ -625,7 +632,7 @@
 <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#e5e2e1;">Bapak Maliyat Kustur &amp; Ibu Sudarmi</p>
 </div>
 <!-- Bride -->
-<div class="flex flex-col items-center text-center reveal-section">
+<div class="flex flex-col items-center text-center reveal-section delay-2">
 <div class="relative w-56 h-64 mb-6 rounded-t-full border-2 p-1.5 overflow-hidden animate-float" style="border-color:rgba(208,164,66,.45);background:rgba(42,42,42,.6);">
 <img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai wanita" src="{{ asset('assets/templates/wedding-11/cewek-image.jpeg') }}"/>
 <div class="absolute bottom-0 left-0 right-0 h-12" style="background:linear-gradient(to top,rgba(22,13,8,.7),transparent);"></div>
@@ -649,7 +656,7 @@
 
 <div class="flex flex-col gap-8 relative z-10">
     <!-- Akad -->
-    <div class="reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
+    <div class="reveal-section delay-1" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
         <div class="text-center">
             <!-- Candi Bentar Icon -->
             <svg class="mx-auto mb-5 filter drop-shadow-lg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#e7bd55" stroke-width="1.2" style="filter:drop-shadow(0 4px 12px rgba(226,184,75,.3));">
@@ -702,7 +709,7 @@
     </div>
 
     <!-- Resepsi -->
-    <div class="reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
+    <div class="reveal-section delay-2" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
         <div class="text-center">
             <!-- Payung Agung Icon -->
             <svg class="mx-auto mb-5 filter drop-shadow-lg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#e7bd55" stroke-width="1.2" style="filter:drop-shadow(0 4px 12px rgba(226,184,75,.3));">
@@ -772,7 +779,7 @@
 <div class="relative ml-5 pl-7 space-y-8 z-10" style="border-left:2px solid transparent;border-image:linear-gradient(to bottom,#c9a84c,rgba(201,168,76,.25) 75%,transparent) 1 100%;">
 
     <!-- Story 1 -->
-    <div class="relative reveal-section">
+    <div class="relative reveal-section delay-1">
         <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
             <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
@@ -784,7 +791,7 @@
     </div>
 
     <!-- Story 2 -->
-    <div class="relative reveal-section">
+    <div class="relative reveal-section delay-2">
         <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
             <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
@@ -797,7 +804,7 @@
     </div>
 
     <!-- Story 3 -->
-    <div class="relative reveal-section">
+    <div class="relative reveal-section delay-3">
         <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
             <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
@@ -809,7 +816,7 @@
     </div>
 
     <!-- Story 4 -->
-    <div class="relative reveal-section">
+    <div class="relative reveal-section delay-4">
         <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
             <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
@@ -839,7 +846,7 @@
 
 <div class="grid grid-cols-2 gap-3.5 relative z-10 w-full px-4">
     <!-- Photo 1 (Featured Top - Full Width) -->
-    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-1.jpeg') }}')">
+    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-1" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-1.jpeg') }}')">
         <div class="w-full aspect-[4/5] overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 1" src="{{ asset('assets/templates/wedding-32/g-1.jpeg') }}"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
@@ -850,7 +857,7 @@
     </div>
     
     <!-- Photo 2 (Square - Left) -->
-    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-2.jpeg') }}')">
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-2" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-2.jpeg') }}')">
         <div class="w-full aspect-square overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 2" src="{{ asset('assets/templates/wedding-32/g-2.jpeg') }}"/>
             <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
@@ -860,7 +867,7 @@
     </div>
 
     <!-- Photo 3 (Square - Right) -->
-    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-3.jpeg') }}')">
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-3" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-3.jpeg') }}')">
         <div class="w-full aspect-square overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 3" src="{{ asset('assets/templates/wedding-32/g-3.jpeg') }}"/>
             <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
@@ -870,7 +877,7 @@
     </div>
 
     <!-- Photo 4 (Square - Left) -->
-    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-4.jpeg') }}')">
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-4" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-4.jpeg') }}')">
         <div class="w-full aspect-square overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 4" src="{{ asset('assets/templates/wedding-32/g-4.jpeg') }}"/>
             <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
@@ -880,7 +887,7 @@
     </div>
 
     <!-- Photo 5 (Square - Right) -->
-    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-5.jpeg') }}')">
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-5" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-5.jpeg') }}')">
         <div class="w-full aspect-square overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 5" src="{{ asset('assets/templates/wedding-32/g-5.jpeg') }}"/>
             <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
@@ -890,7 +897,7 @@
     </div>
 
     <!-- Photo 6 (Featured Bottom - Full Width) -->
-    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-6.jpeg') }}')">
+    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section delay-6" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-6.jpeg') }}')">
         <div class="w-full aspect-[16/10] overflow-hidden rounded-xl relative">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 6" src="{{ asset('assets/templates/wedding-32/g-6.jpeg') }}"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
@@ -914,7 +921,7 @@
     </div>
 </div>
 
-<div class="reveal-section mb-12" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
+<div class="reveal-section delay-1 mb-12" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
 <form class="flex flex-col gap-5" id="rsvp-form" @submit.prevent="submitRSVP">
 <div>
 <label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">NAMA LENGKAP</label>
@@ -946,7 +953,7 @@
     </div>
 </div>
 
-<div class="reveal-section mb-10" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
+<div class="reveal-section delay-1 mb-10" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
 <form class="flex flex-col gap-5" @submit.prevent="submitWish">
 <div>
 <label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">NAMA LENGKAP</label>
@@ -994,7 +1001,7 @@
     <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#a09888;margin-top:14px;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.7;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih secara cashless, dapat melalui:</p>
 </div>
 
-<div class="flex flex-col items-center justify-center reveal-section relative z-10">
+<div class="flex flex-col items-center justify-center reveal-section delay-1 relative z-10">
     <!-- Luxury Gold Digital Bank Card -->
     <div class="w-full max-w-[360px] rounded-2xl p-6 relative gold-card-shadow gold-shimmer-effect overflow-hidden" style="background:linear-gradient(135deg,#2c1c0c 0%,#170e06 45%,#26180a 100%);border:1.5px solid rgba(212,175,55,.45);">
         <!-- Subtle Pattern -->
@@ -1328,32 +1335,50 @@
             }
         }
 
-        // Scroll Reveal
+        // Enhanced Scroll Reveal with Replay on Scroll & Section Switching
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                } else {
+                    const rect = entry.boundingClientRect;
+                    // Reset when element leaves viewport so animation re-plays when scrolled back
+                    if (rect.top > window.innerHeight || rect.bottom < 0) {
+                        entry.target.classList.remove('active');
+                    }
                 }
             });
-        }, { threshold: 0.08 });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
 
         document.querySelectorAll('.reveal-section').forEach(section => {
             observer.observe(section);
         });
 
-        // Simple smooth scroll for nav
+        // Smooth scroll with Staggered Re-animation on section switch
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetEl = document.querySelector(targetId);
                 if (targetEl) {
+                    // Reset active states inside target section so cards animate in sequentially
+                    const childReveals = targetEl.querySelectorAll('.reveal-section');
+                    childReveals.forEach(el => el.classList.remove('active'));
+
                     targetEl.scrollIntoView({
                         behavior: 'smooth'
                     });
+
+                    // Trigger staggered entrance
+                    setTimeout(() => {
+                        childReveals.forEach(el => el.classList.add('active'));
+                    }, 200);
                 }
                 
-                // Update active state
+                // Update active state in nav bar
                 document.querySelectorAll('nav a').forEach(a => {
                     a.className = "flex flex-col items-center justify-center text-on-surface-variant opacity-70";
                 });
