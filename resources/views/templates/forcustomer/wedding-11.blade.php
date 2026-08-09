@@ -183,7 +183,7 @@
         .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation: coverBottomIn 1s .8s forwards; }
         .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation: coverBottomIn 1s .86s forwards; }
         .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation: coverDividerIn 1s 1.08s forwards; }
-        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.32),transparent 28%),linear-gradient(180deg,transparent 18%,rgba(255,196,92,.08) 48%,transparent 70%); mix-blend-mode:screen; animation:lampFlicker 5s ease-in-out infinite; }
+        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.28),transparent 26%); mix-blend-mode:screen; animation:lampFlicker 4s ease-in-out infinite; }
         .cover-dust { position:absolute; inset:22% 12% 25%; z-index:3; pointer-events:none; opacity:.5; background-image:radial-gradient(circle,rgba(255,215,115,.8) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,236,169,.55) 0 1px,transparent 2px); background-size:97px 113px,137px 151px; animation:dustFloat 9s ease-in-out infinite alternate; }
         .cover-eyebrow-floating {
             position: absolute;
@@ -199,14 +199,18 @@
         .cover-copy {
             width: min(82%, 330px);
             padding: 18px 12px 16px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: coverTextIn .9s ease .9s forwards;
+            opacity: 1;
+            transform: none;
             border-radius: 18px;
             background: transparent;
             backdrop-filter: none;
             margin-bottom: -8px;
         }
+        .cover-eyebrow-floating { animation: eyebrowIn .7s ease .75s both; }
+        .cover-title { animation: textFadeUp .8s ease .95s both; }
+        .cover-recipient { animation: textFade .7s ease 1.15s both; }
+        .cover-button { animation: textFadeUp .7s ease 1.3s both; }
+        .cover-button:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(242,202,80,.24); }
         .cover-eyebrow {
             display: inline-flex;
             align-items: center;
@@ -259,6 +263,9 @@
         @keyframes coverDividerIn { from{opacity:0;transform:translate(-50%,35%)}to{opacity:.96;transform:translate(-50%,0)} }
         @keyframes lampFlicker { 0%,100%{opacity:.72} 48%{opacity:.82} 52%{opacity:.68} 55%{opacity:.78} }
         @keyframes dustFloat { from{transform:translateY(5px);opacity:.28} to{transform:translateY(-10px);opacity:.58} }
+        @keyframes textFade { from{opacity:0} to{opacity:1} }
+        @keyframes textFadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes eyebrowIn { from{opacity:0;transform:translate(-50%,8px)} to{opacity:1;transform:translate(-50%,0)} }
         @keyframes coverTextIn {
             to { opacity: 1; transform: translateY(0); }
         }
