@@ -191,8 +191,9 @@
             transform: translateY(20px);
             animation: coverTextIn .9s ease .9s forwards;
             border-radius: 18px;
-            background: linear-gradient(180deg, rgba(10,5,3,.34), rgba(10,5,3,.62));
-            backdrop-filter: blur(3px);
+            background: transparent;
+            backdrop-filter: none;
+            margin-bottom: 18px;
         }
         .cover-eyebrow {
             display: inline-flex;
@@ -268,8 +269,8 @@
 <img class="cover-piece cover-bottom-right" src="{{ asset('assets/templates/wedding-11/newassets/new/pojok%20kiri%20kanan.png') }}" alt="" />
 <img class="cover-piece cover-bottom-divider" src="{{ asset('assets/templates/wedding-11/newassets/new/hiasan%20tengah%201.png') }}" alt="" />
 <div class="cover-copy relative z-10 flex flex-col items-center">
-<p class="cover-eyebrow">WEDDING INVITATION</p>
-<h1 class="cover-title font-display-hero-mobile text-primary gold-glow mb-2">Rahayu &amp; Satria</h1>
+<p class="cover-eyebrow">THE WEDDING OF</p>
+<h1 class="cover-title font-display-hero-mobile text-primary gold-glow mb-2">Surya &amp; Icha</h1>
 <p class="cover-recipient font-body-md">Kepada Bapak/Ibu/Saudara/i:<br/><span>{{ $guestName }}</span></p>
 <button class="cover-button bg-primary px-8 py-3 rounded-full flex items-center gap-3 text-on-primary font-bold tracking-widest text-xs border border-primary-fixed duration-300 hover:scale-105 active:scale-95" onclick="openInvitation()">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
