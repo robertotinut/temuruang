@@ -349,18 +349,45 @@
         @keyframes coverTextIn {
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes shimmerGold {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            100% { transform: translateX(200%) rotate(25deg); }
+        }
+        .gold-shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .gold-shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 215, 0, 0.15) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shimmerGold 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .gold-card-shadow {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .gallery-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(226, 184, 75, 0.7);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(226, 184, 75, 0.25);
+        }
     </style>
 </head>
 <body class="max-w-[480px] mx-auto relative overflow-hidden shadow-2xl bg-deep-ebony">
-
-
-
-<!-- Audio Control (Floating) -->
-<div class="fixed top-20 right-4 z-[60] hidden" id="audio-control">
-<button class="w-10 h-10 bg-primary/20 backdrop-blur-md rounded-full border border-primary/40 flex items-center justify-center text-primary active:scale-95 duration-150" onclick="toggleAudio()">
-<span class="material-symbols-outlined" id="music-icon">volume_up</span>
-</button>
-</div>
 <!-- COVER SECTION -->
 <section class="h-screen w-full relative overflow-hidden flex flex-col items-center justify-end pb-10 text-center z-50 transition-all duration-1000" id="cover">
 
@@ -553,15 +580,37 @@
 </div>
 </section>
 <!-- QUOTE -->
-<section class="py-12 px-margin-mobile bg-surface-container-lowest relative overflow-hidden">
-<div class="javanese-pattern absolute inset-0"></div>
-<div class="relative z-10 text-center flex flex-col items-center">
-<span class="material-symbols-outlined text-primary mb-6 text-4xl" data-icon="auto_stories">auto_stories</span>
-<p class="font-body-md text-on-surface-variant italic leading-relaxed mb-6">
-                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
-                </p>
-<p class="font-label-caps text-primary tracking-widest">( QS. AR-RUM: 21 )</p>
-</div>
+<section class="py-12 px-margin-mobile relative overflow-hidden" style="background:linear-gradient(to bottom, #090604 0%, #120c08 50%, #090604 100%);">
+    <div class="javanese-pattern absolute inset-0 opacity-10"></div>
+    <div class="relative z-10 text-center flex flex-col items-center reveal-section">
+        <div class="w-full max-w-[420px] mx-auto p-6 md:p-8 rounded-2xl relative" style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.95));border:1.5px solid rgba(208,164,66,.35);box-shadow:0 15px 35px rgba(0,0,0,.6), 0 0 20px rgba(212,175,55,.1);">
+            <!-- Top Islamic / Javanese Ornament -->
+            <div class="flex justify-center items-center gap-3 mb-4 opacity-80">
+                <div class="w-12 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="#c9a84c">
+                    <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.85"/>
+                    <circle cx="10" cy="10" r="2" fill="#c9a84c"/>
+                </svg>
+                <div class="w-12 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
+            </div>
+
+            <!-- Bismillah text -->
+            <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#e7bd55;letter-spacing:0.05em;margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.8);">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+
+            <!-- Decorative quote icon -->
+            <span class="text-3xl text-primary/40 block -mb-2" style="font-family:serif;">❝</span>
+
+            <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:#d5ccc0;line-height:1.8;margin-bottom:14px;text-shadow:0 1px 4px rgba(0,0,0,.8);">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+            </p>
+
+            <span class="text-3xl text-primary/40 block -mt-4 mb-3" style="font-family:serif;">❞</span>
+
+            <div class="inline-block px-4 py-1 rounded-full" style="background:rgba(208,164,66,.1);border:1px solid rgba(208,164,66,.3);">
+                <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#e7bd55;letter-spacing:0.2em;">QS. AR-RUM: 21</p>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- COUPLE PROFILE -->
 <section class="pt-section-gap pb-28 px-margin-mobile flex flex-col gap-14" id="Couple" style="background-color:#160d08; background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg part mempelai.png') }}'); background-position:center top; background-size:cover; background-repeat:no-repeat;">
@@ -639,10 +688,16 @@
                 </div>
             </div>
             
-            <a style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;padding:10px 24px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/yzAQ9oycNHSSnprn7" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
-                <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
-                LIHAT LOKASI
-            </a>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;padding:10px 18px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/yzAQ9oycNHSSnprn7" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
+                    <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
+                    LIHAT LOKASI
+                </a>
+                <a style="display:inline-flex;align-items:center;gap:6px;background:rgba(10,5,3,.6);border:1.5px solid rgba(208,164,66,.4);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;padding:10px 18px;border-radius:50px;text-decoration:none;transition:all .3s;" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Surya+%26+Icha&dates=20260829T010000Z/20260829T040000Z&details=Akad+Nikah+Surya+%26+Icha+di+Wisma+Indah+2+K6%2F40%2C+Surabaya&location=Wisma+Indah+2+K6%2F40%2C+Gunung+Anyar+Tambak%2C+Surabaya" target="_blank" rel="noopener" onmouseover="this.style.borderColor='#e7bd55';this.style.background='rgba(208,164,66,.15)'" onmouseout="this.style.borderColor='rgba(208,164,66,.4)';this.style.background='rgba(10,5,3,.6)'">
+                    <span class="material-symbols-outlined" style="font-size:14px;" data-icon="calendar_add_on">calendar_add_on</span>
+                    SIMPAN TANGGAL
+                </a>
+            </div>
         </div>
     </div>
 
@@ -687,10 +742,16 @@
                 </div>
             </div>
             
-            <a style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;padding:10px 24px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/YR59uUjYsMXk2Fi47?g_st=aw" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
-                <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
-                LIHAT LOKASI
-            </a>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;padding:10px 18px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/YR59uUjYsMXk2Fi47?g_st=aw" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
+                    <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
+                    LIHAT LOKASI
+                </a>
+                <a style="display:inline-flex;align-items:center;gap:6px;background:rgba(10,5,3,.6);border:1.5px solid rgba(208,164,66,.4);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;padding:10px 18px;border-radius:50px;text-decoration:none;transition:all .3s;" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Surya+%26+Icha&dates=20260906T060000Z/20260906T100000Z&details=Resepsi+Pernikahan+Surya+%26+Icha+di+RM.+Tenda+Biru%2C+Jombor%2C+Sukoharjo&location=RM.+Tenda+Biru%2C+Jombor%2C+Sukoharjo" target="_blank" rel="noopener" onmouseover="this.style.borderColor='#e7bd55';this.style.background='rgba(208,164,66,.15)'" onmouseout="this.style.borderColor='rgba(208,164,66,.4)';this.style.background='rgba(10,5,3,.6)'">
+                    <span class="material-symbols-outlined" style="font-size:14px;" data-icon="calendar_add_on">calendar_add_on</span>
+                    SIMPAN TANGGAL
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -730,7 +791,8 @@
         <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
             <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER II</p>
             <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">The Journey</h4>
-            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Tidak semua kisah dimulai dengan keyakinan. Kadang, ia bertumbuh melalui pertanyaan, perbedaan, dan pilihan-pilihan yang tidak selalu mudah. Kami memilih untuk tetap berjalan ke arah yang sama.</p>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;margin-bottom:10px;">Tidak semua kisah dimulai dengan keyakinan. Kadang, ia bertumbuh melalui pertanyaan, perbedaan, dan pilihan-pilihan yang tidak selalu mudah.</p>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Kami pernah berada di titik ketika jarak terasa panjang, perbedaan terasa besar, dan keraguan terdengar lebih keras daripada harapan. Namun, di setiap musim yang kami lalui, selalu ada satu keputusan yang terus kami ambil—memilih untuk tetap berjalan ke arah yang sama.</p>
         </div>
     </div>
 
@@ -742,7 +804,19 @@
         <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
             <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER III</p>
             <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">The Promise</h4>
-            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Harapan yang dulu kami simpan dalam doa bertumbuh menjadi langkah yang siap kami jalani—Bersama, Selamanya.</p>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Seiring waktu, kami menyadari bahwa tujuan dari perjalanan ini bukan lagi sekadar memilih arah. Namun, harapan yang dulu kami simpan dalam doa bertumbuh menjadi langkah yang siap kami jalani—Bersama, Selamanya.</p>
+        </div>
+    </div>
+
+    <!-- Story 4 -->
+    <div class="relative reveal-section">
+        <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
+        </div>
+        <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER IV</p>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">Forever Begins</h4>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Hari ini, dengan hati yang penuh syukur, kami melangkah sebagai satu—dan percaya bahwa Sang Maha Cinta tak pernah salah dalam menuliskan takdir-Nya.</p>
         </div>
     </div>
 
@@ -754,49 +828,75 @@
 <!-- Background Glow -->
 <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
 
-<div class="text-center mb-12 reveal-section relative z-10">
-    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Galeri Foto</h2>
-    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
-        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
-        <span class="text-primary text-[10px]">◆</span>
-        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+<div class="text-center mb-10 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,9vw,42px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 20px rgba(226,184,75,.25);margin-bottom:8px;" class="animate-pulse-glow">Galeri Foto</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
 </div>
 
-<div class="grid grid-cols-2 gap-4 relative z-10 w-full px-4">
-    <!-- Photo 1 (Featured Portrait - Full Width) -->
-    <div class="col-span-2 p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
-        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
-        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
-        <div class="w-full aspect-[4/5] overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="Pre-wedding photo of a Javanese couple walking through a garden of ancient stone ruins." src="{{ asset('assets/templates/wedding-11/images/image_4.jpg') }}"/>
+<div class="grid grid-cols-2 gap-3.5 relative z-10 w-full px-4">
+    <!-- Photo 1 (Featured Top - Full Width) -->
+    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-1.jpeg') }}')">
+        <div class="w-full aspect-[4/5] overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 1" src="{{ asset('assets/templates/wedding-32/g-1.jpeg') }}"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
+            <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                <span class="material-symbols-outlined text-sm">fullscreen</span>
+            </div>
         </div>
     </div>
     
     <!-- Photo 2 (Square - Left) -->
-    <div class="p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
-        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
-        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
-        <div class="w-full aspect-square overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="Close up detail of a Javanese bride's hand decorated with intricate henna patterns." src="{{ asset('assets/templates/wedding-11/images/image_5.jpg') }}"/>
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-2.jpeg') }}')">
+        <div class="w-full aspect-square overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 2" src="{{ asset('assets/templates/wedding-32/g-2.jpeg') }}"/>
+            <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
+                <span class="material-symbols-outlined text-xs">fullscreen</span>
+            </div>
         </div>
     </div>
 
     <!-- Photo 3 (Square - Right) -->
-    <div class="p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
-        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
-        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
-        <div class="w-full aspect-square overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="A portrait of the groom's traditional Javanese Blangkon and Keris." src="{{ asset('assets/templates/wedding-11/images/image_6.jpg') }}"/>
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-3.jpeg') }}')">
+        <div class="w-full aspect-square overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 3" src="{{ asset('assets/templates/wedding-32/g-3.jpeg') }}"/>
+            <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
+                <span class="material-symbols-outlined text-xs">fullscreen</span>
+            </div>
         </div>
     </div>
 
-    <!-- Photo 4 (Wide Landscape - Full Width) -->
-    <div class="col-span-2 p-1.5 bg-[#1A1513]/95 border-2 border-primary/30 rounded-2xl shadow-xl relative overflow-hidden group hover:border-primary transition-all duration-300 reveal-section">
-        <div class="absolute top-2 left-2 w-3.5 h-3.5 border-t border-l border-primary/50"></div>
-        <div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b border-r border-primary/50"></div>
-        <div class="w-full aspect-[16/10] overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in grayscale hover:grayscale-0" onclick="openLightbox(this.src)" data-alt="A black and white artistic shot of the couple's silhouettes." src="{{ asset('assets/templates/wedding-11/images/image_7.jpg') }}"/>
+    <!-- Photo 4 (Square - Left) -->
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-4.jpeg') }}')">
+        <div class="w-full aspect-square overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 4" src="{{ asset('assets/templates/wedding-32/g-4.jpeg') }}"/>
+            <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
+                <span class="material-symbols-outlined text-xs">fullscreen</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo 5 (Square - Right) -->
+    <div class="p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-5.jpeg') }}')">
+        <div class="w-full aspect-square overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 5" src="{{ asset('assets/templates/wedding-32/g-5.jpeg') }}"/>
+            <div class="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 transition-all">
+                <span class="material-symbols-outlined text-xs">fullscreen</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo 6 (Featured Bottom - Full Width) -->
+    <div class="col-span-2 p-1.5 gallery-card rounded-2xl relative overflow-hidden group cursor-pointer reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);" onclick="openLightbox('{{ asset('assets/templates/wedding-32/g-6.jpeg') }}')">
+        <div class="w-full aspect-[16/10] overflow-hidden rounded-xl relative">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pre-wedding photo Surya & Icha 6" src="{{ asset('assets/templates/wedding-32/g-6.jpeg') }}"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
+            <div class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-[#e7bd55]/50 flex items-center justify-center text-[#e7bd55] opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                <span class="material-symbols-outlined text-sm">fullscreen</span>
+            </div>
         </div>
     </div>
 </div>
@@ -883,33 +983,97 @@
 </div>
 </section>
 <!-- WEDDING GIFT -->
-<section class="py-section-gap px-margin-mobile">
-<div class="text-center mb-12">
-<h2 class="font-headline-lg-mobile text-primary">Kado Pernikahan</h2>
-<p class="text-on-surface-variant text-sm mt-4">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih, dapat melalui:</p>
+<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Gift">
+<div class="text-center mb-10 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,9vw,42px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 20px rgba(226,184,75,.25);margin-bottom:8px;" class="animate-pulse-glow">Kado Pernikahan</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#a09888;margin-top:14px;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.7;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih secara cashless, dapat melalui:</p>
 </div>
-<div class="flex flex-col gap-gutter">
-<div class="bg-surface-container p-8 rounded-2xl border border-primary/20 text-center relative overflow-hidden">
-<div class="absolute top-0 right-0 p-4 opacity-20">
-<span class="material-symbols-outlined text-6xl text-primary" data-icon="account_balance">account_balance</span>
-</div>
-<p class="font-label-caps text-primary mb-4">BANK BCA</p>
-<p class="font-headline-md text-on-surface mb-2" id="acc-number">826532247</p>
-<p class="text-on-surface-variant text-sm mb-6">A/N PAMUNKAS SURYA MERDEKA</p>
-<button class="inline-flex items-center gap-2 bg-primary/10 border border-primary/40 text-primary px-6 py-2 rounded-full text-xs font-bold active:bg-primary active:text-on-primary transition-all" onclick="copyAccount('826532247', this)">
-<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
-                        SALIN NOMOR REKENING
-                    </button>
-</div>
+
+<div class="flex flex-col items-center justify-center reveal-section relative z-10">
+    <!-- Luxury Gold Digital Bank Card -->
+    <div class="w-full max-w-[360px] rounded-2xl p-6 relative gold-card-shadow gold-shimmer-effect overflow-hidden" style="background:linear-gradient(135deg,#2c1c0c 0%,#170e06 45%,#26180a 100%);border:1.5px solid rgba(212,175,55,.45);">
+        <!-- Subtle Pattern -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none javanese-pattern"></div>
+        
+        <!-- Card Top Bar: Chip & Bank Name -->
+        <div class="flex justify-between items-center mb-6 relative z-10">
+            <!-- EMV Gold Chip & Contactless -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-11 h-8 rounded-md bg-gradient-to-br from-[#f2ca50] via-[#d4af37] to-[#8c7322] p-0.5 shadow-md flex items-center justify-center relative overflow-hidden">
+                    <div class="w-full h-full border border-black/20 rounded-[4px] relative flex flex-col justify-around py-0.5">
+                        <div class="w-full h-px bg-black/30"></div>
+                        <div class="w-full h-px bg-black/30"></div>
+                        <div class="absolute inset-x-2 inset-y-1 border border-black/20 rounded-sm"></div>
+                    </div>
+                </div>
+                <!-- Contactless Icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e7bd55" stroke-width="2" stroke-linecap="round" class="opacity-70">
+                    <path d="M8.5 16.5a5 5 0 0 1 0-7"/>
+                    <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
+                    <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
+                </svg>
+            </div>
+            
+            <!-- Bank Logo Text -->
+            <div class="text-right">
+                <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:18px;font-weight:900;letter-spacing:0.1em;color:#e7bd55;text-shadow:0 2px 6px rgba(0,0,0,.8);">BCA</span>
+                <p style="font-size:8px;letter-spacing:0.2em;color:#c9a84c;opacity:.7;margin-top:-2px;">DIGITAL CARD</p>
+            </div>
+        </div>
+
+        <!-- Account Number -->
+        <div class="mb-4 relative z-10">
+            <p style="font-size:9px;letter-spacing:0.2em;color:#a09888;margin-bottom:4px;font-family:'Be Vietnam Pro',sans-serif;">NOMOR REKENING</p>
+            <p class="tracking-[0.18em] font-semibold text-2xl md:text-3xl text-[#f2ca50] drop-shadow-md select-all" id="acc-number" style="font-family:'Cormorant Garamond',monospace;">8265 3224 7</p>
+        </div>
+
+        <!-- Cardholder Name & Action -->
+        <div class="flex justify-between items-end pt-3 border-t border-[#d4af37]/20 relative z-10">
+            <div>
+                <p style="font-size:8px;letter-spacing:0.2em;color:#a09888;font-family:'Be Vietnam Pro',sans-serif;">ATAS NAMA</p>
+                <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#e5e2e1;">PAMUNKAS SURYA MERDEKA</p>
+            </div>
+            
+            <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-md active:scale-95" style="background:linear-gradient(135deg,#d4af37,#b8960b);color:#1a1208;box-shadow:0 4px 14px rgba(212,175,55,.3);" onclick="copyAccount('826532247', this)">
+                <span class="material-symbols-outlined text-sm">content_copy</span>
+                <span>SALIN</span>
+            </button>
+        </div>
+    </div>
 </div>
 </section>
+
 <!-- FOOTER -->
-<footer class="pt-section-gap pb-32 px-margin-mobile text-center">
-<div class="javanese-pattern absolute inset-x-0 h-24 bottom-24 opacity-5"></div>
-<p class="font-body-md text-on-surface-variant mb-6">Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.</p>
-<h2 class="font-decorative-script text-4xl text-primary gold-glow mb-8">Matur Nuwun</h2>
-<p class="font-label-caps text-sepia-text text-[10px] tracking-widest">RAHAYU &amp; SATRIA — 2024</p>
+<footer class="pt-section-gap pb-32 px-margin-mobile text-center relative overflow-hidden" style="background:linear-gradient(to top,#060402 0%,#0e0906 100%);">
+    <div class="javanese-pattern absolute inset-x-0 h-32 bottom-20 opacity-5 pointer-events-none"></div>
+    <div class="relative z-10 max-w-[400px] mx-auto reveal-section">
+        <!-- Closing Monogram -->
+        <div class="w-14 h-14 rounded-full mx-auto mb-6 flex items-center justify-center relative" style="border:1.5px solid rgba(208,164,66,.45);background:rgba(20,13,7,.7);">
+            <div class="w-11 h-11 rounded-full absolute border border-primary/25"></div>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#e7bd55;">S&amp;I</span>
+        </div>
+
+        <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:#c8b99b;line-height:1.75;margin-bottom:20px;">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.
+        </p>
+
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(38px,10vw,48px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 14px rgba(0,0,0,.8),0 0 20px rgba(226,184,75,.3);margin-bottom:12px;">Matur Nuwun</h2>
+        
+        <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.25em;color:#e7bd55;margin-bottom:6px;">SURYA &amp; ICHA — 2026</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:#8a8070;">The Wedding of Surya &amp; Icha</p>
+    </div>
 </footer>
+
+<!-- Toast Notification Popup -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] bg-[#1a1208]/95 border border-[#d4af37]/60 text-[#e7bd55] px-5 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_15px_rgba(212,175,55,0.3)] backdrop-blur-md flex items-center gap-2 text-xs font-semibold tracking-wide transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+    <span class="material-symbols-outlined text-sm text-[#e7bd55]">check_circle</span>
+    <span id="toast-message">Nomor rekening berhasil disalin!</span>
+</div>
 <!-- BOTTOM NAV BAR -->
 <nav class="fixed bottom-0 left-0 right-0 w-full max-w-container-max mx-auto bg-surface-container/90 backdrop-blur-lg border-t border-outline-variant/50 shadow-lg flex justify-around items-center py-3 px-2 z-50 rounded-t-full overflow-hidden">
 <div class="javanese-pattern absolute inset-0 z-0 pointer-events-none opacity-25"></div>
@@ -939,7 +1103,7 @@
 </div>
 <!-- Hidden Audio element for background music -->
 <audio id="bg-music" loop="">
-<source src="{{ asset('assets/templates/wedding-11/wp-content/uploads/2026/01/Jawa-03-Niken-Salindry-KUSUMA-WIJAYA.mp3') }}" type="audio/mpeg"/>
+<source src="{{ asset('assets/templates/wedding-11/newassets/NEW/JALARANING TRESNA - CINDI CINTYA FEAT ILHAM PRADANA (OFFICIAL MUSIC VIDEO).mp3') }}" type="audio/mpeg"/>
 </audio>
 
 <!-- Lightbox Modal for Photo Preview -->
@@ -996,12 +1160,12 @@
                             guest_count: Number(this.rsvpCount),
                             attendance_status: this.rsvpAttend
                         });
-                        alert('Konfirmasi kehadiran berhasil dikirim.');
+                        showToast('✓ Konfirmasi kehadiran berhasil dikirim!');
                         this.rsvpName = '';
                         this.rsvpCount = 1;
                         this.rsvpAttend = 'Hadir';
                     } catch (error) {
-                        alert(error.message);
+                        showToast(error.message || 'Gagal mengirim konfirmasi.');
                     } finally {
                         this.submittingRsvp = false;
                     }
@@ -1015,12 +1179,12 @@
                             guest_name: this.name,
                             message: this.message
                         });
-                        this.wishes.unshift(result.wish);
+                        this.wishes.unshift(result.wish || { name: this.name, status: 'Ucapan & Doa', message: this.message });
                         this.name = '';
                         this.message = '';
-                        alert('Terima kasih atas ucapan dan doa Anda!');
+                        showToast('✓ Terima kasih atas ucapan & doa Anda!');
                     } catch (error) {
-                        alert(error.message);
+                        showToast(error.message || 'Gagal mengirim ucapan.');
                     } finally {
                         this.submittingWish = false;
                     }
@@ -1028,11 +1192,28 @@
             }));
         });
 
+        // Toast Notification System
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            if (toast && toastMsg) {
+                toastMsg.textContent = message;
+                toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+                
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                }, 2800);
+            }
+        }
+
         // Open Invitation Logic
         function openInvitation() {
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
-            const audioControl = document.getElementById('audio-control');
             const audio = document.getElementById('bg-music');
 
             document.body.classList.remove('overflow-hidden');
@@ -1042,8 +1223,9 @@
             setTimeout(() => {
                 cover.classList.add('hidden');
                 mainContent.classList.remove('opacity-0');
-                audioControl.classList.remove('hidden');
-                audio.play();
+                if (audio) {
+                    audio.play().catch(() => {});
+                }
                 startCountdown();
                 // Active autoscroll by default
                 toggleAutoscroll();
@@ -1054,15 +1236,13 @@
         let isPlaying = true;
         function toggleAudio() {
             const audio = document.getElementById('bg-music');
-            const icon = document.getElementById('music-icon');
             const iconHeader = document.getElementById('music-icon-header');
+            if (!audio) return;
             if (isPlaying) {
                 audio.pause();
-                if(icon) icon.innerText = 'volume_off';
                 if(iconHeader) iconHeader.innerText = 'volume_off';
             } else {
-                audio.play();
-                if(icon) icon.innerText = 'volume_up';
+                audio.play().catch(() => {});
                 if(iconHeader) iconHeader.innerText = 'volume_up';
             }
             isPlaying = !isPlaying;
@@ -1101,29 +1281,51 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("days").innerHTML = "00";
-                    document.getElementById("hours").innerHTML = "00";
-                    document.getElementById("minutes").innerHTML = "00";
-                    document.getElementById("seconds").innerHTML = "00";
+                    const dEl = document.getElementById("days");
+                    const hEl = document.getElementById("hours");
+                    const mEl = document.getElementById("minutes");
+                    const sEl = document.getElementById("seconds");
+                    if (dEl) dEl.innerHTML = "00";
+                    if (hEl) hEl.innerHTML = "00";
+                    if (mEl) mEl.innerHTML = "00";
+                    if (sEl) sEl.innerHTML = "00";
                 } else {
-                    document.getElementById("days").innerHTML = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                    document.getElementById("hours").innerHTML = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                    document.getElementById("minutes").innerHTML = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                    document.getElementById("seconds").innerHTML = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+                    const dEl = document.getElementById("days");
+                    const hEl = document.getElementById("hours");
+                    const mEl = document.getElementById("minutes");
+                    const sEl = document.getElementById("seconds");
+                    if (dEl) dEl.innerHTML = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                    if (hEl) hEl.innerHTML = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                    if (mEl) mEl.innerHTML = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                    if (sEl) sEl.innerHTML = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
                 }
             }, 1000);
         }
 
         // Copy Account Logic
         function copyAccount(number, btn) {
-            navigator.clipboard.writeText(number);
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> TERSALIN';
-            btn.classList.add('bg-primary', 'text-on-primary');
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.classList.remove('bg-primary', 'text-on-primary');
-            }, 2000);
+            navigator.clipboard.writeText(number).then(() => {
+                showToast('✓ Nomor rekening BCA (' + number + ') berhasil disalin!');
+            }).catch(() => {
+                // Fallback
+                const temp = document.createElement('input');
+                temp.value = number;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+                showToast('✓ Nomor rekening BCA berhasil disalin!');
+            });
+            
+            if (btn) {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined text-sm">done</span><span>TERSALIN</span>';
+                btn.style.background = '#e7bd55';
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.background = 'linear-gradient(135deg,#d4af37,#b8960b)';
+                }, 2000);
+            }
         }
 
         // Scroll Reveal
@@ -1133,7 +1335,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08 });
 
         document.querySelectorAll('.reveal-section').forEach(section => {
             observer.observe(section);
@@ -1144,9 +1346,12 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
                 
                 // Update active state
                 document.querySelectorAll('nav a').forEach(a => {
@@ -1156,25 +1361,27 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', playCoverOrnaments);
-
         // Lightbox Logic
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lightbox.classList.remove('hidden');
-            setTimeout(() => {
-                lightbox.classList.remove('opacity-0');
-            }, 10);
+            if (lightbox && img) {
+                img.src = src;
+                lightbox.classList.remove('hidden');
+                setTimeout(() => {
+                    lightbox.classList.remove('opacity-0');
+                }, 10);
+            }
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
-            lightbox.classList.add('opacity-0');
-            setTimeout(() => {
-                lightbox.classList.add('hidden');
-            }, 300);
+            if (lightbox) {
+                lightbox.classList.add('opacity-0');
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                }, 300);
+            }
         }
     </script>
 </body></html>
