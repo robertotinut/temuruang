@@ -307,6 +307,9 @@
         .home-monogram span { position:relative; z-index:1; transform:translateX(-8px) translateY(8px); }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
+        #Home .home-bottom-corner { position:absolute; bottom:3.7rem; width:5.5rem; height:auto; opacity:.78; z-index:2; pointer-events:none; }
+        #Home .home-bottom-corner.left { left:-.5rem; }
+        #Home .home-bottom-corner.right { right:-.5rem; transform:scaleX(-1); }
         #Home .grid.grid-cols-4 > div { min-height:100px; padding-top:.8rem; padding-bottom:.7rem; border-radius:12px; }
         #Home .grid.grid-cols-4 span:first-child { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(34px,9vw,42px); font-weight:500; }
         header.fixed { background:rgba(24,15,9,.94)!important; border-bottom-color:rgba(210,165,65,.28)!important; }
