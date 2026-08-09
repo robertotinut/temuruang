@@ -165,6 +165,7 @@
             background:
                 linear-gradient(to bottom, rgba(0,0,0,.22) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.02) 55%, rgba(0,0,0,.20) 100%);
         }
+        .text-readability-overlay { position:absolute; left:50%; top:58%; transform:translate(-50%,-50%); width:100%; height:48%; pointer-events:none; background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,rgba(0,0,0,.28) 35%,rgba(0,0,0,.10) 60%,transparent 78%); z-index:1; }
         .cover-piece {
             position: absolute;
             pointer-events: none;
@@ -235,17 +236,19 @@
             font-size: clamp(34px, 8vw, 44px);
             line-height: 1.02;
             letter-spacing: 0;
-            text-shadow: 0 18px 34px rgba(0,0,0,.42), 0 0 18px rgba(242,202,80,.28);
+            text-shadow: 0 2px 5px rgba(0,0,0,.55), 0 0 12px rgba(0,0,0,.18);
         }
         .cover-recipient {
             margin: 16px auto 22px;
-            color: rgba(229,226,225,.74);
+            color: rgba(255,255,255,.88);
+            text-shadow: 0 1px 4px rgba(0,0,0,.85);
             font-size: 15px;
             line-height: 1.65;
         }
         .cover-recipient span {
             display: inline-block;
-            color: #fff9e8;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,.9);
             font-weight: 700;
             font-size: 19px;
         }
@@ -310,6 +313,7 @@
 <img class="cover-photo w-full h-full object-cover" data-alt="Foto pembukaan pasangan pengantin" src="{{ asset('assets/templates/wedding-11/pembukaan-image.jpeg') }}"/>
 </div>
 <div class="cover-modern-overlay absolute inset-0"></div>
+<div class="text-readability-overlay"></div>
 <div class="cover-light-wash"></div>
 <div class="cover-dust"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
