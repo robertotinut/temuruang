@@ -696,78 +696,56 @@
 </div>
 </section>
 <!-- LOVE STORY -->
-<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Story">
-<!-- Background Glow -->
-<div class="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
+<section class="relative overflow-hidden" id="Story" style="background-color:#0e0906;background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg kisah cinta.png') }}');background-position:center top;background-size:cover;background-repeat:no-repeat;padding:4rem 1.25rem 4.5rem;">
 
-<div class="text-center mb-16 reveal-section relative z-10">
-    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Kisah Cinta</h2>
-    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
-        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
-        <span class="text-primary text-[10px]">◆</span>
-        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+<div class="text-center mb-8 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,9vw,42px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 20px rgba(226,184,75,.25);margin-bottom:8px;" class="animate-pulse-glow">Kisah Cinta</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#a09888;margin-top:14px;line-height:1.7;">Setiap langkah, setiap cerita,<br/>membawa kami sampai di titik ini.</p>
 </div>
 
-<div class="relative border-l-2 border-gradient-to-b ml-6 pl-8 space-y-10 z-10">
-    <style>
-        .border-gradient-to-b {
-            border-image: linear-gradient(to bottom, #f2ca50, rgba(242, 202, 80, 0.3) 70%, transparent) 1 100%;
-        }
-    </style>
+<div class="relative ml-5 pl-7 space-y-8 z-10" style="border-left:2px solid transparent;border-image:linear-gradient(to bottom,#c9a84c,rgba(201,168,76,.25) 75%,transparent) 1 100%;">
 
     <!-- Story 1 -->
     <div class="relative reveal-section">
-        <!-- 8-Petaled Javanese Flower Node -->
-        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
-            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
-            </svg>
+        <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
-        
-        <!-- Javanese Story Card -->
-        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
-            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
-            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
-            
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER I — ONCE UPON A TIME</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Sebelum saling mengenal, kami hanyalah dua orang asing yang menjalani hidup di dunia masing-masing. Kami tidak pernah tahu bahwa langkah-langkah kecil yang kami ambil saat itu perlahan sedang membawa kami menuju satu tujuan yang sama.</p>
+        <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER I</p>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">Once Upon A Time</h4>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Sebelum saling mengenal, kami hanyalah dua orang asing yang menjalani hidup di dunia masing-masing. Kami tidak pernah tahu bahwa langkah-langkah kecil yang kami ambil saat itu perlahan sedang membawa kami menuju satu tujuan yang sama.</p>
         </div>
     </div>
 
     <!-- Story 2 -->
     <div class="relative reveal-section">
-        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
-            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
-            </svg>
+        <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
-        
-        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
-            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
-            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
-            
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER II — THE JOURNEY</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Tidak semua kisah dimulai dengan keyakinan. Kadang, ia bertumbuh melalui pertanyaan, perbedaan, dan pilihan-pilihan yang tidak selalu mudah. Kami memilih untuk tetap berjalan ke arah yang sama.</p>
+        <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER II</p>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">The Journey</h4>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Tidak semua kisah dimulai dengan keyakinan. Kadang, ia bertumbuh melalui pertanyaan, perbedaan, dan pilihan-pilihan yang tidak selalu mudah. Kami memilih untuk tetap berjalan ke arah yang sama.</p>
         </div>
     </div>
 
     <!-- Story 3 -->
     <div class="relative reveal-section">
-        <div class="absolute -left-[45px] top-2 text-primary bg-[#0A0503] rounded-full p-1.5 border border-primary/40 shadow-[0_0_8px_rgba(242,202,80,0.6)] z-10">
-            <svg class="w-3.5 h-3.5 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
-            </svg>
+        <div class="absolute -left-[38px] top-3 w-7 h-7 rounded-full flex items-center justify-center z-10" style="background:#0e0906;border:1.5px solid rgba(201,168,76,.6);box-shadow:0 0 10px rgba(226,184,75,.4);">
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z"/></svg>
         </div>
-        
-        <div class="bg-[#1A1513]/85 border border-primary/30 p-5 rounded-2xl shadow-xl hover:border-primary/60 transition-all duration-300 relative group overflow-hidden">
-            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-primary/40 rounded-tl-xl"></div>
-            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/40 rounded-br-xl"></div>
-            
-            <span class="font-label-caps text-xs text-primary font-bold tracking-widest block mb-2">CHAPTER III — THE PROMISE</span>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Harapan yang dulu kami simpan dalam doa bertumbuh menjadi langkah yang siap kami jalani—Bersama, Selamanya.</p>
+        <div style="background:linear-gradient(165deg,rgba(30,20,12,.88),rgba(12,8,4,.94));border:1px solid rgba(208,164,66,.3);border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.4);">
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.2em;margin-bottom:6px;opacity:.7;">CHAPTER III</p>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:10px;">The Promise</h4>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.75;">Harapan yang dulu kami simpan dalam doa bertumbuh menjadi langkah yang siap kami jalani—Bersama, Selamanya.</p>
         </div>
     </div>
+
 </div>
 </section>
 
@@ -824,50 +802,82 @@
 </div>
 </section>
 <!-- RSVP & WISHES -->
-<section class="py-section-gap px-margin-mobile bg-surface-container-low" id="Wishes" x-data="rsvpComponent(@js(isset($invitation) ? $invitation->guestBooks->sortByDesc('created_at')->take(20)->map(fn($guestBook) => ['name' => $guestBook->guest_name, 'status' => 'Ucapan & Doa', 'message' => $guestBook->message])->values() : []))">
-<div class="text-center mb-12">
-<h2 class="font-headline-lg-mobile text-primary">Konfirmasi Kehadiran</h2>
+<section class="relative overflow-hidden" id="Wishes" x-data="rsvpComponent(@js(isset($invitation) ? $invitation->guestBooks->sortByDesc('created_at')->take(20)->map(fn($guestBook) => ['name' => $guestBook->guest_name, 'status' => 'Ucapan & Doa', 'message' => $guestBook->message])->values() : []))" style="background-color:#0e0906;padding:4rem 1.25rem 3rem;">
+
+<!-- Konfirmasi Kehadiran -->
+<div class="text-center mb-8 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,8vw,38px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 20px rgba(226,184,75,.25);margin-bottom:8px;">Konfirmasi Kehadiran</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
+    </div>
 </div>
-<div class="bg-surface-container p-6 rounded-xl border border-primary/20 mb-12">
-<form class="flex flex-col gap-6" id="rsvp-form" @submit.prevent="submitRSVP">
+
+<div class="reveal-section mb-12" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
+<form class="flex flex-col gap-5" id="rsvp-form" @submit.prevent="submitRSVP">
 <div>
-<label class="font-label-caps text-on-surface-variant mb-2 block">NAMA LENGKAP</label>
-<input class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Masukkan nama anda" type="text" x-model="rsvpName"/>
+<label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">NAMA LENGKAP</label>
+<input style="width:100%;background:rgba(10,5,3,.8);border:1px solid rgba(208,164,66,.25);border-radius:12px;padding:14px 16px;color:#e5e2e1;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color .3s;" placeholder="Masukkan nama anda" type="text" x-model="rsvpName" onfocus="this.style.borderColor='rgba(208,164,66,.6)'" onblur="this.style.borderColor='rgba(208,164,66,.25)'"/>
 </div>
 <div>
-<label class="font-label-caps text-on-surface-variant mb-2 block">JUMLAH YANG HADIR</label>
-<input class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" min="1" placeholder="Contoh: 2" type="number" x-model="rsvpCount"/>
+<label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">JUMLAH YANG HADIR</label>
+<input style="width:100%;background:rgba(10,5,3,.8);border:1px solid rgba(208,164,66,.25);border-radius:12px;padding:14px 16px;color:#e5e2e1;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color .3s;" min="1" placeholder="Contoh: 2" type="number" x-model="rsvpCount" onfocus="this.style.borderColor='rgba(208,164,66,.6)'" onblur="this.style.borderColor='rgba(208,164,66,.25)'"/>
 </div>
 <div>
-<label class="font-label-caps text-on-surface-variant mb-2 block">STATUS KEHADIRAN</label>
-<select class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" x-model="rsvpAttend">
+<label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">STATUS KEHADIRAN</label>
+<select style="width:100%;background:rgba(10,5,3,.8);border:1px solid rgba(208,164,66,.25);border-radius:12px;padding:14px 16px;color:#e5e2e1;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color .3s;" x-model="rsvpAttend" onfocus="this.style.borderColor='rgba(208,164,66,.6)'" onblur="this.style.borderColor='rgba(208,164,66,.25)'">
 <option>Hadir</option>
 <option>Tidak Hadir</option>
 <option>Masih Ragu</option>
 </select>
 </div>
-<button class="bg-primary text-on-primary py-3 rounded-full font-bold tracking-widest text-xs hover:shadow-lg transition-all active:scale-95" type="submit" :disabled="submittingRsvp || !rsvpName || !rsvpCount" x-text="submittingRsvp ? 'MENGIRIM...' : 'KIRIM KEHADIRAN'"></button>
+<button style="background:linear-gradient(135deg,#d4af37,#b8960b);color:#1a1208;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;padding:14px;border-radius:50px;border:none;cursor:pointer;transition:all .3s;box-shadow:0 6px 20px rgba(212,175,55,.25);" type="submit" :disabled="submittingRsvp || !rsvpName || !rsvpCount" x-text="submittingRsvp ? 'MENGIRIM...' : 'KIRIM KEHADIRAN'" onmouseover="this.style.boxShadow='0 8px 28px rgba(212,175,55,.4)'" onmouseout="this.style.boxShadow='0 6px 20px rgba(212,175,55,.25)'"></button>
 </form>
 </div>
-<div class="bg-surface-container p-6 rounded-xl border border-primary/20 mb-8">
-<form class="flex flex-col gap-4" @submit.prevent="submitWish">
+
+<!-- Kirim Ucapan & Doa -->
+<div class="text-center mb-8 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,8vw,38px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7);margin-bottom:8px;">Kirim Ucapan &amp; Doa</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
+    </div>
+</div>
+
+<div class="reveal-section mb-10" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.35);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
+<form class="flex flex-col gap-5" @submit.prevent="submitWish">
 <div>
-<label class="font-label-caps text-on-surface-variant mb-2 block">NAMA LENGKAP</label>
-<input class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Masukkan nama anda" type="text" x-model="name"/>
+<label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">NAMA LENGKAP</label>
+<input style="width:100%;background:rgba(10,5,3,.8);border:1px solid rgba(208,164,66,.25);border-radius:12px;padding:14px 16px;color:#e5e2e1;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color .3s;" placeholder="Masukkan nama anda" type="text" x-model="name" onfocus="this.style.borderColor='rgba(208,164,66,.6)'" onblur="this.style.borderColor='rgba(208,164,66,.25)'"/>
 </div>
 <div>
-<label class="font-label-caps text-on-surface-variant mb-2 block">PESAN &amp; DOA</label>
-<textarea class="w-full bg-deep-ebony border border-outline-variant/30 rounded-lg py-3 px-4 text-on-surface focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Tuliskan ucapan anda" rows="4" x-model="message"></textarea>
+<label style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;letter-spacing:0.18em;display:block;margin-bottom:8px;">PESAN &amp; DOA</label>
+<textarea style="width:100%;background:rgba(10,5,3,.8);border:1px solid rgba(208,164,66,.25);border-radius:12px;padding:14px 16px;color:#e5e2e1;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color .3s;resize:vertical;" placeholder="Tuliskan ucapan dan doa anda..." rows="4" x-model="message" onfocus="this.style.borderColor='rgba(208,164,66,.6)'" onblur="this.style.borderColor='rgba(208,164,66,.25)'"></textarea>
 </div>
-<button class="bg-primary text-on-primary py-3 rounded-full font-bold tracking-widest text-xs hover:shadow-lg transition-all active:scale-95" type="submit" :disabled="submittingWish || !name || !message" x-text="submittingWish ? 'MENGIRIM...' : 'KIRIM UCAPAN'"></button>
+<button style="background:linear-gradient(135deg,#d4af37,#b8960b);color:#1a1208;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;padding:14px;border-radius:50px;border:none;cursor:pointer;transition:all .3s;box-shadow:0 6px 20px rgba(212,175,55,.25);" type="submit" :disabled="submittingWish || !name || !message" x-text="submittingWish ? 'MENGIRIM...' : 'KIRIM UCAPAN'" onmouseover="this.style.boxShadow='0 8px 28px rgba(212,175,55,.4)'" onmouseout="this.style.boxShadow='0 6px 20px rgba(212,175,55,.25)'"></button>
 </form>
 </div>
-<div class="space-y-6 max-h-[400px] overflow-y-auto hide-scrollbar pr-2">
+
+<!-- Ucapan & Doa List -->
+<div class="text-center mb-6 reveal-section relative z-10">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;font-style:italic;color:#e7bd55;">Ucapan &amp; Doa</h3>
+</div>
+<div class="space-y-4 max-h-[420px] overflow-y-auto hide-scrollbar pr-1">
 <template x-for="wish in wishes" :key="wish.name + '-' + wish.message">
-<div class="bg-surface-container-highest p-4 rounded-lg border-l-4 border-primary/40">
-<p class="font-bold text-sm text-primary" x-text="wish.name"></p>
-<p class="text-xs text-on-surface-variant italic mb-2" x-text="wish.status"></p>
-<p class="text-sm text-on-surface" x-text="wish.message"></p>
+<div style="background:linear-gradient(165deg,rgba(30,20,12,.85),rgba(12,8,4,.92));border:1px solid rgba(208,164,66,.2);border-radius:16px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,.3);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,#d4af37,rgba(212,175,55,.2));border-radius:3px;"></div>
+    <div class="flex items-center gap-2 mb-2">
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,rgba(208,164,66,.2),rgba(208,164,66,.1));border:1px solid rgba(208,164,66,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-symbols-outlined" style="font-size:14px;color:#c9a84c;" data-icon="person">person</span>
+        </div>
+        <div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#e7bd55;line-height:1.2;" x-text="wish.name"></p>
+            <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#8a8070;font-style:italic;" x-text="wish.status"></p>
+        </div>
+    </div>
+    <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:#b8b0a4;line-height:1.7;padding-left:36px;" x-text="wish.message"></p>
 </div>
 </template>
 </div>
