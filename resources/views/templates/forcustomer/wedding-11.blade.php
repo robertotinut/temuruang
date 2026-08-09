@@ -271,6 +271,26 @@
         @keyframes textFade { from{opacity:0} to{opacity:1} }
         @keyframes textFadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         @keyframes eyebrowIn { from{opacity:0;transform:translate(-50%,8px)} to{opacity:1;transform:translate(-50%,0)} }
+        #Home { background:radial-gradient(ellipse at 50% 18%,rgba(173,105,35,.16) 0%,rgba(90,45,15,.08) 30%,transparent 60%),linear-gradient(to bottom,#130d09 0%,#090604 100%); }
+        #Home::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.28) 100%); z-index:0; }
+        #Home .reveal-section { z-index:2; }
+        #Home .reveal-section h2 { color:#e7bd55; text-shadow:0 2px 8px rgba(0,0,0,.8),0 0 14px rgba(221,169,59,.2); animation:homeTitleIn .8s ease .2s both; }
+        #Home .reveal-section > p { animation:homeFadeIn .7s ease .1s both; }
+        #Home .reveal-section > div:first-child { opacity:.7; }
+        #Home .reveal-section > div:nth-of-type(2) { opacity:.75; }
+        #Home .reveal-section > div:nth-of-type(3) { animation:homeFadeIn .7s ease .45s both; }
+        #Home .grid.grid-cols-4 { position:relative; z-index:2; }
+        #Home .grid.grid-cols-4 > div { background:linear-gradient(145deg,rgba(48,32,20,.92),rgba(18,12,8,.95)); border:1px solid rgba(208,164,66,.45); border-radius:14px; box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 20px rgba(0,0,0,.35); animation:homeCardIn .7s cubic-bezier(.16,1,.3,1) both; }
+        #Home .grid.grid-cols-4 > div:nth-child(2){animation-delay:.1s} #Home .grid.grid-cols-4 > div:nth-child(3){animation-delay:.2s} #Home .grid.grid-cols-4 > div:nth-child(4){animation-delay:.3s}
+        #Home .grid.grid-cols-4 span:first-child { color:#e7bd55; text-shadow:0 2px 8px rgba(0,0,0,.8); }
+        #Home .grid.grid-cols-4 span:last-child { color:#ead9b2; }
+        header.fixed { background:rgba(24,15,9,.94)!important; border-bottom-color:rgba(210,165,65,.28)!important; }
+        header.fixed .text-primary, header.fixed .material-symbols-outlined { color:#e7bd55!important; }
+        nav.fixed { background:rgba(20,14,10,.95)!important; border-top-color:rgba(210,165,65,.25)!important; }
+        nav.fixed a { color:#c8b99b!important; } nav.fixed a.text-primary, nav.fixed a:hover { color:#e7bd55!important; }
+        @keyframes homeTitleIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes homeFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes homeCardIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
         @keyframes assembleTopLeft { from{opacity:0;transform:translate(-45px,-25px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
         @keyframes assembleTopRight { from{opacity:0;transform:translate(45px,-25px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
         @keyframes assembleTopCenter { from{opacity:0;transform:translate(-50%,-45px) scale(.95)} to{opacity:1;transform:translate(-50%,0) scale(1)} }
@@ -348,6 +368,8 @@
 </header>
 <!-- HERO & COUNTDOWN -->
 <section class="pt-32 pb-16 px-margin-mobile relative overflow-hidden" id="Home">
+<img class="absolute top-20 left-0 w-20 opacity-30 pointer-events-none z-10" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
+<img class="absolute top-20 right-0 w-20 opacity-30 pointer-events-none z-10" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kanan%20atas.png') }}" alt="" />
 <!-- Royal Glow Background -->
 <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent z-0 pointer-events-none"></div>
 
