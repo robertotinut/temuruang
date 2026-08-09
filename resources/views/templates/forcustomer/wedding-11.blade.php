@@ -308,6 +308,8 @@
         .home-monogram::before { content:""; position:absolute; inset:7px 5px 4px 9px; border:1px solid rgba(226,184,75,.75); border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-32deg); }
         .home-monogram::after { content:"❧"; position:absolute; bottom:1px; left:3px; font:22px/1 Georgia,serif; color:#d9aa45; transform:rotate(-25deg); }
         .home-monogram span { position:relative; z-index:1; transform:none; margin-left:.08em; }
+        .home-monogram .monogram-amp { display:inline-flex; width:18px; height:18px; margin:0 4px 12px 2px; align-items:center; justify-content:center; border:1px solid rgba(226,184,75,.75); font:14px/1 Georgia,serif; letter-spacing:0; }
+        .home-monogram .monogram-i { margin-left:0; }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
         #Home .home-bottom-corner { position:absolute; bottom:3.7rem; width:5.5rem; height:auto; opacity:.78; z-index:2; pointer-events:none; }
@@ -488,7 +490,7 @@
     </svg>
 </div>
 
-<div class="home-monogram">S<span>&amp; I</span></div>
+<div class="home-monogram">S<span class="monogram-amp">&amp;</span><span class="monogram-i">I</span></div>
 <p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4 drop-shadow-md">THE WEDDING OF</p>
 <h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Surya &amp; Icha</h2>
 
