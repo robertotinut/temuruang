@@ -158,12 +158,12 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .cover-photo {
             object-position: center 38%;
-            filter: brightness(.72) contrast(1.05) saturate(.92);
+            opacity: 1;
+            filter: none;
         }
         .cover-modern-overlay {
             background:
-                linear-gradient(180deg, rgba(10,5,3,.35) 0%, rgba(10,5,3,.18) 35%, rgba(10,5,3,.18) 65%, rgba(10,5,3,.35) 100%),
-                radial-gradient(circle at 50% 44%, rgba(242,202,80,.12), transparent 42%);
+                linear-gradient(to bottom, rgba(0,0,0,.22) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.02) 55%, rgba(0,0,0,.20) 100%);
         }
         .cover-piece {
             position: absolute;
@@ -176,15 +176,17 @@
             animation-timing-function: cubic-bezier(.2,.8,.2,1);
             animation-fill-mode: forwards;
         }
-        .cover-top-left { top: 0; left: 0; width: 31%; opacity:.96; animation: ornamentTopLeft 4.5s ease-in-out infinite alternate; transform-origin:top left; }
-        .cover-top-right { top: 0; right: 0; width: 31%; opacity:.96; animation: ornamentTopRight 5s ease-in-out .4s infinite alternate; transform-origin:top right; }
+        .cover-top-left { top: 0; left: 0; width: 31%; animation: assembleTopLeft 1s 0s both, idleTopLeft 4.5s 1.15s ease-in-out infinite alternate; transform-origin:top left; }
+        .cover-top-right { top: 0; right: 0; width: 31%; animation: assembleTopRight 1s 0s both, idleTopRight 5s 1.25s ease-in-out infinite alternate; transform-origin:top right; }
         /* The center asset already contains its own hanging lamp. */
-        .cover-top-center { top: 8px; left: 50%; width: 38%; opacity:.96; animation: ornamentLamp 4s ease-in-out infinite alternate; }
-        .cover-bottom-left { bottom: 0; left: 0; width: 25%; opacity:.96; animation: ornamentBottomLeft 5s ease-in-out infinite alternate; transform-origin:bottom left; }
-        .cover-bottom-right { bottom: 0; right: 0; width: 25%; opacity:.96; animation: ornamentBottomRight 5.5s ease-in-out .3s infinite alternate; transform-origin:bottom right; }
-        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; opacity:.96; animation: ornamentDivider 4.8s ease-in-out infinite alternate; }
-        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.2),transparent 26%); mix-blend-mode:screen; animation:lampFlicker 4s ease-in-out infinite; }
-        .cover-dust { position:absolute; inset:22% 12% 25%; z-index:3; pointer-events:none; opacity:.5; background-image:radial-gradient(circle,rgba(255,215,115,.8) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,236,169,.55) 0 1px,transparent 2px); background-size:97px 113px,137px 151px; animation:dustFloat 9s ease-in-out infinite alternate; }
+        .cover-top-center { top: 8px; left: 50%; width: 38%; animation: assembleTopCenter 1s .15s both, idleLamp 4s 1.3s ease-in-out infinite alternate; }
+        .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation: assembleBottomLeft 1s .3s both, idleBottomLeft 5s 1.4s ease-in-out infinite alternate; transform-origin:bottom left; }
+        .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation: assembleBottomRight 1s .3s both, idleBottomRight 5.5s 1.5s ease-in-out infinite alternate; transform-origin:bottom right; }
+        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; animation: assembleDivider 1s .45s both, idleDivider 4.8s 1.55s ease-in-out infinite alternate; }
+        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(circle at 50% 8%,rgba(255,190,90,.28) 0%,rgba(255,150,50,.10) 35%,transparent 70%); mix-blend-mode:screen; animation:lampGlow 4s ease-in-out infinite; }
+        .cover-dust { position:absolute; inset:0; overflow:hidden; z-index:3; pointer-events:none; }
+        .cover-dust span { position:absolute; bottom:28%; width:3px; height:3px; border-radius:50%; background:rgba(255,205,90,.75); box-shadow:0 0 6px rgba(255,190,70,.4); animation:goldenFloat linear infinite; }
+        .cover-dust span:nth-child(1){left:22%;animation-duration:8s;animation-delay:-2s}.cover-dust span:nth-child(2){left:30%;width:2px;height:2px;animation-duration:10s;animation-delay:-6s}.cover-dust span:nth-child(3){left:38%;animation-duration:7s;animation-delay:-4s}.cover-dust span:nth-child(4){left:46%;width:4px;height:4px;animation-duration:11s;animation-delay:-8s}.cover-dust span:nth-child(5){left:55%;animation-duration:9s;animation-delay:-1s}.cover-dust span:nth-child(6){left:63%;width:2px;height:2px;animation-duration:12s;animation-delay:-7s}.cover-dust span:nth-child(7){left:70%;animation-duration:8s;animation-delay:-3s}.cover-dust span:nth-child(8){left:78%;width:2px;height:2px;animation-duration:10s;animation-delay:-5s}
         .cover-eyebrow-floating {
             position: absolute;
             top: 20%;
@@ -266,6 +268,20 @@
         @keyframes textFade { from{opacity:0} to{opacity:1} }
         @keyframes textFadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         @keyframes eyebrowIn { from{opacity:0;transform:translate(-50%,8px)} to{opacity:1;transform:translate(-50%,0)} }
+        @keyframes assembleTopLeft { from{opacity:0;transform:translate(-45px,-25px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
+        @keyframes assembleTopRight { from{opacity:0;transform:translate(45px,-25px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
+        @keyframes assembleTopCenter { from{opacity:0;transform:translate(-50%,-45px) scale(.95)} to{opacity:1;transform:translate(-50%,0) scale(1)} }
+        @keyframes assembleBottomLeft { from{opacity:0;transform:translate(-35px,35px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
+        @keyframes assembleBottomRight { from{opacity:0;transform:translate(35px,35px) scale(.96)} to{opacity:1;transform:translate(0,0) scale(1)} }
+        @keyframes assembleDivider { from{opacity:0;transform:translate(-50%,40px) scale(.95)} to{opacity:1;transform:translate(-50%,0) scale(1)} }
+        @keyframes idleTopLeft { from{transform:translateY(0) rotate(-.7deg)} to{transform:translateY(3px) rotate(.7deg)} }
+        @keyframes idleTopRight { from{transform:translateY(0) rotate(.7deg)} to{transform:translateY(3px) rotate(-.7deg)} }
+        @keyframes idleLamp { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(2px)} }
+        @keyframes idleBottomLeft { from{transform:translateY(0) rotate(-.5deg)} to{transform:translateY(-2px) rotate(.5deg)} }
+        @keyframes idleBottomRight { from{transform:translateY(0) rotate(.5deg)} to{transform:translateY(-2px) rotate(-.5deg)} }
+        @keyframes idleDivider { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(-3px)} }
+        @keyframes goldenFloat { 0%{transform:translate3d(0,30px,0) scale(.7);opacity:0} 20%{opacity:.6} 70%{opacity:.35} 100%{transform:translate3d(8px,-120px,0) scale(1);opacity:0} }
+        @keyframes lampGlow { 0%,100%{opacity:.15} 50%{opacity:.3} }
         @keyframes ornamentTopLeft { from{transform:translateY(0) rotate(-.8deg)} to{transform:translateY(4px) rotate(.8deg)} }
         @keyframes ornamentTopRight { from{transform:translateY(0) rotate(.8deg)} to{transform:translateY(4px) rotate(-.8deg)} }
         @keyframes ornamentLamp { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(3px)} }
@@ -295,7 +311,7 @@
 </div>
 <div class="cover-modern-overlay absolute inset-0"></div>
 <div class="cover-light-wash"></div>
-<div class="cover-dust"></div>
+<div class="cover-dust"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <img class="cover-piece cover-top-left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20atas.png') }}" alt="" />
 <img class="cover-piece cover-top-right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kanan%20atas.png') }}" alt="" />
 <img class="cover-piece cover-top-center" src="{{ asset('assets/templates/wedding-11/newassets/NEW/atas%20tengah.png') }}" alt="" />
