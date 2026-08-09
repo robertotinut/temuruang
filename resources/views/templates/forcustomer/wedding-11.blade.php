@@ -587,84 +587,108 @@
 </div>
 </section>
 <!-- EVENT SECTION -->
-<section class="py-section-gap px-margin-mobile relative overflow-hidden" id="Event">
-<!-- Background Glow -->
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0 pointer-events-none"></div>
+<section class="relative overflow-hidden" id="Event" style="background-color:#0e0906;background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg agenda.png') }}');background-position:center top;background-size:cover;background-repeat:no-repeat;padding:4rem 1.25rem 4.5rem;">
 
-<div class="text-center mb-12 reveal-section relative z-10">
-    <h2 class="font-headline-lg-mobile text-3xl text-primary gold-glow animate-pulse-glow">Agenda Bahagia</h2>
-    <div class="flex justify-center items-center gap-3 mt-4 opacity-80">
-        <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
-        <span class="text-primary text-[10px]">◆</span>
-        <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
+<div class="text-center mb-10 reveal-section relative z-10">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,9vw,42px);font-weight:500;font-style:italic;color:#e7bd55;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 20px rgba(226,184,75,.25);margin-bottom:8px;" class="animate-pulse-glow">Agenda Bahagia</h2>
+    <div class="flex justify-center items-center gap-3 mt-2 opacity-70">
+        <div class="w-16 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#c9a84c"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.8"/></svg>
+        <div class="w-16 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
 </div>
 
 <div class="flex flex-col gap-8 relative z-10">
     <!-- Akad -->
-    <div class="bg-[#1A1513]/95 border-2 border-primary/40 p-2 rounded-2xl reveal-section shadow-2xl">
-        <div class="border border-dashed border-primary/30 p-6 rounded-xl text-center">
-            <!-- Javanese Split Gate (Candi Bentar) SVG -->
-            <svg class="w-14 h-14 text-primary mx-auto mb-4 filter drop-shadow-md" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M 16,54 L 16,22 L 20,18 L 24,22 L 24,54 Z" fill="currentColor" fill-opacity="0.1"/>
+    <div class="reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
+        <div class="text-center">
+            <!-- Candi Bentar Icon -->
+            <svg class="mx-auto mb-5 filter drop-shadow-lg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#e7bd55" stroke-width="1.2" style="filter:drop-shadow(0 4px 12px rgba(226,184,75,.3));">
+                <path d="M 16,54 L 16,22 L 20,18 L 24,22 L 24,54 Z" fill="#e7bd55" fill-opacity="0.15"/>
                 <path d="M 14,54 L 26,54" stroke-width="1.8"/>
                 <path d="M 18,22 L 22,22 M 18,30 L 22,30 M 18,38 L 22,38 M 18,46 L 22,46"/>
-                <path d="M 48,54 L 48,22 L 44,18 L 40,22 L 40,54 Z" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M 48,54 L 48,22 L 44,18 L 40,22 L 40,54 Z" fill="#e7bd55" fill-opacity="0.15"/>
                 <path d="M 38,54 L 50,54" stroke-width="1.8"/>
                 <path d="M 46,22 L 42,22 M 46,30 L 42,30 M 46,38 L 42,38 M 46,46 L 42,46"/>
                 <path d="M 14,26 L 26,26 M 38,26 L 50,26" stroke-width="0.8"/>
-                <path d="M 32,28 C 28,24 28,18 32,18 C 36,18 36,24 32,28 Z" fill="currentColor" fill-opacity="0.2"/>
-                <circle cx="32" cy="23" r="1.5" fill="currentColor"/>
+                <path d="M 32,28 C 28,24 28,18 32,18 C 36,18 36,24 32,28 Z" fill="#e7bd55" fill-opacity="0.25"/>
+                <circle cx="32" cy="23" r="1.5" fill="#e7bd55"/>
             </svg>
 
-            <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Akad Nikah</h4>
-            <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.6),0 0 14px rgba(226,184,75,.2);">Akad Nikah</h4>
             
-            <p class="text-on-surface font-semibold text-sm mb-1">Sabtu, 29 Agustus 2026</p>
-            <p class="text-primary text-xs tracking-wider mb-6">Pukul 08.00 WIB</p>
-            
-            <div class="border-t border-primary/20 pt-4 mb-6">
-                <p class="font-body-md text-on-surface font-bold">Wisma Indah 2 K6/40</p>
-                <p class="text-on-surface-variant/80 text-xs mt-1">Gunung Anyar Tambak, Surabaya</p>
+            <!-- Date row -->
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="material-symbols-outlined" style="font-size:16px;color:#c9a84c;opacity:.7;" data-icon="event">event</span>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:#e5e2e1;">Sabtu, 29 Agustus 2026</p>
+            </div>
+            <!-- Time row -->
+            <div class="flex items-center justify-center gap-2 mb-5">
+                <span class="material-symbols-outlined" style="font-size:16px;color:#c9a84c;opacity:.7;" data-icon="schedule">schedule</span>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:#e7bd55;">Pukul 08.00 WIB</p>
             </div>
             
-            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="https://maps.app.goo.gl/yzAQ9oycNHSSnprn7" target="_blank" rel="noopener">
-                <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+            <!-- Location -->
+            <div style="border-top:1px solid rgba(208,164,66,.2);padding-top:14px;margin-bottom:16px;">
+                <div class="flex items-start justify-center gap-2">
+                    <span class="material-symbols-outlined" style="font-size:18px;color:#c9a84c;margin-top:2px;" data-icon="location_on">location_on</span>
+                    <div class="text-left">
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#e5e2e1;">Wisma Indah 2 K6/40</p>
+                        <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:#a09888;margin-top:2px;">Gunung Anyar Tambak, Surabaya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;padding:10px 24px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/yzAQ9oycNHSSnprn7" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
+                <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
                 LIHAT LOKASI
             </a>
         </div>
     </div>
 
     <!-- Resepsi -->
-    <div class="bg-[#1A1513]/95 border-2 border-primary/40 p-2 rounded-2xl reveal-section shadow-2xl">
-        <div class="border border-dashed border-primary/30 p-6 rounded-xl text-center">
-            <!-- Javanese Royal Umbrella (Payung Agung) SVG -->
-            <svg class="w-14 h-14 text-primary mx-auto mb-4 filter drop-shadow-md" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+    <div class="reveal-section" style="background:linear-gradient(165deg,rgba(30,20,12,.92),rgba(12,8,4,.96));border:1.5px solid rgba(208,164,66,.4);border-radius:20px;padding:28px 20px;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);">
+        <div class="text-center">
+            <!-- Payung Agung Icon -->
+            <svg class="mx-auto mb-5 filter drop-shadow-lg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#e7bd55" stroke-width="1.2" style="filter:drop-shadow(0 4px 12px rgba(226,184,75,.3));">
                 <line x1="32" y1="58" x2="32" y2="10" stroke-width="1.8"/>
-                <path d="M 12,42 C 12,38 52,38 52,42 L 48,45 C 48,43 16,43 16,45 Z" fill="currentColor" fill-opacity="0.1"/>
-                <path d="M 18,30 C 18,27 46,27 46,30 L 43,33 C 43,31 21,31 21,33 Z" fill="currentColor" fill-opacity="0.2"/>
-                <path d="M 24,18 C 24,15 40,15 40,18 L 38,20 C 38,19 26,19 26,20 Z" fill="currentColor" fill-opacity="0.3"/>
-                <path d="M 32,5 L 30,10 L 34,10 Z" fill="currentColor"/>
-                <circle cx="16" cy="45" r="1.5" fill="currentColor"/>
-                <circle cx="24" cy="45" r="1.5" fill="currentColor"/>
-                <circle cx="32" cy="45" r="1.5" fill="currentColor"/>
-                <circle cx="40" cy="45" r="1.5" fill="currentColor"/>
-                <circle cx="48" cy="45" r="1.5" fill="currentColor"/>
+                <path d="M 12,42 C 12,38 52,38 52,42 L 48,45 C 48,43 16,43 16,45 Z" fill="#e7bd55" fill-opacity="0.15"/>
+                <path d="M 18,30 C 18,27 46,27 46,30 L 43,33 C 43,31 21,31 21,33 Z" fill="#e7bd55" fill-opacity="0.25"/>
+                <path d="M 24,18 C 24,15 40,15 40,18 L 38,20 C 38,19 26,19 26,20 Z" fill="#e7bd55" fill-opacity="0.35"/>
+                <path d="M 32,5 L 30,10 L 34,10 Z" fill="#e7bd55"/>
+                <circle cx="16" cy="45" r="1.5" fill="#e7bd55"/>
+                <circle cx="24" cy="45" r="1.5" fill="#e7bd55"/>
+                <circle cx="32" cy="45" r="1.5" fill="#e7bd55"/>
+                <circle cx="40" cy="45" r="1.5" fill="#e7bd55"/>
+                <circle cx="48" cy="45" r="1.5" fill="#e7bd55"/>
             </svg>
 
-            <h4 class="font-headline-md text-2xl text-primary gold-glow mb-2">Resepsi Pernikahan</h4>
-            <div class="w-12 h-px bg-primary/30 mx-auto mb-4"></div>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;font-style:italic;color:#e7bd55;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.6),0 0 14px rgba(226,184,75,.2);">Resepsi Pernikahan</h4>
             
-            <p class="text-on-surface font-semibold text-sm mb-1">Minggu, 6 September 2026</p>
-            <p class="text-primary text-xs tracking-wider mb-6">Pukul 13.00 WIB - selesai</p>
-            
-            <div class="border-t border-primary/20 pt-4 mb-6">
-                <p class="font-body-md text-on-surface font-bold">RM. Tenda Biru</p>
-                <p class="text-on-surface-variant/80 text-xs mt-1">Jombor, Sukoharjo</p>
+            <!-- Date row -->
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="material-symbols-outlined" style="font-size:16px;color:#c9a84c;opacity:.7;" data-icon="event">event</span>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:#e5e2e1;">Minggu, 6 September 2026</p>
+            </div>
+            <!-- Time row -->
+            <div class="flex items-center justify-center gap-2 mb-5">
+                <span class="material-symbols-outlined" style="font-size:16px;color:#c9a84c;opacity:.7;" data-icon="schedule">schedule</span>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:#e7bd55;">Pukul 13.00 WIB - selesai</p>
             </div>
             
-            <a class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 hover:from-primary hover:to-primary border border-primary text-primary hover:text-on-primary font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md transform hover:scale-105 active:scale-95" href="https://maps.app.goo.gl/YR59uUjYsMXk2Fi47?g_st=aw" target="_blank" rel="noopener">
-                <span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+            <!-- Location -->
+            <div style="border-top:1px solid rgba(208,164,66,.2);padding-top:14px;margin-bottom:16px;">
+                <div class="flex items-start justify-center gap-2">
+                    <span class="material-symbols-outlined" style="font-size:18px;color:#c9a84c;margin-top:2px;" data-icon="location_on">location_on</span>
+                    <div class="text-left">
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#e5e2e1;">RM. Tenda Biru</p>
+                        <p style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:#a09888;margin-top:2px;">Jombor, Sukoharjo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25));border:1.5px solid rgba(208,164,66,.6);color:#e7bd55;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;padding:10px 24px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);" href="https://maps.app.goo.gl/YR59uUjYsMXk2Fi47?g_st=aw" target="_blank" rel="noopener" onmouseover="this.style.background='linear-gradient(135deg,#d4af37,#b8960b)';this.style.color='#1a1208'" onmouseout="this.style.background='linear-gradient(135deg,rgba(208,164,66,.15),rgba(208,164,66,.25))';this.style.color='#e7bd55'">
+                <span class="material-symbols-outlined" style="font-size:14px;" data-icon="location_on">location_on</span>
                 LIHAT LOKASI
             </a>
         </div>
