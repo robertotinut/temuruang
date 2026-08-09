@@ -162,7 +162,7 @@
         }
         .cover-modern-overlay {
             background:
-                linear-gradient(180deg, rgba(10,5,3,.26) 0%, rgba(10,5,3,.16) 33%, rgba(10,5,3,.9) 100%),
+                linear-gradient(180deg, rgba(10,5,3,.35) 0%, rgba(10,5,3,.18) 35%, rgba(10,5,3,.18) 65%, rgba(10,5,3,.35) 100%),
                 radial-gradient(circle at 50% 44%, rgba(242,202,80,.12), transparent 42%);
         }
         .cover-piece {
@@ -176,14 +176,14 @@
             animation-timing-function: cubic-bezier(.2,.8,.2,1);
             animation-fill-mode: forwards;
         }
-        .cover-top-left { top: 0; left: 0; width: 31%; animation: coverLeftIn 1s .15s forwards; }
-        .cover-top-right { top: 0; right: 0; width: 31%; animation: coverRightIn 1s .22s forwards; }
+        .cover-top-left { top: 0; left: 0; width: 31%; opacity:.96; animation: ornamentTopLeft 4.5s ease-in-out infinite alternate; transform-origin:top left; }
+        .cover-top-right { top: 0; right: 0; width: 31%; opacity:.96; animation: ornamentTopRight 5s ease-in-out .4s infinite alternate; transform-origin:top right; }
         /* The center asset already contains its own hanging lamp. */
-        .cover-top-center { top: 8px; left: 50%; width: 38%; transform: translateX(-50%); animation: coverTopIn 1s .55s forwards; }
-        .cover-bottom-left { bottom: 0; left: 0; width: 25%; animation: coverBottomIn 1s .8s forwards; }
-        .cover-bottom-right { bottom: 0; right: 0; width: 25%; animation: coverBottomIn 1s .86s forwards; }
-        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; transform: translateX(-50%); animation: coverDividerIn 1s 1.08s forwards; }
-        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.28),transparent 26%); mix-blend-mode:screen; animation:lampFlicker 4s ease-in-out infinite; }
+        .cover-top-center { top: 8px; left: 50%; width: 38%; opacity:.96; animation: ornamentLamp 4s ease-in-out infinite alternate; }
+        .cover-bottom-left { bottom: 0; left: 0; width: 25%; opacity:.96; animation: ornamentBottomLeft 5s ease-in-out infinite alternate; transform-origin:bottom left; }
+        .cover-bottom-right { bottom: 0; right: 0; width: 25%; opacity:.96; animation: ornamentBottomRight 5.5s ease-in-out .3s infinite alternate; transform-origin:bottom right; }
+        .cover-bottom-divider { bottom: 0; left: 50%; width: 55%; opacity:.96; animation: ornamentDivider 4.8s ease-in-out infinite alternate; }
+        .cover-light-wash { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 8%,rgba(255,214,126,.2),transparent 26%); mix-blend-mode:screen; animation:lampFlicker 4s ease-in-out infinite; }
         .cover-dust { position:absolute; inset:22% 12% 25%; z-index:3; pointer-events:none; opacity:.5; background-image:radial-gradient(circle,rgba(255,215,115,.8) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,236,169,.55) 0 1px,transparent 2px); background-size:97px 113px,137px 151px; animation:dustFloat 9s ease-in-out infinite alternate; }
         .cover-eyebrow-floating {
             position: absolute;
@@ -266,6 +266,12 @@
         @keyframes textFade { from{opacity:0} to{opacity:1} }
         @keyframes textFadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         @keyframes eyebrowIn { from{opacity:0;transform:translate(-50%,8px)} to{opacity:1;transform:translate(-50%,0)} }
+        @keyframes ornamentTopLeft { from{transform:translateY(0) rotate(-.8deg)} to{transform:translateY(4px) rotate(.8deg)} }
+        @keyframes ornamentTopRight { from{transform:translateY(0) rotate(.8deg)} to{transform:translateY(4px) rotate(-.8deg)} }
+        @keyframes ornamentLamp { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(3px)} }
+        @keyframes ornamentBottomLeft { from{transform:translateY(0) rotate(-.6deg)} to{transform:translateY(-3px) rotate(.6deg)} }
+        @keyframes ornamentBottomRight { from{transform:translateY(0) rotate(.6deg)} to{transform:translateY(-3px) rotate(-.6deg)} }
+        @keyframes ornamentDivider { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(-3px)} }
         @keyframes coverTextIn {
             to { opacity: 1; transform: translateY(0); }
         }
