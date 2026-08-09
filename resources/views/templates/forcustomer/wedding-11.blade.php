@@ -304,11 +304,12 @@
         .home-dust { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
         .home-dust i { position:absolute; bottom:18%; width:3px; height:3px; border-radius:50%; background:rgba(255,205,90,.55); box-shadow:0 0 6px rgba(255,190,70,.3); animation:homeDust 10s linear infinite; }
         .home-dust i:nth-child(1){left:18%;animation-delay:-3s}.home-dust i:nth-child(2){left:29%;width:2px;height:2px;animation-duration:12s;animation-delay:-8s}.home-dust i:nth-child(3){left:41%;animation-duration:9s;animation-delay:-4s}.home-dust i:nth-child(4){left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:-10s}.home-dust i:nth-child(5){left:68%;animation-duration:11s;animation-delay:-6s}.home-dust i:nth-child(6){left:80%;width:2px;height:2px;animation-duration:9s;animation-delay:-2s}.home-dust i:nth-child(7){left:88%;animation-duration:12s;animation-delay:-7s}.home-dust i:nth-child(8){left:24%;width:2px;height:2px;animation-duration:10s;animation-delay:-5s}.home-dust i:nth-child(9){left:35%;animation-duration:14s;animation-delay:-11s}.home-dust i:nth-child(10){left:48%;width:2px;height:2px;animation-duration:8s;animation-delay:-1s}.home-dust i:nth-child(11){left:60%;animation-duration:12s;animation-delay:-9s}.home-dust i:nth-child(12){left:73%;width:2px;height:2px;animation-duration:10s;animation-delay:-6s}.home-dust i:nth-child(13){left:83%;animation-duration:13s;animation-delay:-4s}.home-dust i:nth-child(14){left:44%;width:4px;height:4px;animation-duration:11s;animation-delay:-7s}.home-dust i:nth-child(15){left:64%;width:2px;height:2px;animation-duration:9s;animation-delay:-3s}.home-dust i:nth-child(16){left:52%;animation-duration:14s;animation-delay:-12s}
-        .home-monogram { position:relative; width:110px; height:110px; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; }
-        .home-monogram::before { content:""; position:absolute; inset:0; border:1.5px solid rgba(226,184,75,.6); border-radius:50%; }
-        .home-monogram::after { content:""; position:absolute; inset:4px; border:1px solid rgba(226,184,75,.3); border-radius:50%; }
-        .home-monogram .monogram-text { position:relative; z-index:1; font-family:'Cormorant Garamond',Georgia,serif; font-size:48px; font-weight:300; font-style:italic; color:#e2b84b; letter-spacing:0.02em; line-height:1; text-shadow:0 2px 10px rgba(0,0,0,.7),0 0 14px rgba(226,184,75,.25); }
-        .home-monogram .monogram-amp { font-family:'Cormorant Garamond',Georgia,serif; font-size:28px; font-weight:300; font-style:italic; color:rgba(226,184,75,.7); margin:0 2px; vertical-align:middle; }
+        .home-monogram { position:relative; width:120px; height:120px; margin:0 auto 16px; display:flex; align-items:center; justify-content:center; }
+        .home-monogram::before { content:""; position:absolute; inset:0; border:1.5px solid rgba(226,184,75,.55); border-radius:50%; }
+        .home-monogram::after { content:""; position:absolute; inset:5px; border:1px solid rgba(226,184,75,.25); border-radius:50%; }
+        .home-monogram .monogram-wreath { position:absolute; inset:-8px; pointer-events:none; }
+        .home-monogram .monogram-text { position:relative; z-index:1; font-family:'Cormorant Garamond',Georgia,serif; font-size:44px; font-weight:400; font-style:italic; color:#e2b84b; letter-spacing:0.04em; line-height:1; text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 18px rgba(226,184,75,.3); }
+        .home-monogram .monogram-amp { font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:300; font-style:italic; color:rgba(226,184,75,.65); margin:0 1px; vertical-align:middle; }
         #Couple > div { position:relative; z-index:1; }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
@@ -477,80 +478,75 @@
 </div>
 
 <div class="text-center mb-section-gap relative z-10 reveal-section">
-<!-- Top Diamond Divider -->
-<div class="flex justify-center items-center gap-3 mb-2 opacity-80">
-    <div class="w-16 h-px bg-gradient-to-r from-transparent to-primary"></div>
-    <span class="text-primary text-[10px]">◆</span>
-    <div class="w-16 h-px bg-gradient-to-l from-transparent to-primary"></div>
-</div>
-<!-- Floral Bud Ornaments -->
-<div class="flex justify-center gap-8 mb-4 opacity-80">
-    <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12,0 C12.8,4 16,4 16,6 C16,8 14,8 12,8 C10,8 8,8 8,6 C8,4 11.2,4 12,0 Z M12,24 C11.2,20 8,20 8,18 C8,16 10,16 12,16 C14,16 16,16 16,18 C16,20 12.8,20 12,24 Z M0,12 C4,11.2 4,8 6,8 C8,8 8,10 8,12 C8,14 8,16 6,16 C4,16 4,12.8 0,12 Z M24,12 C20,12.8 20,16 18,16 C16,16 16,14 16,12 C16,10 16,8 18,8 C20,8 20,11.2 24,12 Z M3.5,3.5 C6.3,4.9 6.3,7.8 7.7,9.1 C9.1,10.5 7.7,11.9 6.3,10.5 C4.9,9.1 2.1,9.1 3.5,3.5 Z M20.5,20.5 C17.7,19.1 17.7,16.2 16.3,14.9 C14.9,13.5 16.3,12.1 17.7,13.5 C19.1,14.9 21.9,14.9 20.5,20.5 Z M3.5,20.5 C4.9,17.7 7.8,17.7 9.1,16.3 C10.5,14.9 11.9,16.3 10.5,17.7 C9.1,19.1 9.1,21.9 3.5,20.5 Z M20.5,3.5 C19.1,6.3 19.1,9.2 17.7,10.5 C16.3,11.9 17.7,13.3 19.1,11.9 C20.5,10.5 23.3,10.5 20.5,3.5 Z" />
+
+<div class="home-monogram">
+    <svg class="monogram-wreath" viewBox="0 0 140 140" fill="none">
+        <!-- Left laurel branch -->
+        <path d="M38 110 C32 100 28 88 28 75 C28 62 32 50 38 40" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.6"/>
+        <ellipse cx="32" cy="48" rx="5" ry="9" transform="rotate(-25 32 48)" fill="#c9a84c" opacity="0.18"/>
+        <ellipse cx="28" cy="58" rx="5" ry="9" transform="rotate(-15 28 58)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="26" cy="70" rx="5" ry="8" transform="rotate(-5 26 70)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="28" cy="82" rx="5" ry="9" transform="rotate(10 28 82)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="32" cy="93" rx="5" ry="9" transform="rotate(20 32 93)" fill="#c9a84c" opacity="0.18"/>
+        <!-- Right laurel branch -->
+        <path d="M102 110 C108 100 112 88 112 75 C112 62 108 50 102 40" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.6"/>
+        <ellipse cx="108" cy="48" rx="5" ry="9" transform="rotate(25 108 48)" fill="#c9a84c" opacity="0.18"/>
+        <ellipse cx="112" cy="58" rx="5" ry="9" transform="rotate(15 112 58)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="114" cy="70" rx="5" ry="8" transform="rotate(5 114 70)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="112" cy="82" rx="5" ry="9" transform="rotate(-10 112 82)" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="108" cy="93" rx="5" ry="9" transform="rotate(-20 108 93)" fill="#c9a84c" opacity="0.18"/>
+        <!-- Bottom cross -->
+        <line x1="62" y1="118" x2="78" y2="118" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+        <line x1="70" y1="112" x2="70" y2="124" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
     </svg>
+    <span class="monogram-text">S<span class="monogram-amp">&amp;</span>I</span>
 </div>
+<p class="font-label-caps text-label-caps text-primary tracking-[0.35em] mb-5 drop-shadow-md" style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;letter-spacing:0.35em;">THE WEDDING OF</p>
+<h2 class="text-primary mb-8 gold-glow animate-pulse-glow" style="font-family:'Cormorant Garamond',serif;font-size:clamp(42px,11vw,56px);font-weight:500;font-style:italic;line-height:1.15;letter-spacing:-0.01em;">Surya &amp; Icha</h2>
 
-<div class="home-monogram"><span class="monogram-text">S<span class="monogram-amp">&amp;</span>I</span></div>
-<p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4 drop-shadow-md">THE WEDDING OF</p>
-<h2 class="font-headline-lg-mobile text-[3.5rem] leading-[1.1] text-primary mb-6 gold-glow animate-pulse-glow">Surya &amp; Icha</h2>
-
-<!-- Symmetrical Javanese Floral Scroll Dividers & Date (Matching screenshot) -->
-<div class="flex flex-col items-center gap-1 my-6">
-    <!-- Top Scroll (curve up) -->
-    <div class="flex justify-center">
-        <svg width="200" height="24" viewBox="0 0 240 30" fill="none" class="text-primary/80 rotate-180 drop-shadow-md">
-            <path d="M120 15 C100 15 90 20 80 18 C70 16 65 10 50 15 C35 20 20 20 10 12 C5 8 10 5 15 8 C20 11 30 11 40 8 C50 5 60 8 70 12 C80 16 90 10 105 12 Z" fill="currentColor"/>
-            <path d="M75 14 C70 8 62 8 58 12 C54 16 60 20 68 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M45 13 C40 8 32 8 28 12 C24 16 30 20 38 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M120 15 C140 15 150 20 160 18 C170 16 175 10 190 15 C205 20 220 20 230 12 C235 8 230 5 225 8 C220 11 210 11 200 8 C190 5 180 8 170 12 C160 16 150 10 135 12 Z" fill="currentColor"/>
-            <path d="M165 14 C170 8 178 8 182 12 C186 16 180 20 172 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M195 13 C200 8 208 8 212 12 C216 16 210 20 202 16 Z" fill="currentColor" opacity="0.8"/>
-            <circle cx="120" cy="15" r="4" fill="currentColor"/>
-            <circle cx="110" cy="15" r="2" fill="currentColor"/>
-            <circle cx="130" cy="15" r="2" fill="currentColor"/>
+<!-- Date Section with ornament -->
+<div class="flex flex-col items-center gap-2 my-6">
+    <!-- Top line with center ornament -->
+    <div class="flex justify-center items-center gap-3 mb-1">
+        <div class="w-20 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#c9a84c">
+            <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.7"/>
+            <circle cx="10" cy="10" r="2.5" fill="#c9a84c" opacity="0.9"/>
         </svg>
-    </div>
-    
-    <!-- Date with arrows -->
-    <div class="flex justify-center items-center gap-4">
-        <span class="text-primary/60 text-lg">←</span>
-        <span class="font-decorative-script text-primary text-2xl drop-shadow-md tracking-[0.1em] font-semibold">29 . 08 . 2026</span>
-        <span class="text-primary/60 text-lg">→</span>
+        <div class="w-20 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
 
-    <!-- Bottom Scroll -->
-    <div class="flex justify-center">
-        <svg width="200" height="24" viewBox="0 0 240 30" fill="none" class="text-primary/80 drop-shadow-md">
-            <path d="M120 15 C100 15 90 20 80 18 C70 16 65 10 50 15 C35 20 20 20 10 12 C5 8 10 5 15 8 C20 11 30 11 40 8 C50 5 60 8 70 12 C80 16 90 10 105 12 Z" fill="currentColor"/>
-            <path d="M75 14 C70 8 62 8 58 12 C54 16 60 20 68 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M45 13 C40 8 32 8 28 12 C24 16 30 20 38 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M120 15 C140 15 150 20 160 18 C170 16 175 10 190 15 C205 20 220 20 230 12 C235 8 230 5 225 8 C220 11 210 11 200 8 C190 5 180 8 170 12 C160 16 150 10 135 12 Z" fill="currentColor"/>
-            <path d="M165 14 C170 8 178 8 182 12 C186 16 180 20 172 16 Z" fill="currentColor" opacity="0.8"/>
-            <path d="M195 13 C200 8 208 8 212 12 C216 16 210 20 202 16 Z" fill="currentColor" opacity="0.8"/>
-            <circle cx="120" cy="15" r="4" fill="currentColor"/>
-            <circle cx="110" cy="15" r="2" fill="currentColor"/>
-            <circle cx="130" cy="15" r="2" fill="currentColor"/>
+    <!-- Date -->
+    <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#e2b84b;letter-spacing:0.18em;text-shadow:0 2px 8px rgba(0,0,0,.6);">29 . 08 . 2026</p>
+
+    <!-- Bottom line with center ornament -->
+    <div class="flex justify-center items-center gap-3 mt-1">
+        <div class="w-20 h-px" style="background:linear-gradient(to right,transparent,#c9a84c)"></div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#c9a84c">
+            <path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" opacity="0.7"/>
+            <circle cx="10" cy="10" r="2.5" fill="#c9a84c" opacity="0.9"/>
         </svg>
+        <div class="w-20 h-px" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
 </div>
 
-<!-- Countdown Timer (Matching screenshot cards) -->
-<div class="grid grid-cols-4 gap-3 px-4">
-    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
-        <span class="font-serif text-2xl font-bold text-primary" id="days">00</span>
-        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">HARI</span>
+<!-- Countdown Timer -->
+<div class="grid grid-cols-4 gap-3 px-3 mt-4">
+    <div style="background:linear-gradient(160deg,rgba(48,32,18,.95),rgba(20,14,8,.98));border:1px solid rgba(208,164,66,.5);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.4);" class="py-4 px-2 flex flex-col items-center">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8.5vw,40px);font-weight:500;color:#e7bd55;text-shadow:0 2px 8px rgba(0,0,0,.7);" id="days">00</span>
+        <span class="text-[9px] font-bold tracking-wider mt-1" style="color:#c8b99b;">HARI</span>
     </div>
-    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
-        <span class="font-serif text-2xl font-bold text-primary" id="hours">00</span>
-        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">JAM</span>
+    <div style="background:linear-gradient(160deg,rgba(48,32,18,.95),rgba(20,14,8,.98));border:1px solid rgba(208,164,66,.5);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.4);" class="py-4 px-2 flex flex-col items-center">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8.5vw,40px);font-weight:500;color:#e7bd55;text-shadow:0 2px 8px rgba(0,0,0,.7);" id="hours">00</span>
+        <span class="text-[9px] font-bold tracking-wider mt-1" style="color:#c8b99b;">JAM</span>
     </div>
-    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
-        <span class="font-serif text-2xl font-bold text-primary" id="minutes">00</span>
-        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">MENIT</span>
+    <div style="background:linear-gradient(160deg,rgba(48,32,18,.95),rgba(20,14,8,.98));border:1px solid rgba(208,164,66,.5);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.4);" class="py-4 px-2 flex flex-col items-center">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8.5vw,40px);font-weight:500;color:#e7bd55;text-shadow:0 2px 8px rgba(0,0,0,.7);" id="minutes">00</span>
+        <span class="text-[9px] font-bold tracking-wider mt-1" style="color:#c8b99b;">MENIT</span>
     </div>
-    <div class="bg-[#1A1513]/90 border border-primary/30 py-4 px-2 rounded-2xl flex flex-col items-center shadow-lg">
-        <span class="font-serif text-2xl font-bold text-primary" id="seconds">00</span>
-        <span class="text-[9px] font-bold text-on-surface-variant/80 tracking-wider mt-1">DETIK</span>
+    <div style="background:linear-gradient(160deg,rgba(48,32,18,.95),rgba(20,14,8,.98));border:1px solid rgba(208,164,66,.5);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.4);" class="py-4 px-2 flex flex-col items-center">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8.5vw,40px);font-weight:500;color:#e7bd55;text-shadow:0 2px 8px rgba(0,0,0,.7);" id="seconds">00</span>
+        <span class="text-[9px] font-bold tracking-wider mt-1" style="color:#c8b99b;">DETIK</span>
     </div>
 </div>
 <img class="home-bottom-ornament" src="{{ asset('assets/templates/wedding-11/newassets/NEW/hiasan%20tengah%201.png') }}" alt="" />
@@ -568,26 +564,26 @@
 </div>
 </section>
 <!-- COUPLE PROFILE -->
-<section class="py-section-gap px-margin-mobile flex flex-col gap-16" id="Couple" style="background-color:#160d08; background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg part mempelai.png') }}'); background-position:center top; background-size:cover; background-repeat:no-repeat;">
+<section class="pt-section-gap pb-28 px-margin-mobile flex flex-col gap-14" id="Couple" style="background-color:#160d08; background-image:url('{{ asset('assets/templates/wedding-11/newassets/NEW/bg part mempelai.png') }}'); background-position:center top; background-size:cover; background-repeat:no-repeat;">
 <!-- Groom -->
 <div class="flex flex-col items-center text-center reveal-section">
-<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
+<div class="relative w-56 h-64 mb-6 rounded-t-full border-2 p-1.5 overflow-hidden animate-float" style="border-color:rgba(208,164,66,.45);background:rgba(42,42,42,.6);">
 <img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai pria" src="{{ asset('assets/templates/wedding-11/cowok-image.jpeg') }}"/>
-<div class="absolute -bottom-2 -left-2 w-16 h-16 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] bg-primary/20 rotate-45 border border-primary/40"></div>
+<div class="absolute bottom-0 left-0 right-0 h-12" style="background:linear-gradient(to top,rgba(22,13,8,.7),transparent);"></div>
 </div>
-<h3 class="font-headline-lg-mobile text-primary mb-2">Pamunkas Surya Merdeka</h3>
-<p class="font-body-md text-on-surface-variant mb-4">Anak dari</p>
-<p class="font-body-lg text-on-surface">Bapak Maliyat Kustur &amp; Ibu Sudarmi</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e2b84b;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.6);">Pamunkas Surya Merdeka</h3>
+<p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#c8b99b;margin-bottom:8px;">Anak dari</p>
+<p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#e5e2e1;">Bapak Maliyat Kustur &amp; Ibu Sudarmi</p>
 </div>
 <!-- Bride -->
 <div class="flex flex-col items-center text-center reveal-section">
-<div class="relative w-64 h-80 mb-8 rounded-t-full border-4 border-primary/30 p-2 overflow-hidden bg-surface-container-high animate-float">
+<div class="relative w-56 h-64 mb-6 rounded-t-full border-2 p-1.5 overflow-hidden animate-float" style="border-color:rgba(208,164,66,.45);background:rgba(42,42,42,.6);">
 <img class="w-full h-full object-cover rounded-t-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Foto mempelai wanita" src="{{ asset('assets/templates/wedding-11/cewek-image.jpeg') }}"/>
-<div class="absolute -bottom-2 -right-2 w-16 h-16 bg-primary/20 -rotate-45 border border-primary/40"></div>
+<div class="absolute bottom-0 left-0 right-0 h-12" style="background:linear-gradient(to top,rgba(22,13,8,.7),transparent);"></div>
 </div>
-<h3 class="font-headline-lg-mobile text-primary mb-2">Icha Alifia Yokendy Putri</h3>
-<p class="font-body-md text-on-surface-variant mb-4">Anak dari</p>
-<p class="font-body-lg text-on-surface">Bapak Yoyok Kristianto &amp; Ibu Eni Sa’adah</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e2b84b;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.6);">Icha Alifia Yokendy Putri</h3>
+<p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#c8b99b;margin-bottom:8px;">Anak dari</p>
+<p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#e5e2e1;">Bapak Yoyok Kristianto &amp; Ibu Eni Sa'adah</p>
 </div>
 </section>
 <!-- EVENT SECTION -->
