@@ -163,8 +163,8 @@
         }
         .cover-modern-overlay {
             background:
-                linear-gradient(to bottom, rgba(0,0,0,.28) 0%, rgba(0,0,0,.18) 28%, rgba(0,0,0,.12) 42%, rgba(0,0,0,.30) 58%, rgba(0,0,0,.42) 78%, rgba(0,0,0,.52) 100%),
-                radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.18) 100%);
+                linear-gradient(to bottom, rgba(0,0,0,.38) 0%, rgba(0,0,0,.30) 22%, rgba(0,0,0,.28) 38%, rgba(0,0,0,.48) 55%, rgba(0,0,0,.58) 72%, rgba(0,0,0,.68) 100%),
+                radial-gradient(ellipse at 50% 62%, rgba(0,0,0,.10) 0%, rgba(0,0,0,.18) 40%, rgba(0,0,0,.32) 100%);
         }
         .cover-piece {
             position: absolute;
@@ -236,12 +236,12 @@
             font-size: clamp(34px, 8vw, 44px);
             line-height: 1.02;
             letter-spacing: 0;
-            text-shadow: 0 2px 5px rgba(0,0,0,.55), 0 0 12px rgba(0,0,0,.18);
+            text-shadow: 0 3px 8px rgba(0,0,0,.75), 0 0 14px rgba(0,0,0,.35);
         }
         .cover-recipient {
             margin: 16px auto 22px;
             color: rgba(255,255,255,.88);
-            text-shadow: 0 1px 4px rgba(0,0,0,.85);
+            text-shadow: 0 2px 6px rgba(0,0,0,.95);
             font-size: 15px;
             line-height: 1.65;
         }
