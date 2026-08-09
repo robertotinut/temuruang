@@ -297,12 +297,18 @@
         #Home .grid.grid-cols-4 > div { padding-top:1rem; padding-bottom:1rem; border-radius:14px; }
         #Home .home-bottom-ornament { width:250px; margin-top:1.5rem; }
         nav.fixed { border-radius:22px 22px 0 0!important; padding-top:1rem!important; padding-bottom:1rem!important; }
-        .home-light-beam { position:absolute; top:0; left:50%; transform:translateX(-50%); width:72%; height:44%; pointer-events:none; background:radial-gradient(ellipse at 50% 0%,rgba(255,190,90,.28),rgba(186,111,32,.14) 25%,transparent 55%),linear-gradient(to bottom,rgba(255,190,90,.12),transparent 70%); filter:blur(16px); z-index:1; animation:homeGlow 5s ease-in-out infinite; }
+        .home-light-beam { position:absolute; top:0; left:50%; transform:translateX(-50%); width:78%; height:48%; pointer-events:none; background:radial-gradient(ellipse at 50% 0%,rgba(255,205,120,.35),rgba(202,130,44,.18) 24%,rgba(125,70,22,.06) 46%,transparent 68%),linear-gradient(90deg,transparent 0%,rgba(238,178,83,.04) 35%,rgba(255,210,125,.16) 50%,rgba(238,178,83,.04) 65%,transparent 100%),linear-gradient(to bottom,rgba(255,190,90,.12),transparent 70%); filter:blur(14px); z-index:1; animation:homeGlow 5s ease-in-out infinite; }
         .home-dust { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
         .home-dust i { position:absolute; bottom:18%; width:3px; height:3px; border-radius:50%; background:rgba(255,205,90,.55); box-shadow:0 0 6px rgba(255,190,70,.3); animation:homeDust 10s linear infinite; }
         .home-dust i:nth-child(1){left:18%;animation-delay:-3s}.home-dust i:nth-child(2){left:29%;width:2px;height:2px;animation-duration:12s;animation-delay:-8s}.home-dust i:nth-child(3){left:41%;animation-duration:9s;animation-delay:-4s}.home-dust i:nth-child(4){left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:-10s}.home-dust i:nth-child(5){left:68%;animation-duration:11s;animation-delay:-6s}.home-dust i:nth-child(6){left:80%;width:2px;height:2px;animation-duration:9s;animation-delay:-2s}.home-dust i:nth-child(7){left:88%;animation-duration:12s;animation-delay:-7s}.home-dust i:nth-child(8){left:24%;width:2px;height:2px;animation-duration:10s;animation-delay:-5s}.home-dust i:nth-child(9){left:35%;animation-duration:14s;animation-delay:-11s}.home-dust i:nth-child(10){left:48%;width:2px;height:2px;animation-duration:8s;animation-delay:-1s}.home-dust i:nth-child(11){left:60%;animation-duration:12s;animation-delay:-9s}.home-dust i:nth-child(12){left:73%;width:2px;height:2px;animation-duration:10s;animation-delay:-6s}.home-dust i:nth-child(13){left:83%;animation-duration:13s;animation-delay:-4s}.home-dust i:nth-child(14){left:44%;width:4px;height:4px;animation-duration:11s;animation-delay:-7s}.home-dust i:nth-child(15){left:64%;width:2px;height:2px;animation-duration:9s;animation-delay:-3s}.home-dust i:nth-child(16){left:52%;animation-duration:14s;animation-delay:-12s}
-        .home-monogram { width:58px;height:58px;margin:0 auto 18px;border:1px solid rgba(226,184,75,.65);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e2b84b;font:32px/1 Georgia,serif;letter-spacing:-.12em;animation:homeMonoIn .8s cubic-bezier(.16,1,.3,1) .3s both,homeMonoPulse 5s ease-in-out 1.5s infinite; }
-        #Home .home-bottom-ornament { display:block;width:210px;height:auto;margin:28px auto 0;opacity:.78;animation:homeFadeIn .8s ease 1.2s both; }
+        .home-monogram { position:relative;width:82px;height:82px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#e2b84b;font:70px/.7 'Cormorant Garamond',Georgia,serif;letter-spacing:-.28em;text-shadow:0 2px 10px rgba(0,0,0,.7),0 0 12px rgba(226,184,75,.2); }
+        .home-monogram::before { content:""; position:absolute; inset:7px 5px 4px 9px; border:1px solid rgba(226,184,75,.75); border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-32deg); }
+        .home-monogram::after { content:"❧"; position:absolute; bottom:1px; left:3px; font:22px/1 Georgia,serif; color:#d9aa45; transform:rotate(-25deg); }
+        .home-monogram span { position:relative; z-index:1; transform:translateX(-8px) translateY(8px); }
+        #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
+        #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
+        #Home .grid.grid-cols-4 > div { min-height:100px; padding-top:.8rem; padding-bottom:.7rem; border-radius:12px; }
+        #Home .grid.grid-cols-4 span:first-child { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(34px,9vw,42px); font-weight:500; }
         header.fixed { background:rgba(24,15,9,.94)!important; border-bottom-color:rgba(210,165,65,.28)!important; }
         header.fixed .text-primary, header.fixed .material-symbols-outlined { color:#e7bd55!important; }
         nav.fixed { background:rgba(20,14,10,.95)!important; border-top-color:rgba(210,165,65,.25)!important; }
@@ -540,6 +546,8 @@
     </div>
 </div>
 <img class="home-bottom-ornament" src="{{ asset('assets/templates/wedding-11/newassets/NEW/hiasan%20tengah%201.png') }}" alt="" />
+<img class="home-bottom-corner left" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
+<img class="home-bottom-corner right" src="{{ asset('assets/templates/wedding-11/newassets/NEW/pojok%20kiri%20bawah.png') }}" alt="" />
 </div>
 </section>
 <!-- QUOTE -->
