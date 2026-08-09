@@ -308,8 +308,8 @@
         .home-monogram::before { content:""; position:absolute; inset:7px 5px 4px 9px; border:1px solid rgba(226,184,75,.75); border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-32deg); }
         .home-monogram::after { content:"❧"; position:absolute; bottom:1px; left:3px; font:22px/1 Georgia,serif; color:#d9aa45; transform:rotate(-25deg); }
         .home-monogram span { position:relative; z-index:1; transform:none; margin-left:.08em; }
-        .home-monogram .monogram-amp { display:inline-block; width:auto; height:auto; margin:0 5px 10px 4px; border:0; font:20px/1 Georgia,serif; letter-spacing:0; }
-        .home-monogram .monogram-i { margin-left:0; }
+        .home-monogram .monogram-amp { position:absolute; left:50%; top:34px; z-index:3; margin:0; font:18px/1 Georgia,serif; letter-spacing:0; transform:translateX(-50%); }
+        .home-monogram .monogram-i { margin-left:-20px; transform:translateY(8px); }
         #Home .reveal-section h2 { font-family:'Cormorant Garamond','Times New Roman',serif; font-weight:500; letter-spacing:-.02em; }
         #Home .home-bottom-ornament { display:block;width:100%;max-width:360px;height:auto;margin:1.25rem auto 0;opacity:.86;animation:homeFadeIn .8s ease 1.2s both; }
         #Home .home-bottom-corner { position:absolute; bottom:3.7rem; width:5.5rem; height:auto; opacity:.78; z-index:2; pointer-events:none; }
