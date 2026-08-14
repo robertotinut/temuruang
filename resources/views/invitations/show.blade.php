@@ -387,7 +387,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-1">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary" title="Copy Link" onclick="copyToClipboard('{{ $link }}')">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary" title="Salin Template WhatsApp" onclick="copyToClipboard({{ Js::from($waText) }})">
                                                         <i class="mdi mdi-content-copy"></i>
                                                     </button>
                                                     <a href="https://api.whatsapp.com/send?phone={{ $guest->phone }}&text={{ urlencode($waText) }}" target="_blank" class="btn btn-sm btn-success" title="Kirim WA" onclick="markAsSent({{ $guest->id }})">

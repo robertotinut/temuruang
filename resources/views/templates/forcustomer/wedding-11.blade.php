@@ -629,7 +629,7 @@
 </div>
 <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;font-style:italic;color:#e2b84b;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.6);">Pamunkas Surya Merdeka</h3>
 <p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#c8b99b;margin-bottom:8px;">Anak dari</p>
-<p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#e5e2e1;">Bapak Maliyat Kustur &amp; Ibu Sudarmi</p>
+<p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#e5e2e1;">Bapak Maliyat Kustur &amp; Ibu Sudarni</p>
 </div>
 <!-- Bride -->
 <div class="flex flex-col items-center text-center reveal-section delay-2">
