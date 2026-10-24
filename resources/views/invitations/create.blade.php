@@ -25,11 +25,13 @@
     <div class="col-xl-3 col-sm-6">
         <div class="card">
             <div class="card-body">
-                <div class="product-img position-relative">
-                    @if($template->cover_image)
-                        <img src="{{ asset('storage/' . $template->cover_image) }}" alt="{{ $template->name }}" class="img-fluid mx-auto d-block">
+                <div class="product-img position-relative text-center">
+                    @if($template->thumbnail)
+                        <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="d-inline-block overflow-hidden rounded-3 shadow-sm border">
+                            <img src="{{ Storage::url($template->thumbnail) }}?v={{ file_exists(storage_path('app/public/' . $template->thumbnail)) ? filemtime(storage_path('app/public/' . $template->thumbnail)) : 1 }}" alt="{{ $template->name }}" class="img-fluid mx-auto d-block" style="width: 180px; height: 318px; object-fit: cover; object-position: top center;">
+                        </a>
                     @else
-                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                        <div class="bg-light d-flex align-items-center justify-content-center rounded-3" style="height: 318px;">
                             <i class="mdi mdi-image-off font-size-24 text-muted"></i>
                         </div>
                     @endif

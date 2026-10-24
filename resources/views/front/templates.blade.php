@@ -112,57 +112,59 @@
                              data-desc="{{ strtolower($template->description) }}"
                              style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
                             
-                            <div class="template-list-item d-flex align-items-center" 
-                                 style="box-shadow: 0 4px 20px rgba(0,0,0,0.03); border-radius: 16px; background: #fff; padding: 18px; border: 1px solid #f0f2f5; transition: all 0.3s ease; height: 100%;">
+                            <div class="template-list-item d-flex align-items-stretch" 
+                                 style="box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 18px; background: #fff; padding: 16px; border: 1px solid #eef1f5; transition: all 0.3s ease; height: 100%;">
                                 
                                 <div class="template-img-wrap" style="flex-shrink: 0; margin-right: 20px; position: relative;">
-                                    <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="d-block overflow-hidden" style="border-radius: 10px;">
+                                    <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="d-block overflow-hidden" style="border-radius: 12px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12); border: 1px solid rgba(15, 23, 42, 0.08); background: #0f172a;">
                                         @if($template->thumbnail)
-                                            <img src="{{ Storage::url($template->thumbnail) }}" alt="{{ $template->name }}" 
-                                                 class="template-thumb" style="width: 100px; height: 100px; object-fit: cover; transition: transform 0.4s ease;">
+                                            <img src="{{ Storage::url($template->thumbnail) }}?v={{ file_exists(storage_path('app/public/' . $template->thumbnail)) ? filemtime(storage_path('app/public/' . $template->thumbnail)) : 1 }}" alt="{{ $template->name }}" 
+                                                 class="template-thumb" loading="lazy" style="width: 108px; height: 190px; object-fit: cover; object-position: top center; display: block; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
                                         @else
                                             <img src="{{ asset('assets_landingpage/img/service/service-img-new-1.png') }}" alt="{{ $template->name }}" 
-                                                 class="template-thumb" style="width: 100px; height: 100px; object-fit: cover; transition: transform 0.4s ease;">
+                                                 class="template-thumb" loading="lazy" style="width: 108px; height: 190px; object-fit: cover; object-position: top center; display: block; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
                                         @endif
                                     </a>
                                 </div>
 
-                                <div class="template-info" style="flex-grow: 1; min-width: 0;">
-                                    <div class="d-flex justify-content-between align-items-start mb-1">
-                                        <h4 class="mb-0 text-truncate" style="font-size: 17px; font-weight: 700; color: #2d3748; font-family: 'Poppins', sans-serif;">
-                                            <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" style="color: inherit; text-decoration: none;" class="hover-primary">
-                                                {{ $template->name }}
-                                            </a>
-                                        </h4>
-                                        @if($template->is_premium)
-                                            <span style="background: linear-gradient(135deg, rgba(26, 123, 69, 0.12), rgba(26, 123, 69, 0.05)); color: #1a7b45; font-size: 11px; padding: 3px 9px; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; border: 1px solid rgba(26, 123, 69, 0.15);">
-                                                <i class="fas fa-gem" style="font-size: 10px;"></i>Premium
-                                            </span>
-                                        @else
-                                            <span style="background: #f1f5f9; color: #64748b; font-size: 11px; padding: 3px 9px; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; flex-shrink: 0;">
-                                                Free
-                                            </span>
-                                        @endif
-                                    </div>
+                                <div class="template-info d-flex flex-column justify-content-between" style="flex-grow: 1; min-width: 0; padding: 4px 0;">
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                                            <h4 class="mb-0" style="font-size: 17px; font-weight: 700; color: #1e293b; font-family: 'Poppins', sans-serif; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                                <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" style="color: inherit; text-decoration: none;" class="hover-primary">
+                                                    {{ $template->name }}
+                                                </a>
+                                            </h4>
+                                            @if($template->is_premium)
+                                                <span style="background: linear-gradient(135deg, rgba(26, 123, 69, 0.12), rgba(26, 123, 69, 0.05)); color: #1a7b45; font-size: 11px; padding: 3px 9px; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; border: 1px solid rgba(26, 123, 69, 0.15);">
+                                                    <i class="fas fa-gem" style="font-size: 10px;"></i>Premium
+                                                </span>
+                                            @else
+                                                <span style="background: #f1f5f9; color: #64748b; font-size: 11px; padding: 3px 9px; border-radius: 6px; font-weight: 700; display: inline-flex; align-items: center; flex-shrink: 0;">
+                                                    Free
+                                                </span>
+                                            @endif
+                                        </div>
 
-                                    <p style="color: #64748b; font-size: 13.5px; margin-bottom: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 38px;">
-                                        {{ $template->description }}
-                                    </p>
+                                        <p style="color: #64748b; font-size: 13.5px; margin-bottom: 12px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                                            {{ $template->description }}
+                                        </p>
+                                    </div>
                                     
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center gap-1.5" style="min-width: 0;">
-                                            <span style="font-size: 11.5px; color: #94a3b8; background: #f8fafc; padding: 2px 8px; border-radius: 4px; display: inline-block; white-space: nowrap;" class="text-truncate">
+                                    <div class="d-flex justify-content-between align-items-center pt-2" style="border-top: 1px dashed #f1f5f9;">
+                                        <div class="d-flex flex-wrap align-items-center gap-1" style="min-width: 0;">
+                                            <span style="font-size: 11.5px; color: #64748b; background: #f8fafc; padding: 3px 8px; border-radius: 6px; display: inline-block; white-space: nowrap; border: 1px solid #e2e8f0;" class="text-truncate">
                                                 <i class="fas fa-tag me-1"></i>{{ $evtName }}
                                             </span>
                                             @if($themeCat)
-                                                <span style="font-size: 11.5px; color: #1a7b45; background: rgba(26, 123, 69, 0.06); padding: 2px 8px; border-radius: 4px; display: inline-block; white-space: nowrap; font-weight: 500;" class="text-truncate">
+                                                <span style="font-size: 11.5px; color: #1a7b45; background: rgba(26, 123, 69, 0.07); padding: 3px 8px; border-radius: 6px; display: inline-block; white-space: nowrap; font-weight: 500;" class="text-truncate">
                                                     <i class="fas fa-palette me-1"></i>{{ $themeCat }}
                                                 </span>
                                             @endif
                                         </div>
                                         <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="vs-btn" 
-                                           style="padding: 7px 18px; font-size: 12px; line-height: 1.5; border-radius: 30px; font-weight: 600; text-transform: none; letter-spacing: 0.5px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(26, 123, 69, 0.15);">
-                                            Preview
+                                           style="padding: 8px 18px; font-size: 12px; line-height: 1.4; border-radius: 30px; font-weight: 600; text-transform: none; letter-spacing: 0.3px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(26, 123, 69, 0.15);">
+                                            <i class="far fa-eye me-1"></i>Preview
                                         </a>
                                     </div>
                                 </div>

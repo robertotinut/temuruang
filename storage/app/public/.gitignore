@@ -1,2 +1,6 @@
 *
+!templates/
+!templates/thumbnails/
+!templates/thumbnails/*.jpg
+!templates/thumbnails/*.png
 !.gitignore

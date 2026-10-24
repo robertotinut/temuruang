@@ -253,7 +253,8 @@
         /* Envelope Animation */
         #envelope-container {
             position: fixed;
-            inset-y: 0;
+            top: 0;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
@@ -262,7 +263,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #061b0e;
+            background: radial-gradient(circle at center, #0c2b18 0%, #061b0e 100%);
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
         }
 
@@ -390,7 +391,10 @@
 
         <!-- Envelope Overlay -->
         <div id="envelope-container" onclick="openInvitation()">
-            <div class="flex flex-col items-center max-w-[280px] w-full text-center">
+            <div class="flex flex-col items-center max-w-[300px] w-full text-center px-2">
+                <p class="font-label-caps text-secondary tracking-[0.25em] uppercase text-[10px] mb-2">The Wedding Invitation Of</p>
+                <h2 class="font-headline-md text-3xl gold-emboss mb-8 font-bold">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h2>
+
                 <div class="envelope mb-8" id="envelope">
                     <div class="wax-seal">{{ substr($couple['groom'], 0, 1) }}&amp;{{ substr($couple['bride'], 0, 1) }}</div>
                 </div>

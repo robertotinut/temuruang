@@ -51,7 +51,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 @if($item->thumbnail)
-                                    <img src="{{ asset('storage/' . $item->thumbnail) }}" alt="{{ $item->name }}" class="rounded avatar-sm">
+                                    <img src="{{ asset('storage/' . $item->thumbnail) }}?v={{ file_exists(storage_path('app/public/' . $item->thumbnail)) ? filemtime(storage_path('app/public/' . $item->thumbnail)) : 1 }}" alt="{{ $item->name }}" class="rounded shadow-sm border" style="width: 48px; height: 84px; object-fit: cover; object-position: top center;">
                                 @else
                                     <span class="badge bg-light text-muted">No Image</span>
                                 @endif
