@@ -349,7 +349,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="fw-bold text-dark">{{ $log->title }}</div>
+                                        <div class="fw-bold text-dark">{{ $log->subject ?? $log->title }}</div>
                                         @if($log->description)
                                             <div class="text-muted font-size-12 mt-1">{{ $log->description }}</div>
                                         @endif
@@ -420,7 +420,7 @@ async function detectTelegramChatId() {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ bot_token: token })
+            body: JSON.stringify({ telegram_bot_token: token, bot_token: token })
         });
         const data = await res.json();
 

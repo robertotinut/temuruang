@@ -26,6 +26,8 @@ class ActivityLogController extends Controller
         $stats = [
             'total_real_views' => $totalRealViews,
             'total_display_views' => $totalRealViews * 5,
+            'total_template_views_real' => $totalRealViews,
+            'total_template_views_display' => $totalRealViews * 5,
             'total_logins' => ActivityLog::where('event_type', 'login')->count(),
             'total_registers' => ActivityLog::where('event_type', 'register')->count(),
             'total_logs' => ActivityLog::count(),
@@ -67,7 +69,7 @@ class ActivityLogController extends Controller
 
     public function detectTelegram(Request $request)
     {
-        $token = trim((string) ($request->input('telegram_bot_token') ?: SystemSetting::getValue('telegram_bot_token', '')));
+        $token = trim((string) ($request->input('telegram_bot_token') ?: $request->input('bot_token') ?: SystemSetting::getValue('telegram_bot_token', '')));
         if ($token === '') {
             return response()->json([
                 'ok' => false,
