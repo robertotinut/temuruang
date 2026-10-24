@@ -1,57 +1,48 @@
 @php
-    $getOrnament = function($filename) {
-        return asset('assets/templates/wedding-29/ornaments/' . rawurlencode($filename));
-    };
-
-    $getImg = function($filename) {
-        return asset('assets/templates/wedding-29/images/' . rawurlencode($filename));
-    };
-
+    // Dynamic Invitation Mapping for wedding-29 (The Royal Orangery & Emerald Botanical Editorial)
     if (isset($invitation)) {
-        $names = explode('&', $invitation->title);
+        $names = explode('&', $invitation->title ?? 'Elias & Jada');
         $groomName = trim($names[0] ?? 'Elias');
         $brideName = trim($names[1] ?? 'Jada');
 
         $couple = [
             'groom' => $groomName,
             'bride' => $brideName,
-            'groom_full' => $groomName . ' Putra, M.Sc.',
-            'bride_full' => $brideName . ' Amira, B.A.',
+            'groom_full' => $invitation->groom_name ?? ($groomName . ' Putra Pratama, S.T.'),
+            'bride_full' => $invitation->bride_name ?? ($brideName . ' Amira Permata, B.A.'),
             'parents' => [
                 'groom' => $invitation->description ?? 'Putra pertama Bpk. Ahmad Suherman & Ibu Sari Widowati',
                 'bride' => 'Putri kedua Bpk. Hendra Wijaya & Ibu Linda Permata',
             ],
-            'instagram' => [
-                'groom' => 'https://instagram.com',
-                'bride' => 'https://instagram.com',
-            ],
         ];
 
+        $eventDateObj = $invitation->event_date ? \Carbon\Carbon::parse($invitation->event_date) : \Carbon\Carbon::parse('2027-05-12');
         $event = [
-            'date_iso' => $invitation->event_date ? $invitation->event_date->format('Y-m-d') : '2027-05-12',
-            'date_formatted' => $invitation->event_date ? $invitation->event_date->translatedFormat('l, d F Y') : 'Minggu, 12 Mei 2027',
+            'date_iso' => $eventDateObj->format('Y-m-d'),
+            'date_formatted' => $eventDateObj->translatedFormat('l, d F Y'),
+            'date_short' => $eventDateObj->format('d . m . Y'),
             'time' => $invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00',
-            'location' => $invitation->location ?? 'The Royal Emerald Glasshouse, Hotel Mulia',
-            'address' => $invitation->address ?? 'Jl. Asia Afrika, Senayan, Kota Jakarta Pusat',
-            'maps_url' => $invitation->google_maps_url ?? 'https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Hotel Mulia Senayan Jakarta'),
+            'location' => $invitation->location ?? 'The Glasshouse Orangery, Hotel Mulia',
+            'address' => $invitation->address ?? 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
+            'maps_url' => $invitation->google_maps_url ?? ('https://maps.google.com/?q=' . urlencode($invitation->location ?? 'Hotel Mulia Senayan Jakarta')),
         ];
 
         $schedule = [
             [
                 'title' => 'Ikrar Suci Akad Nikah',
-                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' - 10:00 WIB',
-                'date' => $event['date_formatted'],
-                'venue' => 'The Emerald Conservatory Hall',
-                'address' => $event['address'],
-                'maps' => $event['maps_url'],
+                'badge' => 'HOLY MATRIMONY',
+                'date' => $eventDateObj->translatedFormat('l, d F Y'),
+                'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' – 10:00 WIB',
+                'venue' => $invitation->location ?? 'The Emerald Glasshouse Sanctuary',
+                'address' => $invitation->address ?? 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
             ],
             [
-                'title' => 'Royal Evening Reception',
-                'time' => '11:00 - 14:00 WIB',
-                'date' => $event['date_formatted'],
-                'venue' => $event['location'],
-                'address' => $event['address'],
-                'maps' => $event['maps_url'],
+                'title' => 'Gardenia Orangery Reception',
+                'badge' => 'WEDDING RECEPTION',
+                'date' => $eventDateObj->translatedFormat('l, d F Y'),
+                'time' => '11:00 – 14:00 WIB',
+                'venue' => $invitation->location ?? 'Grand Botanical Conservatory, Hotel Mulia',
+                'address' => $invitation->address ?? 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
             ],
         ];
 
@@ -66,9 +57,21 @@
             }
         } else {
             $stories = [
-                ['title' => 'Pertemuan Pertama', 'date' => 'Agustus 2023', 'text' => 'Di sebuah sudut konservatori taman kota, takdir mempertemukan dua jiwa yang belum saling mengenal namun terasa begitu akrab.'],
-                ['title' => 'Merajut Impian', 'date' => 'Januari 2025', 'text' => 'Setiap tawa, doa, dan perjalanan bersama menjadi fondasi kokoh bagi istana kasih yang sedang kami bangun berdua.'],
-                ['title' => 'Janji Suci Abadi', 'date' => 'Mei 2027', 'text' => 'Dua cincin, satu ikrar suci, dan selamanya untuk saling menjaga dalam ikatan pernikahan yang diberkahi-Nya.'],
+                [
+                    'title' => 'Pertemuan di Rumah Kaca',
+                    'date' => 'Agustus 2022',
+                    'text' => 'Di bawah teduhnya atap kaca dan aroma eukaliptus pagi itu, dua langkah yang semula asing berpapasan dan memulai percakapan hangat pertama.',
+                ],
+                [
+                    'title' => 'Merangkai Musim Bersama',
+                    'date' => 'Januari 2025',
+                    'text' => 'Setiap perjalanan, tawa, dan doa yang dipanjatkan bersama menjadi akar yang menguatkan langkah kami menuju satu tujuan yang sama.',
+                ],
+                [
+                    'title' => 'Ikatan Janji Abadi',
+                    'date' => 'Mei 2027',
+                    'text' => 'Dua cincin, satu ikrar suci, dan lembaran baru untuk saling meneduhkan sepanjang usia dalam ridha-Nya.',
+                ],
             ];
         }
 
@@ -79,22 +82,29 @@
             }
         } else {
             $gallery = [
-                $getImg('image_2.jpg'),
-                $getImg('image_3.jpg'),
-                $getImg('image_4.jpg'),
-                $getImg('image_6.jpg'),
-                $getImg('image_7.jpg'),
-                $getImg('image_10.jpg'),
+                asset('assets/templates/wedding-29/images/image_10.jpg'),
+                asset('assets/templates/wedding-29/images/image_11.jpg'),
+                asset('assets/templates/wedding-29/images/image_12.jpg'),
+                asset('assets/templates/wedding-29/images/image_13.jpg'),
+                asset('assets/templates/wedding-29/images/image_2.jpg'),
+                asset('assets/templates/wedding-29/images/image_3.jpg'),
             ];
         }
 
+        $coverUrl = $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : asset('assets/templates/wedding-29/images/image_2.jpg');
         $bg = [
-            'cover' => $invitation->cover_image ? asset('storage/' . $invitation->cover_image) : $getImg('image_2.jpg'),
-            'groom' => isset($invitation->groom_image) ? asset('storage/' . $invitation->groom_image) : $getImg('image_8.jpg'),
-            'bride' => isset($invitation->bride_image) ? asset('storage/' . $invitation->bride_image) : $getOrnament('emerald-bride-portrait.jpg'),
+            'cover' => $coverUrl,
+            'hero' => asset('assets/templates/wedding-29/images/image_2.jpg'),
+            'hero_small_1' => asset('assets/templates/wedding-29/images/image_3.jpg'),
+            'hero_small_2' => asset('assets/templates/wedding-29/images/image_4.jpg'),
+            'story_1' => asset('assets/templates/wedding-29/images/image_5.jpg'),
+            'story_2' => asset('assets/templates/wedding-29/images/image_6.jpg'),
+            'story_3' => asset('assets/templates/wedding-29/images/image_7.jpg'),
+            'groom' => asset('assets/templates/wedding-29/images/image_8.jpg'),
+            'bride' => asset('assets/templates/wedding-29/images/image_9.jpg'),
         ];
 
-        if (isset($invitation->comments)) {
+        if (isset($invitation->comments) && $invitation->comments->count() > 0) {
             $wishes = [];
             foreach ($invitation->comments as $comment) {
                 $wishes[] = [
@@ -105,9 +115,9 @@
             }
         } else {
             $wishes = [
-                ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah dan bahagia selamanya!'],
-                ['name' => 'Rafi Alfian, S.T.', 'status' => 'Hadir', 'message' => 'Happy Wedding bro Elias & Jada! Semoga acara berjalan khidmat dan lancar sampai hari H. See you at the conservatory!'],
-                ['name' => 'Clarissa Putri', 'status' => 'Hadir', 'message' => 'Pasangan favoritku akhirnya halal! Doa terbaik untuk kebahagiaan dan keberkahan rumah tangga kalian berdua.'],
+                ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah dan bahagia selamanya.'],
+                ['name' => 'Rafi Alfian', 'status' => 'Hadir', 'message' => 'Happy wedding bro! Semoga seluruh rangkaian acara berjalan lancar dan penuh berkah sampai hari H.'],
+                ['name' => 'Clara Anastasia', 'status' => 'Hadir', 'message' => 'Undangan dan temanya cantik sekali! Selamat berbahagia untuk Jada & Elias, sampai jumpa di acara resepsi.'],
             ];
         }
 
@@ -122,8 +132,8 @@
             }
         } else {
             $gifts = [
-                ['bank' => 'BCA', 'name' => 'Elias Putra', 'account' => '123 456 7890'],
-                ['bank' => 'Bank Mandiri', 'name' => 'Jada Amira', 'account' => '098 765 4321'],
+                ['bank' => 'BCA', 'name' => 'Elias Putra Pratama', 'account' => '123 456 7890'],
+                ['bank' => 'Mandiri', 'name' => 'Jada Amira Permata', 'account' => '098 765 4321'],
             ];
         }
 
@@ -132,1220 +142,688 @@
         $couple = [
             'groom' => 'Elias',
             'bride' => 'Jada',
-            'groom_full' => 'Elias Putra, M.Sc.',
-            'bride_full' => 'Jada Amira, B.A.',
+            'groom_full' => 'Elias Putra Pratama, S.T.',
+            'bride_full' => 'Jada Amira Permata, B.A.',
             'parents' => [
                 'groom' => 'Putra pertama Bpk. Ahmad Suherman & Ibu Sari Widowati',
                 'bride' => 'Putri kedua Bpk. Hendra Wijaya & Ibu Linda Permata',
-            ],
-            'instagram' => [
-                'groom' => 'https://instagram.com',
-                'bride' => 'https://instagram.com',
             ],
         ];
 
         $event = [
             'date_iso' => '2027-05-12',
             'date_formatted' => 'Minggu, 12 Mei 2027',
+            'date_short' => '12 . 05 . 2027',
             'time' => '08:00',
-            'location' => 'The Royal Emerald Glasshouse, Hotel Mulia',
-            'address' => 'Jl. Asia Afrika, Senayan, Kota Jakarta Pusat',
+            'location' => 'The Glasshouse Orangery, Hotel Mulia',
+            'address' => 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
             'maps_url' => 'https://maps.google.com/?q=Hotel+Mulia+Senayan+Jakarta',
         ];
 
         $schedule = [
             [
                 'title' => 'Ikrar Suci Akad Nikah',
-                'time' => '08:00 - 10:00 WIB',
+                'badge' => 'HOLY MATRIMONY',
                 'date' => 'Minggu, 12 Mei 2027',
-                'venue' => 'The Emerald Conservatory Hall',
-                'address' => 'Jl. Asia Afrika, Senayan, Kota Jakarta Pusat',
-                'maps' => 'https://maps.google.com/?q=Hotel+Mulia+Senayan+Jakarta',
+                'time' => '08:00 – 10:00 WIB',
+                'venue' => 'The Emerald Glasshouse Sanctuary',
+                'address' => 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
             ],
             [
-                'title' => 'Royal Evening Reception',
-                'time' => '11:00 - 14:00 WIB',
+                'title' => 'Gardenia Orangery Reception',
+                'badge' => 'WEDDING RECEPTION',
                 'date' => 'Minggu, 12 Mei 2027',
-                'venue' => 'The Royal Emerald Glasshouse, Hotel Mulia',
-                'address' => 'Jl. Asia Afrika, Senayan, Kota Jakarta Pusat',
-                'maps' => 'https://maps.google.com/?q=Hotel+Mulia+Senayan+Jakarta',
+                'time' => '11:00 – 14:00 WIB',
+                'venue' => 'Grand Botanical Conservatory, Hotel Mulia',
+                'address' => 'Jl. Asia Afrika, Senayan, Jakarta Pusat',
             ],
         ];
 
         $stories = [
-            ['title' => 'Pertemuan Pertama', 'date' => 'Agustus 2023', 'text' => 'Di sebuah sudut konservatori taman kota, takdir mempertemukan dua jiwa yang belum saling mengenal namun terasa begitu akrab.'],
-            ['title' => 'Merajut Impian', 'date' => 'Januari 2025', 'text' => 'Setiap tawa, doa, dan perjalanan bersama menjadi fondasi kokoh bagi istana kasih yang sedang kami bangun berdua.'],
-            ['title' => 'Janji Suci Abadi', 'date' => 'Mei 2027', 'text' => 'Dua cincin, satu ikrar suci, dan selamanya untuk saling menjaga dalam ikatan pernikahan yang diberkahi-Nya.'],
+            [
+                'title' => 'Pertemuan di Rumah Kaca',
+                'date' => 'Agustus 2022',
+                'text' => 'Di bawah teduhnya atap kaca dan aroma eukaliptus pagi itu, dua langkah yang semula asing berpapasan dan memulai percakapan hangat pertama.',
+            ],
+            [
+                'title' => 'Merangkai Musim Bersama',
+                'date' => 'Januari 2025',
+                'text' => 'Setiap perjalanan, tawa, dan doa yang dipanjatkan bersama menjadi akar yang menguatkan langkah kami menuju satu tujuan yang sama.',
+            ],
+            [
+                'title' => 'Ikatan Janji Abadi',
+                'date' => 'Mei 2027',
+                'text' => 'Dua cincin, satu ikrar suci, dan lembaran baru untuk saling meneduhkan sepanjang usia dalam ridha-Nya.',
+            ],
         ];
 
         $gallery = [
-            $getImg('image_2.jpg'),
-            $getImg('image_3.jpg'),
-            $getImg('image_4.jpg'),
-            $getImg('image_6.jpg'),
-            $getImg('image_7.jpg'),
-            $getImg('image_10.jpg'),
+            asset('assets/templates/wedding-29/images/image_10.jpg'),
+            asset('assets/templates/wedding-29/images/image_11.jpg'),
+            asset('assets/templates/wedding-29/images/image_12.jpg'),
+            asset('assets/templates/wedding-29/images/image_13.jpg'),
+            asset('assets/templates/wedding-29/images/image_2.jpg'),
+            asset('assets/templates/wedding-29/images/image_3.jpg'),
         ];
 
         $bg = [
-            'cover' => $getImg('image_2.jpg'),
-            'groom' => $getImg('image_8.jpg'),
-            'bride' => $getOrnament('emerald-bride-portrait.jpg'),
+            'cover' => asset('assets/templates/wedding-29/images/image_2.jpg'),
+            'hero' => asset('assets/templates/wedding-29/images/image_2.jpg'),
+            'hero_small_1' => asset('assets/templates/wedding-29/images/image_3.jpg'),
+            'hero_small_2' => asset('assets/templates/wedding-29/images/image_4.jpg'),
+            'story_1' => asset('assets/templates/wedding-29/images/image_5.jpg'),
+            'story_2' => asset('assets/templates/wedding-29/images/image_6.jpg'),
+            'story_3' => asset('assets/templates/wedding-29/images/image_7.jpg'),
+            'groom' => asset('assets/templates/wedding-29/images/image_8.jpg'),
+            'bride' => asset('assets/templates/wedding-29/images/image_9.jpg'),
         ];
 
         $wishes = [
-            ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah dan bahagia selamanya!'],
-            ['name' => 'Rafi Alfian, S.T.', 'status' => 'Hadir', 'message' => 'Happy Wedding bro Elias & Jada! Semoga acara berjalan khidmat dan lancar sampai hari H. See you at the conservatory!'],
-            ['name' => 'Clarissa Putri', 'status' => 'Hadir', 'message' => 'Pasangan favoritku akhirnya halal! Doa terbaik untuk kebahagiaan dan keberkahan rumah tangga kalian berdua.'],
+            ['name' => 'Diana & Keluarga', 'status' => 'Hadir', 'message' => 'Selamat menempuh hidup baru Elias & Jada! Semoga menjadi keluarga sakinah mawaddah warahmah dan bahagia selamanya.'],
+            ['name' => 'Rafi Alfian', 'status' => 'Hadir', 'message' => 'Happy wedding bro! Semoga seluruh rangkaian acara berjalan lancar dan penuh berkah sampai hari H.'],
+            ['name' => 'Clara Anastasia', 'status' => 'Hadir', 'message' => 'Undangan dan temanya cantik sekali! Selamat berbahagia untuk Jada & Elias, sampai jumpa di acara resepsi.'],
         ];
 
         $gifts = [
-            ['bank' => 'BCA', 'name' => 'Elias Putra', 'account' => '123 456 7890'],
-            ['bank' => 'Bank Mandiri', 'name' => 'Jada Amira', 'account' => '098 765 4321'],
+            ['bank' => 'BCA', 'name' => 'Elias Putra Pratama', 'account' => '123 456 7890'],
+            ['bank' => 'Mandiri', 'name' => 'Jada Amira Permata', 'account' => '098 765 4321'],
         ];
 
         $musicUrl = asset('musics/love-story-taylor-swift-sax-cover-by-leon-chen-rdlfx2fnhok.mp3');
     }
+
+    $groomInitial = mb_strtoupper(mb_substr($couple['groom'], 0, 1));
+    $brideInitial = mb_strtoupper(mb_substr($couple['bride'], 0, 1));
+
+    $getOrnament = function (string $filename) {
+        $rel = 'assets/templates/wedding-29/ornaments/' . $filename;
+        $full = public_path($rel);
+        $v = file_exists($full) ? filemtime($full) : time();
+        return asset($rel) . '?v=' . $v;
+    };
 @endphp
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Royal Wedding of {{ $couple['bride'] }} & {{ $couple['groom'] }}</title>
-    <link rel="icon" type="image/png" href="{{ $getOrnament('gold-lantern.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of {{ $couple['groom'] }} &amp; {{ $couple['bride'] }} – Botanical Glasshouse</title>
 
-    <!-- Google Fonts -->
+    <!-- Tailwind CSS & Alpine.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts: Playfair Display, Cormorant Garamond, Pinyon Script, Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'emerald-royal': {
-                            'abyss': '#02100b',
-                            'deep': '#041c13',
-                            'card': '#07281c',
-                            'gold': '#D9AA45',
-                            'lightgold': '#F3CE7A',
-                            'champagne': '#F7EBD5',
-                            'ivory': '#FCFBF7',
-                            'cream': '#F4EDE2',
-                            'muted': '#9BB5A8'
+                        emerald: {
+                            950: '#031c14',
+                            900: '#063224',
+                            800: '#0a4734',
+                            700: '#115e46',
+                        },
+                        alabaster: {
+                            50: '#FDFBF7',
+                            100: '#FAF6EE',
+                            200: '#F2ECE1',
+                            300: '#E5DCCB',
+                        },
+                        gold: {
+                            200: '#F9E5A8',
+                            300: '#F1D07E',
+                            400: '#D9AE4C',
+                            500: '#C29432',
+                            600: '#9A701B',
                         }
                     },
                     fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        cinzel: ['"Cinzel"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        script: ['Pinyon Script', 'cursive'],
+                        sans: ['Outfit', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('rsvpForm', () => ({
-                name: @js(request('to', request('kpd', ''))),
-                status: 'Hadir',
-                message: '',
-                wishesList: @js($wishes ?? []),
-                submitted: false,
-                sendWish() {
-                    if (!this.name.trim() || !this.message.trim()) return;
-                    this.wishesList.unshift({
-                        name: this.name,
-                        status: this.status,
-                        message: this.message
-                    });
-                    this.message = '';
-                    this.submitted = true;
-                    setTimeout(() => { this.submitted = false; }, 3000);
-                }
-            }));
-        });
-    </script>
-
     <style>
         [x-cloak] { display: none !important; }
-
-        html, body {
-            background-color: #020e09;
-            color: #F4EDE2;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .desktop-stage {
-            min-height: 100vh;
-            width: 100%;
-            background-color: #020e09;
-            background-image:
-                radial-gradient(circle at 50% 25%, rgba(217, 170, 69, 0.14) 0%, transparent 55%),
-                radial-gradient(circle at 50% 80%, rgba(6, 78, 59, 0.28) 0%, transparent 60%);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .invitation-shell {
-            width: 100%;
-            max-width: 430px;
-            min-height: 100dvh;
-            background-color: #041911;
-            position: relative;
-            box-shadow: 0 0 90px rgba(0, 0, 0, 0.98);
-            overflow-x: hidden;
-        }
-
-        @media (min-width: 640px) {
-            .desktop-stage {
-                padding: 16px 0;
-                align-items: center;
-            }
-            .invitation-shell {
-                border-radius: 32px;
-                min-height: min(880px, 95vh);
-                border: 1px solid rgba(217, 170, 69, 0.35);
-            }
-        }
-
-        /* ===================================================== */
-        /* STAGGERED ENTRANCE & TRANSFORMATION ANIMATIONS        */
-        /* ===================================================== */
-        @keyframes bgZoomIn {
-            0% { transform: scale(1.14); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes gateSlideLeft {
-            0% { transform: translateX(-85px) translateY(15px) scale(0.92); opacity: 0; filter: blur(4px); }
-            100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; filter: blur(0); }
-        }
-        @keyframes gateSlideRight {
-            0% { transform: translateX(85px) translateY(15px) scale(0.92); opacity: 0; filter: blur(4px); }
-            100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; filter: blur(0); }
-        }
-        @keyframes flowerDropLeft {
-            0% { transform: translate(-45px, -55px) rotate(-12deg) scale(0.84); opacity: 0; }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
-        }
-        @keyframes flowerDropRight {
-            0% { transform: translate(45px, -55px) rotate(12deg) scale(0.84); opacity: 0; }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
-        }
-        @keyframes lampRise {
-            0% { transform: translateY(45px) scale(0.86); opacity: 0; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
-        @keyframes fgFlowerRise {
-            0% { transform: translateY(55px) scale(0.84); opacity: 0; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
-        @keyframes textRevealDown {
-            0% { transform: translateY(-22px); opacity: 0; filter: blur(3px); }
-            100% { transform: translateY(0); opacity: 1; filter: blur(0); }
-        }
-        @keyframes textRevealUp {
-            0% { transform: translateY(26px) scale(0.96); opacity: 0; filter: blur(3px); }
-            100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
-        }
-
-        /* ===================================================== */
-        /* ORGANIC CONTINUOUS IDLE ANIMATIONS FOR ROYAL ASSETS   */
-        /* ===================================================== */
-        @keyframes swayFloraTL {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            35% { transform: rotate(4.5deg) translateY(4px); }
-            70% { transform: rotate(-3deg) translateY(2px); }
-        }
-        .idle-sway-tl {
-            animation: swayFloraTL 4.8s ease-in-out infinite;
-            transform-origin: top left;
-        }
-
-        @keyframes swayFloraTR {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            35% { transform: rotate(-4.5deg) translateY(4px); }
-            70% { transform: rotate(3deg) translateY(2px); }
-        }
-        .idle-sway-tr {
-            animation: swayFloraTR 5.1s ease-in-out infinite;
-            transform-origin: top right;
-        }
-
-        @keyframes swayFloraBL {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            40% { transform: translateY(-10px) rotate(-3.5deg) scale(1.03); }
-            75% { transform: translateY(-3px) rotate(2deg) scale(1.01); }
-        }
-        .idle-sway-bl {
-            animation: swayFloraBL 4.9s ease-in-out infinite;
-            transform-origin: bottom left;
-        }
-
-        @keyframes swayFloraBR {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            40% { transform: translateY(-12px) rotate(3.5deg) scale(1.03); }
-            75% { transform: translateY(-4px) rotate(-2deg) scale(1.01); }
-        }
-        .idle-sway-br {
-            animation: swayFloraBR 5.3s ease-in-out infinite;
-            transform-origin: bottom right;
-        }
-
-        @keyframes lampHover {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        .idle-lamp {
-            animation: lampHover 4.4s ease-in-out infinite;
-            transform-origin: center bottom;
-        }
-
-        @keyframes candleFlickerReal {
-            0%, 100% { opacity: 0.78; transform: scale(1); filter: drop-shadow(0 0 12px rgba(255,215,110,0.85)); }
-            25% { opacity: 1; transform: scale(1.22) translateY(-1.5px); filter: drop-shadow(0 0 20px rgba(255,235,145,1)); }
-            50% { opacity: 0.65; transform: scale(0.92) translateY(1px); filter: drop-shadow(0 0 8px rgba(52,211,153,0.7)); }
-            75% { opacity: 0.95; transform: scale(1.14) translateY(-1px); filter: drop-shadow(0 0 16px rgba(255,220,120,0.95)); }
-        }
-        .idle-candle {
-            animation: candleFlickerReal 1.8s ease-in-out infinite;
-        }
-
-        @keyframes breatheMid {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-7px) scale(1.05); }
-        }
-        .idle-breathe-mid {
-            animation: breatheMid 4.2s ease-in-out infinite;
-        }
-
-        /* Falling Petals & Leaves */
-        @keyframes petalFall1 {
-            0% { transform: translateY(-40px) translateX(0) rotate(0deg) rotateY(0deg) scale(0.7); opacity: 0; }
-            15% { opacity: 0.95; }
-            50% { transform: translateY(50vh) translateX(32px) rotate(170deg) rotateY(60deg) scale(0.9); opacity: 0.95; }
-            85% { opacity: 0.75; }
-            100% { transform: translateY(105vh) translateX(-20px) rotate(350deg) rotateY(120deg) scale(0.7); opacity: 0; }
-        }
-        @keyframes petalFall2 {
-            0% { transform: translateY(-40px) translateX(0) rotate(0deg) rotateX(0deg) scale(0.65); opacity: 0; }
-            15% { opacity: 0.9; }
-            55% { transform: translateY(52vh) translateX(-36px) rotate(-160deg) rotateX(70deg) scale(0.85); opacity: 0.9; }
-            85% { opacity: 0.7; }
-            100% { transform: translateY(105vh) translateX(24px) rotate(-330deg) rotateX(140deg) scale(0.65); opacity: 0; }
-        }
-        @keyframes petalFall3 {
-            0% { transform: translateY(-40px) translateX(0) rotate(15deg) scale(0.6); opacity: 0; }
-            20% { opacity: 0.85; }
-            50% { transform: translateY(48vh) translateX(20px) rotate(120deg) scale(0.75); opacity: 0.9; }
-            80% { opacity: 0.7; }
-            100% { transform: translateY(105vh) translateX(-15px) rotate(260deg) scale(0.6); opacity: 0; }
-        }
-
-        .falling-petal-1 { animation: petalFall1 7.8s linear infinite; }
-        .falling-petal-2 { animation: petalFall2 9.6s linear infinite; }
-        .falling-petal-3 { animation: petalFall3 8.4s linear infinite; }
-        .falling-petal-4 { animation: petalFall1 11.2s linear infinite; }
-        .falling-petal-5 { animation: petalFall2 7.2s linear infinite; }
-        .falling-petal-6 { animation: petalFall3 10.6s linear infinite; }
-
-        /* Metallic Gold Shimmer Sweep */
-        @keyframes textShimmerSweep {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .name-shimmer {
-            background: linear-gradient(110deg, #F7EBD5 0%, #F5D38A 25%, #FFFDF5 50%, #F5D38A 75%, #F7EBD5 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textShimmerSweep 4.5s ease-in-out infinite;
-        }
-
-        .anim-bg { animation: bgZoomIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .anim-gate-left { opacity: 0; animation: gateSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; }
-        .anim-gate-right { opacity: 0; animation: gateSlideRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; }
-        .anim-flower-tl { opacity: 0; animation: flowerDropLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards; transform-origin: top left; }
-        .anim-flower-tr { opacity: 0; animation: flowerDropRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards; transform-origin: top right; }
-        .anim-lamp-l { opacity: 0; animation: lampRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards; }
-        .anim-lamp-r { opacity: 0; animation: lampRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; }
-        .anim-fg-flower-bl { opacity: 0; animation: fgFlowerRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards; }
-        .anim-fg-flower-br { opacity: 0; animation: fgFlowerRise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.15s forwards; }
-        .anim-top-title { opacity: 0; animation: textRevealDown 1s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards; }
-        .anim-couple-names { opacity: 0; animation: textRevealUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.45s forwards; }
-        .anim-date-block { opacity: 0; animation: textRevealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.65s forwards; }
-        .anim-cta-block { opacity: 0; animation: textRevealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.85s forwards; }
-
-        /* Gate Opening Transition when user clicks "Buka Undangan" */
-        .cover-opening .anim-gate-left,
-        .cover-opening .anim-lamp-l,
-        .cover-opening .anim-flower-tl,
-        .cover-opening .anim-fg-flower-bl {
-            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.95s ease;
-            transform: translateX(-140%) scale(1.12) !important;
-            opacity: 0 !important;
-        }
-        .cover-opening .anim-gate-right,
-        .cover-opening .anim-lamp-r,
-        .cover-opening .anim-flower-tr,
-        .cover-opening .anim-fg-flower-br {
-            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.95s ease;
-            transform: translateX(140%) scale(1.12) !important;
-            opacity: 0 !important;
-        }
-        .cover-opening .cover-ZoomOut {
-            transition: transform 1.3s cubic-bezier(0.7, 0, 0.3, 1), opacity 1.15s ease;
-            transform: scale(1.22);
-            opacity: 0;
-        }
-
-        .couple-name-text {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 600;
-            color: #F7EBD5;
-            text-shadow: 0 3px 16px rgba(0, 0, 0, 0.95), 0 0 24px rgba(217, 170, 69, 0.3);
-        }
-
-        .gold-foil {
-            background: linear-gradient(135deg, #FFF6E5 0%, #F5D38A 40%, #D9AA45 75%, #9E6F22 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-buka-emerald {
-            background: radial-gradient(ellipse at center, rgba(6, 58, 41, 0.95) 0%, rgba(2, 24, 17, 0.98) 100%);
-            border: 1.5px solid #D9AA45;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.85), inset 0 0 14px rgba(217, 170, 69, 0.25);
-            transition: all 0.35s ease;
-        }
-        .btn-buka-emerald:hover {
-            border-color: #F3CE7A;
-            box-shadow: 0 8px 30px rgba(217, 170, 69, 0.5), inset 0 0 20px rgba(243, 206, 122, 0.35);
-            transform: translateY(-2px) scale(1.03);
-        }
-
-        @keyframes floatDust {
-            0% { transform: translateY(105%) scale(0.6); opacity: 0; }
-            20% { opacity: 0.85; }
-            80% { opacity: 0.85; }
-            100% { transform: translateY(-20px) scale(1.1); opacity: 0; }
-        }
-        .gold-sparkle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatDust linear infinite;
-        }
-
-        /* ========================================================================= */
-        /* LIVING AMBIENT SYSTEM: ROYAL FIREFLIES & BUTTERFLIES                      */
-        /* ========================================================================= */
-        @keyframes fireflyPulse {
-            0%, 100% {
-                opacity: 0.15;
-                transform: scale(0.65);
-                box-shadow: 0 0 4px 1px rgba(245, 211, 138, 0.35);
-            }
-            50% {
-                opacity: 0.95;
-                transform: scale(1.25);
-                box-shadow: 0 0 10px 3px rgba(245, 211, 138, 0.9), 0 0 18px 6px rgba(52, 211, 153, 0.55);
-            }
-        }
-        @keyframes fireflyDriftA {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            25% { transform: translate3d(22px, -20px, 0); }
-            50% { transform: translate3d(-16px, -42px, 0); }
-            75% { transform: translate3d(14px, -18px, 0); }
-        }
-        @keyframes fireflyDriftB {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            30% { transform: translate3d(-24px, 22px, 0); }
-            65% { transform: translate3d(18px, -26px, 0); }
-            85% { transform: translate3d(-10px, -8px, 0); }
-        }
-        @keyframes fireflyDriftC {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            35% { transform: translate3d(20px, 26px, 0); }
-            70% { transform: translate3d(-22px, 14px, 0); }
-            90% { transform: translate3d(12px, -18px, 0); }
-        }
-        .ambient-firefly-node { position: absolute; pointer-events: none; will-change: transform; }
-        .ambient-firefly-dot {
-            border-radius: 50%;
-            background: radial-gradient(circle, #FFFFFF 0%, #FFF4CC 35%, #F5D38A 65%, rgba(52, 211, 153, 0.45) 90%, transparent 100%);
-            animation: fireflyPulse 3s ease-in-out infinite;
-        }
-        .firefly-drift-a { animation: fireflyDriftA 10s ease-in-out infinite; }
-        .firefly-drift-b { animation: fireflyDriftB 12s ease-in-out infinite; }
-        .firefly-drift-c { animation: fireflyDriftC 11s ease-in-out infinite; }
-
-        @keyframes butterflyFlap {
-            0% { transform: scaleX(1) scaleY(1); }
-            100% { transform: scaleX(0.22) scaleY(0.92); }
-        }
-        @keyframes butterflyFlightPath1 {
-            0% { transform: translate3d(-50px, 85vh, 0) rotate(18deg); opacity: 0; }
-            6% { opacity: 0.9; }
-            28% { transform: translate3d(100px, 58vh, 0) rotate(32deg); }
-            55% { transform: translate3d(230px, 36vh, 0) rotate(14deg); }
-            80% { transform: translate3d(330px, 14vh, 0) rotate(-6deg); opacity: 0.85; }
-            94% { opacity: 0.3; }
-            100% { transform: translate3d(450px, -45px, 0) rotate(12deg); opacity: 0; }
-        }
-        @keyframes butterflyFlightPath2 {
-            0% { transform: translate3d(450px, 32vh, 0) rotate(-32deg) scaleX(-1); opacity: 0; }
-            8% { opacity: 0.85; }
-            32% { transform: translate3d(270px, 48vh, 0) rotate(-18deg) scaleX(-1); }
-            62% { transform: translate3d(120px, 28vh, 0) rotate(-38deg) scaleX(-1); }
-            88% { transform: translate3d(-25px, 16vh, 0) rotate(-12deg) scaleX(-1); opacity: 0.8; }
-            100% { transform: translate3d(-65px, 8vh, 0) rotate(-26deg) scaleX(-1); opacity: 0; }
-        }
-        @keyframes butterflyFlightPath3 {
-            0% { transform: translate3d(440px, 92vh, 0) rotate(-22deg) scaleX(-1); opacity: 0; }
-            8% { opacity: 0.85; }
-            35% { transform: translate3d(260px, 64vh, 0) rotate(-35deg) scaleX(-1); }
-            65% { transform: translate3d(150px, 36vh, 0) rotate(-15deg) scaleX(-1); }
-            88% { transform: translate3d(60px, 12vh, 0) rotate(-28deg) scaleX(-1); opacity: 0.8; }
-            100% { transform: translate3d(-40px, -35px, 0) rotate(-18deg) scaleX(-1); opacity: 0; }
-        }
-        .ambient-butterfly-wrap { position: absolute; pointer-events: none; will-change: transform, opacity; top: 0; left: 0; }
-        .ambient-butterfly-body { animation: butterflyFlap 0.3s ease-in-out infinite alternate; transform-origin: center center; }
-        .butterfly-flight-1 { animation: butterflyFlightPath1 20s cubic-bezier(0.4, 0, 0.2, 1) infinite; animation-delay: -3s; }
-        .butterfly-flight-2 { animation: butterflyFlightPath2 26s cubic-bezier(0.4, 0, 0.2, 1) infinite; animation-delay: -14s; }
-        .butterfly-flight-3 { animation: butterflyFlightPath3 23s cubic-bezier(0.4, 0, 0.2, 1) infinite; animation-delay: -8s; }
-
-        /* ========================================================================= */
-        /* STAGGERED ROYAL ORNAMENT ASSEMBLY ANIMATIONS FOR ALL SECTIONS             */
-        /* ========================================================================= */
-        .sec-assemble-section-divider,
-        .sec-assemble-crest,
-        .sec-assemble-salam,
-        .sec-assemble-intro,
-        .sec-assemble-names,
-        .sec-assemble-date,
-        .sec-assemble-title,
-        .sec-assemble-divider,
-        .sec-assemble-crown,
-        .sec-assemble-card,
-        .sec-assemble-corner-tl,
-        .sec-assemble-corner-tr,
-        .sec-assemble-corner-bl,
-        .sec-assemble-corner-br,
-        .sec-assemble-arch-left,
-        .sec-assemble-arch-right,
-        .sec-assemble-mempelai-bl,
-        .sec-assemble-mempelai-br,
-        .sec-assemble-border-l,
-        .sec-assemble-border-r,
-        .sec-assemble-bismillah,
-        .sec-assemble-text-up,
-        .sec-assemble-quote,
-        .sec-assemble-cameo-left,
-        .sec-assemble-cameo-right,
-        .sec-assemble-count-1,
-        .sec-assemble-count-2,
-        .sec-assemble-count-3,
-        .sec-assemble-count-4,
-        .sec-assemble-save-date,
-        .sec-assemble-frame,
-        .sec-assemble-wreath-l,
-        .sec-assemble-wreath-r,
-        .sec-assemble-line-l,
-        .sec-assemble-line-r,
-        .sec-assemble-jewel,
-        .sec-assemble-info,
-        .sec-assemble-btn,
-        .sec-assemble-card-left,
-        .sec-assemble-card-right,
-        .sec-assemble-item,
-        .sec-assemble-timeline-line,
-        .sec-assemble-timeline-dot,
-        .sec-assemble-story,
-        .sec-assemble-gallery,
-        .sec-assemble-gift-btn,
-        .sec-assemble-wishes {
-            transition: opacity 0.22s ease, transform 0.22s ease !important;
-        }
-
-        .sec-assemble-section-divider { opacity: 0; transform: scale(0.85); }
-        .section-assembled .sec-assemble-section-divider {
-            opacity: 1; transform: scale(1);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.08s !important;
-        }
-        .sec-assemble-title { opacity: 0; transform: translateY(-25px); }
-        .section-assembled .sec-assemble-title {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s !important;
-        }
-        .sec-assemble-divider { opacity: 0; transform: scaleX(0); transform-origin: center; }
-        .section-assembled .sec-assemble-divider {
-            opacity: 0.9; transform: scaleX(1);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s !important;
-        }
-        .sec-assemble-crown { opacity: 0; transform: translateY(-40px) scale(0.85); }
-        .section-assembled .sec-assemble-crown {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-card { opacity: 0; transform: scale(0.92) translateY(25px); }
-        .section-assembled .sec-assemble-card {
-            opacity: 1; transform: scale(1) translateY(0);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.18s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.18s !important;
-        }
-
-        .sec-assemble-corner-tl { opacity: 0; transform: translate(-30px, -30px) rotate(-25deg) scale(0.5); }
-        .section-assembled .sec-assemble-corner-tl {
-            opacity: 0.85; transform: translate(0, 0) rotate(0deg) scale(1);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s !important;
-        }
-        .sec-assemble-corner-tr { opacity: 0; transform: translate(30px, -30px) rotate(25deg) scaleX(-1) scale(0.5); }
-        .section-assembled .sec-assemble-corner-tr {
-            opacity: 0.85; transform: translate(0, 0) rotate(0deg) scaleX(-1) scale(1);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-        .sec-assemble-corner-bl { opacity: 0; transform: translate(-30px, 30px) rotate(25deg) scaleY(-1) scale(0.5); }
-        .section-assembled .sec-assemble-corner-bl {
-            opacity: 0.85; transform: translate(0, 0) rotate(0deg) scaleY(-1) scale(1);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s !important;
-        }
-        .sec-assemble-corner-br { opacity: 0; transform: translate(30px, 30px) rotate(-25deg) scale(-0.5); }
-        .section-assembled .sec-assemble-corner-br {
-            opacity: 0.85; transform: translate(0, 0) rotate(0deg) scale(-1);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s !important;
-        }
-
-        .sec-assemble-border-l { opacity: 0; transform: translateX(-45px); }
-        .section-assembled .sec-assemble-border-l {
-            opacity: 0.85; transform: translateX(0);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-border-r { opacity: 0; transform: translateX(45px); }
-        .section-assembled .sec-assemble-border-r {
-            opacity: 0.85; transform: translateX(0);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-
-        .sec-assemble-crest { opacity: 0; transform: translateY(-25px) scale(0.9); }
-        .section-assembled .sec-assemble-crest {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-salam { opacity: 0; transform: translateY(-18px); }
-        .section-assembled .sec-assemble-salam {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
-        }
-        .sec-assemble-intro { opacity: 0; transform: translateY(15px); }
-        .section-assembled .sec-assemble-intro {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-        .sec-assemble-cameo-left { opacity: 0; transform: translateX(-60px) rotate(-6deg) scale(0.85); }
-        .section-assembled .sec-assemble-cameo-left {
-            opacity: 1; transform: translateX(0) rotate(0deg) scale(1);
-            transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-        .sec-assemble-cameo-right { opacity: 0; transform: translateX(60px) rotate(6deg) scale(0.85); }
-        .section-assembled .sec-assemble-cameo-right {
-            opacity: 1; transform: translateX(0) rotate(0deg) scale(1);
-            transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.45s !important;
-        }
-        .sec-assemble-names { opacity: 0; transform: translateY(16px); }
-        .section-assembled .sec-assemble-names {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s !important;
-        }
-        .sec-assemble-date { opacity: 0; transform: scale(0.9) translateY(14px); }
-        .section-assembled .sec-assemble-date {
-            opacity: 1; transform: scale(1) translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s !important;
-        }
-        .sec-assemble-count-1 { opacity: 0; transform: translateY(24px) scale(0.88); }
-        .section-assembled .sec-assemble-count-1 {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.7s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.7s !important;
-        }
-        .sec-assemble-count-2 { opacity: 0; transform: translateY(24px) scale(0.88); }
-        .section-assembled .sec-assemble-count-2 {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.78s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.78s !important;
-        }
-        .sec-assemble-count-3 { opacity: 0; transform: translateY(24px) scale(0.88); }
-        .section-assembled .sec-assemble-count-3 {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.86s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.86s !important;
-        }
-        .sec-assemble-count-4 { opacity: 0; transform: translateY(24px) scale(0.88); }
-        .section-assembled .sec-assemble-count-4 {
-            opacity: 1; transform: translateY(0) scale(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.94s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.94s !important;
-        }
-        .sec-assemble-save-date { opacity: 0; transform: translateY(20px); }
-        .section-assembled .sec-assemble-save-date {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.02s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.02s !important;
-        }
-
-        .sec-assemble-bismillah { opacity: 0; transform: scale(0.88) translateY(-12px); }
-        .section-assembled .sec-assemble-bismillah {
-            opacity: 1; transform: scale(1) translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
-        }
-        .sec-assemble-text-up { opacity: 0; transform: translateY(18px); }
-        .section-assembled .sec-assemble-text-up {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-        .sec-assemble-quote { opacity: 0; transform: translateY(18px); }
-        .section-assembled .sec-assemble-quote {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.48s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.48s !important;
-        }
-
-        .sec-assemble-arch-left { opacity: 0; transform: translate(-50px, -50px) rotate(-15deg) scale(0.8); }
-        .section-assembled .sec-assemble-arch-left {
-            opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-arch-right { opacity: 0; transform: translate(50px, -50px) rotate(15deg) scale(0.8); }
-        .section-assembled .sec-assemble-arch-right {
-            opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-mempelai-bl { opacity: 0; transform: translate(-40px, 40px) scale(0.85); }
-        .section-assembled .sec-assemble-mempelai-bl {
-            opacity: 0.9; transform: translate(0, 0) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
-        }
-        .sec-assemble-mempelai-br { opacity: 0; transform: translate(40px, 40px) scale(0.85); }
-        .section-assembled .sec-assemble-mempelai-br {
-            opacity: 0.9; transform: translate(0, 0) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
-        }
-
-        .sec-assemble-frame { opacity: 0; transform: scale(0.84) translateY(25px); }
-        .section-assembled .sec-assemble-frame {
-            opacity: 1; transform: scale(1) translateY(0);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.9), 0 0 24px rgba(217,170,69,0.28);
-            transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.18s, transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.18s !important;
-        }
-        .sec-assemble-wreath-l { opacity: 0; transform: translate(-25px, 20px) scale(0.8) rotate(-8deg); }
-        .section-assembled .sec-assemble-wreath-l {
-            opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s !important;
-        }
-        .sec-assemble-wreath-r { opacity: 0; transform: translate(25px, 20px) scale(0.8) rotate(8deg); }
-        .section-assembled .sec-assemble-wreath-r {
-            opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s !important;
-        }
-
-        @keyframes swayWreathL {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            50% { transform: rotate(-1.8deg) translateY(-3px); }
-        }
-        .idle-sway-wreath-l { animation: swayWreathL 5.5s ease-in-out infinite; transform-origin: bottom right; }
-
-        @keyframes swayWreathR {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            50% { transform: rotate(1.8deg) translateY(-3px); }
-        }
-        .idle-sway-wreath-r { animation: swayWreathR 5.8s ease-in-out infinite 0.5s; transform-origin: bottom left; }
-
-        .sec-assemble-line-l { opacity: 0; transform: scaleX(0); transform-origin: right center; }
-        .section-assembled .sec-assemble-line-l {
-            opacity: 1; transform: scaleX(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s !important;
-        }
-        .sec-assemble-line-r { opacity: 0; transform: scaleX(0); transform-origin: left center; }
-        .section-assembled .sec-assemble-line-r {
-            opacity: 1; transform: scaleX(1);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s !important;
-        }
-        .sec-assemble-jewel { opacity: 0; transform: scale(0) rotate(-180deg); }
-        .section-assembled .sec-assemble-jewel {
-            opacity: 1; transform: scale(1) rotate(0deg);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s !important;
-        }
-        .sec-assemble-info { opacity: 0; transform: translateY(20px); }
-        .section-assembled .sec-assemble-info {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.5s !important;
-        }
-        .sec-assemble-btn { opacity: 0; transform: translateY(15px); }
-        .section-assembled .sec-assemble-btn {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s !important;
-        }
-
-        .sec-assemble-card-left { opacity: 0; transform: translateX(-45px) rotate(-2deg) scale(0.95); }
-        .section-assembled .sec-assemble-card-left {
-            opacity: 1; transform: translateX(0) rotate(0deg) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s !important;
-        }
-        .sec-assemble-card-right { opacity: 0; transform: translateX(45px) rotate(2deg) scale(0.95); }
-        .section-assembled .sec-assemble-card-right {
-            opacity: 1; transform: translateX(0) rotate(0deg) scale(1);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-        .sec-assemble-item { opacity: 0; transform: translateY(14px); }
-        .section-assembled .sec-assemble-item {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s !important;
-        }
-
-        .sec-assemble-timeline-line { opacity: 0; transform: scaleY(0); transform-origin: top; }
-        .section-assembled .sec-assemble-timeline-line {
-            opacity: 0.7; transform: scaleY(1);
-            transition: opacity 0.8s ease 0.15s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important;
-        }
-        .sec-assemble-timeline-dot { opacity: 0; transform: scale(0); }
-        .section-assembled .sec-assemble-timeline-dot {
-            opacity: 1; transform: scale(1);
-            transition: opacity 0.7s ease 0.25s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s !important;
-        }
-        .sec-assemble-story { opacity: 0; transform: translateX(35px); }
-        .section-assembled .sec-assemble-story-0 {
-            opacity: 1; transform: translateX(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s !important;
-        }
-        .section-assembled .sec-assemble-story-1 {
-            opacity: 1; transform: translateX(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s !important;
-        }
-        .section-assembled .sec-assemble-story-2 {
-            opacity: 1; transform: translateX(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.6s !important;
-        }
-
-        .sec-assemble-gallery { opacity: 0; transform: scale(0.85) translateY(18px); }
-        .section-assembled .sec-assemble-gallery-0 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s !important; }
-        .section-assembled .sec-assemble-gallery-1 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.28s !important; }
-        .section-assembled .sec-assemble-gallery-2 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.40s !important; }
-        .section-assembled .sec-assemble-gallery-3 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.52s !important; }
-        .section-assembled .sec-assemble-gallery-4 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.64s !important; }
-        .section-assembled .sec-assemble-gallery-5 { opacity: 1; transform: scale(1) translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.76s !important; }
-
-        .sec-assemble-gift-btn { opacity: 0; transform: scale(0.88) translateY(15px); }
-        .section-assembled .sec-assemble-gift-btn {
-            opacity: 1; transform: scale(1) translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s !important;
-        }
-        .sec-assemble-wishes { opacity: 0; transform: translateY(22px); }
-        .section-assembled .sec-assemble-wishes {
-            opacity: 1; transform: translateY(0);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s !important;
-        }
-
-        .glass-card-emerald {
-            background: rgba(5, 32, 22, 0.78);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(217, 170, 69, 0.38);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(245, 211, 138, 0.18);
-        }
-
-        .clamped-shell-float {
-            position: fixed;
-            width: 100%;
-            max-width: 430px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-        }
-
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        @keyframes slowSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* Washi Tape Effect for Botanical Scrapbook Polaroids */
+        .washi-tape-gold {
+            background: linear-gradient(135deg, rgba(241, 208, 126, 0.78) 0%, rgba(194, 148, 50, 0.68) 100%);
+            box-shadow: 0 2px 6px rgba(6, 50, 36, 0.15);
+            backdrop-filter: blur(2px);
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L6 4 L12 0 L18 4 L24 0 L30 4 L36 0 L42 4 L48 0 L54 4 L60 0 L66 4 L72 0 L78 4 L84 0 L90 4 L96 0 L100 3 V17 L96 20 L90 16 L84 20 L78 16 L72 20 L66 16 L60 20 L54 16 L48 20 L42 16 L36 20 L30 16 L24 20 L18 16 L12 20 L6 16 L0 20 Z" fill="black"/></svg>');
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L6 4 L12 0 L18 4 L24 0 L30 4 L36 0 L42 4 L48 0 L54 4 L60 0 L66 4 L72 0 L78 4 L84 0 L90 4 L96 0 L100 3 V17 L96 20 L90 16 L84 20 L78 16 L72 20 L66 16 L60 20 L54 16 L48 20 L42 16 L36 20 L30 16 L24 20 L18 16 L12 20 L6 16 L0 20 Z" fill="black"/></svg>');
         }
-        .spin-vinyl { animation: slowSpin 25s linear infinite; }
+        .washi-tape-sage {
+            background: linear-gradient(135deg, rgba(167, 215, 193, 0.78) 0%, rgba(110, 168, 142, 0.72) 100%);
+            box-shadow: 0 2px 6px rgba(6, 50, 36, 0.14);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Fine Botanical Paper Grain Overlay */
+        .paper-texture {
+            background-color: #FAF6EE;
+            background-image:
+                radial-gradient(rgba(194, 148, 50, 0.08) 1px, transparent 1px),
+                radial-gradient(rgba(6, 50, 36, 0.04) 1px, #FAF6EE 1px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+
+        /* Polaroid Card Styling */
+        .botanical-polaroid {
+            background: #FFFFFF;
+            box-shadow:
+                0 14px 32px -6px rgba(6, 50, 36, 0.18),
+                0 4px 10px -2px rgba(6, 50, 36, 0.08),
+                inset 0 0 0 1px rgba(194, 148, 50, 0.22);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+        }
+        .botanical-polaroid:hover {
+            transform: translateY(-4px) rotate(0deg) !important;
+            box-shadow: 0 20px 40px -8px rgba(6, 50, 36, 0.26);
+        }
+
+        /* =========================================================
+           1. COVER ENTRANCE & LIVING ORANGERY ANIMATIONS
+           ========================================================= */
+        @keyframes orangeryBgZoom {
+            0%   { transform: scale(1.12); filter: brightness(0.75); }
+            100% { transform: scale(1.03); filter: brightness(0.95); }
+        }
+        @keyframes orangeryBreathing {
+            0%, 100% { transform: scale(1.03); }
+            50%      { transform: scale(1.08); }
+        }
+        .anim-orangery-bg {
+            animation:
+                orangeryBgZoom 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                orangeryBreathing 16s ease-in-out 2.4s infinite;
+        }
+
+        @keyframes chandelierDrop {
+            0%   { opacity: 0; transform: translateY(-75px) scale(0.88); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes chandelierSwing {
+            0%, 100% { transform: rotate(-1.6deg); }
+            50%      { transform: rotate(1.6deg); }
+        }
+        .anim-chandelier {
+            opacity: 0;
+            animation: chandelierDrop 1.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+        }
+        .idle-chandelier {
+            transform-origin: top center;
+            animation: chandelierSwing 6.5s ease-in-out infinite;
+        }
+
+        @keyframes vineCurtainLeftIn {
+            0%   { opacity: 0; transform: translateX(-60px) scale(0.94); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes vineCurtainRightIn {
+            0%   { opacity: 0; transform: translateX(60px) scale(0.94); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .anim-vine-l {
+            opacity: 0;
+            animation: vineCurtainLeftIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+            transition: transform 1.3s cubic-bezier(0.65, 0, 0.35, 1), opacity 1.1s ease;
+        }
+        .anim-vine-r {
+            opacity: 0;
+            animation: vineCurtainRightIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+            transition: transform 1.3s cubic-bezier(0.65, 0, 0.35, 1), opacity 1.1s ease;
+        }
+
+        @keyframes archWindowPop {
+            0%   { opacity: 0; transform: translateY(32px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .anim-arch-window {
+            opacity: 0;
+            animation: archWindowPop 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+        }
+
+        @keyframes waxSealStamp {
+            0%   { opacity: 0; transform: scale(1.45) rotate(-12deg); }
+            70%  { opacity: 1; transform: scale(0.94) rotate(3deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        .anim-wax-seal {
+            opacity: 0;
+            animation: waxSealStamp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+        }
+
+        @keyframes bouquetRiseL {
+            0%   { opacity: 0; transform: translate(-35px, 45px) scale(0.88); }
+            100% { opacity: 1; transform: translate(0, 0) scale(1); }
+        }
+        @keyframes bouquetRiseR {
+            0%   { opacity: 0; transform: translate(35px, 45px) scale(0.88); }
+            100% { opacity: 1; transform: translate(0, 0) scale(1); }
+        }
+        .anim-bouquet-bl {
+            opacity: 0;
+            animation: bouquetRiseL 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+        }
+        .anim-bouquet-br {
+            opacity: 0;
+            animation: bouquetRiseR 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+        }
+
+        /* Cover Open Curtain-Parting Transition */
+        .cover-is-opening .anim-chandelier {
+            transform: translateY(-130%) scale(0.9) !important;
+            opacity: 0 !important;
+        }
+        .cover-is-opening .anim-vine-l {
+            transform: translateX(-130%) rotate(-8deg) !important;
+            opacity: 0 !important;
+        }
+        .cover-is-opening .anim-vine-r {
+            transform: translateX(130%) rotate(8deg) !important;
+            opacity: 0 !important;
+        }
+        .cover-is-opening .anim-bouquet-bl {
+            transform: translate(-90%, 90%) !important;
+            opacity: 0 !important;
+        }
+        .cover-is-opening .anim-bouquet-br {
+            transform: translate(90%, 90%) !important;
+            opacity: 0 !important;
+        }
+        .cover-is-opening .anim-arch-window {
+            transform: scale(1.12) translateY(-15px) !important;
+            opacity: 0 !important;
+        }
+
+        /* =========================================================
+           2. IDLE BOTANICAL SWAY, BUTTERFLIES & SUNBEAM DUST
+           ========================================================= */
+        @keyframes swayLeftVine {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50%      { transform: rotate(2.4deg) scale(1.015); }
+        }
+        @keyframes swayRightVine {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50%      { transform: rotate(-2.4deg) scale(1.015); }
+        }
+        .idle-vine-l { transform-origin: top left; animation: swayLeftVine 5.5s ease-in-out infinite; }
+        .idle-vine-r { transform-origin: top right; animation: swayRightVine 6s ease-in-out infinite; }
+        .idle-rose-bl { transform-origin: bottom left; animation: swayLeftVine 5s ease-in-out infinite; }
+        .idle-rose-br { transform-origin: bottom right; animation: swayRightVine 5.4s ease-in-out infinite; }
+
+        /* Falling White Jasmine Petals & Eucalyptus Leaves */
+        @keyframes petalFallA {
+            0%   { transform: translate3d(0, -10%, 0) rotate(0deg); opacity: 0; }
+            12%  { opacity: 0.88; }
+            50%  { transform: translate3d(28px, 48vh, 0) rotate(160deg); opacity: 0.85; }
+            88%  { opacity: 0.75; }
+            100% { transform: translate3d(-16px, 104vh, 0) rotate(340deg); opacity: 0; }
+        }
+        @keyframes petalFallB {
+            0%   { transform: translate3d(0, -10%, 0) rotate(25deg); opacity: 0; }
+            12%  { opacity: 0.82; }
+            50%  { transform: translate3d(-32px, 50vh, 0) rotate(-140deg); opacity: 0.8; }
+            88%  { opacity: 0.7; }
+            100% { transform: translate3d(20px, 104vh, 0) rotate(-300deg); opacity: 0; }
+        }
+        .petal-fall-a { animation: petalFallA 13s linear infinite; }
+        .petal-fall-b { animation: petalFallB 16s linear infinite; }
+
+        /* 3D Fluttering Golden Butterflies */
+        @keyframes wingFlutter {
+            0%, 100% { transform: scaleX(1) rotateY(0deg); }
+            50%      { transform: scaleX(0.32) rotateY(55deg); }
+        }
+        @keyframes butterflyPath1 {
+            0%   { transform: translate3d(-40px, 72vh, 0) rotate(28deg) scale(0.82); opacity: 0; }
+            10%  { opacity: 0.92; }
+            45%  { transform: translate3d(210px, 42vh, 0) rotate(18deg) scale(1); }
+            88%  { opacity: 0.92; }
+            100% { transform: translate3d(460px, 14vh, 0) rotate(24deg) scale(0.8); opacity: 0; }
+        }
+        @keyframes butterflyPath2 {
+            0%   { transform: translate3d(450px, 78vh, 0) rotate(-32deg) scale(0.76); opacity: 0; }
+            12%  { opacity: 0.88; }
+            52%  { transform: translate3d(170px, 48vh, 0) rotate(-18deg) scale(0.95); }
+            88%  { opacity: 0.88; }
+            100% { transform: translate3d(-50px, 18vh, 0) rotate(-28deg) scale(0.75); opacity: 0; }
+        }
+        .butterfly-flight-1 { position: absolute; left: 0; top: 0; animation: butterflyPath1 19s ease-in-out infinite; }
+        .butterfly-flight-2 { position: absolute; left: 0; top: 0; animation: butterflyPath2 23s ease-in-out -8s infinite; }
+        .butterfly-wing { animation: wingFlutter 0.28s ease-in-out infinite; }
+
+        /* =========================================================
+           3. SECTION STAGGERED ASSEMBLY SYSTEM (ON SCROLL)
+           ========================================================= */
+        .anim-section {
+            position: relative;
+        }
+        .stagger-up,
+        .stagger-down,
+        .stagger-left,
+        .stagger-right,
+        .stagger-scale,
+        .stagger-polaroid-l,
+        .stagger-polaroid-r {
+            opacity: 0;
+            will-change: transform, opacity;
+            transition:
+                opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stagger-up         { transform: translateY(36px); }
+        .stagger-down       { transform: translateY(-36px); }
+        .stagger-left       { transform: translateX(-42px); }
+        .stagger-right      { transform: translateX(42px); }
+        .stagger-scale      { transform: scale(0.86); }
+        .stagger-polaroid-l { transform: translate(-45px, 25px) rotate(-9deg) scale(0.9); }
+        .stagger-polaroid-r { transform: translate(45px, 25px) rotate(9deg) scale(0.9); }
+
+        .anim-section.is-visible .stagger-up,
+        .anim-section.is-visible .stagger-down,
+        .anim-section.is-visible .stagger-left,
+        .anim-section.is-visible .stagger-right,
+        .anim-section.is-visible .stagger-scale {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+        .anim-section.is-visible .stagger-polaroid-l {
+            opacity: 1;
+            transform: translate(0, 0) rotate(-3deg) scale(1);
+        }
+        .anim-section.is-visible .stagger-polaroid-r {
+            opacity: 1;
+            transform: translate(0, 0) rotate(3deg) scale(1);
+        }
+
+        .delay-100 { transition-delay: 0.10s !important; }
+        .delay-200 { transition-delay: 0.20s !important; }
+        .delay-300 { transition-delay: 0.30s !important; }
+        .delay-400 { transition-delay: 0.40s !important; }
+        .delay-500 { transition-delay: 0.50s !important; }
+        .delay-600 { transition-delay: 0.60s !important; }
+        .delay-700 { transition-delay: 0.70s !important; }
+
+        /* Clamped Floating UI inside 480px Shell */
+        .clamped-shell-float {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        .spin-vinyl { animation: spinVinyl 9s linear infinite; }
     </style>
 </head>
+
 <body
+    class="bg-[#031A12] text-emerald-950 font-sans antialiased selection:bg-gold-300 selection:text-emerald-950 overflow-x-hidden"
     x-data="{
+        isOpen: false,
         isOpening: false,
-        isOpen: {{ request()->has('open') ? 'true' : 'false' }},
-        activeSection: '{{ request()->get('sec', 'hero') }}',
         isPlaying: false,
-        copiedToast: false,
-        lightboxImg: null,
+        activeSection: 'hero',
+        lightboxOpen: false,
+        lightboxImage: '',
         openInvitation() {
-            if (this.isOpening) return;
+            if (this.isOpen || this.isOpening) return;
             this.isOpening = true;
-            this.playMusic();
+            const audio = document.getElementById('bgMusic');
+            if (audio) {
+                audio.volume = 0.65;
+                audio.play().then(() => { this.isPlaying = true; }).catch(() => {});
+            }
             setTimeout(() => {
                 this.isOpen = true;
-                this.$nextTick(() => {
-                    this.initAssemblyObserver();
-                    setTimeout(() => {
-                        let hero = document.getElementById('hero');
-                        if (hero) hero.classList.add('section-assembled');
-                    }, 60);
-                });
-            }, 1150);
-        },
-        playMusic() {
-            let audio = document.getElementById('bg-audio');
-            if (audio) {
-                audio.play().then(() => {
-                    this.isPlaying = true;
-                }).catch(() => {});
-            }
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                setTimeout(() => {
+                    this.observeSections();
+                    const heroEl = document.getElementById('hero');
+                    if (heroEl) heroEl.classList.add('is-visible');
+                }, 80);
+            }, 950);
         },
         toggleMusic() {
-            let audio = document.getElementById('bg-audio');
+            const audio = document.getElementById('bgMusic');
             if (!audio) return;
             if (this.isPlaying) {
                 audio.pause();
                 this.isPlaying = false;
             } else {
-                audio.play();
-                this.isPlaying = true;
+                audio.play().then(() => { this.isPlaying = true; }).catch(() => {});
             }
         },
-        copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                this.copiedToast = true;
-                setTimeout(() => { this.copiedToast = false; }, 2500);
-            });
-        },
-        initAssemblyObserver() {
-            if (this._assemblyObserver) {
-                this._assemblyObserver.disconnect();
-            }
-            this._assemblyObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (entry.target.id) {
-                            this.activeSection = entry.target.id;
-                        }
-                        entry.target.classList.add('section-assembled');
-                    } else {
-                        entry.target.classList.remove('section-assembled');
-                    }
-                });
-            }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -20px 0px'
-            });
-
-            document.querySelectorAll('.anim-section, .nav-section').forEach(section => {
-                this._assemblyObserver.observe(section);
-            });
+        openLightbox(src) {
+            this.lightboxImage = src;
+            this.lightboxOpen = true;
         },
         observeSections() {
-            this.initAssemblyObserver();
-        },
-        init() {
-            @if(request()->has('open'))
-            this.$nextTick(() => {
-                this.initAssemblyObserver();
-                setTimeout(() => {
-                    let target = document.getElementById('{{ request()->get('sec', 'hero') }}');
-                    if (target) {
-                        target.scrollIntoView();
-                        target.classList.add('section-assembled');
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        if (entry.target.classList.contains('nav-section')) {
+                            this.activeSection = entry.target.id;
+                        }
                     }
-                }, 400);
-            });
-            @endif
+                });
+            }, { threshold: 0.14 });
+            document.querySelectorAll('.anim-section').forEach(el => obs.observe(el));
         }
     }"
-    :class="isOpen ? '' : 'overflow-hidden'"
 >
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="{{ $musicUrl }}" type="audio/mpeg">
+    </audio>
 
-<!-- BACKGROUND AUDIO -->
-<audio id="bg-audio" loop preload="auto">
-    <source src="{{ $musicUrl }}" type="audio/mpeg">
-</audio>
-
-<!-- TOAST COPIED -->
-<div
-    x-show="copiedToast"
-    x-cloak
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 -translate-y-4"
-    x-transition:enter-end="opacity-100 translate-y-0"
-    x-transition:leave="transition ease-in duration-200"
-    x-transition:leave-start="opacity-100 translate-y-0"
-    x-transition:leave-end="opacity-0 -translate-y-4"
-    class="clamped-shell-float top-6 px-4 flex justify-center pointer-events-none"
->
-    <div class="px-5 py-2.5 rounded-full bg-[#041d14]/95 border border-[#D9AA45]/80 text-[#F3CE7A] text-xs font-semibold shadow-2xl backdrop-blur-md flex items-center gap-2">
-        <svg class="w-4 h-4 text-[#F3CE7A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-        <span>Nomor rekening berhasil disalin!</span>
+    <!-- Desktop Ambient Backdrop -->
+    <div class="fixed inset-0 pointer-events-none z-0 hidden sm:block overflow-hidden">
+        <img src="{{ $getOrnament('glasshouse-daylight-bg.jpg') }}" class="w-full h-full object-cover blur-2xl opacity-25 scale-110" alt="">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#031A12]/80 via-[#04241A]/75 to-[#031A12]/90"></div>
     </div>
-</div>
 
-<!-- LIGHTBOX MODAL -->
-<div
-    x-show="lightboxImg"
-    x-cloak
-    @click="lightboxImg = null"
-    class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
->
-    <div class="relative max-w-sm w-full" @click.stop>
-        <button @click="lightboxImg = null" class="absolute -top-10 right-0 text-[#F3CE7A] hover:text-white p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-        <img :src="lightboxImg" class="w-full h-auto max-h-[80vh] object-contain rounded-2xl border border-[#D9AA45]/45 shadow-2xl">
-    </div>
-</div>
+    <!-- ================================================================== -->
+    <!-- MOBILE INVITATION SHELL (MAX-W-480PX)                              -->
+    <!-- ================================================================== -->
+    <div class="relative z-10 w-full max-w-[480px] min-h-screen mx-auto shadow-[0_0_70px_rgba(0,0,0,0.85)] overflow-x-hidden flex flex-col bg-alabaster-100">
 
-<!-- ============================================== -->
-<!-- DESKTOP STAGE WRAPPER                          -->
-<!-- ============================================== -->
-<div class="desktop-stage">
-
-    <div class="invitation-shell flex flex-col">
-
-        <!-- ========================================================================= -->
-        <!-- 1. LAYERED CINEMATIC ROYAL EMERALD CONSERVATORY COVER                     -->
-        <!-- ========================================================================= -->
+        <!-- ============================================================== -->
+        <!-- 1. THE ROYAL ORANGERY GLASSHOUSE COVER OVERLAY                 -->
+        <!-- ============================================================== -->
         <div
+            id="coverOverlay"
             x-show="!isOpen"
-            :class="isOpening ? 'cover-opening pointer-events-none' : ''"
-            class="fixed inset-0 sm:absolute sm:inset-0 z-50 bg-[#02120c] overflow-hidden select-none flex flex-col justify-between"
+            :class="{ 'cover-is-opening': isOpening }"
+            class="fixed inset-0 z-50 w-full max-w-[480px] mx-auto h-[100dvh] overflow-hidden select-none flex flex-col justify-between items-center"
         >
-            <!-- LAYER 0: ROYAL EMERALD & GOLD CONSERVATORY PALACE BACKGROUND -->
-            <div class="absolute inset-0 z-0 cover-ZoomOut">
+            <!-- Layer 1: Sunlit European Glasshouse Orangery Background -->
+            <div class="absolute inset-0 z-0 overflow-hidden bg-[#042218]">
                 <img
-                    src="{{ $getOrnament('emerald-palace-cover-bg.jpg') }}"
-                    class="w-full h-full object-cover object-center anim-bg"
-                    alt="The Royal Emerald Conservatory"
+                    src="{{ $getOrnament('glasshouse-daylight-bg.jpg') }}"
+                    class="anim-orangery-bg w-full h-full object-cover object-center"
+                    alt="Royal Botanical Orangery"
                 >
-                <div class="absolute inset-0 bg-gradient-to-b from-[#02120c]/55 via-[#031911]/25 to-[#02100b]/85"></div>
-            </div>
-
-            <!-- LAYER 1: FLOATING GOLDEN & EMERALD SPARKLES -->
-            <div class="absolute inset-0 pointer-events-none z-[5] overflow-hidden">
-                @for ($i = 0; $i < 18; $i++)
-                    @php
-                        $left = rand(8, 92);
-                        $size = rand(2, 4);
-                        $dur = rand(7, 13);
-                        $del = rand(0, 7);
-                        $isEmerald = $i % 3 === 0;
-                    @endphp
-                    <div
-                        class="gold-sparkle"
-                        style="
-                            left: {{ $left }}%;
-                            bottom: 8%;
-                            width: {{ $size }}px;
-                            height: {{ $size }}px;
-                            background-color: {{ $isEmerald ? '#6EE7B7' : '#F5D38A' }};
-                            box-shadow: 0 0 8px {{ $isEmerald ? '#10B981' : '#D9AA45' }};
-                            animation-duration: {{ $dur }}s;
-                            animation-delay: -{{ $del }}s;
-                        "
-                    ></div>
-                @endfor
-            </div>
-
-            <!-- LAYER 2: SPLIT ROYAL EMERALD & GOLD CORINTHIAN PILLARS (SLIDE IN & PART ON OPEN) -->
-            <img
-                src="{{ $getOrnament('gate-pillar-left.png') }}"
-                class="anim-gate-left absolute z-[12] pointer-events-none h-auto filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.95)]"
-                style="top: 12%; left: -4%; width: 29%;"
-                alt="Pilar Kiri"
-            >
-            <img
-                src="{{ $getOrnament('gate-pillar-right.png') }}"
-                class="anim-gate-right absolute z-[12] pointer-events-none h-auto filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.95)]"
-                style="top: 12%; right: -4%; width: 29%;"
-                alt="Pilar Kanan"
-            >
-
-            <!-- LAYER 3: GENTLY DRIFTING & TUMBLING WHITE BLOSSOMS & LEAVES -->
-            <div class="absolute inset-0 pointer-events-none z-[22] overflow-hidden">
-                <div class="falling-petal-1 absolute" style="left: 14%; top: -10%; width: 26px; animation-delay: -2s;">
-                    <img src="{{ $getOrnament('falling-blossom.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Petal">
-                </div>
-                <div class="falling-petal-2 absolute" style="left: 74%; top: -10%; width: 21px; animation-delay: -5s;">
-                    <img src="{{ $getOrnament('falling-leaf.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Leaf">
-                </div>
-                <div class="falling-petal-3 absolute" style="left: 38%; top: -10%; width: 23px; animation-delay: -1s;">
-                    <img src="{{ $getOrnament('falling-blossom.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Petal">
-                </div>
-                <div class="falling-petal-4 absolute" style="left: 84%; top: -10%; width: 18px; animation-delay: -7s;">
-                    <img src="{{ $getOrnament('falling-leaf.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Leaf">
-                </div>
-                <div class="falling-petal-5 absolute" style="left: 56%; top: -10%; width: 25px; animation-delay: -3.5s;">
-                    <img src="{{ $getOrnament('falling-blossom.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Petal">
-                </div>
-                <div class="falling-petal-6 absolute" style="left: 24%; top: -10%; width: 19px; animation-delay: -6.5s;">
-                    <img src="{{ $getOrnament('falling-leaf.png') }}" class="w-full h-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)]" alt="Leaf">
-                </div>
-            </div>
-
-            <!-- LAYER 4: TWIN ROYAL GOLD & EMERALD STAINED-GLASS LANTERNS WITH FLICKERING CANDLE AURA -->
-            <div class="anim-lamp-l absolute z-[18] pointer-events-none idle-lamp" style="bottom: 19%; left: 3%; width: 21%;">
+                <!-- Soft Emerald & Golden Sunlight Gradient Vignette -->
                 <div
-                    class="idle-candle absolute rounded-full pointer-events-none"
-                    style="top: 38%; left: 22%; width: 48px; height: 48px; background: radial-gradient(circle, rgba(255,220,130,0.85) 0%, rgba(16,185,129,0.35) 55%, transparent 75%);"
+                    class="absolute inset-0 pointer-events-none"
+                    style="background: linear-gradient(180deg, rgba(4, 34, 24, 0.55) 0%, rgba(6, 50, 36, 0.18) 38%, rgba(4, 34, 24, 0.52) 72%, rgba(3, 24, 17, 0.92) 100%);"
                 ></div>
-                <img
-                    src="{{ $getOrnament('gold-lantern.png') }}"
-                    class="w-full h-auto block filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.92)]"
-                    alt="Lentera Istana Kiri"
-                >
-            </div>
-            <div class="anim-lamp-r absolute z-[18] pointer-events-none idle-lamp" style="bottom: 19%; right: 3%; width: 21%; animation-delay: -2.2s;">
-                <div
-                    class="idle-candle absolute rounded-full pointer-events-none"
-                    style="top: 38%; left: 22%; width: 48px; height: 48px; background: radial-gradient(circle, rgba(255,220,130,0.85) 0%, rgba(16,185,129,0.35) 55%, transparent 75%);"
-                ></div>
-                <img
-                    src="{{ $getOrnament('gold-lantern.png') }}"
-                    class="w-full h-auto block filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.92)]"
-                    alt="Lentera Istana Kanan"
-                >
             </div>
 
-            <!-- LAYER 5: TOP-LEFT & TOP-RIGHT CASCADING WHITE ROSES, JASMINE & GOLD FOLIAGE -->
-            <div class="anim-flower-tl absolute z-[25] pointer-events-none" style="top: -3%; left: -7%; width: 45%;">
-                <img
-                    src="{{ $getOrnament('floral-top-left.png') }}"
-                    class="w-full h-auto block idle-sway-tl filter drop-shadow-[0_10px_18px_rgba(0,0,0,0.8)]"
-                    alt="Mawar Putih Kiri Atas"
-                >
+            <!-- Layer 2: Cascading Eucalyptus & Gardenia Vine Curtains (Left & Right) -->
+            <div class="anim-vine-l absolute top-0 -left-3 w-[31%] z-[14] pointer-events-none">
+                <img src="{{ $getOrnament('vine-curtain-left.png') }}" class="w-full h-auto idle-vine-l drop-shadow-[0_8px_18px_rgba(0,0,0,0.45)]" alt="Vine Left">
             </div>
-            <div class="anim-flower-tr absolute z-[25] pointer-events-none" style="top: -3%; right: -7%; width: 45%;">
-                <img
-                    src="{{ $getOrnament('floral-top-right.png') }}"
-                    class="w-full h-auto block idle-sway-tr filter drop-shadow-[0_10px_18px_rgba(0,0,0,0.8)]"
-                    alt="Mawar Putih Kanan Atas"
-                >
+            <div class="anim-vine-r absolute top-0 -right-3 w-[31%] z-[14] pointer-events-none">
+                <img src="{{ $getOrnament('vine-curtain-right.png') }}" class="w-full h-auto idle-vine-r drop-shadow-[0_8px_18px_rgba(0,0,0,0.45)]" alt="Vine Right">
             </div>
 
-            <!-- LAYER 6: FOREGROUND BOTTOM WHITE ROSE & GOLD FERN BOUQUETS -->
-            <div class="anim-fg-flower-bl absolute z-[28] pointer-events-none" style="bottom: -3%; left: -5%; width: 44%;">
-                <img
-                    src="{{ $getOrnament('floral-bottom-left.png') }}"
-                    class="w-full h-auto block idle-sway-bl filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]"
-                    alt="Buket Mawar Kiri Bawah"
-                >
-            </div>
-            <div class="anim-fg-flower-br absolute z-[28] pointer-events-none" style="bottom: -3%; right: -5%; width: 44%;">
-                <img
-                    src="{{ $getOrnament('floral-bottom-right.png') }}"
-                    class="w-full h-auto block idle-sway-br filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]"
-                    alt="Buket Mawar Kanan Bawah"
-                >
-            </div>
-
-            <!-- LAYER 7: FOREGROUND TYPOGRAPHY & INTERACTIVE CTA -->
-            <div class="relative z-[30] w-full h-full flex flex-col justify-between items-center py-6 px-5 cover-ZoomOut">
-
-                <!-- TOP HEADER -->
-                <div class="anim-top-title text-center mt-1 px-4 py-2 rounded-2xl bg-[#02120c]/60 backdrop-blur-[4px] border border-[#D9AA45]/25 shadow-[0_8px_24px_rgba(0,0,0,0.65)]">
-                    <img src="{{ $getOrnament('lotus-crest.png') }}" class="w-9 h-auto mx-auto mb-1 filter drop-shadow-[0_2px_8px_rgba(217,170,69,0.75)]" alt="Royal Crest">
-                    <p class="font-cinzel text-[9.5px] tracking-[0.32em] text-[#F3CE7A] uppercase font-semibold drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
-                        THE ROYAL EMERALD CELEBRATION
-                    </p>
-                    <p class="font-serif italic text-[14px] text-[#F2E6D0] tracking-wide mt-0.5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
-                        The Wedding Invitation of
-                    </p>
+            <!-- Layer 3: Hanging Crystal, Brass & Ivy Botanical Chandelier (Top Center) -->
+            <div class="anim-chandelier absolute -top-3 inset-x-0 mx-auto w-[46%] max-w-[205px] z-[16] pointer-events-none flex justify-center">
+                <div class="relative w-full idle-chandelier">
+                    <!-- Warm Chandelier Candle Aura -->
+                    <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 h-20 rounded-full bg-amber-200/30 blur-2xl"></div>
+                    <img
+                        src="{{ $getOrnament('chandelier-top.png') }}"
+                        class="w-full h-auto block drop-shadow-[0_12px_22px_rgba(0,0,0,0.65)]"
+                        alt="Botanical Crystal Chandelier"
+                    >
                 </div>
+            </div>
 
-                <!-- CENTRAL ARCHWAY BREATHING SPACE -->
-                <div class="flex-1"></div>
+            <!-- Layer 4: Drifting Jasmine Blossoms & Leaves -->
+            <div class="absolute inset-0 pointer-events-none z-[18] overflow-hidden">
+                <div class="petal-fall-a absolute" style="left: 18%; top: -8%; width: 22px; animation-delay: -2s;">
+                    <img src="{{ $getOrnament('falling-blossom.png') }}" class="w-full h-auto drop-shadow" alt="">
+                </div>
+                <div class="petal-fall-b absolute" style="left: 76%; top: -8%; width: 19px; animation-delay: -6s;">
+                    <img src="{{ $getOrnament('falling-leaf.png') }}" class="w-full h-auto drop-shadow" alt="">
+                </div>
+                <div class="petal-fall-a absolute" style="left: 48%; top: -8%; width: 20px; animation-delay: -9s;">
+                    <img src="{{ $getOrnament('falling-blossom.png') }}" class="w-full h-auto drop-shadow" alt="">
+                </div>
+            </div>
 
-                <!-- LOWER-CENTER: COUPLE NAMES, DATE & CTA BUTTON -->
-                <div class="w-full flex flex-col items-center pb-1">
+            <!-- Layer 5: Foreground Bottom White Rose & Gold Fern Bouquets -->
+            <div class="anim-bouquet-bl absolute -bottom-4 -left-5 w-[42%] z-[26] pointer-events-none">
+                <img src="{{ $getOrnament('floral-bottom-left.png') }}" class="w-full h-auto idle-rose-bl drop-shadow-[0_10px_20px_rgba(0,0,0,0.75)]" alt="Rose Bouquet Left">
+            </div>
+            <div class="anim-bouquet-br absolute -bottom-4 -right-5 w-[42%] z-[26] pointer-events-none">
+                <img src="{{ $getOrnament('floral-bottom-right.png') }}" class="w-full h-auto idle-rose-br drop-shadow-[0_10px_20px_rgba(0,0,0,0.75)]" alt="Rose Bouquet Right">
+            </div>
 
-                    <div class="anim-couple-names text-center px-3 py-2 rounded-3xl bg-[#02120c]/45 backdrop-blur-[3px]">
-                        <h1 class="couple-name-text name-shimmer text-[42px] sm:text-[46px] leading-[1.06] tracking-wide">
-                            {{ $couple['bride'] }}
-                        </h1>
+            <!-- Layer 6: Central Botanical Glasshouse Arch Card & Typography -->
+            <div class="relative z-[30] w-full h-full flex flex-col justify-between items-center pt-[138px] pb-6 px-6">
 
-                        <div class="flex items-center justify-center gap-3 my-1">
-                            <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45] to-[#D9AA45]"></div>
-                            <span class="font-serif italic text-xl text-[#F3CE7A] leading-none">&amp;</span>
-                            <div class="w-16 h-[1px] bg-gradient-to-l from-transparent via-[#D9AA45] to-[#D9AA45]"></div>
+                <!-- Centerpiece: Glasshouse Arched Portrait Frame + Wax Seal -->
+                <div class="anim-arch-window relative w-full max-w-[276px] mx-auto flex flex-col items-center">
+                    <!-- Outer Cream & Gold Passe-Partout Arch Card -->
+                    <div class="relative w-full rounded-t-[140px] rounded-b-[28px] p-2.5 bg-alabaster-50/95 backdrop-blur-md shadow-[0_24px_50px_rgba(0,0,0,0.65)] border-2 border-gold-400">
+                        <!-- Inner Gold Hairline Frame -->
+                        <div class="relative w-full rounded-t-[130px] rounded-b-[20px] p-1.5 border border-emerald-900/20 bg-alabaster-100">
+                            <!-- Couple Portrait inside Arch -->
+                            <div class="relative w-full h-[215px] sm:h-[230px] rounded-t-[124px] rounded-b-[14px] overflow-hidden">
+                                <img
+                                    src="{{ $bg['cover'] }}"
+                                    class="w-full h-full object-cover object-top"
+                                    alt="{{ $couple['groom'] }} & {{ $couple['bride'] }}"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/65 via-transparent to-emerald-950/15"></div>
+                                <!-- Top Small Pill inside Arch -->
+                                <div class="absolute top-3 inset-x-0 flex justify-center">
+                                    <span class="px-3 py-0.5 rounded-full bg-emerald-950/65 backdrop-blur-sm border border-gold-300/45 text-[8.5px] tracking-[0.28em] uppercase text-gold-200 font-medium">
+                                        THE WEDDING OF
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Editorial Names & Date inside Arch Base -->
+                            <div class="pt-6 pb-2.5 px-3 text-center bg-alabaster-50 rounded-b-[14px]">
+                                <h1 class="font-display text-[28px] sm:text-[31px] font-bold text-emerald-900 leading-none tracking-tight">
+                                    {{ $couple['groom'] }}
+                                    <span class="font-script text-gold-500 text-3xl font-normal mx-1">&amp;</span>
+                                    {{ $couple['bride'] }}
+                                </h1>
+                                <p class="font-serif italic text-xs text-emerald-800/80 mt-1 tracking-wider">
+                                    {{ $event['date_formatted'] }}
+                                </p>
+                            </div>
                         </div>
 
-                        <h1 class="couple-name-text name-shimmer text-[42px] sm:text-[46px] leading-[1.06] tracking-wide">
-                            {{ $couple['groom'] }}
-                        </h1>
-                    </div>
-
-                    <!-- Date & Ornate Filigree Divider -->
-                    <div class="anim-date-block text-center mt-2 mb-3">
-                        <p class="font-serif text-[14px] tracking-[0.18em] text-[#F3CE7A] font-semibold drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
-                            {{ $event['date_formatted'] }}
-                        </p>
-                        <div class="flex items-center justify-center mt-1 opacity-90">
-                            <div class="w-20 h-[1px] bg-gradient-to-r from-transparent to-[#D9AA45]"></div>
-                            <img src="{{ $getOrnament('filigree-diamond.png') }}" class="w-3 h-auto mx-2" alt="❖">
-                            <div class="w-20 h-[1px] bg-gradient-to-l from-transparent to-[#D9AA45]"></div>
+                        <!-- 3D Emerald & Gold Botanical Wax Seal Stamp Overlapping the Arch Seam -->
+                        <div class="absolute inset-x-0 top-[188px] sm:top-[202px] z-20 flex justify-center pointer-events-none">
+                            <div class="anim-wax-seal relative w-24 h-16 flex items-center justify-center">
+                                <img
+                                    src="{{ $getOrnament('emerald-wax-seal.png') }}"
+                                    class="w-full h-full object-contain drop-shadow-[0_6px_12px_rgba(0,0,0,0.5)]"
+                                    alt="Emerald Wax Seal"
+                                >
+                                <!-- Dynamic Couple Initials Badge on Wax Center -->
+                                <div class="absolute w-7 h-7 rounded-full bg-gradient-to-br from-[#0c4a35] to-[#05261b] border border-gold-400/80 flex items-center justify-center shadow-inner">
+                                    <span class="font-display text-[9px] font-bold tracking-tighter text-gold-200">{{ $groomInitial }}&amp;{{ $brideInitial }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Recipient & Ornate "Buka Undangan" Button -->
-                    <div class="anim-cta-block w-full flex flex-col items-center">
-                        <p class="font-serif text-[12px] tracking-[0.12em] text-[#E6D7BE] mb-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
+                <!-- Bottom Guest Badge & Interactive CTA Button -->
+                <div class="w-full max-w-[290px] flex flex-col items-center text-center mt-2">
+                    <div class="w-full py-2 px-4 rounded-2xl bg-emerald-950/75 backdrop-blur-md border border-gold-400/40 shadow-lg mb-2.5">
+                        <p class="text-[9.5px] uppercase tracking-[0.24em] text-gold-300 font-medium">
                             Kepada Yth. Bapak/Ibu/Saudara/i
                         </p>
-                        @if(request('to') || request('kpd'))
-                            <p class="font-serif text-base font-semibold text-[#F7EBD5] mb-2 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
-                                {{ request('to', request('kpd')) }}
-                            </p>
-                        @else
-                            <p class="font-serif text-sm font-medium text-[#F7EBD5]/90 mb-2 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
-                                Sahabat &amp; Keluarga Tercinta
-                            </p>
-                        @endif
-
-                        <div class="relative flex flex-col items-center">
-                            <button
-                                id="btnOpenInvitation"
-                                @click="openInvitation()"
-                                class="btn-buka-emerald relative px-10 py-2.5 rounded-full flex items-center justify-center gap-4 cursor-pointer group"
-                            >
-                                <span class="absolute inset-[3px] rounded-full border border-[#D9AA45]/40 pointer-events-none"></span>
-                                <span class="text-[#F3CE7A] text-[10px] leading-none">✦</span>
-                                <span class="font-serif text-[17px] font-semibold tracking-[0.06em] text-[#F7EBD5] group-hover:text-white transition-colors">
-                                    Buka Undangan
-                                </span>
-                                <span class="text-[#F3CE7A] text-[10px] leading-none">✦</span>
-                            </button>
-                        </div>
+                        <p class="font-display text-sm sm:text-base font-semibold text-alabaster-50 truncate mt-0.5">
+                            {{ request('to', request('kpd', 'Sahabat & Keluarga Tercinta')) }}
+                        </p>
                     </div>
 
+                    <button
+                        id="btnOpenInvitation"
+                        @click="openInvitation()"
+                        class="group relative w-full py-3 px-7 rounded-full bg-gradient-to-r from-[#073B2A] via-[#0B523B] to-[#073B2A] border-2 border-gold-300 shadow-[0_10px_25px_rgba(0,0,0,0.65)] flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02] active:scale-95 transition-all"
+                    >
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold-300"></span>
+                        <span class="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-alabaster-50">
+                            Buka Undangan
+                        </span>
+                        <svg class="w-3.5 h-3.5 text-gold-300 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
                 </div>
+
             </div>
         </div>
 
         <!-- ============================================================== -->
-        <!-- FLOATING MUSIC BUTTON (PINNED TO INVITATION SHELL)             -->
+        <!-- PERSISTENT AMBIENT BUTTERFLIES & FLOATING AUDIO CONTROL        -->
         <!-- ============================================================== -->
         <div
             x-show="isOpen"
             x-cloak
-            class="clamped-shell-float top-4 px-4 flex justify-end pointer-events-none"
+            class="clamped-shell-float top-4 px-4 flex justify-between items-center z-50"
         >
+            <!-- Monogram Pill -->
+            <div class="pointer-events-auto px-3.5 py-1.5 rounded-full bg-emerald-950/85 backdrop-blur-md border border-gold-400/50 shadow-lg flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-display text-xs font-bold text-gold-200 tracking-wider">{{ $groomInitial }} &amp; {{ $brideInitial }}</span>
+            </div>
+
+            <!-- Music Vinyl Button -->
             <button
                 @click="toggleMusic()"
-                class="pointer-events-auto w-10 h-10 rounded-full bg-[#041d14]/90 border border-[#D9AA45]/75 backdrop-blur-md flex items-center justify-center text-[#F3CE7A] shadow-2xl"
-                :title="isPlaying ? 'Pause Musik' : 'Play Musik'"
+                class="pointer-events-auto w-10 h-10 rounded-full bg-emerald-950/90 border border-gold-400/70 backdrop-blur-md flex items-center justify-center text-gold-300 shadow-xl"
+                :title="isPlaying ? 'Pause Musik' : 'Putar Musik'"
             >
                 <div :class="isPlaying ? 'spin-vinyl' : ''" class="flex items-center justify-center">
                     <svg x-show="isPlaying" class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
@@ -1354,825 +832,523 @@
             </button>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- PERSISTENT LIVING AMBIENT SYSTEM: FIREFLIES & BUTTERFLIES      -->
-        <!-- ============================================================== -->
+        <!-- Persistent Ambient Golden Butterflies Layer -->
         <div
             x-show="isOpen"
             x-cloak
             class="clamped-shell-float inset-0 pointer-events-none z-30 overflow-hidden"
             style="height: 100vh; height: 100dvh;"
         >
-            <!-- 3 FLUTTERING GOLDEN BUTTERFLIES -->
-            <div class="ambient-butterfly-wrap butterfly-flight-1">
-                <div class="ambient-butterfly-body">
-                    <img src="{{ $getOrnament('gold-butterfly.png') }}" class="w-7 sm:w-8 h-auto object-contain filter drop-shadow-[0_0_8px_rgba(245,211,138,0.75)]" alt="Butterfly">
+            <div class="butterfly-flight-1">
+                <div class="butterfly-wing">
+                    <img src="{{ $getOrnament('gold-butterfly.png') }}" class="w-7 h-auto drop-shadow-[0_2px_8px_rgba(194,148,50,0.65)]" alt="">
                 </div>
             </div>
-            <div class="ambient-butterfly-wrap butterfly-flight-2">
-                <div class="ambient-butterfly-body" style="animation-duration: 0.26s;">
-                    <img src="{{ $getOrnament('gold-butterfly.png') }}" class="w-6 sm:w-7 h-auto object-contain filter drop-shadow-[0_0_8px_rgba(245,211,138,0.75)]" alt="Butterfly">
+            <div class="butterfly-flight-2">
+                <div class="butterfly-wing" style="animation-duration: 0.24s;">
+                    <img src="{{ $getOrnament('gold-butterfly.png') }}" class="w-6 h-auto drop-shadow-[0_2px_8px_rgba(194,148,50,0.65)]" alt="">
                 </div>
-            </div>
-            <div class="ambient-butterfly-wrap butterfly-flight-3">
-                <div class="ambient-butterfly-body" style="animation-duration: 0.32s;">
-                    <img src="{{ $getOrnament('gold-butterfly.png') }}" class="w-5 sm:w-6 h-auto object-contain filter drop-shadow-[0_0_6px_rgba(245,211,138,0.65)]" alt="Butterfly">
-                </div>
-            </div>
-
-            <!-- 12 ROYAL GOLDEN-EMERALD FIREFLIES -->
-            <div class="ambient-firefly-node firefly-drift-a" style="left: 12%; top: 16%; animation-duration: 9s; animation-delay: -2s;">
-                <div class="ambient-firefly-dot" style="width: 4px; height: 4px; animation-duration: 2.8s; animation-delay: -0.6s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-b" style="left: 82%; top: 22%; animation-duration: 11s; animation-delay: -4s;">
-                <div class="ambient-firefly-dot" style="width: 5px; height: 5px; animation-duration: 3.4s; animation-delay: -1.2s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-c" style="left: 28%; top: 38%; animation-duration: 10s; animation-delay: -1s;">
-                <div class="ambient-firefly-dot" style="width: 3.5px; height: 3.5px; animation-duration: 2.5s; animation-delay: -2.1s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-a" style="left: 74%; top: 48%; animation-duration: 12s; animation-delay: -6s;">
-                <div class="ambient-firefly-dot" style="width: 4.5px; height: 4.5px; animation-duration: 3.8s; animation-delay: -0.8s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-b" style="left: 18%; top: 62%; animation-duration: 8.5s; animation-delay: -3s;">
-                <div class="ambient-firefly-dot" style="width: 5px; height: 5px; animation-duration: 2.9s; animation-delay: -1.5s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-c" style="left: 85%; top: 72%; animation-duration: 13s; animation-delay: -5s;">
-                <div class="ambient-firefly-dot" style="width: 4px; height: 4px; animation-duration: 3.1s; animation-delay: -2.4s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-a" style="left: 42%; top: 82%; animation-duration: 10.5s; animation-delay: -7s;">
-                <div class="ambient-firefly-dot" style="width: 4px; height: 4px; animation-duration: 3.6s; animation-delay: -1.8s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-b" style="left: 64%; top: 12%; animation-duration: 9.5s; animation-delay: -8s;">
-                <div class="ambient-firefly-dot" style="width: 3px; height: 3px; animation-duration: 2.2s; animation-delay: -0.4s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-c" style="left: 8%; top: 88%; animation-duration: 11.5s; animation-delay: -2.5s;">
-                <div class="ambient-firefly-dot" style="width: 4.5px; height: 4.5px; animation-duration: 3.3s; animation-delay: -1.1s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-a" style="left: 55%; top: 68%; animation-duration: 12.5s; animation-delay: -4.5s;">
-                <div class="ambient-firefly-dot" style="width: 3.5px; height: 3.5px; animation-duration: 2.7s; animation-delay: -0.9s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-b" style="left: 36%; top: 26%; animation-duration: 10s; animation-delay: -3.5s;">
-                <div class="ambient-firefly-dot" style="width: 4px; height: 4px; animation-duration: 3.2s; animation-delay: -1.7s;"></div>
-            </div>
-            <div class="ambient-firefly-node firefly-drift-c" style="left: 88%; top: 40%; animation-duration: 11s; animation-delay: -6.5s;">
-                <div class="ambient-firefly-dot" style="width: 3.5px; height: 3.5px; animation-duration: 2.6s; animation-delay: -0.5s;"></div>
             </div>
         </div>
 
         <!-- ============================================================== -->
-        <!-- 2. MAIN SCROLLABLE CONTENT (POST-COVER)                        -->
+        <!-- 2. MAIN INVITATION CONTENT (POST-COVER)                        -->
         <!-- ============================================================== -->
         <main
             id="main-scroll"
             x-show="isOpen"
             x-init="observeSections()"
-            x-transition:enter="transition ease-out duration-1000"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
             class="relative w-full flex-1 flex flex-col pb-24"
         >
 
             <!-- ============================================================== -->
-            <!-- SECTION 1: HERO (ROYAL EMERALD CONSERVATORY & TWIN CAMEOS)     -->
+            <!-- SECTION 1: HERO – BOTANICAL SCRAPBOOK COLLAGE & COUNTDOWN      -->
+            <!-- (WARM ALABASTER PAPER TEXTURE — DISTINCT EDITORIAL STYLE)      -->
             <!-- ============================================================== -->
             <section
                 id="hero"
-                class="anim-section nav-section relative min-h-[100dvh] flex flex-col justify-between items-center text-center px-4 pt-7 pb-6 overflow-hidden select-none"
-                style="background: radial-gradient(ellipse at 50% 35%, #073323 0%, #041d14 58%, #020e09 100%);"
+                class="anim-section nav-section paper-texture relative pt-16 pb-14 px-6 overflow-hidden"
             >
-                <!-- Subtle Interior Conservatory Backdrop Blend -->
-                <div class="absolute inset-0 opacity-25 pointer-events-none">
-                    <img src="{{ $getOrnament('emerald-palace-interior-bg.jpg') }}" class="w-full h-full object-cover" alt="">
+                <!-- Top Corner Cascading White English Roses -->
+                <div class="stagger-left absolute -top-4 -left-7 w-32 pointer-events-none z-10 opacity-95">
+                    <img src="{{ $getOrnament('floral-top-left.png') }}" class="w-full h-auto idle-vine-l drop-shadow-md" alt="">
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09]/80 via-[#041d14]/65 to-[#020e09]/95 pointer-events-none"></div>
-
-                <!-- ORNATE VERTICAL GOLD BORDERS (FLY IN FROM SIDES) -->
-                <img
-                    src="{{ $getOrnament('gold-border-left.png') }}"
-                    class="sec-assemble-border-l absolute left-0 top-0 bottom-0 h-full w-[40px] sm:w-[48px] object-cover object-left pointer-events-none z-10"
-                    alt="Batas Kiri"
-                >
-                <img
-                    src="{{ $getOrnament('gold-border-right.png') }}"
-                    class="sec-assemble-border-r absolute right-0 top-0 bottom-0 h-full w-[40px] sm:w-[48px] object-cover object-right pointer-events-none z-10"
-                    alt="Batas Kanan"
-                >
-
-                <!-- Top Corner Cascading Roses -->
-                <div class="sec-assemble-arch-left absolute -top-3 -left-5 w-24 sm:w-28 h-auto z-[15] pointer-events-none opacity-90">
-                    <img src="{{ $getOrnament('floral-top-left.png') }}" class="w-full h-auto idle-sway-tl filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="Mawar Kiri">
-                </div>
-                <div class="sec-assemble-arch-right absolute -top-3 -right-5 w-24 sm:w-28 h-auto z-[15] pointer-events-none opacity-90">
-                    <img src="{{ $getOrnament('floral-top-right.png') }}" class="w-full h-auto idle-sway-tr filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="Mawar Kanan">
+                <div class="stagger-right absolute -top-4 -right-7 w-32 pointer-events-none z-10 opacity-95">
+                    <img src="{{ $getOrnament('floral-top-right.png') }}" class="w-full h-auto idle-vine-r drop-shadow-md" alt="">
                 </div>
 
-                <!-- TOP HEADER -->
-                <div class="relative z-20 w-full pt-4 flex flex-col items-center">
-                    <div class="sec-assemble-crest flex items-center justify-center gap-2 mb-1">
-                        <div class="w-8 sm:w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-[#D4AF37]"></div>
-                        <img src="{{ $getOrnament('lotus-crest.png') }}" class="w-7 sm:w-8 h-auto object-contain drop-shadow-[0_2px_8px_rgba(212,175,55,0.6)]" alt="Royal Crest">
-                        <div class="w-8 sm:w-12 h-[1px] bg-gradient-to-l from-transparent via-[#D4AF37]/60 to-[#D4AF37]"></div>
-                    </div>
-
-                    <h1 class="sec-assemble-crest font-cinzel text-[10px] sm:text-[11px] tracking-[0.32em] text-[#F3CE7A] font-semibold uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
-                        ROYAL CONSERVATORY WEDDING
-                    </h1>
-
-                    <div class="sec-assemble-crest flex items-center justify-center gap-2 my-1">
-                        <div class="w-6 sm:w-8 h-[1px] bg-[#C5A059]/45"></div>
-                        <img src="{{ $getOrnament('filigree-diamond.png') }}" class="w-2.5 h-auto opacity-80" alt="❖">
-                        <div class="w-6 sm:w-8 h-[1px] bg-[#C5A059]/45"></div>
-                    </div>
-
-                    <h2 class="sec-assemble-salam font-serif text-base sm:text-lg text-[#F6EEDB] font-normal tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] px-6 leading-snug">
-                        Assalamu’alaikum Warahmatullahi Wabarakatuh
-                    </h2>
-
-                    <p class="sec-assemble-intro font-serif italic text-xs text-[#CBE2D6] leading-relaxed max-w-[310px] mx-auto mt-1 font-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                        Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan putra-putri kami.
+                <!-- Header Tagline -->
+                <div class="relative z-20 text-center mt-3 mb-6 px-6">
+                    <p class="stagger-down text-[9.5px] font-sans font-semibold uppercase tracking-[0.28em] text-emerald-800">
+                        THE ROYAL BOTANICAL CELEBRATION
                     </p>
-                </div>
-
-                <!-- MIDDLE SECTION: TWIN ROYAL OVAL CAMEO MEDALLIONS & COUPLE NAMES -->
-                <div class="relative z-20 w-full max-w-[370px] mx-auto my-auto py-2">
-                    <div class="flex items-center justify-center gap-2 sm:gap-3.5">
-                        <!-- Bride Cameo Medallion -->
-                        <div class="sec-assemble-cameo-left flex-1 max-w-[136px] sm:max-w-[148px] flex flex-col items-center">
-                            <div class="relative w-[118px] sm:w-[130px] h-[152px] sm:h-[168px] flex items-center justify-center">
-                                <!-- Top Cameo Crown -->
-                                <img src="{{ $getOrnament('cameo-crest.png') }}" class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-auto z-20 filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" alt="Crest">
-                                <!-- Oval Gold Frame -->
-                                <div class="w-full h-full rounded-full p-[4px] bg-gradient-to-b from-[#F5D38A] via-[#D9AA45] to-[#8C6218] shadow-[0_10px_24px_rgba(0,0,0,0.9)]">
-                                    <div class="w-full h-full rounded-full overflow-hidden border border-[#031811] bg-[#041d14]">
-                                        <img src="{{ $bg['bride'] }}" class="w-full h-full object-cover object-top" alt="{{ $couple['bride'] }}">
-                                    </div>
-                                </div>
-                                <!-- Bottom Climbing Floral Wreaths -->
-                                <img src="{{ $getOrnament('cameo-wreath-l.png') }}" class="absolute -bottom-2 -left-2 w-14 h-auto z-20 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]" alt="">
-                                <img src="{{ $getOrnament('cameo-wreath-r.png') }}" class="absolute -bottom-2 -right-2 w-14 h-auto z-20 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]" alt="">
-                            </div>
-                            <h3 class="sec-assemble-names font-serif text-xl sm:text-2xl text-[#F6EEDB] font-normal mt-2.5 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
-                                {{ $couple['bride'] }}
-                            </h3>
-                            <p class="sec-assemble-names font-cinzel text-[8.5px] sm:text-[9px] tracking-[0.25em] text-[#F3CE7A] font-semibold uppercase mt-0.5">
-                                MEMPELAI WANITA
-                            </p>
-                        </div>
-
-                        <!-- Ampersand with Sacred Finials -->
-                        <div class="sec-assemble-jewel flex flex-col items-center justify-center px-1 mb-7">
-                            <img src="{{ $getOrnament('filigree-diamond.png') }}" class="w-3 sm:w-3.5 h-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" alt="Finial">
-                            <span class="font-serif italic text-2xl sm:text-3xl text-[#F3CE7A] my-1 leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">&amp;</span>
-                            <img src="{{ $getOrnament('filigree-diamond.png') }}" class="w-3 sm:w-3.5 h-auto rotate-180 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" alt="Finial">
-                        </div>
-
-                        <!-- Groom Cameo Medallion -->
-                        <div class="sec-assemble-cameo-right flex-1 max-w-[136px] sm:max-w-[148px] flex flex-col items-center">
-                            <div class="relative w-[118px] sm:w-[130px] h-[152px] sm:h-[168px] flex items-center justify-center">
-                                <!-- Top Cameo Crown -->
-                                <img src="{{ $getOrnament('cameo-crest.png') }}" class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-auto z-20 filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" alt="Crest">
-                                <!-- Oval Gold Frame -->
-                                <div class="w-full h-full rounded-full p-[4px] bg-gradient-to-b from-[#F5D38A] via-[#D9AA45] to-[#8C6218] shadow-[0_10px_24px_rgba(0,0,0,0.9)]">
-                                    <div class="w-full h-full rounded-full overflow-hidden border border-[#031811] bg-[#041d14]">
-                                        <img src="{{ $bg['groom'] }}" class="w-full h-full object-cover object-top" alt="{{ $couple['groom'] }}">
-                                    </div>
-                                </div>
-                                <!-- Bottom Climbing Floral Wreaths -->
-                                <img src="{{ $getOrnament('cameo-wreath-l.png') }}" class="absolute -bottom-2 -left-2 w-14 h-auto z-20 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]" alt="">
-                                <img src="{{ $getOrnament('cameo-wreath-r.png') }}" class="absolute -bottom-2 -right-2 w-14 h-auto z-20 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]" alt="">
-                            </div>
-                            <h3 class="sec-assemble-names font-serif text-xl sm:text-2xl text-[#F6EEDB] font-normal mt-2.5 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
-                                {{ $couple['groom'] }}
-                            </h3>
-                            <p class="sec-assemble-names font-cinzel text-[8.5px] sm:text-[9px] tracking-[0.25em] text-[#F3CE7A] font-semibold uppercase mt-0.5">
-                                MEMPELAI PRIA
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Date Divider -->
-                    <div class="sec-assemble-date flex items-center justify-center gap-2 mt-3 sm:mt-4 max-w-[260px] mx-auto">
-                        <div class="w-8 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70"></div>
-                        <img src="{{ $getOrnament('filigree-diamond.png') }}" class="w-2.5 h-auto opacity-80" alt="❖">
-                        <div class="w-8 sm:w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70"></div>
-                    </div>
-
-                    <p class="sec-assemble-date font-cinzel text-xs sm:text-[13px] tracking-[0.28em] text-[#F3CE7A] font-semibold uppercase mt-1 drop-shadow-[0_2px_6px_rgba(0,0,0,1)]">
+                    <h2 class="stagger-up delay-100 font-display text-3xl sm:text-4xl font-bold text-emerald-950 mt-1">
+                        {{ $couple['groom'] }}
+                        <span class="font-script text-gold-500 font-normal text-4xl mx-1">&amp;</span>
+                        {{ $couple['bride'] }}
+                    </h2>
+                    <p class="stagger-up delay-200 font-serif italic text-sm text-emerald-800/80 mt-0.5">
                         {{ $event['date_formatted'] }}
                     </p>
                 </div>
 
-                <!-- BOTTOM SECTION: LIVE COUNTDOWN & SAVE THE DATE CTA -->
-                <div class="relative z-20 w-full flex flex-col items-center mt-auto pb-16 px-4">
+                <!-- Editorial Polaroid Trio Collage with Gold Washi Tape -->
+                <div class="relative z-20 max-w-[360px] mx-auto">
+                    <!-- Main Featured Polaroid -->
+                    <div class="stagger-scale delay-200 relative z-20 botanical-polaroid p-3.5 pb-10 rounded-xl rotate-[-1.5deg]">
+                        <div class="washi-tape-gold absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 z-30"></div>
+                        <div class="relative w-full aspect-[4/4.3] overflow-hidden rounded-lg">
+                            <img src="{{ $bg['hero'] }}" class="w-full h-full object-cover object-top" alt="Selamanya Bersama">
+                        </div>
+                        <p class="font-script text-2xl text-emerald-900 text-center mt-3 leading-none">
+                            Selamanya Dalam Kasih
+                        </p>
+                    </div>
+
+                    <!-- Two Overlapping Secondary Polaroids -->
+                    <div class="grid grid-cols-2 gap-3.5 -mt-4 relative z-30 px-1">
+                        <div class="stagger-polaroid-l delay-300 botanical-polaroid p-2.5 pb-6 rounded-xl relative">
+                            <div class="washi-tape-sage absolute -top-2.5 left-6 w-20 h-5 z-30"></div>
+                            <img src="{{ $bg['hero_small_1'] }}" class="w-full aspect-square object-cover rounded-md" alt="Momen 1">
+                            <p class="font-serif italic text-[11px] text-emerald-800 text-center mt-2">Our Promise</p>
+                        </div>
+                        <div class="stagger-polaroid-r delay-400 botanical-polaroid p-2.5 pb-6 rounded-xl relative mt-3">
+                            <div class="washi-tape-gold absolute -top-2.5 right-6 w-20 h-5 z-30"></div>
+                            <img src="{{ $bg['hero_small_2'] }}" class="w-full aspect-square object-cover rounded-md" alt="Momen 2">
+                            <p class="font-serif italic text-[11px] text-emerald-800 text-center mt-2">Forevermore</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bespoke Botanical Rose & Gold Olive Divider -->
+                <div class="stagger-up delay-400 flex justify-center my-6">
+                    <img src="{{ $getOrnament('botanical-divider.png') }}" class="w-56 h-auto drop-shadow-sm" alt="Botanical Divider">
+                </div>
+
+                <!-- Deep Emerald & Gold Glasshouse Countdown Card -->
+                <div
+                    class="stagger-up delay-500 relative z-20 max-w-[360px] mx-auto rounded-3xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-950 to-emerald-900 border-2 border-gold-400/70 shadow-[0_18px_40px_rgba(6,50,36,0.28)] text-center text-alabaster-50"
+                    x-data="{
+                        target: new Date('{{ $event['date_iso'] }}T{{ $event['time'] }}').getTime(),
+                        days: '00', hours: '00', minutes: '00', seconds: '00',
+                        init() {
+                            const update = () => {
+                                let d = Math.max(0, this.target - new Date().getTime());
+                                this.days = String(Math.floor(d / 86400000)).padStart(2, '0');
+                                this.hours = String(Math.floor((d % 86400000) / 3600000)).padStart(2, '0');
+                                this.minutes = String(Math.floor((d % 3600000) / 60000)).padStart(2, '0');
+                                this.seconds = String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
+                            };
+                            update();
+                            setInterval(update, 1000);
+                        }
+                    }"
+                >
+                    <p class="text-[9.5px] font-sans uppercase tracking-[0.3em] text-gold-300 font-semibold mb-3">
+                        MENUJU HARI BAHAGIA
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <div class="rounded-2xl py-2.5 bg-emerald-800/55 border border-gold-400/35">
+                            <span class="font-display text-2xl font-bold text-gold-200 block leading-none" x-text="days">00</span>
+                            <span class="text-[8.5px] uppercase tracking-[0.2em] text-alabaster-200 mt-1 block">Hari</span>
+                        </div>
+                        <div class="rounded-2xl py-2.5 bg-emerald-800/55 border border-gold-400/35">
+                            <span class="font-display text-2xl font-bold text-gold-200 block leading-none" x-text="hours">00</span>
+                            <span class="text-[8.5px] uppercase tracking-[0.2em] text-alabaster-200 mt-1 block">Jam</span>
+                        </div>
+                        <div class="rounded-2xl py-2.5 bg-emerald-800/55 border border-gold-400/35">
+                            <span class="font-display text-2xl font-bold text-gold-200 block leading-none" x-text="minutes">00</span>
+                            <span class="text-[8.5px] uppercase tracking-[0.2em] text-alabaster-200 mt-1 block">Menit</span>
+                        </div>
+                        <div class="rounded-2xl py-2.5 bg-emerald-800/55 border border-gold-400/35">
+                            <span class="font-display text-2xl font-bold text-gold-200 block leading-none" x-text="seconds">00</span>
+                            <span class="text-[8.5px] uppercase tracking-[0.2em] text-alabaster-200 mt-1 block">Detik</span>
+                        </div>
+                    </div>
+                    <a
+                        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ urlencode('The Wedding of ' . $couple['groom'] . ' & ' . $couple['bride']) }}&dates=20270512T010000Z/20270512T070000Z&details=Undangan+Pernikahan+Royal+Botanical+Glasshouse&location={{ urlencode($event['location'] . ', ' . $event['address']) }}"
+                        target="_blank"
+                        class="inline-flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-gold-400 text-emerald-950 font-sans text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-gold-300 transition-colors shadow"
+                    >
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span>Simpan Tanggal</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 2: AYAT SUCI (DEEP EMERALD ORANGERY SCROLL)            -->
+            <!-- ============================================================== -->
+            <section id="ayat" class="anim-section relative py-14 px-6 bg-emerald-950 text-center overflow-hidden">
+                <!-- Background Subtle Orangery -->
+                <div class="absolute inset-0 opacity-20 pointer-events-none">
+                    <img src="{{ $getOrnament('glasshouse-daylight-bg.jpg') }}" class="w-full h-full object-cover" alt="">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-emerald-950 via-emerald-900/90 to-emerald-950 pointer-events-none"></div>
+
+                <!-- Wax Seal Emblem Header -->
+                <div class="stagger-scale relative z-10 w-24 h-16 mx-auto mb-3 flex items-center justify-center">
+                    <img src="{{ $getOrnament('emerald-wax-seal.png') }}" class="w-full h-full object-contain drop-shadow-lg" alt="Wax Seal">
+                    <div class="absolute w-7 h-7 rounded-full bg-emerald-950 border border-gold-400 flex items-center justify-center">
+                        <span class="font-display text-[9px] font-bold text-gold-200">{{ $groomInitial }}&amp;{{ $brideInitial }}</span>
+                    </div>
+                </div>
+
+                <!-- Warm Parchment Verse Card -->
+                <div class="stagger-up delay-100 relative z-10 max-w-[355px] mx-auto rounded-3xl p-6 bg-alabaster-50 border-2 border-gold-400 shadow-[0_20px_45px_rgba(0,0,0,0.5)] text-emerald-950">
+                    <p class="font-serif text-xl text-gold-600 mb-2">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                    <p class="font-serif italic text-sm leading-relaxed text-emerald-900">
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                    </p>
+                    <div class="w-16 h-[1px] bg-gold-400 mx-auto my-3"></div>
+                    <p class="font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-gold-600">
+                        QS. Ar-Rum : 21
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 3: SANG MEMPELAI (EDITORIAL BOTANICAL ARCH PROFILES)   -->
+            <!-- ============================================================== -->
+            <section id="mempelai" class="anim-section nav-section paper-texture relative py-16 px-6 overflow-hidden">
+                <!-- Cascading Eucalyptus Vines on Left & Right Sides -->
+                <div class="stagger-left absolute top-8 -left-4 w-24 opacity-85 pointer-events-none">
+                    <img src="{{ $getOrnament('vine-curtain-left.png') }}" class="w-full h-auto idle-vine-l" alt="">
+                </div>
+                <div class="stagger-right absolute top-8 -right-4 w-24 opacity-85 pointer-events-none">
+                    <img src="{{ $getOrnament('vine-curtain-right.png') }}" class="w-full h-auto idle-vine-r" alt="">
+                </div>
+
+                <!-- Section Header -->
+                <div class="relative z-20 text-center max-w-xs mx-auto mb-10">
+                    <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-600">
+                        THE BRIDE &amp; GROOM
+                    </p>
+                    <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-emerald-950 mt-1">
+                        Pasangan Mempelai
+                    </h2>
+                    <p class="stagger-up delay-200 font-serif italic text-sm text-emerald-800 mt-1">
+                        Assalamu’alaikum Warahmatullahi Wabarakatuh. Dengan memohon rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:
+                    </p>
+                </div>
+
+                <!-- Bride Botanical Arch Profile Card -->
+                <div class="stagger-left delay-200 relative z-20 max-w-[340px] mx-auto rounded-t-[150px] rounded-b-3xl bg-white p-4 pb-9 shadow-[0_18px_40px_rgba(6,50,36,0.14)] border-2 border-gold-400/70 text-center">
+                    <!-- Floating Corner White Roses -->
+                    <img src="{{ $getOrnament('floral-top-left.png') }}" class="absolute -top-4 -left-4 w-24 h-auto pointer-events-none drop-shadow-md z-20" alt="">
+                    <img src="{{ $getOrnament('floral-bottom-right.png') }}" class="absolute -bottom-4 -right-4 w-20 h-auto pointer-events-none drop-shadow-md z-20" alt="">
+
+                    <div class="relative w-[200px] h-[250px] mx-auto rounded-t-[110px] rounded-b-2xl overflow-hidden border-2 border-gold-400 shadow-md">
+                        <img src="{{ $bg['bride'] }}" class="w-full h-full object-cover object-top" alt="{{ $couple['bride_full'] }}">
+                    </div>
+
+                    <span class="inline-block mt-4 px-3.5 py-0.5 rounded-full bg-emerald-900 text-gold-200 text-[9px] font-sans font-semibold uppercase tracking-[0.24em]">
+                        THE BRIDE
+                    </span>
+                    <h3 class="font-display text-2xl font-bold text-emerald-950 mt-1.5">
+                        {{ $couple['bride_full'] }}
+                    </h3>
+                    <p class="font-serif italic text-sm text-emerald-800 mt-1 px-8 relative z-30">
+                        {{ $couple['parents']['bride'] }}
+                    </p>
+                </div>
+
+                <!-- Intertwined Botanical Rose Divider & Wax Seal -->
+                <div class="stagger-scale delay-300 relative z-20 flex flex-col items-center my-7">
+                    <img src="{{ $getOrnament('botanical-divider.png') }}" class="w-52 h-auto" alt="">
+                    <span class="font-script text-4xl text-gold-600 -mt-1">&amp;</span>
+                </div>
+
+                <!-- Groom Botanical Arch Profile Card -->
+                <div class="stagger-right delay-400 relative z-20 max-w-[340px] mx-auto rounded-t-[150px] rounded-b-3xl bg-white p-4 pb-9 shadow-[0_18px_40px_rgba(6,50,36,0.14)] border-2 border-gold-400/70 text-center">
+                    <!-- Floating Corner White Roses -->
+                    <img src="{{ $getOrnament('floral-top-right.png') }}" class="absolute -top-4 -right-4 w-24 h-auto pointer-events-none drop-shadow-md z-20" alt="">
+                    <img src="{{ $getOrnament('floral-bottom-left.png') }}" class="absolute -bottom-4 -left-4 w-20 h-auto pointer-events-none drop-shadow-md z-20" alt="">
+
+                    <div class="relative w-[200px] h-[250px] mx-auto rounded-t-[110px] rounded-b-2xl overflow-hidden border-2 border-gold-400 shadow-md">
+                        <img src="{{ $bg['groom'] }}" class="w-full h-full object-cover object-top" alt="{{ $couple['groom_full'] }}">
+                    </div>
+
+                    <span class="inline-block mt-4 px-3.5 py-0.5 rounded-full bg-emerald-900 text-gold-200 text-[9px] font-sans font-semibold uppercase tracking-[0.24em]">
+                        THE GROOM
+                    </span>
+                    <h3 class="font-display text-2xl font-bold text-emerald-950 mt-1.5">
+                        {{ $couple['groom_full'] }}
+                    </h3>
+                    <p class="font-serif italic text-sm text-emerald-800 mt-1 px-8 relative z-30">
+                        {{ $couple['parents']['groom'] }}
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 4: RANGKAIAN ACARA (SUNLIT GLASSHOUSE CATHEDRAL CARDS) -->
+            <!-- ============================================================== -->
+            <section id="acara" class="anim-section nav-section relative py-16 px-6 bg-emerald-950 text-center overflow-hidden">
+                <!-- Sunlit Glasshouse Background -->
+                <div class="absolute inset-0 opacity-30 pointer-events-none">
+                    <img src="{{ $getOrnament('glasshouse-daylight-bg.jpg') }}" class="w-full h-full object-cover" alt="">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/90 via-emerald-950/75 to-emerald-950/95 pointer-events-none"></div>
+
+                <!-- Hanging Crystal & Ivy Chandelier -->
+                <div class="stagger-down relative z-20 w-36 mx-auto -mt-10 mb-3 pointer-events-none">
+                    <img src="{{ $getOrnament('chandelier-top.png') }}" class="w-full h-auto idle-chandelier drop-shadow-xl" alt="">
+                </div>
+
+                <div class="relative z-20 mb-8">
+                    <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-300">
+                        WEDDING ITINERARY
+                    </p>
+                    <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-alabaster-50 mt-1">
+                        Rangkaian Acara
+                    </h2>
+                </div>
+
+                <!-- Arched Cathedral Glasshouse Event Cards -->
+                <div class="relative z-20 space-y-6 max-w-[355px] mx-auto">
+                    @foreach($schedule as $idx => $item)
+                        <div class="{{ $idx % 2 === 0 ? 'stagger-left delay-200' : 'stagger-right delay-300' }} relative rounded-t-[110px] rounded-b-3xl p-6 pt-10 bg-alabaster-50/95 text-emerald-950 border-2 border-gold-400 shadow-[0_20px_45px_rgba(0,0,0,0.55)] overflow-hidden">
+                            <!-- Top Gold Lantern Accent -->
+                            <div class="w-12 h-16 mx-auto mb-2">
+                                <img src="{{ $getOrnament('gold-lantern.png') }}" class="w-full h-full object-contain drop-shadow" alt="Lantern">
+                            </div>
+
+                            <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-900/10 border border-emerald-900/20 text-[9px] font-sans font-bold uppercase tracking-[0.22em] text-emerald-900">
+                                {{ $item['badge'] }}
+                            </span>
+
+                            <h3 class="font-display text-2xl font-bold text-emerald-950 mt-1.5">
+                                {{ $item['title'] }}
+                            </h3>
+
+                            <div class="w-20 h-[1px] bg-gold-400 mx-auto my-3"></div>
+
+                            <p class="font-sans text-xs font-bold uppercase tracking-wider text-emerald-900">
+                                {{ $item['date'] }}
+                            </p>
+                            <p class="font-serif italic text-base text-gold-600 font-semibold mt-0.5">
+                                Pukul {{ $item['time'] }}
+                            </p>
+
+                            <div class="mt-3 pt-3 border-t border-emerald-900/10">
+                                <p class="font-display text-sm font-bold text-emerald-950">
+                                    {{ $item['venue'] }}
+                                </p>
+                                <p class="font-sans text-xs text-emerald-800/80 mt-0.5 leading-relaxed">
+                                    {{ $item['address'] }}
+                                </p>
+                            </div>
+
+                            <a
+                                href="{{ $event['maps_url'] }}"
+                                target="_blank"
+                                class="mt-4 inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 rounded-full bg-emerald-900 text-gold-200 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] hover:bg-emerald-800 transition-colors shadow"
+                            >
+                                <svg class="w-3.5 h-3.5 text-gold-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span>Petunjuk Google Maps</span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 5: KISAH CINTA (BOTANICAL SCRAPBOOK POLAROID TIMELINE) -->
+            <!-- ============================================================== -->
+            <section id="kisah" class="anim-section paper-texture relative py-16 px-6 overflow-hidden">
+                <div class="text-center max-w-xs mx-auto mb-10">
+                    <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-600">
+                        OUR LOVE JOURNEY
+                    </p>
+                    <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-emerald-950 mt-1">
+                        Kisah Cinta Kami
+                    </h2>
+                    <div class="stagger-scale delay-200 flex justify-center mt-2">
+                        <img src="{{ $getOrnament('botanical-divider.png') }}" class="w-44 h-auto" alt="">
+                    </div>
+                </div>
+
+                @php
+                    $storyPhotos = [$bg['story_1'], $bg['story_2'], $bg['story_3']];
+                @endphp
+
+                <div class="relative max-w-[355px] mx-auto pl-7 border-l-2 border-gold-400/60 space-y-10">
+                    @foreach($stories as $i => $s)
+                        <div class="{{ $i % 2 === 0 ? 'stagger-right' : 'stagger-left' }} delay-{{ ($i + 1) * 100 }} relative">
+                            <!-- Gold Wax Node -->
+                            <div class="absolute -left-[41px] top-2 w-6 h-6 rounded-full bg-emerald-900 border-2 border-gold-300 shadow flex items-center justify-center text-[10px] text-gold-200 font-bold">
+                                {{ $i + 1 }}
+                            </div>
+
+                            <div class="botanical-polaroid rounded-2xl p-4 relative" style="transform: rotate({{ $i % 2 === 0 ? '-1.2deg' : '1.2deg' }});">
+                                <div class="washi-tape-gold absolute -top-2.5 right-6 w-20 h-5 z-20"></div>
+                                <div class="w-full h-40 rounded-lg overflow-hidden mb-3">
+                                    <img src="{{ $storyPhotos[$i % count($storyPhotos)] }}" class="w-full h-full object-cover" alt="{{ $s['title'] }}">
+                                </div>
+                                <span class="text-[9.5px] font-sans font-bold uppercase tracking-[0.22em] text-gold-600">
+                                    {{ $s['date'] }}
+                                </span>
+                                <h3 class="font-display text-lg font-bold text-emerald-950 mt-0.5">
+                                    {{ $s['title'] }}
+                                </h3>
+                                <p class="font-serif italic text-sm text-emerald-800/90 mt-1 leading-relaxed">
+                                    "{{ $s['text'] }}"
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 6: GALERI BAHAGIA (POLAROID MASONRY + LIGHTBOX)        -->
+            <!-- ============================================================== -->
+            <section id="galeri" class="anim-section nav-section relative py-16 px-6 bg-emerald-950 text-center overflow-hidden">
+                <div class="relative z-10 mb-8">
+                    <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-300">
+                        CAPTURED MOMENTS
+                    </p>
+                    <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-alabaster-50 mt-1">
+                        Galeri Bahagia
+                    </h2>
+                    <div class="stagger-scale delay-200 flex justify-center mt-2">
+                        <img src="{{ $getOrnament('botanical-divider.png') }}" class="w-44 h-auto" alt="">
+                    </div>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-2 gap-3.5 max-w-[365px] mx-auto">
+                    @foreach($gallery as $gIdx => $imgUrl)
+                        <div
+                            @click="openLightbox('{{ $imgUrl }}')"
+                            class="{{ $gIdx % 3 === 0 ? 'col-span-2 aspect-[16/10]' : 'col-span-1 aspect-[4/5]' }} {{ $gIdx % 2 === 0 ? 'stagger-left' : 'stagger-right' }} group cursor-pointer rounded-2xl p-2 bg-alabaster-50 border border-gold-400/60 shadow-xl overflow-hidden"
+                        >
+                            <div class="w-full h-full rounded-xl overflow-hidden relative">
+                                <img src="{{ $imgUrl }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Gallery {{ $gIdx + 1 }}">
+                                <div class="absolute inset-0 bg-emerald-950/0 group-hover:bg-emerald-950/25 transition-colors flex items-center justify-center">
+                                    <span class="opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1 rounded-full bg-emerald-950/80 text-gold-200 text-[10px] uppercase tracking-widest">Perbesar</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 7: KADO DIGITAL (WARM ALABASTER & EMERALD FOIL CARDS)  -->
+            <!-- ============================================================== -->
+            <section id="kado" class="anim-section paper-texture relative py-16 px-6 text-center overflow-hidden">
+                <div class="max-w-xs mx-auto mb-8">
+                    <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-600">
+                        WEDDING GIFT
+                    </p>
+                    <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-emerald-950 mt-1">
+                        Tanda Kasih
+                    </h2>
+                    <p class="stagger-up delay-200 font-serif italic text-sm text-emerald-800 mt-1">
+                        Doa restu Anda merupakan karunia terindah bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat mengirimkannya melalui:
+                    </p>
+                </div>
+
+                <div class="max-w-[355px] mx-auto space-y-4">
+                    @foreach($gifts as $kIdx => $gift)
+                        <div
+                            x-data="{ copied: false }"
+                            class="{{ $kIdx % 2 === 0 ? 'stagger-left delay-200' : 'stagger-right delay-300' }} relative rounded-2xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-950 to-emerald-900 text-alabaster-50 border-2 border-gold-400/75 shadow-lg text-left overflow-hidden"
+                        >
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-3 py-1 rounded-full bg-gold-400/20 border border-gold-300/40 font-sans text-xs font-bold uppercase tracking-widest text-gold-200">
+                                    {{ $gift['bank'] }}
+                                </span>
+                                <img src="{{ $getOrnament('emerald-wax-seal.png') }}" class="w-12 h-8 object-contain" alt="">
+                            </div>
+                            <p class="font-display text-xl font-bold tracking-wider text-gold-200">
+                                {{ $gift['account'] }}
+                            </p>
+                            <p class="font-sans text-xs text-alabaster-200 mt-0.5">
+                                a.n. {{ $gift['name'] }}
+                            </p>
+                            <button
+                                type="button"
+                                @click="navigator.clipboard.writeText('{{ $gift['account'] }}'); copied = true; setTimeout(() => copied = false, 2000)"
+                                class="mt-3.5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-400 text-emerald-950 font-sans text-[10px] font-bold uppercase tracking-wider hover:bg-gold-300 transition-colors"
+                            >
+                                <span x-text="copied ? 'Berhasil Disalin!' : 'Salin Nomor Rekening'">Salin Nomor Rekening</span>
+                            </button>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- SECTION 8: RSVP & DOA RESTU                                    -->
+            <!-- ============================================================== -->
+            <section id="rsvp" class="anim-section nav-section relative py-16 px-6 bg-emerald-950 text-alabaster-50 overflow-hidden">
+                <div class="max-w-[355px] mx-auto">
+                    <div class="text-center mb-7">
+                        <p class="stagger-down text-[10px] font-sans font-semibold uppercase tracking-[0.34em] text-gold-300">
+                            GUESTBOOK &amp; WISHES
+                        </p>
+                        <h2 class="stagger-up delay-100 font-display text-3xl font-bold text-alabaster-50 mt-1">
+                            Doa &amp; Ucapan
+                        </h2>
+                        <div class="stagger-scale delay-200 flex justify-center mt-2">
+                            <img src="{{ $getOrnament('botanical-divider.png') }}" class="w-44 h-auto" alt="">
+                        </div>
+                    </div>
+
                     <div
-                        class="w-full max-w-[320px] flex items-center justify-around py-1 mb-3.5"
                         x-data="{
-                            target: new Date('{{ $event['date_iso'] }}T{{ $event['time'] }}').getTime(),
-                            days: '00', hours: '00', minutes: '00', seconds: '00',
-                            init() {
-                                const update = () => {
-                                    let now = new Date().getTime();
-                                    let d = this.target - now;
-                                    if (d < 0) d = 0;
-                                    this.days = String(Math.floor(d / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                                    this.hours = String(Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                                    this.minutes = String(Math.floor((d % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                                    this.seconds = String(Math.floor((d % (1000 * 60)) / 1000)).padStart(2, '0');
-                                };
-                                update();
-                                setInterval(update, 1000);
+                            name: '',
+                            status: 'Hadir',
+                            message: '',
+                            submitted: false,
+                            wishesList: {{ Js::from($wishes) }},
+                            submitWish() {
+                                if (!this.name.trim() || !this.message.trim()) return;
+                                this.wishesList.unshift({
+                                    name: this.name,
+                                    status: this.status,
+                                    message: this.message
+                                });
+                                this.name = '';
+                                this.message = '';
+                                this.submitted = true;
+                                setTimeout(() => this.submitted = false, 3500);
                             }
                         }"
                     >
-                        <div class="sec-assemble-count-1 flex flex-col items-center flex-1">
-                            <span class="font-serif text-3xl sm:text-4xl font-light leading-none text-[#F6EEDB] drop-shadow-[0_2px_10px_rgba(0,0,0,1)]" x-text="days">00</span>
-                            <span class="font-cinzel text-[8.5px] uppercase tracking-[0.25em] text-[#F3CE7A] font-semibold mt-1.5">HARI</span>
-                        </div>
-                        <div class="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#D9AA45]/45 to-transparent"></div>
-                        <div class="sec-assemble-count-2 flex flex-col items-center flex-1">
-                            <span class="font-serif text-3xl sm:text-4xl font-light leading-none text-[#F6EEDB] drop-shadow-[0_2px_10px_rgba(0,0,0,1)]" x-text="hours">00</span>
-                            <span class="font-cinzel text-[8.5px] uppercase tracking-[0.25em] text-[#F3CE7A] font-semibold mt-1.5">JAM</span>
-                        </div>
-                        <div class="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#D9AA45]/45 to-transparent"></div>
-                        <div class="sec-assemble-count-3 flex flex-col items-center flex-1">
-                            <span class="font-serif text-3xl sm:text-4xl font-light leading-none text-[#F6EEDB] drop-shadow-[0_2px_10px_rgba(0,0,0,1)]" x-text="minutes">00</span>
-                            <span class="font-cinzel text-[8.5px] uppercase tracking-[0.25em] text-[#F3CE7A] font-semibold mt-1.5">MENIT</span>
-                        </div>
-                        <div class="w-[1px] h-7 sm:h-8 bg-gradient-to-b from-transparent via-[#D9AA45]/45 to-transparent"></div>
-                        <div class="sec-assemble-count-4 flex flex-col items-center flex-1">
-                            <span class="font-serif text-3xl sm:text-4xl font-light leading-none text-[#F6EEDB] drop-shadow-[0_2px_10px_rgba(0,0,0,1)]" x-text="seconds">00</span>
-                            <span class="font-cinzel text-[8.5px] uppercase tracking-[0.25em] text-[#F3CE7A] font-semibold mt-1.5">DETIK</span>
-                        </div>
-                    </div>
-
-                    <a
-                        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ urlencode('The Wedding of ' . $couple['bride'] . ' & ' . $couple['groom']) }}&dates=20270512T010000Z/20270512T070000Z&details=Undangan+Pernikahan+Royal+Emerald+Conservatory&location={{ urlencode($event['location'] . ', ' . $event['address']) }}"
-                        target="_blank"
-                        class="sec-assemble-save-date group inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-2.5 rounded-full text-[10px] sm:text-[10.5px] font-cinzel font-semibold tracking-[0.22em] text-[#F3CE7A] border border-[#D9AA45]/60 hover:border-[#F3CE7A] hover:bg-[#D9AA45]/15 transition-all mb-3.5 bg-[#031811]/60 backdrop-blur-sm shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
-                    >
-                        <svg class="w-3.5 h-3.5 text-[#F3CE7A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        <span>SIMPAN KE KALENDER</span>
-                    </a>
-
-                    <div class="sec-assemble-save-date flex flex-col items-center gap-0.5 opacity-80">
-                        <svg class="w-3.5 h-3.5 text-[#F3CE7A] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
-                        <span class="font-cinzel text-[8.5px] uppercase tracking-[0.28em] text-[#F3CE7A] font-medium">GULIR UNTUK MELANJUTKAN</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================================== -->
-            <!-- SECTION 2: AYAT SUCI & DOA PERNIKAHAN                          -->
-            <!-- ============================================================== -->
-            <section id="ayat" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(217,170,69,0.14),transparent_70%)] pointer-events-none"></div>
-
-                <!-- Royal Section Transition Crest & Divider -->
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain filter drop-shadow-[0_2px_8px_rgba(217,170,69,0.5)]" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <!-- Top Corner Floral Framing -->
-                <div class="sec-assemble-arch-left absolute top-0 left-0 w-24 sm:w-28 h-auto z-[12] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('gold-corner-tl.png') }}" class="w-full h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-                <div class="sec-assemble-arch-right absolute top-0 right-0 w-24 sm:w-28 h-auto z-[12] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('gold-corner-tr.png') }}" class="w-full h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-
-                <!-- Carved Crown Ornament -->
-                <div class="sec-assemble-crown relative z-20 flex justify-center -mb-5 pointer-events-none">
-                    <img src="{{ $getOrnament('gold-crown-arch.png') }}" class="w-44 sm:w-48 h-auto object-contain filter drop-shadow-[0_6px_16px_rgba(0,0,0,0.9)]" alt="Mahkota">
-                </div>
-
-                <!-- Sacred Verse Plaque Card -->
-                <div class="sec-assemble-card relative max-w-sm mx-auto pt-7 pb-6 px-6 rounded-3xl glass-card-emerald overflow-hidden">
-                    <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tl absolute -top-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none" alt="">
-                    <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tr absolute -top-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-x-[-1]" alt="">
-                    <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-bl absolute -bottom-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-y-[-1]" alt="">
-                    <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-br absolute -bottom-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-[-1]" alt="">
-
-                    <div class="relative z-10">
-                        <p class="sec-assemble-bismillah font-serif italic text-2xl text-[#F9DE96] mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-                        <p class="sec-assemble-text-up font-serif italic text-xs leading-relaxed text-[#FFFDF8] font-light mb-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-                            "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
-                        </p>
-                        <p class="sec-assemble-text-up font-cinzel text-[9.5px] tracking-[0.25em] text-[#F5D38A] font-semibold uppercase">
-                            (QS. AR-RUM: 21)
-                        </p>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto my-3 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                        <p class="sec-assemble-quote font-serif italic text-[11.5px] text-[#D7ECE2] leading-relaxed">
-                            "Dua jiwa yang dipertemukan dalam keteduhan kasih-Nya, bertumbuh bersama menuju keabadian cinta yang suci."
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================================== -->
-            <!-- SECTION 3: SANG MEMPELAI (THE BRIDE & GROOM)                   -->
-            <!-- ============================================================== -->
-            <section id="mempelai" class="anim-section nav-section relative py-14 px-4 text-center overflow-hidden" style="background: #031710 radial-gradient(circle at 50% 30%, #083826 0%, #041c13 65%, #020e09 100%);">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-transparent to-[#020e09] pointer-events-none"></div>
-
-                <!-- 4 Custom Botanical Corner Ornaments -->
-                <div class="sec-assemble-arch-left absolute -top-2 -left-3 w-32 sm:w-36 h-auto z-[15] pointer-events-none opacity-90">
-                    <img src="{{ $getOrnament('floral-top-left.png') }}" class="w-full h-auto object-contain idle-sway-tl filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-                <div class="sec-assemble-arch-right absolute -top-2 -right-3 w-32 sm:w-36 h-auto z-[15] pointer-events-none opacity-90">
-                    <img src="{{ $getOrnament('floral-top-right.png') }}" class="w-full h-auto object-contain idle-sway-tr filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-                <div class="sec-assemble-mempelai-bl absolute -bottom-2 -left-3 w-28 sm:w-32 h-auto z-[15] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('floral-bottom-left.png') }}" class="w-full h-auto object-contain idle-sway-bl filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-                <div class="sec-assemble-mempelai-br absolute -bottom-2 -right-3 w-28 sm:w-32 h-auto z-[15] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('floral-bottom-right.png') }}" class="w-full h-auto object-contain idle-sway-br filter drop-shadow-[0_6px_14px_rgba(0,0,0,0.85)]" alt="">
-                </div>
-
-                <div class="relative z-20 max-w-sm mx-auto">
-                    <div class="mb-8">
-                        <div class="sec-assemble-divider flex items-center justify-center gap-2 mb-2">
-                            <div class="w-16 sm:w-20 h-px bg-[#C9A84C]/50"></div>
-                            <span class="text-[#F3CE7A] text-[7px]">◆</span>
-                            <div class="w-16 sm:w-20 h-px bg-[#C9A84C]/50"></div>
-                        </div>
-
-                        <p class="sec-assemble-title font-cinzel text-[10px] tracking-[0.38em] text-[#F3CE7A] uppercase font-semibold">THE BRIDE &amp; GROOM</p>
-                        <h2 class="sec-assemble-title font-serif text-3xl sm:text-4xl text-[#F6EEDB] font-normal tracking-wide mt-1">Sang Mempelai</h2>
-
-                        <div class="sec-assemble-divider flex items-center justify-center gap-2.5 mt-2">
-                            <div class="w-14 sm:w-16 h-px bg-[#C9A84C]/50"></div>
-                            <span class="text-[#F3CE7A] text-[10px]">❖</span>
-                            <div class="w-14 sm:w-16 h-px bg-[#C9A84C]/50"></div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-10">
-                        <!-- ==================== MEMPELAI WANITA ==================== -->
-                        <div class="flex flex-col items-center relative">
-                            <div class="relative w-[216px] sm:w-[230px] h-[286px] sm:h-[305px] mb-4 flex items-center justify-center mx-auto">
-                                <div class="absolute inset-2 rounded-full bg-[#10B981]/15 filter blur-xl pointer-events-none"></div>
-
-                                <div class="sec-assemble-frame relative w-full h-full rounded-t-full rounded-b-[4px] border border-[#D4AF37]/80 p-[5px] bg-[#041d14]/60 shadow-[0_12px_28px_rgba(0,0,0,0.9)] z-10 flex items-center justify-center">
-                                    <div class="relative w-full h-full rounded-t-full rounded-b-[2px] border border-[#F6EEDB]/40 overflow-hidden bg-[#03150e]">
-                                        <img src="{{ $bg['bride'] }}" class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" alt="{{ $couple['bride'] }}">
-                                        <div class="absolute inset-0 bg-gradient-to-t from-[#03150e]/45 via-transparent to-transparent pointer-events-none"></div>
-                                    </div>
-
-                                    <!-- Arch Apex Crown Crest -->
-                                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-16 sm:w-18 z-20 pointer-events-none flex justify-center">
-                                        <div class="sec-assemble-crown w-full flex justify-center">
-                                            <img src="{{ $getOrnament('arch-crest.png') }}" class="w-full h-auto filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]" alt="Mahkota Puncak">
-                                        </div>
-                                    </div>
-
-                                    <!-- Arch Baseline Pendant -->
-                                    <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-7 sm:w-8 z-20 pointer-events-none flex justify-center">
-                                        <img src="{{ $getOrnament('arch-pendant.png') }}" class="w-full h-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]" alt="Bandul Bawah">
-                                    </div>
-                                </div>
-
-                                <!-- Flanking Climbing Floral Wreaths -->
-                                <div class="sec-assemble-wreath-l absolute -left-8 sm:-left-9 bottom-0 w-16 sm:w-18 h-auto z-20 pointer-events-none">
-                                    <img src="{{ $getOrnament('wreath-left.png') }}" class="w-full h-auto filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] idle-sway-wreath-l" alt="">
-                                </div>
-                                <div class="sec-assemble-wreath-r absolute -right-8 sm:-right-9 bottom-0 w-16 sm:w-18 h-auto z-20 pointer-events-none">
-                                    <img src="{{ $getOrnament('wreath-right.png') }}" class="w-full h-auto filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] idle-sway-wreath-r" alt="">
-                                </div>
+                        <form @submit.prevent="submitWish()" class="stagger-up delay-200 rounded-3xl p-5 bg-alabaster-50 text-emerald-950 border-2 border-gold-400 shadow-xl space-y-3.5 mb-6">
+                            <div>
+                                <label class="block text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-900 mb-1">Nama Lengkap</label>
+                                <input type="text" x-model="name" required placeholder="Tuliskan nama Anda..." class="w-full rounded-xl border border-emerald-900/20 bg-white px-3.5 py-2.5 text-xs text-emerald-950 focus:outline-none focus:border-emerald-800">
                             </div>
-
-                            <div class="sec-assemble-info flex flex-col items-center">
-                                <h3 class="font-serif text-2xl sm:text-[26px] font-normal text-[#F6EEDB] tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
-                                    {{ $couple['bride_full'] ?? $couple['bride'] }}
-                                </h3>
-                                <div class="flex items-center justify-center gap-3 my-2">
-                                    <div class="w-10 sm:w-12 h-px bg-[#C9A84C]/60"></div>
-                                    <span class="font-cinzel text-[10px] tracking-[0.3em] text-[#F3CE7A] font-semibold uppercase">Mempelai Wanita</span>
-                                    <div class="w-10 sm:w-12 h-px bg-[#C9A84C]/60"></div>
-                                </div>
-                                <p class="text-xs sm:text-[13px] text-[#D1E5DB] leading-relaxed font-light max-w-[290px] mx-auto">
-                                    {{ $couple['parents']['bride'] }}
-                                </p>
+                            <div>
+                                <label class="block text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-900 mb-1">Konfirmasi Kehadiran</label>
+                                <select x-model="status" class="w-full rounded-xl border border-emerald-900/20 bg-white px-3.5 py-2.5 text-xs text-emerald-950 focus:outline-none focus:border-emerald-800">
+                                    <option value="Hadir">Hadir</option>
+                                    <option value="Berhalangan">Maaf, Berhalangan Hadir</option>
+                                </select>
                             </div>
-                        </div>
-
-                        <!-- Ampersand with Emerald-Gold Jewel -->
-                        <div class="flex items-center justify-center my-6">
-                            <div class="sec-assemble-line-l w-16 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-[#D4AF37]"></div>
-                            <div class="sec-assemble-jewel mx-3.5 w-9 h-9 flex items-center justify-center rounded-full border border-[#D4AF37]/60 bg-[#05261a] shadow-[0_0_14px_rgba(217,170,69,0.3)] idle-breathe-mid">
-                                <span class="font-serif italic text-lg text-[#F5D38A] leading-none">&amp;</span>
+                            <div>
+                                <label class="block text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-900 mb-1">Doa &amp; Ucapan</label>
+                                <textarea x-model="message" rows="3" required placeholder="Tuliskan doa dan ucapan hangat untuk kedua mempelai..." class="w-full rounded-xl border border-emerald-900/20 bg-white px-3.5 py-2.5 text-xs text-emerald-950 focus:outline-none focus:border-emerald-800"></textarea>
                             </div>
-                            <div class="sec-assemble-line-r w-16 h-[1px] bg-gradient-to-r from-[#D4AF37] via-[#D4AF37]/70 to-transparent"></div>
-                        </div>
-
-                        <!-- ==================== MEMPELAI PRIA ==================== -->
-                        <div class="flex flex-col items-center relative">
-                            <div class="relative w-[216px] sm:w-[230px] h-[286px] sm:h-[305px] mb-4 flex items-center justify-center mx-auto">
-                                <div class="absolute inset-2 rounded-full bg-[#10B981]/15 filter blur-xl pointer-events-none"></div>
-
-                                <div class="sec-assemble-frame relative w-full h-full rounded-t-full rounded-b-[4px] border border-[#D4AF37]/80 p-[5px] bg-[#041d14]/60 shadow-[0_12px_28px_rgba(0,0,0,0.9)] z-10 flex items-center justify-center">
-                                    <div class="relative w-full h-full rounded-t-full rounded-b-[2px] border border-[#F6EEDB]/40 overflow-hidden bg-[#03150e]">
-                                        <img src="{{ $bg['groom'] }}" class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" alt="{{ $couple['groom'] }}">
-                                        <div class="absolute inset-0 bg-gradient-to-t from-[#03150e]/45 via-transparent to-transparent pointer-events-none"></div>
-                                    </div>
-
-                                    <!-- Arch Apex Crown Crest -->
-                                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-16 sm:w-18 z-20 pointer-events-none flex justify-center">
-                                        <div class="sec-assemble-crown w-full flex justify-center">
-                                            <img src="{{ $getOrnament('arch-crest.png') }}" class="w-full h-auto filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]" alt="Mahkota Puncak">
-                                        </div>
-                                    </div>
-
-                                    <!-- Arch Baseline Pendant -->
-                                    <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-7 sm:w-8 z-20 pointer-events-none flex justify-center">
-                                        <img src="{{ $getOrnament('arch-pendant.png') }}" class="w-full h-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]" alt="Bandul Bawah">
-                                    </div>
-                                </div>
-
-                                <!-- Flanking Climbing Floral Wreaths -->
-                                <div class="sec-assemble-wreath-l absolute -left-8 sm:-left-9 bottom-0 w-16 sm:w-18 h-auto z-20 pointer-events-none">
-                                    <img src="{{ $getOrnament('wreath-left.png') }}" class="w-full h-auto filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] idle-sway-wreath-l" alt="">
-                                </div>
-                                <div class="sec-assemble-wreath-r absolute -right-8 sm:-right-9 bottom-0 w-16 sm:w-18 h-auto z-20 pointer-events-none">
-                                    <img src="{{ $getOrnament('wreath-right.png') }}" class="w-full h-auto filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] idle-sway-wreath-r" alt="">
-                                </div>
-                            </div>
-
-                            <div class="sec-assemble-info flex flex-col items-center">
-                                <h3 class="font-serif text-2xl sm:text-[26px] font-normal text-[#F6EEDB] tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
-                                    {{ $couple['groom_full'] ?? $couple['groom'] }}
-                                </h3>
-                                <div class="flex items-center justify-center gap-3 my-2">
-                                    <div class="w-10 sm:w-12 h-px bg-[#C9A84C]/60"></div>
-                                    <span class="font-cinzel text-[10px] tracking-[0.3em] text-[#F3CE7A] font-semibold uppercase">Mempelai Pria</span>
-                                    <div class="w-10 sm:w-12 h-px bg-[#C9A84C]/60"></div>
-                                </div>
-                                <p class="text-xs sm:text-[13px] text-[#D1E5DB] leading-relaxed font-light max-w-[290px] mx-auto">
-                                    {{ $couple['parents']['groom'] }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================================== -->
-            <!-- SECTION 4: RANGKAIAN ACARA (WEDDING EVENTS)                    -->
-            <!-- ============================================================== -->
-            <section id="acara" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(217,170,69,0.12),transparent_70%)] pointer-events-none"></div>
-
-                <!-- Royal Section Transition Crest & Divider -->
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain filter drop-shadow-[0_2px_8px_rgba(217,170,69,0.5)]" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <div class="sec-assemble-arch-left absolute top-0 left-0 w-24 sm:w-28 h-auto z-[12] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('gold-corner-tl.png') }}" class="w-full h-auto object-contain" alt="">
-                </div>
-                <div class="sec-assemble-arch-right absolute top-0 right-0 w-24 sm:w-28 h-auto z-[12] pointer-events-none opacity-85">
-                    <img src="{{ $getOrnament('gold-corner-tr.png') }}" class="w-full h-auto object-contain" alt="">
-                </div>
-
-                <div class="relative z-10">
-                    <div class="sec-assemble-crown flex justify-center mb-2.5 pointer-events-none">
-                        <img src="{{ $getOrnament('gold-crown-arch.png') }}" class="w-32 sm:w-36 h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]" alt="Mahkota">
-                    </div>
-
-                    <div class="sec-assemble-title mb-8">
-                        <p class="font-cinzel text-[9.5px] uppercase tracking-[0.35em] text-[#F5D38A] font-semibold">SAVE THE DATE</p>
-                        <h2 class="font-serif text-3xl font-medium gold-foil mt-0.5">Rangkaian Acara</h2>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto mt-2 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                    </div>
-
-                    <div class="space-y-6 max-w-sm mx-auto">
-                        @foreach($schedule as $idx => $sch)
-                        <div
-                            class="{{ $idx % 2 === 0 ? 'sec-assemble-card-left' : 'sec-assemble-card-right' }} relative rounded-2xl p-6 text-left glass-card-emerald overflow-hidden"
-                        >
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tl absolute -top-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tr absolute -top-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-x-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-bl absolute -bottom-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-y-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-br absolute -bottom-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-[-1]" alt="">
-
-                            <div class="relative z-10">
-                                <div class="flex items-center justify-between mb-3">
-                                    <h3 class="sec-assemble-item font-serif text-2xl font-semibold gold-foil">{{ $sch['title'] }}</h3>
-                                    <img src="{{ $getOrnament('gold-lantern.png') }}" class="w-7 h-auto idle-lamp opacity-90" alt="">
-                                </div>
-
-                                <div class="sec-assemble-item space-y-2.5 mb-4 text-xs text-[#E4F2EC]">
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-6 h-6 rounded-full bg-[#D9AA45]/15 flex items-center justify-center shrink-0 border border-[#D9AA45]/35">
-                                            <svg class="w-3.5 h-3.5 text-[#F3CE7A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        </div>
-                                        <span class="font-medium text-white">{{ $sch['date'] }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-6 h-6 rounded-full bg-[#D9AA45]/15 flex items-center justify-center shrink-0 border border-[#D9AA45]/35">
-                                            <svg class="w-3.5 h-3.5 text-[#F3CE7A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        </div>
-                                        <span class="font-medium text-white">{{ $sch['time'] }}</span>
-                                    </div>
-                                    <div class="flex items-start gap-2.5">
-                                        <div class="w-6 h-6 rounded-full bg-[#D9AA45]/15 flex items-center justify-center shrink-0 border border-[#D9AA45]/35 mt-0.5">
-                                            <svg class="w-3.5 h-3.5 text-[#F3CE7A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold text-[#F3CE7A]">{{ $sch['venue'] }}</p>
-                                            <p class="text-[11px] text-[#A8C5B8] mt-0.5 leading-relaxed">{{ $sch['address'] }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <a
-                                    href="{{ $sch['maps'] ?? $event['maps_url'] }}"
-                                    target="_blank"
-                                    class="sec-assemble-btn inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[#D9AA45]/50 bg-[#03160f] hover:bg-[#D9AA45] hover:text-[#03160f] text-[#F3CE7A] text-xs font-cinzel font-semibold tracking-wider transition-all duration-300 shadow"
-                                >
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-                                    <span>Petunjuk Google Maps</span>
-                                </a>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================================== -->
-            <!-- SECTION 5: KISAH KASIH (LOVE STORY TIMELINE)                   -->
-            <!-- ============================================================== -->
-            @if(!empty($stories))
-            <section id="cerita" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <div class="relative z-10">
-                    <div class="sec-assemble-title mb-8">
-                        <p class="font-cinzel text-[9.5px] uppercase tracking-[0.35em] text-[#F5D38A] font-semibold">OUR JOURNEY TOGETHER</p>
-                        <h2 class="font-serif text-3xl font-medium gold-foil mt-0.5">Kisah Cinta</h2>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto mt-2 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                    </div>
-
-                    <div class="relative max-w-sm mx-auto text-left pl-6 my-2">
-                        <div class="sec-assemble-timeline-line absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[#D9AA45] via-[#F5D38A] to-[#D9AA45]/40 shadow-[0_0_8px_rgba(217,170,69,0.5)]"></div>
-
-                        <div class="space-y-7">
-                            @foreach($stories as $sIndex => $story)
-                            <div class="sec-assemble-story sec-assemble-story-{{ $sIndex % 3 }} relative glass-card-emerald rounded-2xl p-4">
-                                <div class="sec-assemble-timeline-dot absolute -left-[31px] top-4 w-3.5 h-3.5 rounded-full bg-[#D9AA45] border-2 border-[#031710] shadow-[0_0_10px_#D9AA45]"></div>
-                                <span class="font-cinzel text-[9px] uppercase tracking-[0.2em] text-[#F3CE7A] font-semibold block mb-0.5">
-                                    {{ $story['date'] }}
-                                </span>
-                                <h3 class="font-serif text-xl font-semibold text-[#FCFBF7]">{{ $story['title'] }}</h3>
-                                <p class="text-xs text-[#D5E9DF] font-light leading-relaxed mt-1">
-                                    {{ $story['text'] }}
-                                </p>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @endif
-
-            <!-- ============================================================== -->
-            <!-- SECTION 6: GALERI FOTO (GALLERY)                               -->
-            <!-- ============================================================== -->
-            @if(!empty($gallery))
-            <section id="galeri" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <div class="relative z-10">
-                    <div class="sec-assemble-title mb-8">
-                        <p class="font-cinzel text-[9.5px] uppercase tracking-[0.35em] text-[#F5D38A] font-semibold">PRECIOUS MOMENTS</p>
-                        <h2 class="font-serif text-3xl font-medium gold-foil mt-0.5">Galeri Bahagia</h2>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto mt-2 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3.5 max-w-sm mx-auto">
-                        @foreach($gallery as $gIndex => $imgUrl)
-                        <div
-                            @click="lightboxImg = '{{ $imgUrl }}'"
-                            class="sec-assemble-gallery sec-assemble-gallery-{{ $gIndex % 6 }} relative group aspect-[3/4] rounded-2xl overflow-hidden border border-[#D9AA45]/45 bg-[#041d14] cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.85)] hover:border-[#F5D38A] transition-all"
-                        >
-                            <img src="{{ $imgUrl }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Gallery">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-3">
-                                <span class="font-cinzel text-[8.5px] uppercase tracking-widest text-[#F3CE7A]">Perbesar</span>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
-            @endif
-
-            <!-- ============================================================== -->
-            <!-- SECTION 7: TANDA KASIH (WEDDING GIFT)                          -->
-            <!-- ============================================================== -->
-            @if(!empty($gifts))
-            <section id="hadiah" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;" x-data="{ openGifts: false }">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <div class="relative z-10">
-                    <div class="sec-assemble-title mb-6">
-                        <p class="font-cinzel text-[9.5px] uppercase tracking-[0.35em] text-[#F5D38A] font-semibold">WEDDING GIFT</p>
-                        <h2 class="font-serif text-3xl font-medium gold-foil mt-0.5">Kado Digital</h2>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto mt-2 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                        <p class="sec-assemble-text-up text-xs text-[#A8C5B8] font-light max-w-xs mx-auto mt-2 leading-relaxed">
-                            Doa restu Bapak/Ibu/Saudara/i merupakan karunia terindah bagi kami. Namun jika memberi adalah ungkapan tanda kasih, dapat melalui rekening berikut:
-                        </p>
-                    </div>
-
-                    <button
-                        @click="openGifts = !openGifts"
-                        class="sec-assemble-gift-btn inline-flex items-center gap-2 px-7 py-2.5 rounded-full border border-[#D9AA45]/65 bg-[#052419] hover:border-[#F3CE7A] text-[#F3CE7A] font-cinzel text-xs uppercase tracking-wider shadow-lg transition-all"
-                    >
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.1 0 2-.89 2-2V8c0-1.1-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1Z"/></svg>
-                        <span x-text="openGifts ? 'Tutup Rekening' : 'Amplop Digital / Rekening'">Amplop Digital / Rekening</span>
-                    </button>
-
-                    <div
-                        x-show="openGifts"
-                        x-cloak
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-95"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        class="mt-5 space-y-3.5 max-w-sm mx-auto"
-                    >
-                        @foreach($gifts as $gift)
-                        <div class="sec-assemble-card relative rounded-2xl p-6 glass-card-emerald text-left overflow-hidden">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tl absolute -top-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tr absolute -top-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-x-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-bl absolute -bottom-1 -left-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-y-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-br absolute -bottom-1 -right-1 w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-85 pointer-events-none transform scale-[-1]" alt="">
-
-                            <div class="relative z-10">
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-cinzel text-xs font-bold text-[#F3CE7A] uppercase tracking-wider">{{ $gift['bank'] }}</span>
-                                    <svg class="w-4 h-4 text-[#D9AA45] opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                </div>
-                                <p class="font-serif text-2xl font-bold tracking-wider gold-foil mb-0.5">{{ $gift['account'] }}</p>
-                                <p class="text-xs text-[#A8C5B8] font-light mb-3">a.n {{ $gift['name'] }}</p>
-
-                                <button
-                                    @click="copyToClipboard('{{ $gift['account'] }}')"
-                                    class="w-full py-2 rounded-xl border border-[#D9AA45]/45 bg-[#03160f] hover:bg-[#D9AA45] hover:text-[#03160f] text-[#F3CE7A] text-xs font-cinzel font-semibold tracking-wider transition-colors flex items-center justify-center gap-1.5 shadow"
-                                >
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                                    <span>Salin No. Rekening</span>
-                                </button>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
-            @endif
-
-            <!-- ============================================================== -->
-            <!-- SECTION 8: RSVP & BUKU TAMU (GUEST BOOK)                       -->
-            <!-- ============================================================== -->
-            <section id="rsvp" class="anim-section nav-section relative py-14 px-5 text-center overflow-hidden" style="background: #031710 url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#041d14]/94 to-[#020e09] pointer-events-none"></div>
-
-                <div class="sec-assemble-section-divider relative z-20 flex items-center justify-center gap-3 max-w-[280px] mx-auto mb-6 pointer-events-none">
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#D9AA45]/50 to-[#D9AA45]"></div>
-                    <div class="flex items-center gap-1.5 px-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                        <img src="{{ $getOrnament('royal-gold-crest.png') }}" class="w-6 h-auto object-contain" alt="Crest">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#D9AA45]/70"></span>
-                    </div>
-                    <div class="flex-1 h-[1px] bg-gradient-to-r from-[#D9AA45] via-[#D9AA45]/50 to-transparent"></div>
-                </div>
-
-                <div class="relative z-10">
-                    <div class="sec-assemble-title mb-8">
-                        <p class="font-cinzel text-[9.5px] uppercase tracking-[0.35em] text-[#F5D38A] font-semibold">WISHES &amp; PRAYERS</p>
-                        <h2 class="font-serif text-3xl font-medium gold-foil mt-0.5">RSVP &amp; Ucapan</h2>
-                        <div class="sec-assemble-divider w-28 h-auto mx-auto mt-2 opacity-90">
-                            <img src="{{ $getOrnament('gold-divider.png') }}" class="w-full h-full object-contain" alt="Divider">
-                        </div>
-                    </div>
-
-                    <div class="max-w-sm mx-auto" x-data="rsvpForm">
-                        <div class="sec-assemble-card rounded-3xl p-6 glass-card-emerald text-left mb-6 relative overflow-hidden">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tl absolute -top-1 -left-1 w-14 h-14 sm:w-16 sm:h-16 object-contain opacity-85 pointer-events-none" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-tr absolute -top-1 -right-1 w-14 h-14 sm:w-16 sm:h-16 object-contain opacity-85 pointer-events-none transform scale-x-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-bl absolute -bottom-1 -left-1 w-14 h-14 sm:w-16 sm:h-16 object-contain opacity-85 pointer-events-none transform scale-y-[-1]" alt="">
-                            <img src="{{ $getOrnament('card-corner.png') }}" class="sec-assemble-corner-br absolute -bottom-1 -right-1 w-14 h-14 sm:w-16 sm:h-16 object-contain opacity-85 pointer-events-none transform scale-[-1]" alt="">
-
-                            <form @submit.prevent="sendWish" class="space-y-3.5 relative z-10">
-                                <div>
-                                    <label class="block font-cinzel text-[9px] uppercase tracking-[0.2em] text-[#F3CE7A] mb-1 font-semibold">Nama Lengkap</label>
-                                    <input
-                                        type="text"
-                                        x-model="name"
-                                        required
-                                        placeholder="Nama Anda"
-                                        class="w-full bg-[#02120c] border border-[#D9AA45]/35 rounded-xl px-3.5 py-2 text-xs text-[#F4EDE2] placeholder-[#9BB5A8]/50 focus:outline-none focus:border-[#F3CE7A]"
-                                    >
-                                </div>
-
-                                <div>
-                                    <label class="block font-cinzel text-[9px] uppercase tracking-[0.2em] text-[#F3CE7A] mb-1 font-semibold">Konfirmasi Kehadiran</label>
-                                    <select
-                                        x-model="status"
-                                        class="w-full bg-[#02120c] border border-[#D9AA45]/35 rounded-xl px-3.5 py-2 text-xs text-[#F4EDE2] focus:outline-none focus:border-[#F3CE7A]"
-                                    >
-                                        <option value="Hadir">Hadir Memenuhi Undangan</option>
-                                        <option value="Tidak Hadir">Berhalangan Hadir</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label class="block font-cinzel text-[9px] uppercase tracking-[0.2em] text-[#F3CE7A] mb-1 font-semibold">Doa &amp; Ucapan</label>
-                                    <textarea
-                                        x-model="message"
-                                        required
-                                        rows="3"
-                                        placeholder="Tulis ucapan & doa restu..."
-                                        class="w-full bg-[#02120c] border border-[#D9AA45]/35 rounded-xl px-3.5 py-2 text-xs text-[#F4EDE2] placeholder-[#9BB5A8]/50 focus:outline-none focus:border-[#F3CE7A] resize-none"
-                                    ></textarea>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    class="sec-assemble-btn btn-buka-emerald w-full py-2.5 rounded-xl text-[#F7EBD5] font-cinzel font-bold text-xs uppercase tracking-wider shadow-lg transition-all"
-                                >
-                                    Kirim Ucapan
-                                </button>
-
-                                <p x-show="submitted" x-cloak class="text-xs text-emerald-400 text-center font-medium mt-1">Terima kasih, doa dan ucapan Anda telah terkirim.</p>
-                            </form>
-                        </div>
+                            <button type="submit" class="w-full py-3 rounded-full bg-emerald-900 text-gold-200 font-sans text-xs font-bold uppercase tracking-[0.22em] hover:bg-emerald-800 transition-colors shadow">
+                                Kirim Ucapan
+                            </button>
+                            <p x-show="submitted" x-cloak class="text-xs text-emerald-700 font-semibold text-center">Terima kasih! Doa dan ucapan Anda telah tersimpan.</p>
+                        </form>
 
                         <!-- Wishes Stream -->
-                        <div class="sec-assemble-wishes text-left space-y-2.5 max-h-64 overflow-y-auto pr-1 hide-scrollbar">
+                        <div class="stagger-up delay-300 space-y-3 max-h-64 overflow-y-auto pr-1 hide-scrollbar">
                             <template x-for="(w, idx) in wishesList" :key="idx">
-                                <div class="p-3.5 rounded-xl border border-[#D9AA45]/25 bg-[#041d14]/85 backdrop-blur-sm shadow">
+                                <div class="rounded-2xl p-4 bg-emerald-900/75 border border-gold-400/35 backdrop-blur-sm">
                                     <div class="flex items-center justify-between mb-1">
-                                        <h4 class="font-serif text-sm font-semibold text-[#F3CE7A]" x-text="w.name"></h4>
-                                        <span
-                                            class="text-[8px] px-2 py-0.5 rounded-full font-cinzel uppercase tracking-wider font-semibold"
-                                            :class="w.status === 'Hadir' ? 'bg-emerald-900/70 text-emerald-300 border border-emerald-500/40' : 'bg-rose-900/60 text-rose-300 border border-rose-600/40'"
-                                            x-text="w.status"
-                                        ></span>
+                                        <h4 class="font-display text-sm font-bold text-gold-200" x-text="w.name"></h4>
+                                        <span class="px-2.5 py-0.5 rounded-full text-[9px] font-sans font-semibold uppercase tracking-wider bg-emerald-800 text-gold-300 border border-gold-400/30" x-text="w.status"></span>
                                     </div>
-                                    <p class="text-xs text-[#E5F2EC] font-light leading-relaxed italic" x-text="'&quot;' + w.message + '&quot;'"></p>
+                                    <p class="font-serif italic text-sm text-alabaster-100 leading-relaxed" x-text="'&quot;' + w.message + '&quot;'"></p>
                                 </div>
                             </template>
                         </div>
@@ -2181,95 +1357,89 @@
             </section>
 
             <!-- ============================================================== -->
-            <!-- SECTION 9: FOOTER                                              -->
+            <!-- SECTION 9: FOOTER (THE ROYAL ORANGERY CLOSING)                 -->
             <!-- ============================================================== -->
-            <footer id="penutup" class="anim-section nav-section relative pt-12 pb-24 px-5 text-center border-t border-[#D9AA45]/25 overflow-hidden" style="background: #02120c url('{{ $getOrnament('pattern-tile.png') }}') center center / 280px repeat;">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#020e09] via-[#031710]/95 to-[#020e09] pointer-events-none"></div>
-
-                <!-- Bottom Corner Rose Bouquets -->
-                <div class="sec-assemble-mempelai-bl absolute -bottom-3 -left-4 w-32 h-auto pointer-events-none opacity-80">
-                    <img src="{{ $getOrnament('floral-bottom-left.png') }}" class="w-full h-auto idle-sway-bl" alt="">
+            <footer class="anim-section paper-texture relative pt-12 pb-28 px-6 text-center overflow-hidden border-t border-gold-400/40">
+                <div class="stagger-bouquet-bl absolute -bottom-4 -left-5 w-36 pointer-events-none opacity-90">
+                    <img src="{{ $getOrnament('floral-bottom-left.png') }}" class="w-full h-auto idle-rose-bl" alt="">
                 </div>
-                <div class="sec-assemble-mempelai-br absolute -bottom-3 -right-4 w-32 h-auto pointer-events-none opacity-80">
-                    <img src="{{ $getOrnament('floral-bottom-right.png') }}" class="w-full h-auto idle-sway-br" alt="">
+                <div class="stagger-bouquet-br absolute -bottom-4 -right-5 w-36 pointer-events-none opacity-90">
+                    <img src="{{ $getOrnament('floral-bottom-right.png') }}" class="w-full h-auto idle-rose-br" alt="">
                 </div>
 
-                <div class="relative z-10">
-                    <div class="sec-assemble-crown mx-auto w-14 h-20 mb-3">
-                        <img src="{{ $getOrnament('gold-lantern.png') }}" class="w-full h-full object-contain idle-lamp filter drop-shadow-[0_4px_12px_rgba(217,170,69,0.45)]" alt="Royal Lantern">
+                <div class="relative z-10 max-w-xs mx-auto">
+                    <div class="w-20 h-14 mx-auto mb-2 flex items-center justify-center relative">
+                        <img src="{{ $getOrnament('emerald-wax-seal.png') }}" class="w-full h-full object-contain" alt="">
+                        <div class="absolute w-6 h-6 rounded-full bg-emerald-950 border border-gold-400 flex items-center justify-center">
+                            <span class="font-display text-[8px] font-bold text-gold-200">{{ $groomInitial }}&amp;{{ $brideInitial }}</span>
+                        </div>
                     </div>
-                    <p class="sec-assemble-title font-cinzel text-[9.5px] tracking-[0.38em] text-[#F3CE7A] uppercase font-medium">THANK YOU</p>
-                    <h2 class="sec-assemble-text-up font-serif text-3xl font-medium gold-foil my-1">{{ $couple['bride'] }} &amp; {{ $couple['groom'] }}</h2>
-                    <p class="sec-assemble-text-up text-xs text-[#A8C5B8] font-light max-w-xs mx-auto leading-relaxed">
+                    <p class="text-[9.5px] font-sans uppercase tracking-[0.34em] text-gold-600 font-semibold">
+                        TERIMA KASIH
+                    </p>
+                    <h2 class="font-display text-3xl font-bold text-emerald-950 my-1">
+                        {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}
+                    </h2>
+                    <p class="font-serif italic text-sm text-emerald-800 leading-relaxed">
                         Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
                     </p>
-                    <p class="text-[9px] text-[#9BB5A8]/50 mt-6 font-light">TemuRuang Digital Wedding Invitation</p>
+                    <p class="text-[10px] text-emerald-800/60 mt-5 font-sans">
+                        TemuRuang Digital Invitation • Botanical Glasshouse Edition
+                    </p>
                 </div>
             </footer>
 
         </main>
 
         <!-- ============================================================== -->
-        <!-- 3. MOBILE BOTTOM NAVIGATION (CLAMPED TO SHELL)                 -->
+        <!-- LIGHTBOX MODAL                                                 -->
+        <!-- ============================================================== -->
+        <div
+            x-show="lightboxOpen"
+            x-cloak
+            @click="lightboxOpen = false"
+            class="fixed inset-0 z-[80] bg-emerald-950/90 backdrop-blur-md flex items-center justify-center p-5"
+        >
+            <div class="relative max-w-[420px] w-full">
+                <img :src="lightboxImage" class="w-full h-auto max-h-[82vh] object-contain rounded-2xl border-2 border-gold-400 shadow-2xl" alt="Preview">
+                <button @click="lightboxOpen = false" class="mt-4 mx-auto block px-6 py-2 rounded-full bg-gold-400 text-emerald-950 font-sans text-xs font-bold uppercase tracking-widest">
+                    Tutup
+                </button>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 3. FLOATING BOTANICAL BOTTOM NAVIGATION                        -->
         <!-- ============================================================== -->
         <div
             x-show="isOpen"
             x-cloak
-            class="clamped-shell-float bottom-0 z-40 transition-transform duration-500"
+            class="clamped-shell-float bottom-0 z-40"
         >
-            <div class="mx-3.5 mb-3 rounded-full bg-[#031710]/92 backdrop-blur-md border border-[#D4AF37]/40 shadow-[0_12px_30px_rgba(0,0,0,0.9)] px-4 py-2 flex justify-around items-center text-[8.5px] font-cinzel uppercase tracking-wider font-semibold">
-
-                <a
-                    @click="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})"
-                    class="cursor-pointer flex flex-col items-center p-1 gap-1 transition-colors duration-300"
-                    :class="activeSection === 'hero' ? 'text-[#F3CE7A] font-bold scale-105' : 'text-[#9BB5A8] hover:text-[#F3CE7A]'"
-                >
+            <div class="pointer-events-auto mx-4 mb-3 rounded-full bg-emerald-950/95 backdrop-blur-md border border-gold-400/60 shadow-[0_12px_30px_rgba(0,0,0,0.65)] px-4 py-2 flex justify-around items-center text-[9px] font-sans uppercase tracking-wider font-semibold">
+                <a @click="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})" class="cursor-pointer flex flex-col items-center p-1 gap-0.5 transition-colors" :class="activeSection === 'hero' ? 'text-gold-300 font-bold' : 'text-alabaster-200/70 hover:text-gold-200'">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                    <span>Sampul</span>
+                    <span>Beranda</span>
                 </a>
-
-                <a
-                    @click="document.getElementById('mempelai').scrollIntoView({behavior: 'smooth'})"
-                    class="cursor-pointer flex flex-col items-center p-1 gap-1 transition-colors duration-300"
-                    :class="activeSection === 'mempelai' ? 'text-[#F3CE7A] font-bold scale-105' : 'text-[#9BB5A8] hover:text-[#F3CE7A]'"
-                >
+                <a @click="document.getElementById('mempelai').scrollIntoView({behavior: 'smooth'})" class="cursor-pointer flex flex-col items-center p-1 gap-0.5 transition-colors" :class="activeSection === 'mempelai' ? 'text-gold-300 font-bold' : 'text-alabaster-200/70 hover:text-gold-200'">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span>Mempelai</span>
                 </a>
-
-                <a
-                    @click="document.getElementById('acara').scrollIntoView({behavior: 'smooth'})"
-                    class="cursor-pointer flex flex-col items-center p-1 gap-1 transition-colors duration-300"
-                    :class="activeSection === 'acara' ? 'text-[#F3CE7A] font-bold scale-105' : 'text-[#9BB5A8] hover:text-[#F3CE7A]'"
-                >
+                <a @click="document.getElementById('acara').scrollIntoView({behavior: 'smooth'})" class="cursor-pointer flex flex-col items-center p-1 gap-0.5 transition-colors" :class="activeSection === 'acara' ? 'text-gold-300 font-bold' : 'text-alabaster-200/70 hover:text-gold-200'">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
                     <span>Acara</span>
                 </a>
-
-                <a
-                    @click="document.getElementById('galeri').scrollIntoView({behavior: 'smooth'})"
-                    class="cursor-pointer flex flex-col items-center p-1 gap-1 transition-colors duration-300"
-                    :class="activeSection === 'galeri' ? 'text-[#F3CE7A] font-bold scale-105' : 'text-[#9BB5A8] hover:text-[#F3CE7A]'"
-                >
+                <a @click="document.getElementById('galeri').scrollIntoView({behavior: 'smooth'})" class="cursor-pointer flex flex-col items-center p-1 gap-0.5 transition-colors" :class="activeSection === 'galeri' ? 'text-gold-300 font-bold' : 'text-alabaster-200/70 hover:text-gold-200'">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/></svg>
                     <span>Galeri</span>
                 </a>
-
-                <a
-                    @click="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})"
-                    class="cursor-pointer flex flex-col items-center p-1 gap-1 transition-colors duration-300"
-                    :class="activeSection === 'rsvp' ? 'text-[#F3CE7A] font-bold scale-105' : 'text-[#9BB5A8] hover:text-[#F3CE7A]'"
-                >
+                <a @click="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})" class="cursor-pointer flex flex-col items-center p-1 gap-0.5 transition-colors" :class="activeSection === 'rsvp' ? 'text-gold-300 font-bold' : 'text-alabaster-200/70 hover:text-gold-200'">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/></svg>
-                    <span>RSVP</span>
+                    <span>Ucapan</span>
                 </a>
-
             </div>
         </div>
 
     </div>
-
-</div>
-
 </body>
 </html>
