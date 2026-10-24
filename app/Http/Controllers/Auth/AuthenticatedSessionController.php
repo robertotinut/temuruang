@@ -12,11 +12,17 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Display the login view with anti-bot tokens.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.login');
+        $numA = random_int(2, 9);
+        $numB = random_int(1, 9);
+        $request->session()->put('login_captcha_answer', $numA + $numB);
+
+        return view('auth.login', [
+            'captchaQuestion' => "{$numA} + {$numB}",
+        ]);
     }
 
     /**

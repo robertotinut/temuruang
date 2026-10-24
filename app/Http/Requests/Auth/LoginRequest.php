@@ -30,6 +30,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'security_answer' => ['required', 'numeric'],
         ];
     }
 
@@ -42,8 +43,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // 1. Honeypot check
+        if ($this->filled('website_url')) {
+            RateLimiter::hit($this->throttleKey(), 300);
+            throw ValidationException::withMessages([
+                'email' => 'Aktivitas mencurigakan terdeteksi.',
+            ]);
+        }
+
+        // 2. Dynamic Math Security Challenge check
+        $expectedCaptcha = $this->session()->pull('login_captcha_answer');
+        if ($expectedCaptcha === null || (int) $this->input('security_answer') !== (int) $expectedCaptcha) {
+            RateLimiter::hit($this->throttleKey(), 120);
+            throw ValidationException::withMessages([
+                'security_answer' => 'Jawaban verifikasi keamanan (penjumlahan) belum tepat.',
+            ]);
+        }
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+            RateLimiter::hit($this->throttleKey(), 120);
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),

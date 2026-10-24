@@ -14,6 +14,13 @@
 @endif
 <form class="mt-4 pt-2" method="POST" action="{{ route('login') }}">
     @csrf
+
+    {{-- Honeypot Field (Anti-Bot) --}}
+    <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden;" aria-hidden="true">
+        <label for="website_url">Website</label>
+        <input type="text" id="website_url" name="website_url" value="" tabindex="-1" autocomplete="off">
+    </div>
+
     <div class="mb-3">
         <label class="form-label" for="email">Email</label>
         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="Masukkan email">
@@ -47,6 +54,20 @@
             @enderror
         </div>
     </div>
+
+    <div class="mb-3 p-2.5 rounded border bg-light">
+        <label class="form-label mb-1 d-flex align-items-center justify-content-between" for="security_answer">
+            <span class="small fw-semibold text-dark"><i class="mdi mdi-shield-check-outline text-success me-1"></i>Verifikasi Keamanan</span>
+            <span class="badge bg-primary font-size-13 px-2 py-1">{{ $captchaQuestion ?? '3 + 4' }} = ?</span>
+        </label>
+        <input type="number" inputmode="numeric" class="form-control @error('security_answer') is-invalid @enderror" id="security_answer" name="security_answer" required placeholder="Ketik hasil penjumlahan di atas">
+        @error('security_answer')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+
     <div class="row mb-4">
         <div class="col">
             <div class="form-check">
