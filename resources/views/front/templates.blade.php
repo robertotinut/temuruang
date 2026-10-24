@@ -116,7 +116,7 @@
                                  style="box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-radius: 18px; background: #fff; padding: 16px; border: 1px solid #eef1f5; transition: all 0.3s ease; height: 100%;">
                                 
                                 <div class="template-img-wrap" style="flex-shrink: 0; margin-right: 20px; position: relative;">
-                                    <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="d-block overflow-hidden" style="border-radius: 12px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12); border: 1px solid rgba(15, 23, 42, 0.08); background: #0f172a;">
+                                    <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="d-block overflow-hidden position-relative" style="border-radius: 12px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12); border: 1px solid rgba(15, 23, 42, 0.08); background: #0f172a;">
                                         @if($template->thumbnail)
                                             <img src="{{ Storage::url($template->thumbnail) }}?v={{ file_exists(storage_path('app/public/' . $template->thumbnail)) ? filemtime(storage_path('app/public/' . $template->thumbnail)) : 1 }}" alt="{{ $template->name }}" 
                                                  class="template-thumb" loading="lazy" style="width: 108px; height: 190px; object-fit: cover; object-position: top center; display: block; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
@@ -124,6 +124,10 @@
                                             <img src="{{ asset('assets_landingpage/img/service/service-img-new-1.png') }}" alt="{{ $template->name }}" 
                                                  class="template-thumb" loading="lazy" style="width: 108px; height: 190px; object-fit: cover; object-position: top center; display: block; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
                                         @endif
+                                        <span style="position: absolute; bottom: 7px; left: 7px; right: 7px; background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(6px); color: #f8fafc; font-size: 10.5px; font-weight: 600; padding: 3px 7px; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid rgba(255,255,255,0.14);">
+                                            <i class="far fa-eye" style="font-size: 10px; color: #34d399;"></i>
+                                            <span>{{ number_format($template->display_views, 0, ',', '.') }}x dilihat</span>
+                                        </span>
                                     </a>
                                 </div>
 
@@ -161,6 +165,9 @@
                                                     <i class="fas fa-palette me-1"></i>{{ $themeCat }}
                                                 </span>
                                             @endif
+                                            <span style="font-size: 11.5px; color: #475569; background: #f1f5f9; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-weight: 600;">
+                                                <i class="far fa-eye text-success"></i>{{ number_format($template->display_views, 0, ',', '.') }}
+                                            </span>
                                         </div>
                                         <a href="{{ route('templates.preview', $template->slug) }}" target="_blank" class="vs-btn" 
                                            style="padding: 8px 18px; font-size: 12px; line-height: 1.4; border-radius: 30px; font-weight: 600; text-transform: none; letter-spacing: 0.3px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(26, 123, 69, 0.15);">

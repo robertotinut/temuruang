@@ -34,6 +34,22 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::check()) {
+            $user = Auth::user();
+            \App\Services\ActivityLogger::log(
+                eventType: 'login',
+                subject: $user->name . ' (' . $user->email . ')',
+                description: 'Login berhasil melalui Form Email & Password (Role: ' . $user->role . ').',
+                userId: $user->id,
+                templateId: null,
+                request: $request,
+                extraTelegramLines: [
+                    '👤 <b>Role:</b> ' . e($user->role),
+                    '🔑 <b>Metode:</b> Email & Password',
+                ]
+            );
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

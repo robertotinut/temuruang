@@ -10,12 +10,36 @@ Route::get('/', function () {
 });
 
 // Public static template preview (V1: static first, dynamic later)
-Route::get('/preview/templates/{slug}', function (string $slug) {
+Route::get('/preview/templates/{slug}', function (\Illuminate\Http\Request $request, string $slug) {
     // Determine category from the slug (e.g., "birthday-01" -> "birthday")
     $category = explode('-', $slug)[0];
     $viewName = 'templates.' . $category . '.' . $slug;
     
     abort_unless(view()->exists($viewName), 404);
+
+    // Increment template view counter & record in Activity Log + Telegram
+    $template = \App\Models\Template::where('slug', $slug)->first();
+    if ($template) {
+        $template->increment('views_count');
+        $realViews = (int) $template->views_count;
+        $displayViews = $realViews * 5;
+        $viewerLabel = auth()->check()
+            ? (auth()->user()->name . ' (' . auth()->user()->email . ')')
+            : 'Pengunjung Publik (Guest)';
+
+        \App\Services\ActivityLogger::log(
+            eventType: 'template_view',
+            subject: $template->name . ' (' . $template->slug . ')',
+            description: "Diakses oleh {$viewerLabel} — Views Asli: {$realViews} | Tampil (×5): {$displayViews}",
+            userId: auth()->id(),
+            templateId: $template->id,
+            request: $request,
+            extraTelegramLines: [
+                '👤 <b>Pengunjung:</b> ' . e($viewerLabel),
+                '👁️ <b>Total Views:</b> ' . number_format($displayViews, 0, ',', '.') . 'x dilihat <i>(DB Asli: ' . $realViews . ')</i>',
+            ]
+        );
+    }
 
     return view($viewName);
 })->name('templates.preview');
@@ -43,6 +67,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('packages', \App\Http\Controllers\PackageController::class);
         Route::post('users/{user}/assign-package', [\App\Http\Controllers\UserController::class, 'assignPackage'])->name('users.assign_package');
         Route::resource('users', \App\Http\Controllers\UserController::class);
+
+        // Activity Logs & Telegram Bot Settings
+        Route::get('activity-logs', [\App\Http\Controllers\ActivityLogController::class, 'index'])->name('activity-logs.index');
+        Route::post('activity-logs/telegram', [\App\Http\Controllers\ActivityLogController::class, 'updateTelegram'])->name('activity-logs.telegram.update');
+        Route::post('activity-logs/telegram/detect', [\App\Http\Controllers\ActivityLogController::class, 'detectTelegram'])->name('activity-logs.telegram.detect');
+        Route::post('activity-logs/telegram/test', [\App\Http\Controllers\ActivityLogController::class, 'testTelegram'])->name('activity-logs.telegram.test');
+        Route::delete('activity-logs/clear', [\App\Http\Controllers\ActivityLogController::class, 'clearLogs'])->name('activity-logs.clear');
     });
 
     Route::resource('invitations', \App\Http\Controllers\InvitationController::class);

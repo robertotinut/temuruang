@@ -44,6 +44,20 @@ class GoogleController extends Controller
                 }
                 
                 Auth::login($user);
+
+                \App\Services\ActivityLogger::log(
+                    eventType: 'login',
+                    subject: $user->name . ' (' . $user->email . ')',
+                    description: 'Login berhasil melalui Google OAuth (Role: ' . $user->role . ').',
+                    userId: $user->id,
+                    templateId: null,
+                    request: request(),
+                    extraTelegramLines: [
+                        '👤 <b>Role:</b> ' . e($user->role),
+                        '🔑 <b>Metode:</b> Google OAuth',
+                    ]
+                );
+
                 return redirect()->route('dashboard');
             } else {
                 // Create a new user
@@ -57,6 +71,20 @@ class GoogleController extends Controller
                 ]);
 
                 Auth::login($newUser);
+
+                \App\Services\ActivityLogger::log(
+                    eventType: 'register',
+                    subject: $newUser->name . ' (' . $newUser->email . ')',
+                    description: 'Pendaftaran akun baru berhasil melalui Google OAuth.',
+                    userId: $newUser->id,
+                    templateId: null,
+                    request: request(),
+                    extraTelegramLines: [
+                        '📧 <b>Email:</b> ' . e($newUser->email),
+                        '🔑 <b>Metode:</b> Google OAuth',
+                    ]
+                );
+
                 return redirect()->route('dashboard');
             }
         } catch (Exception $e) {

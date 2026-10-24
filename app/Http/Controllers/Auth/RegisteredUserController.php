@@ -152,6 +152,19 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        \App\Services\ActivityLogger::log(
+            eventType: 'register',
+            subject: $user->name . ' (' . $user->email . ')',
+            description: 'Pendaftaran akun baru berhasil melalui Form Registrasi.',
+            userId: $user->id,
+            templateId: null,
+            request: $request,
+            extraTelegramLines: [
+                '📧 <b>Email:</b> ' . e($user->email),
+                '🔑 <b>Metode:</b> Form Register',
+            ]
+        );
+
         return redirect(route('dashboard', absolute: false));
     }
 }

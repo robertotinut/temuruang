@@ -40,6 +40,7 @@
                             <th>Kategori</th>
                             <th>Tema</th>
                             <th>Slug</th>
+                            <th>Views (Tampil ×5)</th>
                             <th>Premium</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -66,6 +67,10 @@
                                 @endif
                             </td>
                             <td><code>{{ $item->slug }}</code></td>
+                            <td>
+                                <span class="badge bg-soft-primary text-primary font-size-12">{{ number_format($item->display_views, 0, ',', '.') }}x</span>
+                                <small class="text-muted d-block font-size-11">Asli: {{ number_format($item->views_count ?? 0, 0, ',', '.') }}x</small>
+                            </td>
                             <td>
                                 @if($item->is_premium)
                                     <span class="badge bg-warning">Premium</span>

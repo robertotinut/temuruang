@@ -55,7 +55,18 @@
                                 <span data-key="t-users">Users / Customers</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('master.activity-logs.index') }}">
+                                <span data-key="t-activity-logs">Log & Bot Telegram</span>
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ route('master.activity-logs.index') }}">
+                        <i data-feather="bell"></i>
+                        <span data-key="t-telegram-bot">Log & Bot Telegram</span>
+                    </a>
                 </li>
                 @endif
 

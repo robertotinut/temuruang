@@ -39,8 +39,13 @@
                 <div class="mt-4 text-center">
                     <h5 class="mb-3 text-truncate"><a href="javascript: void(0);" class="text-dark">{{ $template->name }}</a></h5>
                     
-                    <p class="text-muted">
+                    <p class="text-muted mb-1">
                         <i class="mdi mdi-tag-outline me-1"></i> {{ $template->eventType->name ?? 'General' }}
+                    </p>
+                    <p class="text-muted font-size-12 mb-0">
+                        <span class="badge bg-soft-success text-success">
+                            <i class="mdi mdi-eye-outline me-1"></i> {{ number_format($template->display_views, 0, ',', '.') }}x dilihat
+                        </span>
                     </p>
 
                     <div class="d-flex justify-content-center gap-2 mt-3">
