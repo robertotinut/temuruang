@@ -512,40 +512,40 @@
         </div>
 
         <!-- ================= TOP HEADER BAR ================= -->
-        <div class="relative z-20 pt-8 sm:pt-9 px-6 flex items-start justify-between">
+        <div class="relative z-20 pt-6 sm:pt-8 px-5 sm:px-6 flex items-start justify-between">
             <!-- Top Left: Spaced Serif Subtitle & Couple Names -->
-            <div class="flex-1 pr-3 cover-zoom-target">
+            <div class="flex-1 pr-2 cover-zoom-target">
                 <!-- THE WEDDING OF -->
-                <div class="flex items-center gap-2 mb-2.5">
-                    <span class="text-[10px] sm:text-[11px] font-medium tracking-[0.32em] uppercase text-delft-200/90 font-serif">The Wedding Of</span>
-                    <span class="h-[1px] w-12 bg-delft-300/40"></span>
+                <div class="flex items-center gap-2 mb-1.5 sm:mb-2">
+                    <span class="text-[9.5px] sm:text-[10.5px] font-medium tracking-[0.28em] uppercase text-delft-200/90 font-serif">The Wedding Of</span>
+                    <span class="h-[1px] w-10 bg-delft-300/40"></span>
                 </div>
 
                 <!-- Groom Name: Aditya -->
-                <h1 class="font-editorial text-[38px] sm:text-[44px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
+                <h1 class="font-editorial text-[32px] sm:text-[40px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
                     {{ $couple['groom'] }}
                 </h1>
 
                 <!-- Connector: & (Warm Antique Gold Script) -->
                 <div class="flex items-center gap-1.5 my-0.5">
-                    <span class="font-vibes text-3xl sm:text-4xl text-[#E2C78A] drop-shadow-sm leading-none">&amp;</span>
+                    <span class="font-vibes text-2xl sm:text-3xl text-[#E2C78A] drop-shadow-sm leading-none">&amp;</span>
                     <!-- Bride Name: Arumi -->
-                    <span class="font-editorial text-[38px] sm:text-[44px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
+                    <span class="font-editorial text-[32px] sm:text-[40px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
                         {{ $couple['bride'] }}
                     </span>
                 </div>
             </div>
 
             <!-- Top Right: Vintage Dutch Postage Stamp + Postal Cancellation Waves (SEPARATED & ANIMATED) -->
-            <div class="relative w-28 sm:w-32 flex flex-col items-end pointer-events-none cover-zoom-target">
+            <div class="relative w-24 sm:w-28 flex flex-col items-end pointer-events-none cover-zoom-target">
                 <!-- Postage Stamp (Nederland Tulip Stamp) -->
                 <div class="relative anim-stamp-in">
                     <img alt="Nederland Tulip Postage Stamp"
-                         class="w-20 sm:w-22 drop-shadow-[0_10px_22px_rgba(0,0,0,0.38)] anim-stamp-float"
+                         class="w-[82px] sm:w-[94px] drop-shadow-[0_10px_20px_rgba(0,0,0,0.38)] anim-stamp-float"
                          src="{{ $ornDir }}/nederland-stamp.png"/>
 
                     <!-- Amsterdam Postmark Overlay Imprint with Wavy Cancellation Lines -->
-                    <div class="absolute -top-3 -left-3 w-36 pointer-events-none anim-postmark-in">
+                    <div class="absolute -top-2.5 -left-2.5 w-[124px] sm:w-[138px] pointer-events-none anim-postmark-in">
                         <img alt="Amsterdam Cancellation Postmark"
                              class="w-full object-contain drop-shadow-sm"
                              src="{{ $ornDir }}/dutch-postmark.png"/>
@@ -555,12 +555,12 @@
         </div>
 
         <!-- ================= CENTER ARCH WINDOW (Living Dutch Windmill Canal Scene) ================= -->
-        <div class="relative z-10 flex items-center justify-center -mt-3 sm:-mt-2 mb-1 px-6 cover-zoom-target">
-            <!-- Arched Window Frame with White Porcelain Inset Border & Soft Shadow -->
-            <div class="relative w-[236px] sm:w-[258px] h-[330px] sm:h-[352px] rounded-t-[135px] rounded-b-2xl border-[3.5px] border-white/95 shadow-[0_20px_45px_rgba(20,46,78,0.24)] overflow-hidden bg-[#EAE6DF]">
+        <div class="relative z-10 flex items-center justify-center -mt-2 sm:-mt-1 mb-1 px-4 cover-zoom-target">
+            <!-- Arched Window Frame with White Porcelain Inset Border & Soft Shadow (Mathematically Concentric) -->
+            <div class="relative w-[215px] sm:w-[245px] h-[275px] sm:h-[310px] rounded-t-full rounded-b-2xl border-[3px] border-white shadow-[0_18px_40px_rgba(20,46,78,0.22)] overflow-hidden bg-[#EAE6DF]">
                 
                 <!-- Dutch Windmill Canal Photo with Orange-Red Tulips (Living Breathing Micro-Motion) -->
-                <div class="w-full h-full relative overflow-hidden">
+                <div class="w-full h-full relative overflow-hidden rounded-t-full rounded-b-2xl">
                     <img alt="Dutch Historic Windmill & Canal with Tulips"
                          class="w-full h-full object-cover object-center anim-arch-living brightness-[0.98]"
                          src="{{ $ornDir }}/dutch-windmill-canal.jpg"/>
@@ -569,35 +569,35 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-navy-900/35 via-transparent to-transparent pointer-events-none"></div>
 
                     <!-- Delicate Golden Arch Rim Glow -->
-                    <div class="pointer-events-none absolute inset-0 rounded-t-[132px] rounded-b-[13px] border border-[#C5A059]/40"></div>
+                    <div class="pointer-events-none absolute inset-0 rounded-t-full rounded-b-2xl border border-[#C5A059]/40"></div>
                 </div>
             </div>
 
             <!-- Right Side Accent: 4-Point Dutch Gold Star (Twinkling) -->
-            <div class="absolute right-5 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center gap-1">
-                <span class="text-[#C5A059] text-xl font-bold anim-star-twinkle select-none leading-none">✦</span>
-                <div class="w-[1px] h-10 bg-gradient-to-b from-[#C5A059]/60 to-transparent"></div>
+            <div class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center gap-1">
+                <span class="text-[#C5A059] text-lg sm:text-xl font-bold anim-star-twinkle select-none leading-none">✦</span>
+                <div class="w-[1px] h-8 bg-gradient-to-b from-[#C5A059]/60 to-transparent"></div>
             </div>
         </div>
 
         <!-- ================= BOTTOM CARD BODY (Warm Alabaster #FAF7F2) ================= -->
-        <div class="relative z-20 px-6 pb-8 pt-0 text-center cover-zoom-target">
+        <div class="relative z-20 px-5 pb-6 pt-0 text-center cover-zoom-target">
             <!-- Thin Golden Divider Line -->
-            <div class="flex items-center justify-center gap-2 mb-2.5">
-                <span class="h-[1px] w-14 bg-gradient-to-r from-transparent to-[#C5A059]/70"></span>
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#C5A059]/70"></span>
                 <span class="w-1.5 h-1.5 rotate-45 bg-[#C5A059]"></span>
-                <span class="h-[1px] w-14 bg-gradient-to-l from-transparent to-[#C5A059]/70"></span>
+                <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#C5A059]/70"></span>
             </div>
 
             <!-- Wedding Event Date (SENIN, 24 AGUSTUS 2026) -->
-            <p class="font-editorial text-xs sm:text-[13px] font-semibold tracking-[0.24em] uppercase text-navy-850">
+            <p class="font-editorial text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase text-navy-850 whitespace-nowrap">
                 {{ $formattedDateCover }}
             </p>
 
             <!-- Guest Recipient Pill Badge -->
-            <div class="inline-flex flex-col items-center justify-center max-w-[280px] mx-auto mt-2.5 mb-4 py-1.5 px-4 rounded-xl bg-white/80 border border-[#E8E1D5] shadow-sm">
-                <span class="text-[9px] uppercase tracking-[0.22em] text-[#7A8A9E] font-medium">Kepada Yth. Bapak/Ibu/Saudara/i</span>
-                <span class="font-editorial font-bold text-sm text-navy-850 truncate max-w-[240px] mt-0.5">{{ $guestName }}</span>
+            <div class="inline-flex flex-col items-center justify-center max-w-[240px] mx-auto mt-2 mb-3 py-1 px-3.5 rounded-xl bg-white/85 border border-[#E8E1D5] shadow-sm">
+                <span class="text-[8.5px] uppercase tracking-[0.2em] text-[#7A8A9E] font-medium">Kepada Yth. Bapak/Ibu/Saudara/i</span>
+                <span class="font-editorial font-bold text-xs text-navy-850 truncate max-w-[210px] mt-0.5">{{ $guestName }}</span>
             </div>
 
             <!-- CTA Pill Button: "BUKA UNDANGAN >" (Deep Navy with Gold Accents) -->
@@ -605,15 +605,15 @@
                 <button id="openInvitationBtn"
                         type="button"
                         onclick="openDutchInvitation()"
-                        class="group relative inline-flex items-center justify-center gap-3 w-full max-w-[270px] py-3.5 px-7 rounded-full bg-[#183B65] text-white font-serif font-semibold text-xs tracking-[0.24em] uppercase shadow-[0_12px_28px_rgba(24,59,101,0.38)] border border-[#C5A059]/60 hover:bg-[#122E52] active:scale-[0.98] transition-all">
+                        class="group relative inline-flex items-center justify-center gap-2.5 w-full max-w-[230px] py-2.5 sm:py-3 px-6 rounded-full bg-[#183B65] text-white font-serif font-semibold text-[11px] tracking-[0.2em] uppercase shadow-[0_10px_24px_rgba(24,59,101,0.35)] border border-[#C5A059]/60 hover:bg-[#122E52] active:scale-[0.98] transition-all">
                     <span>Buka Undangan</span>
-                    <span class="text-[#E2C78A] text-sm group-hover:translate-x-1 transition-transform">›</span>
+                    <span class="text-[#E2C78A] text-xs group-hover:translate-x-1 transition-transform">›</span>
                 </button>
             </div>
         </div>
 
         <!-- ================= BOTTOM RIGHT CORNER: DELFT BLUE BOTANICAL TULIP ETCHING (SEPARATE & SWAYING) ================= -->
-        <div class="absolute -bottom-3 -right-3 w-40 sm:w-48 pointer-events-none z-30 drop-shadow-md">
+        <div class="absolute -bottom-2 -right-2 w-[120px] sm:w-[140px] pointer-events-none z-10 drop-shadow-sm opacity-90">
             <img alt="Royal Delft Botanical Tulip Etching"
                  class="w-full object-contain anim-tulip-sway"
                  src="{{ $ornDir }}/delft-tulip-etching.png"/>
@@ -624,70 +624,77 @@
     <!-- =================================================================
          2. HERO SECTION ("HOLLAND HERITAGE EDITORIAL & COUNTDOWN")
          ================================================================= -->
-    <section id="heroSection" class="relative min-h-screen pt-12 pb-16 px-6 bg-alabaster-paper overflow-hidden flex flex-col items-center">
+    <section id="heroSection" class="relative min-h-screen pt-8 sm:pt-10 pb-24 px-4 sm:px-5 bg-alabaster-paper overflow-hidden flex flex-col items-center justify-start">
 
-        <!-- Header Crest: Amsterdam Postal Cancel Stamp -->
-        <div class="relative z-20 flex flex-col items-center text-center mt-2 mb-4 reveal-up">
-            <div class="w-16 h-16 rounded-full bg-white border-2 border-navy-850 p-2 shadow-md flex items-center justify-center mb-2">
-                <img alt="Amsterdam Postmark" class="w-full h-full object-contain opacity-80" src="{{ $ornDir }}/dutch-postmark.png"/>
+        <!-- Header: Subtitle & Couple Names -->
+        <div class="relative z-20 flex flex-col items-center text-center mt-1 mb-3.5 reveal-up">
+            <div class="flex items-center justify-center gap-2 mb-1 opacity-80">
+                <span class="h-[1px] w-7 bg-[#C5A059]"></span>
+                <span class="text-[#C5A059] text-[9px]">✦</span>
+                <span class="h-[1px] w-7 bg-[#C5A059]"></span>
             </div>
-            <span class="text-[10px] font-bold uppercase tracking-[0.32em] text-[#C5A059]">Holland Heritage Romance</span>
-            <h2 class="font-editorial text-2xl font-bold text-navy-850 mt-1">
-                {{ $couple['groom'] }} <span class="font-vibes text-[#C5A059] text-3xl font-normal mx-0.5">&amp;</span> {{ $couple['bride'] }}
+            <span class="text-[9px] font-bold uppercase tracking-[0.28em] text-[#C5A059]">Holland Heritage Romance</span>
+            <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-navy-850 mt-0.5">
+                {{ $couple['groom'] }} <span class="font-vibes text-[#C5A059] text-2xl sm:text-3xl font-normal mx-0.5">&amp;</span> {{ $couple['bride'] }}
             </h2>
         </div>
 
-        <!-- Dutch Arched Window Couple Portrait Frame -->
-        <div class="relative z-20 w-full max-w-[340px] postal-card-frame bg-white rounded-t-[160px] rounded-b-[26px] p-3.5 reveal-scale">
-            <div class="relative w-full h-[360px] rounded-t-[146px] rounded-b-[18px] overflow-hidden border-2 border-[#C5A059]/60 shadow-inner">
-                <img alt="{{ $couple['groom'] }} & {{ $couple['bride'] }}"
-                     class="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
-                     src="{{ $bg['cover'] }}"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-navy-950/15"></div>
+        <!-- Dutch Arched Window Couple Portrait Frame (Concentric & Mathematically Symmetrical) -->
+        <div class="relative z-20 w-full max-w-[280px] sm:max-w-[310px] rounded-t-full rounded-b-2xl bg-white border-2 border-navy-850 p-2 shadow-[0_16px_36px_rgba(20,46,78,0.14)] reveal-scale">
+            <!-- Concentric Inner Gold Line -->
+            <div class="rounded-t-full rounded-b-xl border border-[#C5A059]/60 p-1 bg-white">
+                <!-- Arch Photo Container -->
+                <div class="relative w-full h-[235px] sm:h-[275px] rounded-t-full rounded-b-lg overflow-hidden bg-navy-900 shadow-inner">
+                    <img alt="{{ $couple['groom'] }} & {{ $couple['bride'] }}"
+                         class="w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105"
+                         src="{{ $bg['cover'] }}?v=20261025"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-navy-950/10 pointer-events-none"></div>
 
-                <!-- Overlay Couple Script Title inside Arch -->
-                <div class="absolute bottom-4 inset-x-4 text-center text-white">
-                    <p class="text-[10px] uppercase tracking-[0.28em] text-amber-200 font-semibold">We Are Getting Married</p>
-                    <p class="font-editorial text-3xl leading-none mt-1 drop-shadow">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</p>
+                    <!-- Elegant celebration badge inside bottom of arch -->
+                    <div class="absolute bottom-2.5 inset-x-3 text-center pointer-events-none">
+                        <span class="inline-block px-3 py-0.5 rounded-full bg-navy-950/65 backdrop-blur-sm border border-amber-200/30 text-[8.5px] uppercase tracking-[0.22em] text-amber-200 font-semibold drop-shadow">
+                            The Wedding Celebration
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Date & Venue Strip -->
-            <div class="pt-3.5 pb-1 px-2 text-center">
-                <p class="font-editorial font-bold text-sm text-navy-850 tracking-wide">{{ $formattedDate }}</p>
-                <p class="text-xs text-[#5C6E82] mt-0.5 flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm text-[#C5A059]">location_on</span>
+            <!-- Date & Venue Strip Inside Card -->
+            <div class="pt-2.5 pb-1 px-2 text-center">
+                <p class="font-editorial font-bold text-xs sm:text-sm text-navy-850 tracking-wide">{{ $formattedDate }}</p>
+                <p class="text-[11px] text-[#5C6E82] mt-0.5 flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-xs text-[#C5A059]">location_on</span>
                     <span>{{ $event['location'] }}</span>
                 </p>
             </div>
 
             <!-- Delft Botanical Tulip Accent in Bottom Corner -->
-            <img alt="" class="anim-tulip-sway absolute -bottom-5 -right-5 w-24 pointer-events-none drop-shadow-md" src="{{ $ornDir }}/delft-tulip-etching.png"/>
+            <img alt="" class="anim-tulip-sway absolute -bottom-3 -right-3 w-16 pointer-events-none drop-shadow-sm opacity-85" src="{{ $ornDir }}/delft-tulip-etching.png"/>
         </div>
 
         <!-- 4 Glazed Dutch Delft Ceramic Tile Countdown Boxes -->
-        <div class="relative z-20 w-full max-w-[350px] mt-8 reveal-up">
-            <p class="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-navy-850 mb-3">
+        <div class="relative z-20 w-full max-w-[295px] mt-4.5 sm:mt-5 reveal-up">
+            <p class="text-center text-[9px] font-bold uppercase tracking-[0.24em] text-navy-850 mb-2">
                 Menghitung Hari Bahagia
             </p>
-            <div id="countdownGrid" class="grid grid-cols-4 gap-2.5" data-date="{{ $event['date_iso'] }}T{{ $event['time'] }}:00">
+            <div id="countdownGrid" class="grid grid-cols-4 gap-2" data-date="{{ $event['date_iso'] }}T{{ $event['time'] }}:00">
                 @foreach ([['id' => 'cd-days', 'label' => 'Hari', 'val' => '124'], ['id' => 'cd-hours', 'label' => 'Jam', 'val' => '08'], ['id' => 'cd-mins', 'label' => 'Menit', 'val' => '45'], ['id' => 'cd-secs', 'label' => 'Detik', 'val' => '30']] as $tile)
-                    <div class="relative bg-white rounded-xl border-2 border-navy-850 py-3 px-1 text-center shadow-[0_8px_18px_rgba(24,59,101,0.12)] overflow-hidden">
+                    <div class="relative bg-white rounded-xl border border-navy-850 py-2 px-1 text-center shadow-[0_4px_12px_rgba(24,59,101,0.08)] overflow-hidden">
                         <!-- Corner Delft Tile Dots -->
-                        <span class="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-delft-200"></span>
-                        <span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-delft-200"></span>
-                        <span class="absolute bottom-1 left-1 w-1.5 h-1.5 rounded-full bg-delft-200"></span>
-                        <span class="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-delft-200"></span>
+                        <span class="absolute top-1 left-1 w-1 h-1 rounded-full bg-delft-200"></span>
+                        <span class="absolute top-1 right-1 w-1 h-1 rounded-full bg-delft-200"></span>
+                        <span class="absolute bottom-1 left-1 w-1 h-1 rounded-full bg-delft-200"></span>
+                        <span class="absolute bottom-1 right-1 w-1 h-1 rounded-full bg-delft-200"></span>
 
-                        <span id="{{ $tile['id'] }}" class="block font-editorial font-bold text-2xl text-navy-850 leading-none">{{ $tile['val'] }}</span>
-                        <span class="block text-[9px] font-bold uppercase tracking-[0.18em] text-[#C5A059] mt-1.5">{{ $tile['label'] }}</span>
+                        <span id="{{ $tile['id'] }}" class="block font-editorial font-bold text-lg sm:text-xl text-navy-850 leading-none">{{ $tile['val'] }}</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-[0.16em] text-[#C5A059] mt-1">{{ $tile['label'] }}</span>
                     </div>
                 @endforeach
             </div>
         </div>
 
         <!-- Thin Divider -->
-        <div class="flex items-center justify-center gap-2 mt-8 w-48 opacity-70">
+        <div class="flex items-center justify-center gap-2 mt-5 w-36 opacity-70">
             <span class="h-[1px] flex-1 bg-navy-850/40"></span>
             <span class="text-[#C5A059] text-xs">✦</span>
             <span class="h-[1px] flex-1 bg-navy-850/40"></span>
@@ -1032,30 +1039,30 @@
          ================================================================= -->
     <audio id="bgMusic" loop preload="auto" src="{{ $musicUrl }}"></audio>
 
-    <button id="musicToggleBtn" type="button" onclick="toggleDutchMusic()" aria-label="Toggle Music" class="fixed bottom-20 right-4 z-40 w-11 h-11 rounded-full bg-navy-850 text-[#E2C78A] border-2 border-[#C5A059] shadow-lg flex items-center justify-center hover:scale-105 transition">
-        <span id="musicIcon" class="material-symbols-outlined text-xl animate-spin" style="animation-duration: 8s;">music_note</span>
+    <button id="musicToggleBtn" type="button" onclick="toggleDutchMusic()" aria-label="Toggle Music" class="fixed bottom-16 right-3.5 z-40 w-10 h-10 rounded-full bg-navy-850 text-[#E2C78A] border-2 border-[#C5A059] shadow-lg flex items-center justify-center hover:scale-105 transition">
+        <span id="musicIcon" class="material-symbols-outlined text-lg animate-spin" style="animation-duration: 8s;">music_note</span>
     </button>
 
-    <nav class="fixed bottom-3 inset-x-0 z-40 mx-auto w-[92%] max-w-[390px] rounded-full bg-white/95 backdrop-blur-md border-2 border-navy-850 shadow-[0_12px_30px_rgba(20,46,78,0.35)] px-3 py-2 flex items-center justify-around">
+    <nav class="fixed bottom-2.5 inset-x-0 z-40 mx-auto w-[90%] max-w-[350px] rounded-full bg-white/95 backdrop-blur-md border border-navy-850 shadow-[0_10px_25px_rgba(20,46,78,0.25)] px-2 py-1.5 flex items-center justify-around">
         <a href="#heroSection" class="flex flex-col items-center text-navy-850 hover:text-[#C5A059] transition">
-            <span class="material-symbols-outlined text-lg">home</span>
-            <span class="text-[9px] font-bold uppercase tracking-wider">Home</span>
+            <span class="material-symbols-outlined text-base">home</span>
+            <span class="text-[8.5px] font-bold uppercase tracking-wider">Home</span>
         </a>
         <a href="#coupleSection" class="flex flex-col items-center text-navy-850 hover:text-[#C5A059] transition">
-            <span class="material-symbols-outlined text-lg">favorite</span>
-            <span class="text-[9px] font-bold uppercase tracking-wider">Mempelai</span>
+            <span class="material-symbols-outlined text-base">favorite</span>
+            <span class="text-[8.5px] font-bold uppercase tracking-wider">Mempelai</span>
         </a>
         <a href="#eventSection" class="flex flex-col items-center text-navy-850 hover:text-[#C5A059] transition">
-            <span class="material-symbols-outlined text-lg">event</span>
-            <span class="text-[9px] font-bold uppercase tracking-wider">Acara</span>
+            <span class="material-symbols-outlined text-base">event</span>
+            <span class="text-[8.5px] font-bold uppercase tracking-wider">Acara</span>
         </a>
         <a href="#gallerySection" class="flex flex-col items-center text-navy-850 hover:text-[#C5A059] transition">
-            <span class="material-symbols-outlined text-lg">photo_library</span>
-            <span class="text-[9px] font-bold uppercase tracking-wider">Galeri</span>
+            <span class="material-symbols-outlined text-base">photo_library</span>
+            <span class="text-[8.5px] font-bold uppercase tracking-wider">Galeri</span>
         </a>
         <a href="#rsvpSection" class="flex flex-col items-center text-navy-850 hover:text-[#C5A059] transition">
-            <span class="material-symbols-outlined text-lg">chat</span>
-            <span class="text-[9px] font-bold uppercase tracking-wider">Ucapan</span>
+            <span class="material-symbols-outlined text-base">chat</span>
+            <span class="text-[8.5px] font-bold uppercase tracking-wider">Ucapan</span>
         </a>
     </nav>
 
@@ -1081,6 +1088,9 @@
         const cover = document.getElementById('coverOverlay');
         if (cover) {
             cover.classList.add('cover-open');
+            setTimeout(() => {
+                cover.style.display = 'none';
+            }, 1050);
         }
 
         // Start background music on user gesture
@@ -1092,7 +1102,7 @@
             if (hero) {
                 hero.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 350);
+        }, 300);
     }
 
     function playDutchMusic() {
@@ -1133,8 +1143,12 @@
         const grid = document.getElementById('countdownGrid');
         if (!grid) return;
 
-        const targetDate = new Date(grid.getAttribute('data-date')).getTime();
-        if (isNaN(targetDate)) return;
+        let targetDate = new Date(grid.getAttribute('data-date')).getTime();
+        const now = new Date().getTime();
+        if (isNaN(targetDate) || targetDate <= now) {
+            // For demo/preview, set to 64 days ahead so countdown is always alive
+            targetDate = now + (64 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000) + (35 * 60 * 1000);
+        }
 
         function update() {
             const now = new Date().getTime();
