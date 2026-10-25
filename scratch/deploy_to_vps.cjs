@@ -60,6 +60,22 @@ conn.on('ready', async () => {
                 theme_category = 'Tradisional (Jawa, Sunda, dll)'
             WHERE slug = 'wedding-33';
             UPDATE templates SET is_active = 0 WHERE slug = 'wedding-new-1';
+
+            INSERT INTO templates (event_type_id, name, slug, thumbnail, preview_image, description, is_premium, is_active, theme_category, created_at, updated_at)
+            SELECT 1, 'Sunda Parahyangan Emerald', 'wedding-34', 'templates/thumbnails/wedding-34.jpg', 'templates/thumbnails/wedding-34.jpg',
+                   'Kemewahan adat Sunda bernuansa sage emerald & antique gold, dihiasi ornamen Mahkota Siger bertabur ronce melati, kujang kembar, serta gapura ukir khas Parahyangan yang sakral dan anggun.',
+                   1, 1, 'Tradisional (Jawa, Sunda, dll)', NOW(), NOW()
+            WHERE NOT EXISTS (SELECT 1 FROM templates WHERE slug = 'wedding-34');
+
+            UPDATE templates SET
+                name = 'Sunda Parahyangan Emerald',
+                thumbnail = 'templates/thumbnails/wedding-34.jpg',
+                preview_image = 'templates/thumbnails/wedding-34.jpg',
+                is_active = 1,
+                is_premium = 1,
+                theme_category = 'Tradisional (Jawa, Sunda, dll)'
+            WHERE slug = 'wedding-34';
+
             SELECT id, slug, name, thumbnail, is_active FROM templates ORDER BY id;
         `;
         const res2 = await execCmd(conn, `mysql -u admin -ppassword123 db_temuruang -e ${JSON.stringify(sql)}`);
