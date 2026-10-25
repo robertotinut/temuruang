@@ -626,14 +626,16 @@
          ================================================================= -->
     <section id="heroSection" class="relative min-h-screen pt-8 sm:pt-10 pb-24 px-4 sm:px-5 bg-alabaster-paper overflow-hidden flex flex-col items-center justify-start">
 
-        <!-- Header: Subtitle & Couple Names -->
+        <!-- Header: Living Miniature Dutch Windmill & Subtitle -->
         <div class="relative z-20 flex flex-col items-center text-center mt-1 mb-3.5 reveal-up">
-            <div class="flex items-center justify-center gap-2 mb-1 opacity-80">
-                <span class="h-[1px] w-7 bg-[#C5A059]"></span>
-                <span class="text-[#C5A059] text-[9px]">✦</span>
-                <span class="h-[1px] w-7 bg-[#C5A059]"></span>
+            <!-- Living Miniature Dutch Windmill (Tower + Rotating 4-Blade Sails) -->
+            <div class="relative w-[64px] h-[86px] mb-1.5 drop-shadow-md">
+                <img alt="Dutch Windmill Tower" class="w-full h-full object-contain" src="{{ $ornDir }}/windmill-tower.png"/>
+                <div class="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 w-[82px] h-[82px] pointer-events-none">
+                    <img alt="Rotating Windmill Sails" class="w-full h-full object-contain anim-windmill-sails" src="{{ $ornDir }}/windmill-blades.png"/>
+                </div>
             </div>
-            <span class="text-[9px] font-bold uppercase tracking-[0.28em] text-[#C5A059]">Holland Heritage Romance</span>
+            <span class="text-[8px] sm:text-[9.5px] font-bold uppercase tracking-[0.16em] sm:tracking-[0.24em] text-[#C5A059] whitespace-nowrap">Holland Heritage Romance • Negeri Kincir Angin</span>
             <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-navy-850 mt-0.5">
                 {{ $couple['groom'] }} <span class="font-vibes text-[#C5A059] text-2xl sm:text-3xl font-normal mx-0.5">&amp;</span> {{ $couple['bride'] }}
             </h2>
@@ -693,22 +695,24 @@
             </div>
         </div>
 
-        <!-- Thin Divider -->
-        <div class="flex items-center justify-center gap-2 mt-5 w-36 opacity-70">
+        <!-- Windmill Divider -->
+        <div class="flex items-center justify-center gap-2.5 mt-5 w-44 opacity-85">
             <span class="h-[1px] flex-1 bg-navy-850/40"></span>
-            <span class="text-[#C5A059] text-xs">✦</span>
+            <div class="w-5 h-5 flex items-center justify-center">
+                <img alt="" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 12s;" src="{{ $ornDir }}/windmill-blades.png"/>
+            </div>
             <span class="h-[1px] flex-1 bg-navy-850/40"></span>
         </div>
     </section>
 
     <!-- =================================================================
-         3. QUOTE SECTION ("DUTCH POSTAL EPISTLE & BLESSINGS")
+         3. QUOTE SECTION ("ROYAL DELFT BLUE WINDMILL CERAMIC PLAQUE")
          ================================================================= -->
     <section class="relative py-12 px-6 bg-[#F5EFE6] border-y border-[#E8E1D5] overflow-hidden">
         <div class="relative z-10 max-w-[360px] mx-auto text-center">
-            <!-- Vintage Postal Stamp Header -->
-            <div class="w-16 mx-auto mb-3 reveal-scale drop-shadow-md">
-                <img alt="Nederland Stamp" class="w-full object-contain rotate-[-2deg]" src="{{ $ornDir }}/nederland-stamp.png"/>
+            <!-- Authentic 17th-Century Royal Delft Blue Windmill Ceramic Tile (Delfts Blauw Tegeltje) -->
+            <div class="w-24 sm:w-28 mx-auto mb-3.5 reveal-scale drop-shadow-md">
+                <img alt="Royal Delft Windmill Tile" class="w-full object-contain rounded-xl border border-navy-850/20 shadow-sm" src="{{ $ornDir }}/delft-windmill-tile.png"/>
             </div>
 
             <!-- Epistle Card -->
@@ -729,7 +733,7 @@
     </section>
 
     <!-- =================================================================
-         4. COUPLE SECTION ("DUTCH ARCHITECTURAL WINDOWS & SHUTTERS")
+         4. COUPLE SECTION ("DUTCH ARCHITECTURAL WINDOWS & LIVING WINDMILL")
          ================================================================= -->
     <section id="coupleSection" class="relative py-16 px-6 bg-alabaster-paper overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-10 reveal-up">
@@ -738,9 +742,11 @@
             <p class="text-xs text-[#5C6E82] mt-2 leading-relaxed">
                 Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengumumkan pernikahan kami:
             </p>
-            <div class="flex items-center justify-center gap-2 mt-3 w-40 mx-auto opacity-70">
+            <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
                 <span class="h-[1px] flex-1 bg-navy-850/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                    <img alt="" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 12s;" src="{{ $ornDir }}/windmill-blades.png"/>
+                </div>
                 <span class="h-[1px] flex-1 bg-navy-850/40"></span>
             </div>
         </div>
@@ -767,9 +773,16 @@
             <img alt="" class="anim-tulip-sway absolute -bottom-4 -left-4 w-20 pointer-events-none drop-shadow-sm" src="{{ $ornDir }}/delft-tulip-etching.png"/>
         </div>
 
-        <!-- Golden Ampersand Connector -->
+        <!-- Living Dutch Windmill Love Connector -->
         <div class="flex flex-col items-center justify-center my-4 reveal-scale">
-            <span class="font-vibes text-4xl text-[#C5A059]">&amp;</span>
+            <div class="relative w-[64px] h-[86px] drop-shadow-md">
+                <img alt="Dutch Windmill" class="w-full h-full object-contain" src="{{ $ornDir }}/windmill-tower.png"/>
+                <div class="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 w-[82px] h-[82px] pointer-events-none">
+                    <img alt="" class="w-full h-full object-contain anim-windmill-sails" src="{{ $ornDir }}/windmill-blades.png"/>
+                </div>
+            </div>
+            <span class="font-vibes text-3xl sm:text-4xl text-[#C5A059] -mt-1">&amp;</span>
+            <p class="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-medium mt-0.5">De Molen van Liefde</p>
         </div>
 
         <!-- BRIDE CARD -->
@@ -809,6 +822,13 @@
             <p class="text-xs text-delft-200 mt-1.5">
                 Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir pada:
             </p>
+            <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
+                <span class="h-[1px] flex-1 bg-[#E2C78A]/40"></span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                    <img alt="" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 12s;" src="{{ $ornDir }}/windmill-blades.png"/>
+                </div>
+                <span class="h-[1px] flex-1 bg-[#E2C78A]/40"></span>
+            </div>
         </div>
 
         <!-- Event Cards -->
@@ -825,7 +845,9 @@
                                 <h3 class="font-editorial font-bold text-lg text-navy-850 leading-tight">{{ $item['title'] }}</h3>
                             </div>
                         </div>
-                        <span class="text-navy-850/40 text-xl font-serif">✦</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <img alt="Windmill Sail" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 10s;" src="{{ $ornDir }}/windmill-blades.png"/>
+                        </div>
                     </div>
 
                     <div class="space-y-2.5 text-xs">
@@ -865,9 +887,11 @@
         <div class="text-center max-w-[330px] mx-auto mb-10 reveal-up">
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Ons Liefdesverhaal</span>
             <h2 class="font-editorial text-2xl font-bold text-navy-850 mt-1">Kisah Cinta Kami</h2>
-            <div class="flex items-center justify-center gap-2 mt-3 w-40 mx-auto opacity-70">
+            <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
                 <span class="h-[1px] flex-1 bg-navy-850/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                    <img alt="" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 12s;" src="{{ $ornDir }}/windmill-blades.png"/>
+                </div>
                 <span class="h-[1px] flex-1 bg-navy-850/40"></span>
             </div>
         </div>
@@ -875,9 +899,9 @@
         <div class="relative max-w-[350px] mx-auto pl-6 border-l-2 border-dashed border-[#C5A059]/60 space-y-6">
             @foreach ($stories as $idx => $st)
                 <div class="relative bg-white rounded-2xl border-2 border-navy-850 p-4 shadow-sm {{ $idx % 2 === 0 ? 'reveal-left' : 'reveal-right' }}">
-                    <!-- Canal Pin on Timeline Line -->
-                    <div class="absolute -left-[37px] top-5 w-6 h-6 rounded-full bg-navy-850 border-2 border-[#C5A059] flex items-center justify-center text-[#E2C78A] text-xs shadow">
-                        <span>✦</span>
+                    <!-- Canal Windmill Pin on Timeline Line -->
+                    <div class="absolute -left-[37px] top-5 w-6 h-6 rounded-full bg-navy-850 border-2 border-[#C5A059] flex items-center justify-center p-0.5 shadow">
+                        <img alt="" class="w-full h-full object-contain anim-windmill-sails" style="animation-duration: 12s;" src="{{ $ornDir }}/windmill-blades.png"/>
                     </div>
 
                     <div class="flex items-center justify-between mb-1.5">
@@ -1016,11 +1040,24 @@
     </section>
 
     <!-- =================================================================
-         10. CLOSING FOOTER
+         10. CLOSING FOOTER ("LAND VAN WINDMOLENS")
          ================================================================= -->
-    <footer class="relative pt-14 pb-28 px-6 bg-gradient-to-b from-navy-900 to-[#0A192B] text-white text-center overflow-hidden">
-        <!-- Postmark Watermark -->
-        <div class="w-20 mx-auto mb-3 opacity-60">
+    <footer class="relative pt-14 pb-28 px-6 bg-gradient-to-b from-navy-900 via-navy-850 to-[#0A192B] text-white text-center overflow-hidden">
+        <!-- Grand Living Dutch Windmill with Continuously Rotating Sails -->
+        <div class="relative w-[88px] h-[118px] mx-auto mb-4 reveal-scale">
+            <img alt="Grand Dutch Windmill" class="w-full h-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)]" src="{{ $ornDir }}/windmill-tower.png"/>
+            <div class="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 w-[114px] h-[114px] pointer-events-none">
+                <img alt="Rotating Windmill Sails" class="w-full h-full object-contain anim-windmill-sails" src="{{ $ornDir }}/windmill-blades.png"/>
+            </div>
+        </div>
+
+        <!-- Romantic Dutch Heritage Windmill Quote -->
+        <p class="font-editorial italic text-xs sm:text-sm text-[#E2C78A] max-w-[320px] mx-auto mb-4 leading-relaxed">
+            "Dua hati kini bersatu, berputar selaras layaknya kincir angin Belanda yang setia menyambut hembusan waktu."
+        </p>
+
+        <!-- Amsterdam Postmark Accent -->
+        <div class="w-16 mx-auto mb-3 opacity-60">
             <img alt="Amsterdam Postmark" class="w-full object-contain" src="{{ $ornDir }}/dutch-postmark.png"/>
         </div>
 
@@ -1031,7 +1068,7 @@
         <h3 class="font-editorial text-3xl text-white mt-1">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h3>
 
         <!-- Botanical Tulip Accent in Bottom Corner -->
-        <img alt="" class="anim-tulip-sway absolute -bottom-4 -right-4 w-32 pointer-events-none opacity-40" src="{{ $ornDir }}/delft-tulip-etching.png"/>
+        <img alt="" class="anim-tulip-sway absolute -bottom-4 -right-4 w-32 pointer-events-none opacity-30" src="{{ $ornDir }}/delft-tulip-etching.png"/>
     </footer>
 
     <!-- =================================================================
