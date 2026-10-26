@@ -8,6 +8,8 @@
         $couple = [
             'groom' => $groomName,
             'bride' => $brideName,
+            'groom_full' => $groomName . ', S.T.',
+            'bride_full' => $brideName . ', S.Ked.',
             'parents' => [
                 'groom' => $invitation->description ?? 'Putra pertama Bpk. H. Cecep Gunawan & Ibu Hj. Neneng Sartika',
                 'bride' => 'Putri kedua Bpk. Ir. H. Deden Suryatna & Ibu Hj. Elis Rohaeti',
@@ -30,13 +32,13 @@
             [
                 'title' => 'Akad Nikah & Sawer Panganten',
                 'time' => ($invitation->event_time ? \Carbon\Carbon::parse($invitation->event_time)->format('H:i') : '08:00') . ' - 10:00 WIB',
-                'note' => 'Upacara Adat Sunda (Sungkeman, Sawer, Meuleum Harupat & Nincak Endog)',
+                'note' => 'Upacara Adat Sunda: Sungkeman, Sawer Panganten, Meuleum Harupat & Nincak Endog',
                 'venue' => $event['location']
             ],
             [
                 'title' => 'Resepsi Pawiwahan Ageng',
                 'time' => '11:00 - 14:00 WIB',
-                'note' => 'Kacapi Suling, Rampak Gendang & Jamuan Prasmanan',
+                'note' => 'Kliningan Sunda, Kacapi Suling & Jamuan Prasmanan Khas Parahyangan',
                 'venue' => $event['location']
             ]
         ];
@@ -54,7 +56,7 @@
             $stories = [
                 ['title' => 'Patepang Munggaran', 'date' => 'Maret 2022', 'text' => 'Dina hawa tiis kota Parahyangan Bandung, takdir maparin lolongkrang pikeun patepang. Tina sawala leutik, mekar rasa asih anu suci.'],
                 ['title' => 'Neundeun Omong & Lamaran', 'date' => 'Januari 2025', 'text' => 'Kulawarga ageung ngariung dina suasana pinuh kabagjaan, nali jangji suci pageuh kancing carita mulia.'],
-                ['title' => 'Daup Pawiwahan', 'date' => 'Oktober 2026', 'text' => 'Kersaning Gusti Nu Maha Suci, dua manah dihijikeun dina beungkeutan suci ijab qabul nu sakral salalawasna.'],
+                ['title' => 'Daup Pawiwahan', 'date' => 'Agustus 2027', 'text' => 'Kersaning Gusti Nu Maha Suci, dua manah dihijikeun dina beungkeutan suci ijab qabul nu sakral salalawasna.'],
             ];
         }
 
@@ -121,6 +123,8 @@
         $couple = [
             'groom' => 'Prabu Dananjaya',
             'bride' => 'Sekar Larasati',
+            'groom_full' => 'Prabu Dananjaya, S.T.',
+            'bride_full' => 'Sekar Larasati, S.Ked.',
             'parents' => [
                 'groom' => 'Putra pertama Bpk. H. Cecep Gunawan & Ibu Hj. Neneng Sartika',
                 'bride' => 'Putri kedua Bpk. Ir. H. Deden Suryatna & Ibu Hj. Elis Rohaeti',
@@ -143,13 +147,13 @@
             [
                 'title' => 'Akad Nikah & Sawer Panganten',
                 'time' => '08:00 - 10:00 WIB',
-                'note' => 'Upacara Adat Sunda (Sungkeman, Sawer, Meuleum Harupat & Nincak Endog)',
+                'note' => 'Upacara Adat Sunda: Sungkeman, Sawer Panganten, Meuleum Harupat & Nincak Endog',
                 'venue' => 'Puri Parahyangan Grand Ballroom'
             ],
             [
                 'title' => 'Resepsi Pawiwahan Ageng',
                 'time' => '11:00 - 14:00 WIB',
-                'note' => 'Kacapi Suling, Rampak Gendang & Jamuan Prasmanan Parahyangan',
+                'note' => 'Kliningan Sunda, Kacapi Suling & Jamuan Prasmanan Khas Parahyangan',
                 'venue' => 'Puri Parahyangan Grand Ballroom'
             ]
         ];
@@ -157,7 +161,7 @@
         $stories = [
             ['title' => 'Patepang Munggaran', 'date' => 'Maret 2022', 'text' => 'Dina hawa tiis kota Parahyangan Bandung, takdir maparin lolongkrang pikeun patepang. Tina sawala leutik, mekar rasa asih anu suci.'],
             ['title' => 'Neundeun Omong & Lamaran', 'date' => 'Januari 2025', 'text' => 'Kulawarga ageung ngariung dina suasana pinuh kabagjaan, nali jangji suci pageuh kancing carita mulia.'],
-            ['title' => 'Daup Pawiwahan', 'date' => 'Oktober 2026', 'text' => 'Kersaning Gusti Nu Maha Suci, dua manah dihijikeun dina beungkeutan suci ijab qabul nu sakral salalawasna.'],
+            ['title' => 'Daup Pawiwahan', 'date' => 'Agustus 2027', 'text' => 'Kersaning Gusti Nu Maha Suci, dua manah dihijikeun dina beungkeutan suci ijab qabul nu sakral salalawasna.'],
         ];
 
         $gallery = [
@@ -204,7 +208,7 @@
     ];
     $dateObj = \Carbon\Carbon::parse($event['date_iso']);
     $dayName = $daysMap[$dateObj->format('l')] ?? 'Minggu';
-    $monthName = $monthsMap[(int)$dateObj->format('n')] ?? 'Oktober';
+    $monthName = $monthsMap[(int)$dateObj->format('n')] ?? 'Agustus';
     $formattedDate = $dayName . ', ' . $dateObj->format('d') . ' ' . $monthName . ' ' . $dateObj->format('Y');
     $formattedDateUpper = mb_strtoupper($formattedDate, 'UTF-8');
     $guestName = request('to', 'Tamu Undangan');
@@ -214,7 +218,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-    <title>Pernikahan Adat Sunda: {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</title>
+    <title>Pawiwahan Adat Sunda: {{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -230,25 +234,25 @@
                 extend: {
                     colors: {
                         emerald: {
-                            800: '#163E2B',
-                            850: '#123323',
-                            900: '#0E291C',
-                            950: '#081B12',
+                            750: '#14402A',
+                            800: '#0F3321',
+                            850: '#0B2719',
+                            900: '#071C12',
+                            950: '#04120B',
                         },
                         sage: {
                             50:  '#F4F8F5',
-                            100: '#E6EFE8',
-                            200: '#CDDFD2',
-                            300: '#A9C5B1',
-                            400: '#83A78D',
-                            500: '#638B6E',
+                            100: '#E5EFE7',
+                            200: '#C9DEC0',
+                            300: '#A4C6AC',
+                            400: '#7FA88B',
+                            500: '#5E896B',
                         },
                         sunda: {
-                            gold: '#C5A059',
-                            goldLight: '#E8D09B',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
                             goldDark: '#997633',
-                            parchment: '#FAF8F5',
-                            border: '#E3DCce',
+                            amber: '#C5A059',
                         }
                     },
                     fontFamily: {
@@ -265,76 +269,58 @@
     </script>
 
     <style>
-        :root {
-            --emerald-deep: #0E291C;
-            --emerald-card: #123323;
-            --sunda-gold: #C5A059;
-            --parchment: #FAF8F5;
-        }
-
         body {
-            background-color: #081B12;
-            color: #0E291C;
+            background-color: #030D08;
+            color: #E2ECE5;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Tactile Parahyangan silk paper texture */
-        .bg-sunda-paper {
-            background-color: #FAF8F5;
+        /* Sunda Royal Emerald Silk Background with Golden Damask Texture */
+        .bg-sunda-silk {
+            background-color: #071C12;
             background-image:
-                radial-gradient(#123323 0.6px, transparent 0.6px),
-                radial-gradient(#C5A059 0.6px, #FAF8F5 0.6px);
-            background-size: 26px 26px;
-            background-position: 0 0, 13px 13px;
+                radial-gradient(ellipse at 50% 0%, #14402A 0%, transparent 70%),
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+                radial-gradient(#D4AF37 0.75px, transparent 0.75px);
+            background-size: 100% 100%, 100% 100%, 30px 30px;
         }
 
-        /* Diagonal geometric division line */
-        .emerald-header-slant {
-            clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
+        /* Glassmorphism Emerald Cards */
+        .glass-emerald {
+            background: linear-gradient(135deg, rgba(15, 51, 33, 0.75) 0%, rgba(7, 28, 18, 0.85) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(243, 229, 171, 0.2);
         }
 
         /* Golden Siger Crown Shimmer Animation */
         @keyframes sigerGlow {
             0%, 100% {
-                filter: drop-shadow(0 6px 16px rgba(197, 160, 89, 0.45));
+                filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.45));
                 transform: translateY(0) scale(1);
             }
             50% {
-                filter: drop-shadow(0 10px 28px rgba(232, 208, 155, 0.75));
-                transform: translateY(-3px) scale(1.02);
+                filter: drop-shadow(0 14px 32px rgba(243, 229, 171, 0.75));
+                transform: translateY(-4px) scale(1.02);
             }
         }
         .anim-siger-glow {
             animation: sigerGlow 4.5s ease-in-out infinite;
         }
 
-        /* Ronce Melati Garland Sway */
-        @keyframes jasmineSway {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(2deg) translateX(1px); }
+        /* Golden Aura Pulse for CTA */
+        @keyframes goldPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5), 0 10px 25px rgba(0,0,0,0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(212, 175, 55, 0), 0 14px 30px rgba(212, 175, 55, 0.3);
+            }
         }
-        .anim-jasmine-sway {
-            animation: jasmineSway 5s ease-in-out infinite;
-            transform-origin: top center;
-        }
-
-        /* Living Arch Cinematic Breathing */
-        @keyframes livingArchZoom {
-            0%, 100% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.04) translate(-0.8%, -0.5%); }
-        }
-        .anim-arch-living {
-            animation: livingArchZoom 16s ease-in-out infinite;
-        }
-
-        /* Continuous Rotating Golden Emblem */
-        @keyframes spinEmblem {
-            0%   { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .anim-spin-emblem {
-            animation: spinEmblem 18s linear infinite;
+        .anim-gold-pulse {
+            animation: goldPulse 2.8s infinite;
         }
 
         /* Floating Jasmine Petals Drift */
@@ -359,26 +345,20 @@
             animation: gentleDrift linear infinite;
         }
 
-        /* Cover Opening Transition */
+        /* Cover Curtain / Unfold Transition */
         #coverOverlay {
-            transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.1s;
+            transition: transform 1.25s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.1s ease;
         }
         #coverOverlay.cover-open {
+            transform: translateY(-100%);
             opacity: 0;
-            visibility: hidden;
             pointer-events: none;
-        }
-        #coverOverlay .cover-zoom-target {
-            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        #coverOverlay.cover-open .cover-zoom-target {
-            transform: scale(1.12) translateY(-20px);
         }
 
         /* Scroll Reveal Animations */
         .reveal-up {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(32px);
             transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal-scale {
@@ -402,14 +382,14 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-[#C5A059] selection:text-white">
+<body class="antialiased selection:bg-[#D4AF37] selection:text-emerald-950">
 
 <!-- Audio Element -->
 <audio id="bgMusic" loop preload="auto" src="{{ $musicUrl }}"></audio>
 
 <!-- Floating Audio Button -->
-<button id="musicToggleBtn" type="button" onclick="toggleSundaMusic()" aria-label="Toggle Music" class="fixed bottom-16 right-3.5 z-40 w-10 h-10 rounded-full bg-emerald-900 text-[#E8D09B] border-2 border-[#C5A059] shadow-[0_8px_20px_rgba(14,41,28,0.5)] flex items-center justify-center hover:scale-105 transition">
-    <span id="musicIcon" class="material-symbols-outlined text-lg animate-spin" style="animation-duration: 9s;">music_note</span>
+<button id="musicToggleBtn" type="button" onclick="toggleSundaMusic()" aria-label="Toggle Music" class="fixed bottom-16 right-3.5 z-40 w-11 h-11 rounded-full bg-gradient-to-br from-emerald-800 to-emerald-950 text-[#F3E5AB] border-2 border-[#D4AF37] shadow-[0_8px_24px_rgba(0,0,0,0.6)] flex items-center justify-center hover:scale-105 active:scale-95 transition">
+    <span id="musicIcon" class="material-symbols-outlined text-xl animate-spin" style="animation-duration: 9s;">music_note</span>
 </button>
 
 <!-- Floating Jasmine Petals Drift (Background Ambience) -->
@@ -420,355 +400,320 @@
     <img alt="" class="drift-particle w-4 h-4 opacity-50" src="{{ $ornDir }}/jasmine-petal.png" style="top: 74%; animation-duration: 20s; animation-delay: 9s;"/>
 </div>
 
-<!-- Main App Container (Max-Width 430px for Luxury Mobile Experience) -->
-<div class="relative w-full max-w-[430px] mx-auto min-h-screen bg-sunda-paper shadow-2xl overflow-x-hidden">
+<!-- Main App Container (Max-Width 430px for High-End Mobile Experience) -->
+<div class="relative w-full max-w-[430px] mx-auto min-h-screen bg-sunda-silk shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-x-hidden text-[#E2ECE5]">
 
     <!-- =================================================================
-         1. EDITORIAL COVER OVERLAY ("SAMPUL SERAT ULEM SUNDA")
+         1. NEW CONCEPT COVER: "BALE KENCANA PASUNDAN" (FULL-SCREEN ROYAL TAPESTRY)
          ================================================================= -->
-    <div id="coverOverlay" class="fixed inset-0 z-50 mx-auto w-full max-w-[430px] h-full overflow-hidden flex flex-col justify-between select-none bg-[#FAF8F5]">
+    <div id="coverOverlay" class="fixed inset-0 z-50 mx-auto w-full max-w-[430px] h-full overflow-hidden flex flex-col justify-between items-center px-6 py-8 select-none bg-gradient-to-b from-[#05140C] via-[#092618] to-[#040F09]">
+        
+        <!-- Subtle Golden Ornate Frame Borders on Cover -->
+        <div class="pointer-events-none absolute inset-3 rounded-3xl border border-[#D4AF37]/30 shadow-inner"></div>
+        <div class="pointer-events-none absolute inset-4 rounded-3xl border border-[#D4AF37]/15"></div>
 
-        <!-- Top Emerald Header Background with Slanted Cut -->
-        <div class="absolute top-0 inset-x-0 h-[48%] bg-gradient-to-b from-[#0E291C] via-[#123323] to-[#163E2B] emerald-header-slant z-0 shadow-lg">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FAF8F5_1px,transparent_1px)] [background-size:18px_18px]"></div>
-        </div>
+        <!-- Corner Ornaments (Golden Filigree Accents) -->
+        <span class="absolute top-5 left-5 text-[#D4AF37]/60 text-xs">✦</span>
+        <span class="absolute top-5 right-5 text-[#D4AF37]/60 text-xs">✦</span>
+        <span class="absolute bottom-5 left-5 text-[#D4AF37]/60 text-xs">✦</span>
+        <span class="absolute bottom-5 right-5 text-[#D4AF37]/60 text-xs">✦</span>
 
-        <!-- ================= TOP HEADER BAR ================= -->
-        <div class="relative z-20 pt-6 sm:pt-7 px-5 sm:px-6 flex items-start justify-between">
-            <div class="flex-1 pr-2 cover-zoom-target">
-                <!-- Cultural Subtitle -->
-                <div class="flex items-center gap-2 mb-1.5">
-                    <span class="text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] uppercase text-sage-200 font-serif">Serat Ulem Pawiwahan</span>
-                    <span class="h-[1px] w-8 bg-[#C5A059]/60"></span>
-                </div>
-
-                <!-- Groom Name: Prabu -->
-                <h1 class="font-editorial text-[32px] sm:text-[38px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
-                    {{ $couple['groom'] }}
-                </h1>
-
-                <!-- Ampersand & Bride Name: Sekar -->
-                <div class="flex items-center gap-1.5 my-0.5">
-                    <span class="font-vibes text-2xl sm:text-3xl text-[#E8D09B] drop-shadow-sm leading-none">&amp;</span>
-                    <span class="font-editorial text-[32px] sm:text-[38px] text-white tracking-tight leading-[0.95] drop-shadow-sm">
-                        {{ $couple['bride'] }}
-                    </span>
-                </div>
-
-                <p class="text-[9px] uppercase tracking-[0.22em] text-[#C5A059] font-medium mt-1">
-                    Adat Sunda Parahyangan
-                </p>
+        <!-- ================= TOP HEADER: ROYAL SIGER CROWN & TITLE ================= -->
+        <div class="relative z-10 flex flex-col items-center text-center mt-2">
+            <!-- Grand Royal Siger Crown with Shimmering Glow -->
+            <div class="relative w-28 h-28 mb-1 anim-siger-glow">
+                <img alt="Mahkota Siger Sunda" class="w-full h-full object-contain drop-shadow-2xl" src="{{ $ornDir }}/sunda-siger-gold.png"/>
             </div>
 
-            <!-- Top Right: Royal Golden Siger Sunda Crown (Emblem with Shimmer Glow) -->
-            <div class="relative w-24 sm:w-28 flex flex-col items-center pointer-events-none cover-zoom-target">
-                <div class="relative anim-siger-glow">
-                    <img alt="Mahkota Siger Sunda"
-                         class="w-[88px] sm:w-[98px] drop-shadow-[0_12px_22px_rgba(0,0,0,0.45)]"
-                         src="{{ $ornDir }}/sunda-siger-gold.png"/>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= CENTER ARCH WINDOW (Royal Sundanese Emerald Couple) ================= -->
-        <div class="relative z-10 flex items-center justify-center -mt-2 sm:-mt-1 mb-1 px-4 cover-zoom-target">
-            <!-- Concentric Arch Gateway with White & Golden Borders -->
-            <div class="relative w-[215px] sm:w-[245px] h-[275px] sm:h-[310px] rounded-t-full rounded-b-2xl border-[3px] border-white shadow-[0_18px_40px_rgba(14,41,28,0.28)] overflow-hidden bg-[#123323]">
-                
-                <!-- Sundanese Couple Photo (Cinematic Living Micro-Motion) -->
-                <div class="w-full h-full relative overflow-hidden rounded-t-full rounded-b-2xl">
-                    <img alt="Panganten Sunda: Prabu & Sekar"
-                         class="w-full h-full object-cover object-center anim-arch-living brightness-[0.98]"
-                         src="{{ $bg['cover'] }}"/>
-
-                    <!-- Vignette & Sunset Golden Flare -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/45 via-transparent to-transparent pointer-events-none"></div>
-
-                    <!-- Inner Golden Arch Border -->
-                    <div class="pointer-events-none absolute inset-0 rounded-t-full rounded-b-2xl border border-[#C5A059]/50"></div>
-                </div>
-            </div>
-
-            <!-- Sacred Motto on Right Flank -->
-            <div class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center gap-1 opacity-85">
-                <span class="text-[#C5A059] text-base font-bold select-none leading-none">✦</span>
-                <div class="w-[1px] h-10 bg-gradient-to-b from-[#C5A059]/70 to-transparent"></div>
-            </div>
-        </div>
-
-        <!-- ================= BOTTOM CARD BODY (Warm Silk Parchment #FAF8F5) ================= -->
-        <div class="relative z-20 px-5 pb-6 pt-0 text-center cover-zoom-target">
-            <!-- Traditional Golden Divider -->
-            <div class="flex items-center justify-center gap-2 mb-2">
-                <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#C5A059]/70"></span>
-                <span class="w-1.5 h-1.5 rotate-45 bg-[#C5A059]"></span>
-                <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#C5A059]/70"></span>
-            </div>
-
-            <!-- Wedding Date -->
-            <p class="font-editorial text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-emerald-900 whitespace-nowrap">
-                {{ $formattedDateUpper }}
-            </p>
-
-            <!-- Guest Recipient Pill Badge -->
-            <div class="inline-flex flex-col items-center justify-center max-w-[240px] mx-auto mt-2 mb-3 py-1 px-4 rounded-xl bg-white/90 border border-[#E3DCce] shadow-sm">
-                <span class="text-[8.5px] uppercase tracking-[0.22em] text-[#638B6E] font-semibold">Kahatur Kanggo Wargi / Tamu:</span>
-                <span class="font-editorial font-bold text-xs text-emerald-950 truncate max-w-[210px] mt-0.5">{{ $guestName }}</span>
-            </div>
-
-            <!-- CTA Pill Button: "BUKA SERAT ULEM" -->
-            <div class="flex justify-center">
-                <button id="openInvitationBtn"
-                        type="button"
-                        onclick="openSundaInvitation()"
-                        class="group relative inline-flex items-center justify-center gap-2.5 w-full max-w-[240px] py-2.5 sm:py-3 px-6 rounded-full bg-gradient-to-r from-emerald-900 via-emerald-850 to-emerald-900 text-white font-serif font-semibold text-[11px] tracking-[0.22em] uppercase shadow-[0_10px_24px_rgba(14,41,28,0.4)] border border-[#C5A059]/70 hover:brightness-110 active:scale-[0.98] transition-all">
-                    <span>Buka Serat Ulem</span>
-                    <span class="text-[#E8D09B] text-xs group-hover:translate-x-1 transition-transform">›</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Bottom Corner Jasmine Accent -->
-        <div class="absolute -bottom-2 -right-2 w-16 pointer-events-none z-10 drop-shadow-sm opacity-60">
-            <img alt="" class="w-full object-contain anim-jasmine-sway" src="{{ $ornDir }}/jasmine-petal.png"/>
-        </div>
-    </div>
-
-    <!-- =================================================================
-         2. HERO SECTION ("BUMI PARAHYANGAN & HITUNG MUNDUR")
-         ================================================================= -->
-    <section id="heroSection" class="relative min-h-screen pt-8 sm:pt-10 pb-24 px-4 sm:px-5 bg-sunda-paper overflow-hidden flex flex-col items-center justify-start">
-
-        <!-- Top Insignia: Crossed Kujang Pasundan Crest -->
-        <div class="relative z-20 flex flex-col items-center text-center mt-1 mb-3.5 reveal-up">
-            <div class="relative w-[76px] h-[76px] mb-1 drop-shadow-md">
-                <img alt="Kujang Pasundan" class="w-full h-full object-contain" src="{{ $ornDir }}/sunda-kujang-gold.png"/>
-            </div>
-            <span class="text-[8px] sm:text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#C5A059] whitespace-nowrap">
-                Pawiwahan Adat Sunda • Bumi Parahyangan
+            <!-- Header Spaced Title -->
+            <span class="text-[10px] font-bold uppercase tracking-[0.32em] text-[#D4AF37] font-serif">
+                Pawiwahan Adat Sunda
             </span>
-            <h2 class="font-editorial text-xl sm:text-2xl font-bold text-emerald-950 mt-1 leading-snug">
-                <span>{{ $couple['groom'] }}</span>
-                <span class="font-vibes text-[#C5A059] text-2xl sm:text-3xl font-normal mx-1">&amp;</span>
-                <span>{{ $couple['bride'] }}</span>
-            </h2>
+            <div class="flex items-center justify-center gap-2 mt-1">
+                <span class="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#D4AF37]"></span>
+                <span class="text-[9px] uppercase tracking-[0.24em] text-sage-300">Bale Parahyangan</span>
+                <span class="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#D4AF37]"></span>
+            </div>
         </div>
 
-        <!-- Royal Arch Frame Couple Portrait -->
-        <div class="relative z-20 w-full max-w-[280px] sm:max-w-[310px] rounded-t-full rounded-b-2xl bg-white border-2 border-emerald-900 p-2 shadow-[0_16px_36px_rgba(14,41,28,0.16)] reveal-scale">
-            <div class="rounded-t-full rounded-b-xl border border-[#C5A059]/60 p-1 bg-white">
-                <div class="relative w-full h-[235px] sm:h-[275px] rounded-t-full rounded-b-lg overflow-hidden bg-emerald-950 shadow-inner">
-                    <img alt="{{ $couple['groom'] }} & {{ $couple['bride'] }}"
-                         class="w-full h-full object-cover object-top transition-transform duration-1000 hover:scale-105"
-                         src="{{ $bg['cover'] }}"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-emerald-950/15 pointer-events-none"></div>
+        <!-- ================= CENTER: MAJESTIC EMBOSSED PORTRAIT MEDALLION ================= -->
+        <div class="relative z-10 my-auto py-2 flex flex-col items-center">
+            <!-- Golden Double-Bordered Portrait Frame -->
+            <div class="relative p-2 rounded-2xl bg-gradient-to-b from-[#D4AF37]/50 via-emerald-800/40 to-[#D4AF37]/50 shadow-[0_20px_45px_rgba(0,0,0,0.65)]">
+                <div class="relative w-[190px] h-[240px] sm:w-[210px] sm:h-[265px] rounded-xl overflow-hidden border-2 border-[#F3E5AB]/70 bg-emerald-950">
+                    <img alt="Panganten Sunda" class="w-full h-full object-cover object-center filter brightness-105" src="{{ $bg['cover'] }}"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent pointer-events-none"></div>
 
-                    <!-- Badge inside arch -->
-                    <div class="absolute bottom-2.5 inset-x-3 text-center pointer-events-none">
-                        <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-950/75 backdrop-blur-sm border border-[#C5A059]/40 text-[8.5px] uppercase tracking-[0.22em] text-[#E8D09B] font-semibold drop-shadow">
-                            Pawiwahan Panganten
+                    <!-- Subtle bottom ribbon -->
+                    <div class="absolute bottom-2 inset-x-2 text-center pointer-events-none">
+                        <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-950/80 backdrop-blur-sm border border-[#D4AF37]/50 text-[8.5px] uppercase tracking-[0.25em] text-[#F3E5AB] font-semibold">
+                            Sampul Serat Ulem
                         </span>
                     </div>
                 </div>
             </div>
 
-            <!-- Date & Venue Inside Card -->
-            <div class="pt-2.5 pb-1 px-2 text-center">
-                <p class="font-editorial font-bold text-xs sm:text-sm text-emerald-950 tracking-wide">{{ $formattedDate }}</p>
-                <p class="text-[11px] text-[#4A6753] mt-0.5 flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-xs text-[#C5A059]">location_on</span>
-                    <span>{{ $event['location'] }}</span>
-                </p>
+            <!-- Couple Names in Majestic Editorial Serif -->
+            <div class="text-center mt-3">
+                <h1 class="font-editorial text-2xl sm:text-3xl text-white font-bold tracking-tight leading-tight drop-shadow-md">
+                    {{ $couple['groom'] }}
+                </h1>
+                <div class="flex items-center justify-center gap-2 -my-1">
+                    <span class="h-[1px] w-6 bg-[#D4AF37]/50"></span>
+                    <span class="font-vibes text-3xl text-[#D4AF37]">&amp;</span>
+                    <span class="h-[1px] w-6 bg-[#D4AF37]/50"></span>
+                </div>
+                <h1 class="font-editorial text-2xl sm:text-3xl text-white font-bold tracking-tight leading-tight drop-shadow-md">
+                    {{ $couple['bride'] }}
+                </h1>
             </div>
         </div>
 
-        <!-- 4 Glazed Emerald-Gold Countdown Tiles -->
-        <div class="relative z-20 w-full max-w-[295px] mt-4.5 sm:mt-5 reveal-up">
-            <p class="text-center text-[9px] font-bold uppercase tracking-[0.24em] text-emerald-900 mb-2">
+        <!-- ================= BOTTOM: GUEST BADGE & OPEN CTA BUTTON ================= -->
+        <div class="relative z-10 w-full flex flex-col items-center text-center mb-2">
+            <!-- Guest Badge -->
+            <div class="mb-3.5 py-1.5 px-5 rounded-2xl bg-emerald-950/80 border border-[#D4AF37]/40 backdrop-blur-md shadow-md max-w-[270px]">
+                <p class="text-[8.5px] uppercase tracking-[0.22em] text-sage-300 font-medium">Kahatur Rawuh Bapa/Ibu/Saderek:</p>
+                <p class="font-editorial font-bold text-sm text-[#F3E5AB] truncate mt-0.5">{{ $guestName }}</p>
+            </div>
+
+            <!-- Grand Golden Wax Seal Button -->
+            <button id="openInvitationBtn"
+                    type="button"
+                    onclick="openSundaInvitation()"
+                    class="group anim-gold-pulse relative inline-flex items-center justify-center gap-3 w-full max-w-[250px] py-3.5 px-6 rounded-full bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#C5A059] text-emerald-950 font-serif font-bold text-xs tracking-[0.22em] uppercase shadow-[0_12px_30px_rgba(212,175,55,0.4)] hover:brightness-110 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-base">drafts</span>
+                <span>Buka Serat Ulem</span>
+                <span class="text-xs group-hover:translate-x-1 transition-transform">›</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         2. HERO SECTION: "BALE SAWALA PARAHYANGAN"
+         ================================================================= -->
+    <section id="heroSection" class="relative min-h-screen pt-12 pb-24 px-5 flex flex-col items-center justify-start overflow-hidden">
+        
+        <!-- Insignia: Crossed Kujang Pasundan Crest -->
+        <div class="relative z-20 flex flex-col items-center text-center mb-5 reveal-up">
+            <div class="relative w-20 h-20 mb-2 drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]">
+                <img alt="Kujang Pasundan" class="w-full h-full object-contain" src="{{ $ornDir }}/sunda-kujang-gold.png"/>
+            </div>
+            <span class="text-[9px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">
+                Pangbagéa Pawiwahan • Adat Sunda
+            </span>
+            <div class="font-editorial text-2xl sm:text-3xl font-bold text-white mt-1 leading-snug">
+                <span>{{ $couple['groom'] }}</span>
+                <span class="font-vibes text-[#D4AF37] text-3xl font-normal mx-1">&amp;</span>
+                <span>{{ $couple['bride'] }}</span>
+            </div>
+        </div>
+
+        <!-- Full-Width Arch Pre-Wedding Portrait in Greenhouse -->
+        <div class="relative z-20 w-full max-w-[340px] rounded-3xl p-2.5 glass-emerald reveal-scale">
+            <div class="relative w-full h-[320px] rounded-2xl overflow-hidden shadow-2xl">
+                <img alt="{{ $couple['groom'] }} & {{ $couple['bride'] }}"
+                     class="w-full h-full object-cover object-center filter brightness-105 transition-transform duration-1000 hover:scale-105"
+                     src="{{ $bg['hero'] }}"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+
+                <!-- Floating Venue & Date inside Portrait Bottom -->
+                <div class="absolute bottom-3 inset-x-3 text-center pointer-events-none">
+                    <p class="font-editorial text-lg text-[#F3E5AB] font-bold tracking-wide drop-shadow">{{ $formattedDate }}</p>
+                    <p class="text-xs text-sage-200 mt-0.5 flex items-center justify-center gap-1 drop-shadow">
+                        <span class="material-symbols-outlined text-xs text-[#D4AF37]">location_on</span>
+                        <span>{{ $event['location'] }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modern Frosted Glass Countdown Ribbon (Ngetang Wanci) -->
+        <div class="relative z-20 w-full max-w-[340px] mt-6 reveal-up">
+            <p class="text-center text-[9.5px] font-bold uppercase tracking-[0.28em] text-[#D4AF37] mb-2.5">
                 Ngetang Wanci Bahagia
             </p>
-            <div id="countdownGrid" class="grid grid-cols-4 gap-2" data-date="{{ $event['date_iso'] }}T{{ $event['time'] }}:00">
-                @foreach ([['id' => 'cd-days', 'label' => 'Dinten', 'val' => '124'], ['id' => 'cd-hours', 'label' => 'Jam', 'val' => '08'], ['id' => 'cd-mins', 'label' => 'Menit', 'val' => '45'], ['id' => 'cd-secs', 'label' => 'Detik', 'val' => '30']] as $tile)
-                    <div class="relative bg-white rounded-xl border border-emerald-900 py-2 px-1 text-center shadow-[0_4px_12px_rgba(14,41,28,0.08)] overflow-hidden">
-                        <!-- Jasmine Corner Dots -->
-                        <span class="absolute top-1 left-1 w-1 h-1 rounded-full bg-[#C5A059]"></span>
-                        <span class="absolute top-1 right-1 w-1 h-1 rounded-full bg-[#C5A059]"></span>
-                        <span class="absolute bottom-1 left-1 w-1 h-1 rounded-full bg-[#C5A059]"></span>
-                        <span class="absolute bottom-1 right-1 w-1 h-1 rounded-full bg-[#C5A059]"></span>
-
-                        <span id="{{ $tile['id'] }}" class="block font-editorial font-bold text-lg sm:text-xl text-emerald-950 leading-none">{{ $tile['val'] }}</span>
-                        <span class="block text-[8px] font-bold uppercase tracking-[0.16em] text-[#C5A059] mt-1">{{ $tile['label'] }}</span>
+            <div id="countdownGrid" class="grid grid-cols-4 gap-2.5" data-date="{{ $event['date_iso'] }}T{{ $event['time'] }}:00">
+                @foreach ([['id' => 'cd-days', 'label' => 'Dinten', 'val' => '300'], ['id' => 'cd-hours', 'label' => 'Jam', 'val' => '11'], ['id' => 'cd-mins', 'label' => 'Menit', 'val' => '35'], ['id' => 'cd-secs', 'label' => 'Detik', 'val' => '20']] as $tile)
+                    <div class="relative rounded-2xl glass-emerald py-3 px-1 text-center overflow-hidden border border-[#D4AF37]/35 shadow-lg">
+                        <span class="absolute top-1.5 left-1.5 w-1 h-1 rounded-full bg-[#D4AF37]"></span>
+                        <span class="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-[#D4AF37]"></span>
+                        <span id="{{ $tile['id'] }}" class="block font-editorial font-bold text-xl sm:text-2xl text-[#F3E5AB] leading-none">{{ $tile['val'] }}</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-[0.16em] text-sage-300 mt-1.5">{{ $tile['label'] }}</span>
                     </div>
                 @endforeach
             </div>
         </div>
 
-        <!-- Kujang Filigree Divider -->
-        <div class="flex items-center justify-center gap-2.5 mt-5 w-44 opacity-85">
-            <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-            <div class="w-4 h-4 flex items-center justify-center">
-                <span class="text-[#C5A059] text-xs">✦</span>
-            </div>
-            <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
+        <!-- Divider with Gold Sunda Emblem -->
+        <div class="flex items-center justify-center gap-3 mt-8 w-44 opacity-80">
+            <span class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]"></span>
+            <span class="text-[#D4AF37] text-sm">✦</span>
+            <span class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]"></span>
         </div>
     </section>
 
     <!-- =================================================================
-         3. QUOTE SECTION ("PANGGEUING ASIH & AR-RUM")
+         3. QUOTE SECTION: "PANGGEUING ASIH" (SACRED SUNDANESE BLESSING)
          ================================================================= -->
-    <section class="relative py-12 px-6 bg-sage-100 border-y border-[#E3DCce] overflow-hidden">
+    <section class="relative py-14 px-6 overflow-hidden">
         <div class="relative z-10 max-w-[360px] mx-auto text-center">
-            <!-- Royal Sunda Siger Plaque -->
-            <div class="w-20 mx-auto mb-3 reveal-scale drop-shadow-md">
-                <img alt="Sunda Siger" class="w-full object-contain" src="{{ $ornDir }}/sunda-siger-gold.png"/>
+            
+            <!-- Floating Siger Sunda Crest -->
+            <div class="w-16 h-16 mx-auto mb-3 reveal-scale drop-shadow-[0_8px_18px_rgba(212,175,55,0.4)]">
+                <img alt="Siger Sunda" class="w-full h-full object-contain anim-siger-glow" src="{{ $ornDir }}/sunda-siger-gold.png"/>
             </div>
 
-            <!-- Sacred Sundanese Wedding Blessing Card -->
-            <div class="relative bg-white rounded-2xl border-2 border-emerald-900 p-6 shadow-[0_14px_32px_rgba(14,41,28,0.12)] reveal-up">
-                <div class="pointer-events-none absolute inset-1.5 rounded-xl border border-[#C5A059]/60"></div>
+            <!-- Sacred Blessing Card -->
+            <div class="relative glass-emerald rounded-3xl p-6 sm:p-7 shadow-2xl reveal-up">
+                <!-- Golden Corner Flourishes -->
+                <span class="absolute top-3 left-3 text-[#D4AF37]/60 text-xs">✦</span>
+                <span class="absolute top-3 right-3 text-[#D4AF37]/60 text-xs">✦</span>
+                <span class="absolute bottom-3 left-3 text-[#D4AF37]/60 text-xs">✦</span>
+                <span class="absolute bottom-3 right-3 text-[#D4AF37]/60 text-xs">✦</span>
 
-                <p class="font-editorial italic text-xs sm:text-sm leading-relaxed text-emerald-950 mb-3">
+                <span class="material-symbols-outlined text-2xl text-[#D4AF37] mb-2">format_quote</span>
+
+                <p class="font-editorial italic text-sm leading-relaxed text-[#F3E5AB] mb-4">
                     "Mugia Gusti Nu Maha Suci maparin barokah, ngahijikeun dua manah dina lambang asih sajati, runtut raut sauyunan sabobot sapihanean nepi ka pakena pakena."
                 </p>
 
-                <p class="font-editorial italic text-[11px] leading-relaxed text-[#4A6753]">
-                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
+                <div class="h-[1px] w-24 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent my-3.5"></div>
+
+                <p class="font-cormorant italic text-xs leading-relaxed text-sage-200">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
                 </p>
 
-                <div class="mt-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sage-50 border border-[#E3DCce]">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#C5A059]"></span>
-                    <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-emerald-900">QS. Ar-Rum : 21</span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#C5A059]"></span>
+                <div class="mt-5 inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-950/80 border border-[#D4AF37]/50 shadow-inner">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
+                    <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-[#F3E5AB]">QS. Ar-Rum : 21</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- =================================================================
-         4. COUPLE SECTION ("PANGANTEN PAMEGET & ISTRI")
+         4. COUPLE SECTION: "SANG MEMPELAI" (PANGANTEN PAMEGET & ISTRI)
          ================================================================= -->
-    <section id="coupleSection" class="relative py-16 px-6 bg-sunda-paper overflow-hidden">
+    <section id="coupleSection" class="relative py-16 px-6 overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-10 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Panganten Sauyunan</span>
-            <h2 class="font-editorial text-2xl font-bold text-emerald-950 mt-1">Sang Mempelai</h2>
-            <p class="text-xs text-[#4A6753] mt-2 leading-relaxed">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Panganten Sauyunan</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Sang Mempelai</h2>
+            <p class="text-xs text-sage-300 mt-2 leading-relaxed">
                 Kalayan panyalindungan sareng ridho Allah SWT, sim kuring seja nguningakeun tali asih pernikahan:
             </p>
-            <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-            </div>
         </div>
 
         <!-- GROOM CARD (Panganten Pameget) -->
-        <div class="relative max-w-[350px] mx-auto bg-white rounded-3xl border-2 border-emerald-900 p-5 mb-7 shadow-[0_12px_28px_rgba(14,41,28,0.10)] reveal-left">
-            <div class="flex items-center justify-center mb-4">
-                <div class="relative w-48 h-56 rounded-t-full rounded-b-2xl overflow-hidden border-2 border-emerald-900 shadow-md">
-                    <img alt="{{ $couple['groom'] }}" class="w-full h-full object-cover object-top" src="{{ $bg['groom'] }}"/>
-                    <div class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-emerald-950/75 to-transparent"></div>
-                    <span class="absolute bottom-2 inset-x-0 text-center text-[9px] font-bold uppercase tracking-[0.25em] text-[#E8D09B]">Panganten Pameget</span>
+        <div class="relative max-w-[350px] mx-auto glass-emerald rounded-3xl p-5 mb-8 shadow-2xl reveal-left">
+            <div class="relative w-full h-[280px] rounded-2xl overflow-hidden shadow-lg mb-4 border border-[#D4AF37]/40">
+                <img alt="{{ $couple['groom'] }}" class="w-full h-full object-cover object-top filter brightness-105" src="{{ $bg['groom'] }}"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent pointer-events-none"></div>
+
+                <div class="absolute top-3 right-3 w-10 h-10 rounded-full glass-emerald flex items-center justify-center border border-[#D4AF37]/50 shadow">
+                    <img alt="Kujang" class="w-6 h-6 object-contain" src="{{ $ornDir }}/sunda-kujang-gold.png"/>
                 </div>
+
+                <span class="absolute bottom-2.5 inset-x-0 text-center text-[9.5px] font-bold uppercase tracking-[0.25em] text-[#F3E5AB]">
+                    Panganten Pameget
+                </span>
             </div>
 
             <div class="text-center px-2">
-                <h3 class="font-editorial text-2xl sm:text-3xl text-emerald-950 font-bold">{{ $couple['groom'] }}</h3>
-                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#C5A059] mt-1">Putra Tercinta Ti</p>
-                <p class="font-cormorant text-base text-emerald-900 font-semibold mt-0.5">{{ $couple['parents']['groom'] }}</p>
-            </div>
+                <h3 class="font-editorial text-2xl text-white font-bold">{{ $couple['groom_full'] }}</h3>
+                <p class="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#D4AF37] mt-1.5">Putra Tercinta Ti:</p>
+                <p class="font-cormorant text-base text-sage-200 font-semibold mt-0.5">{{ $couple['parents']['groom'] }}</p>
 
-            <!-- Kujang Watermark Accent -->
-            <div class="absolute top-3 right-3 w-8 opacity-40 pointer-events-none">
-                <img alt="" class="w-full object-contain" src="{{ $ornDir }}/sunda-kujang-gold.png"/>
+                <!-- Instagram Button -->
+                <a href="{{ $couple['instagram']['groom'] }}" target="_blank" rel="noopener noreferrer" class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-950/70 border border-[#D4AF37]/40 text-[#F3E5AB] text-[11px] font-semibold hover:bg-emerald-900 transition">
+                    <span class="material-symbols-outlined text-sm">alternate_email</span>
+                    <span>{{ $couple['groom'] }}</span>
+                </a>
             </div>
         </div>
 
-        <!-- Royal Siger & Melati Love Connector -->
+        <!-- Royal Connector: "Dua Manah Ngajadi Hiji" -->
         <div class="flex flex-col items-center justify-center my-4 reveal-scale">
             <div class="relative w-16 h-16 drop-shadow-md">
-                <img alt="Mahkota Siger" class="w-full h-full object-contain" src="{{ $ornDir }}/sunda-siger-gold.png"/>
+                <img alt="Siger Sunda" class="w-full h-full object-contain anim-siger-glow" src="{{ $ornDir }}/sunda-siger-gold.png"/>
             </div>
-            <span class="font-vibes text-3xl sm:text-4xl text-[#C5A059] -mt-1">&amp;</span>
-            <p class="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-semibold mt-0.5">Dua Manah Ngajadi Hiji</p>
+            <span class="font-vibes text-3xl sm:text-4xl text-[#D4AF37] -mt-1">&amp;</span>
+            <p class="text-[9.5px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold mt-0.5">Dua Manah Ngajadi Hiji</p>
         </div>
 
         <!-- BRIDE CARD (Panganten Istri) -->
-        <div class="relative max-w-[350px] mx-auto bg-white rounded-3xl border-2 border-emerald-900 p-5 mt-3 shadow-[0_12px_28px_rgba(14,41,28,0.10)] reveal-right">
-            <div class="flex items-center justify-center mb-4">
-                <div class="relative w-48 h-56 rounded-t-full rounded-b-2xl overflow-hidden border-2 border-emerald-900 shadow-md">
-                    <img alt="{{ $couple['bride'] }}" class="w-full h-full object-cover object-top" src="{{ $bg['bride'] }}"/>
-                    <div class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-emerald-950/75 to-transparent"></div>
-                    <span class="absolute bottom-2 inset-x-0 text-center text-[9px] font-bold uppercase tracking-[0.25em] text-[#E8D09B]">Panganten Istri</span>
+        <div class="relative max-w-[350px] mx-auto glass-emerald rounded-3xl p-5 mt-4 shadow-2xl reveal-right">
+            <div class="relative w-full h-[280px] rounded-2xl overflow-hidden shadow-lg mb-4 border border-[#D4AF37]/40">
+                <img alt="{{ $couple['bride'] }}" class="w-full h-full object-cover object-top filter brightness-105" src="{{ $bg['bride'] }}"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent pointer-events-none"></div>
+
+                <div class="absolute top-3 right-3 w-10 h-10 rounded-full glass-emerald flex items-center justify-center border border-[#D4AF37]/50 shadow">
+                    <img alt="Siger" class="w-6 h-6 object-contain" src="{{ $ornDir }}/sunda-siger-gold.png"/>
                 </div>
+
+                <span class="absolute bottom-2.5 inset-x-0 text-center text-[9.5px] font-bold uppercase tracking-[0.25em] text-[#F3E5AB]">
+                    Panganten Istri
+                </span>
             </div>
 
             <div class="text-center px-2">
-                <h3 class="font-editorial text-2xl sm:text-3xl text-emerald-950 font-bold">{{ $couple['bride'] }}</h3>
-                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#C5A059] mt-1">Putri Tercinta Ti</p>
-                <p class="font-cormorant text-base text-emerald-900 font-semibold mt-0.5">{{ $couple['parents']['bride'] }}</p>
-            </div>
+                <h3 class="font-editorial text-2xl text-white font-bold">{{ $couple['bride_full'] }}</h3>
+                <p class="text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#D4AF37] mt-1.5">Putri Tercinta Ti:</p>
+                <p class="font-cormorant text-base text-sage-200 font-semibold mt-0.5">{{ $couple['parents']['bride'] }}</p>
 
-            <!-- Siger Watermark Accent -->
-            <div class="absolute top-3 right-3 w-8 opacity-40 pointer-events-none">
-                <img alt="" class="w-full object-contain" src="{{ $ornDir }}/sunda-siger-gold.png"/>
+                <!-- Instagram Button -->
+                <a href="{{ $couple['instagram']['bride'] }}" target="_blank" rel="noopener noreferrer" class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-950/70 border border-[#D4AF37]/40 text-[#F3E5AB] text-[11px] font-semibold hover:bg-emerald-900 transition">
+                    <span class="material-symbols-outlined text-sm">alternate_email</span>
+                    <span>{{ $couple['bride'] }}</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- =================================================================
-         5. EVENT SCHEDULE SECTION ("RUNTUYAN UPACARA & RESEPSI")
+         5. EVENT SCHEDULE SECTION: "RUNTUYAN UPACARA & RESEPSI"
          ================================================================= -->
-    <section id="eventSection" class="relative py-16 px-6 bg-gradient-to-b from-[#0E291C] via-[#123323] to-[#081B12] text-white overflow-hidden">
-        <!-- Linen Grid Texture -->
-        <div class="absolute inset-0 bg-[radial-gradient(#FAF8F5_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
-
+    <section id="eventSection" class="relative py-16 px-6 overflow-hidden">
         <div class="relative z-10 text-center max-w-[340px] mx-auto mb-9 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#E8D09B]">Wanci &amp; Tempat</span>
-            <h2 class="font-editorial text-2xl font-bold text-white mt-1">Runtuyan Acara</h2>
-            <p class="text-xs text-sage-200 mt-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Wanci &amp; Tempat</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Runtuyan Acara</h2>
+            <p class="text-xs text-sage-300 mt-2 leading-relaxed">
                 Mangrupikeun kahormatan sareng kabagjaan kanggo sim kuring upami Bapa/Ibu/Saderek kersa sumping dina:
             </p>
-            <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
-                <span class="h-[1px] flex-1 bg-[#E8D09B]/40"></span>
-                <span class="text-[#E8D09B] text-xs">✦</span>
-                <span class="h-[1px] flex-1 bg-[#E8D09B]/40"></span>
-            </div>
         </div>
 
         <!-- Schedule Cards -->
-        <div class="relative z-10 space-y-5 max-w-[350px] mx-auto">
+        <div class="relative z-10 space-y-6 max-w-[350px] mx-auto">
             @foreach ($schedule as $idx => $item)
-                <div class="relative bg-white text-emerald-950 rounded-2xl border-2 border-[#C5A059] p-5 shadow-[0_16px_35px_rgba(0,0,0,0.35)] {{ $idx % 2 === 0 ? 'reveal-left' : 'reveal-right' }}">
-                    <div class="flex items-center justify-between border-b border-[#E3DCce] pb-3 mb-3.5">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-900 text-[#E8D09B] flex items-center justify-center shadow">
-                                <span class="material-symbols-outlined text-xl">{{ $idx === 0 ? 'volunteer_activism' : 'celebration' }}</span>
+                <div class="relative glass-emerald rounded-3xl p-6 shadow-2xl {{ $idx % 2 === 0 ? 'reveal-left' : 'reveal-right' }}">
+                    <div class="flex items-center justify-between border-b border-[#D4AF37]/25 pb-3.5 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#C5A059] to-[#997633] text-emerald-950 flex items-center justify-center shadow-lg font-bold">
+                                <span class="material-symbols-outlined text-2xl">{{ $idx === 0 ? 'volunteer_activism' : 'celebration' }}</span>
                             </div>
                             <div>
-                                <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-[#C5A059] block">Runtuyan 0{{ $idx + 1 }}</span>
-                                <h3 class="font-editorial font-bold text-lg text-emerald-950 leading-tight">{{ $item['title'] }}</h3>
+                                <span class="text-[9px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] block">Bagian 0{{ $idx + 1 }}</span>
+                                <h3 class="font-editorial font-bold text-lg text-white leading-tight mt-0.5">{{ $item['title'] }}</h3>
                             </div>
-                        </div>
-                        <div class="w-6 h-6 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[#C5A059] text-xl">spa</span>
                         </div>
                     </div>
 
-                    <div class="space-y-2.5 text-xs">
-                        <div class="flex items-center gap-2.5 text-emerald-900">
-                            <span class="material-symbols-outlined text-base text-[#C5A059]">calendar_month</span>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex items-center gap-3 text-sage-200">
+                            <span class="material-symbols-outlined text-lg text-[#D4AF37]">calendar_month</span>
                             <span class="font-semibold">{{ $formattedDate }}</span>
                         </div>
-                        <div class="flex items-center gap-2.5 text-emerald-900">
-                            <span class="material-symbols-outlined text-base text-[#C5A059]">schedule</span>
+                        <div class="flex items-center gap-3 text-sage-200">
+                            <span class="material-symbols-outlined text-lg text-[#D4AF37]">schedule</span>
                             <span class="font-semibold">{{ $item['time'] }}</span>
                         </div>
-                        <div class="flex items-start gap-2.5 text-[#4A6753]">
-                            <span class="material-symbols-outlined text-base text-[#C5A059] mt-0.5">location_on</span>
+                        <div class="flex items-start gap-3 text-sage-300">
+                            <span class="material-symbols-outlined text-lg text-[#D4AF37] mt-0.5">location_on</span>
                             <div>
-                                <p class="font-bold text-emerald-950">{{ $item['venue'] }}</p>
-                                <p class="text-[11px] text-[#638B6E] mt-0.5">{{ $item['note'] }}</p>
-                                <p class="text-[11px] text-[#4A6753] mt-0.5">{{ $event['address'] }}</p>
+                                <p class="font-bold text-white text-sm">{{ $item['venue'] }}</p>
+                                <p class="text-[11px] text-[#F3E5AB] mt-0.5">{{ $item['note'] }}</p>
+                                <p class="text-[11px] text-sage-300 mt-0.5">{{ $event['address'] }}</p>
                             </div>
                         </div>
                     </div>
@@ -776,9 +721,9 @@
             @endforeach
         </div>
 
-        <!-- Google Maps Button -->
+        <!-- Google Maps Link Button -->
         <div class="relative z-10 max-w-[350px] mx-auto mt-7 text-center reveal-up">
-            <a href="{{ $event['maps_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#C5A059] via-[#E8D09B] to-[#C5A059] text-emerald-950 font-bold text-xs uppercase tracking-[0.2em] shadow-[0_10px_25px_rgba(197,160,89,0.35)] hover:brightness-105 transition">
+            <a href="{{ $event['maps_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#C5A059] text-emerald-950 font-bold text-xs uppercase tracking-[0.2em] shadow-[0_12px_28px_rgba(212,175,55,0.35)] hover:brightness-110 active:scale-95 transition">
                 <span class="material-symbols-outlined text-base">map</span>
                 <span>Pituduh Lokasi (Google Maps)</span>
             </a>
@@ -786,60 +731,60 @@
     </section>
 
     <!-- =================================================================
-         6. LOVE STORY TIMELINE ("RUNTUYAN ASIH")
+         6. LOVE STORY TIMELINE: "RUNTUYAN ASIH"
          ================================================================= -->
-    <section id="storySection" class="relative py-16 px-6 bg-sage-100 overflow-hidden">
+    <section id="storySection" class="relative py-16 px-6 overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-10 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Kisah Sauyunan</span>
-            <h2 class="font-editorial text-2xl font-bold text-emerald-950 mt-1">Runtuyan Asih</h2>
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Kisah Sauyunan</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Runtuyan Asih</h2>
             <div class="flex items-center justify-center gap-2.5 mt-3 w-40 mx-auto opacity-75">
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
+                <span class="text-[#D4AF37] text-xs">✦</span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
             </div>
         </div>
 
-        <div class="relative max-w-[350px] mx-auto pl-6 border-l-2 border-dashed border-[#C5A059]/70 space-y-6">
+        <div class="relative max-w-[350px] mx-auto pl-6 border-l-2 border-dashed border-[#D4AF37]/60 space-y-6">
             @foreach ($stories as $idx => $st)
-                <div class="relative bg-white rounded-2xl border-2 border-emerald-900 p-4 shadow-sm {{ $idx % 2 === 0 ? 'reveal-left' : 'reveal-right' }}">
+                <div class="relative glass-emerald rounded-2xl p-5 shadow-lg {{ $idx % 2 === 0 ? 'reveal-left' : 'reveal-right' }}">
                     <!-- Pin on Timeline -->
-                    <div class="absolute -left-[37px] top-5 w-6 h-6 rounded-full bg-emerald-900 border-2 border-[#C5A059] flex items-center justify-center text-[#E8D09B] shadow">
-                        <span class="text-[10px] font-bold">0{{ $idx + 1 }}</span>
+                    <div class="absolute -left-[37px] top-5 w-6 h-6 rounded-full bg-gradient-to-br from-[#C5A059] to-[#997633] border-2 border-white flex items-center justify-center text-emerald-950 font-bold text-[10px] shadow">
+                        {{ $idx + 1 }}
                     </div>
 
                     <div class="flex items-center justify-between mb-1.5">
-                        <span class="px-2.5 py-0.5 rounded-full bg-sage-50 text-emerald-900 font-bold text-[10px] tracking-wider uppercase border border-sage-200">
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-950 text-[#F3E5AB] font-bold text-[10px] tracking-wider uppercase border border-[#D4AF37]/40">
                             {{ $st['date'] }}
                         </span>
-                        <span class="text-[10px] font-editorial italic text-[#C5A059]">Babak 0{{ $idx + 1 }}</span>
+                        <span class="text-[10px] font-editorial italic text-[#D4AF37]">Babak 0{{ $idx + 1 }}</span>
                     </div>
-                    <h3 class="font-editorial font-bold text-base text-emerald-950">{{ $st['title'] }}</h3>
-                    <p class="text-xs text-[#4A6753] leading-relaxed mt-1.5">{{ $st['text'] }}</p>
+                    <h3 class="font-editorial font-bold text-base text-white">{{ $st['title'] }}</h3>
+                    <p class="text-xs text-sage-200 leading-relaxed mt-1.5">{{ $st['text'] }}</p>
                 </div>
             @endforeach
         </div>
     </section>
 
     <!-- =================================================================
-         7. GALLERY SECTION ("POTRET PANGANTEN")
+         7. GALLERY SECTION: "POTRET PANGANTEN"
          ================================================================= -->
-    <section id="gallerySection" class="relative py-16 px-6 bg-sunda-paper overflow-hidden">
+    <section id="gallerySection" class="relative py-16 px-6 overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-8 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Koleksi Foto</span>
-            <h2 class="font-editorial text-2xl font-bold text-emerald-950 mt-1">Potret Panganten</h2>
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Koleksi Foto</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Potret Panganten</h2>
             <div class="flex items-center justify-center gap-2 mt-3 w-40 mx-auto opacity-70">
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
+                <span class="text-[#D4AF37] text-xs">✦</span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 max-w-[360px] mx-auto">
+        <div class="grid grid-cols-2 gap-3.5 max-w-[360px] mx-auto">
             @foreach ($gallery as $idx => $imgUrl)
-                <div onclick="openLightbox('{{ $imgUrl }}')" class="group cursor-pointer relative overflow-hidden rounded-2xl border-2 border-emerald-900 bg-white p-1.5 shadow-md reveal-scale {{ $idx === 0 ? 'col-span-2 h-56' : 'h-40' }}">
+                <div onclick="openLightbox('{{ $imgUrl }}')" class="group cursor-pointer relative overflow-hidden rounded-2xl glass-emerald p-1.5 shadow-xl reveal-scale {{ $idx === 0 ? 'col-span-2 h-56' : 'h-44' }}">
                     <div class="w-full h-full rounded-xl overflow-hidden relative">
-                        <img alt="Gallery {{ $idx + 1 }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $imgUrl }}"/>
-                        <div class="absolute inset-0 bg-emerald-950/0 group-hover:bg-emerald-950/30 transition-colors flex items-center justify-center">
+                        <img alt="Gallery {{ $idx + 1 }}" class="w-full h-full object-cover filter brightness-105 transition-transform duration-700 group-hover:scale-110" src="{{ $imgUrl }}"/>
+                        <div class="absolute inset-0 bg-emerald-950/0 group-hover:bg-emerald-950/40 transition-colors flex items-center justify-center">
                             <span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl drop-shadow">zoom_in</span>
                         </div>
                     </div>
@@ -849,30 +794,30 @@
     </section>
 
     <!-- =================================================================
-         8. DIGITAL GIFT SECTION ("HATURAN TANDA ASIH")
+         8. DIGITAL GIFT SECTION: "HATURAN TANDA ASIH"
          ================================================================= -->
-    <section id="giftSection" class="relative py-16 px-6 bg-sage-100 border-t border-[#E3DCce] overflow-hidden">
+    <section id="giftSection" class="relative py-16 px-6 overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-8 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Kado Pawiwahan</span>
-            <h2 class="font-editorial text-2xl font-bold text-emerald-950 mt-1">Tanda Asih</h2>
-            <p class="text-xs text-[#4A6753] mt-1.5 leading-relaxed">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Kado Pawiwahan</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Tanda Asih</h2>
+            <p class="text-xs text-sage-300 mt-2 leading-relaxed">
                 Doa restu ti Bapa/Ibu/Saderek mangrupikeun kurnia pangéndahna kanggo sim kuring. Nanging saupami badé maparin tanda asih, tiasa ngalangkungan:
             </p>
         </div>
 
         <div class="space-y-4 max-w-[350px] mx-auto">
             @foreach ($gifts as $idx => $gift)
-                <div class="relative bg-white rounded-2xl border-2 border-emerald-900 p-5 shadow-sm reveal-up">
+                <div class="relative glass-emerald rounded-3xl p-5 shadow-2xl reveal-up">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="px-3 py-1 rounded-full bg-emerald-900 text-white text-[10px] font-bold uppercase tracking-wider">
+                        <span class="px-3.5 py-1 rounded-full bg-emerald-950 text-[#F3E5AB] text-[10px] font-bold uppercase tracking-wider border border-[#D4AF37]/40">
                             {{ $gift['bank'] }}
                         </span>
-                        <span class="material-symbols-outlined text-[#C5A059]">account_balance_wallet</span>
+                        <span class="material-symbols-outlined text-[#D4AF37]">account_balance_wallet</span>
                     </div>
-                    <p class="font-mono font-bold text-lg text-emerald-950 tracking-wider">{{ $gift['account'] }}</p>
-                    <p class="text-xs text-[#4A6753] mt-0.5">a.n. <strong class="text-emerald-950">{{ $gift['name'] }}</strong></p>
+                    <p class="font-mono font-bold text-lg text-white tracking-wider">{{ $gift['account'] }}</p>
+                    <p class="text-xs text-sage-300 mt-0.5">a.n. <strong class="text-[#F3E5AB]">{{ $gift['name'] }}</strong></p>
 
-                    <button type="button" onclick="copyBankAccount('{{ $gift['account'] }}', this)" class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-sage-50 hover:bg-sage-100 border border-sage-300 text-emerald-900 text-[11px] font-bold tracking-wider uppercase transition">
+                    <button type="button" onclick="copyBankAccount('{{ $gift['account'] }}', this)" class="mt-3.5 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-950 hover:bg-emerald-900 border border-[#D4AF37]/50 text-[#F3E5AB] text-[11px] font-bold tracking-wider uppercase transition">
                         <span class="material-symbols-outlined text-sm">content_copy</span>
                         <span class="copy-label">Salin Nomer Rékéning</span>
                     </button>
@@ -882,60 +827,60 @@
     </section>
 
     <!-- =================================================================
-         9. RSVP & WISHES SECTION ("BUKU TAMU & PANEDA RESTU")
+         9. RSVP & WISHES SECTION: "BUKU TAMU & PANEDA RESTU"
          ================================================================= -->
-    <section id="rsvpSection" class="relative py-16 px-6 bg-sunda-paper border-t border-[#E3DCce] overflow-hidden">
+    <section id="rsvpSection" class="relative py-16 px-6 overflow-hidden">
         <div class="text-center max-w-[330px] mx-auto mb-8 reveal-up">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A059]">Buku Tamu</span>
-            <h2 class="font-editorial text-2xl font-bold text-emerald-950 mt-1">Du'a &amp; Pangharepan</h2>
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]">Buku Tamu</span>
+            <h2 class="font-editorial text-3xl font-bold text-white mt-1">Du'a &amp; Pangharepan</h2>
             <div class="flex items-center justify-center gap-2 mt-3 w-40 mx-auto opacity-70">
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
-                <span class="text-[#C5A059] text-xs">✦</span>
-                <span class="h-[1px] flex-1 bg-emerald-900/40"></span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
+                <span class="text-[#D4AF37] text-xs">✦</span>
+                <span class="h-[1px] flex-1 bg-[#D4AF37]/50"></span>
             </div>
         </div>
 
-        <div class="max-w-[350px] mx-auto bg-white rounded-3xl border-2 border-emerald-900 p-5 shadow-sm reveal-up">
+        <div class="max-w-[350px] mx-auto glass-emerald rounded-3xl p-6 shadow-2xl reveal-up">
             @if(session('success'))
-                <div class="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-medium">
+                <div class="mb-4 p-3 rounded-xl bg-emerald-950 border border-emerald-500 text-[#F3E5AB] text-xs font-medium">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <form id="wishesForm" action="{{ isset($invitation) ? route('invitations.comments.store', $invitation->id) : '#' }}" method="POST" onsubmit="return handleWishSubmit(event)" class="space-y-3.5">
+            <form id="wishesForm" action="{{ isset($invitation) ? route('invitations.comments.store', $invitation->id) : '#' }}" method="POST" onsubmit="return handleWishSubmit(event)" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-950 mb-1">Jenengan Lengkep</label>
-                    <input type="text" name="name" id="wishName" required placeholder="Tuliskeun jenengan anjeun" class="w-full rounded-xl border-[#E3DCce] bg-white text-xs text-emerald-950 focus:border-emerald-900 focus:ring-emerald-900"/>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-200 mb-1">Jenengan Lengkep</label>
+                    <input type="text" name="name" id="wishName" required placeholder="Tuliskeun jenengan anjeun" class="w-full rounded-xl border-[#D4AF37]/40 bg-emerald-950/70 text-xs text-white placeholder-sage-400 focus:border-[#D4AF37] focus:ring-[#D4AF37]"/>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-950 mb-1">Konfirmasi Kasumpingan</label>
-                    <select name="status" id="wishStatus" class="w-full rounded-xl border-[#E3DCce] bg-white text-xs text-emerald-950 focus:border-emerald-900 focus:ring-emerald-900">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-200 mb-1">Konfirmasi Kasumpingan</label>
+                    <select name="status" id="wishStatus" class="w-full rounded-xl border-[#D4AF37]/40 bg-emerald-950/70 text-xs text-white focus:border-[#D4AF37] focus:ring-[#D4AF37]">
                         <option value="Hadir">Insya Allah Hadir</option>
                         <option value="Tidak Hadir">Hapunten Teu Tiasa Hadir</option>
                         <option value="Ragu-ragu">Masih Ragu</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-950 mb-1">Du'a &amp; Pangharepan</label>
-                    <textarea name="message" id="wishMessage" rows="3" required placeholder="Tuliskeun du'a restu anu haneut kanggo kadua mempelai..." class="w-full rounded-xl border-[#E3DCce] bg-white text-xs text-emerald-950 focus:border-emerald-900 focus:ring-emerald-900"></textarea>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-200 mb-1">Du'a &amp; Pangharepan</label>
+                    <textarea name="message" id="wishMessage" rows="3" required placeholder="Tuliskeun du'a restu anu haneut kanggo kadua mempelai..." class="w-full rounded-xl border-[#D4AF37]/40 bg-emerald-950/70 text-xs text-white placeholder-sage-400 focus:border-[#D4AF37] focus:ring-[#D4AF37]"></textarea>
                 </div>
-                <button type="submit" class="w-full py-3 px-5 rounded-full bg-emerald-900 text-white font-bold text-xs uppercase tracking-[0.2em] border border-[#C5A059] shadow-md hover:bg-emerald-950 transition">
+                <button type="submit" class="w-full py-3.5 px-5 rounded-full bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#C5A059] text-emerald-950 font-bold text-xs uppercase tracking-[0.2em] shadow-lg hover:brightness-110 active:scale-95 transition">
                     Kintun Du'a
                 </button>
             </form>
 
             <!-- Wishes Wall -->
-            <div id="wishesWall" class="mt-6 pt-4 border-t border-[#E3DCce] max-h-64 overflow-y-auto space-y-3 pr-1">
+            <div id="wishesWall" class="mt-6 pt-4 border-t border-[#D4AF37]/25 max-h-64 overflow-y-auto space-y-3 pr-1">
                 @foreach ($wishes as $w)
-                    <div class="p-3.5 rounded-2xl bg-[#F8F6F0] border border-[#E3DCce]">
+                    <div class="p-3.5 rounded-2xl bg-emerald-950/70 border border-[#D4AF37]/25">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-editorial font-bold text-xs text-emerald-950">{{ $w['name'] }}</span>
-                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase {{ $w['status'] === 'Hadir' ? 'bg-emerald-900 text-[#E8D09B]' : 'bg-slate-200 text-slate-700' }}">
+                            <span class="font-editorial font-bold text-xs text-[#F3E5AB]">{{ $w['name'] }}</span>
+                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase {{ $w['status'] === 'Hadir' ? 'bg-[#D4AF37] text-emerald-950' : 'bg-slate-700 text-slate-300' }}">
                                 {{ $w['status'] }}
                             </span>
                         </div>
-                        <p class="text-xs text-[#4A6753] leading-relaxed">{{ $w['message'] }}</p>
+                        <p class="text-xs text-sage-200 leading-relaxed">{{ $w['message'] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -943,57 +888,58 @@
     </section>
 
     <!-- =================================================================
-         10. CLOSING FOOTER ("PANUTUP & HATUR NUHUN")
+         10. CLOSING FOOTER: "PANUTUP & HATUR NUHUN"
          ================================================================= -->
-    <footer class="relative pt-14 pb-28 px-6 bg-gradient-to-b from-emerald-900 via-emerald-850 to-[#081B12] text-white text-center overflow-hidden">
-        <!-- Royal Siger Sunda Emblem -->
-        <div class="relative w-20 h-20 mx-auto mb-3 reveal-scale drop-shadow-xl">
+    <footer class="relative pt-16 pb-28 px-6 bg-gradient-to-b from-[#071C12] via-[#04100A] to-[#020704] text-white text-center overflow-hidden">
+        <!-- Royal Siger Sunda Emblem with Shimmer -->
+        <div class="relative w-24 h-24 mx-auto mb-4 reveal-scale drop-shadow-[0_10px_25px_rgba(212,175,55,0.5)]">
             <img alt="Sunda Siger" class="w-full h-full object-contain anim-siger-glow" src="{{ $ornDir }}/sunda-siger-gold.png"/>
         </div>
 
-        <p class="font-editorial italic text-xs sm:text-sm text-[#E8D09B] max-w-[320px] mx-auto mb-3 leading-relaxed">
+        <p class="font-editorial italic text-sm text-[#F3E5AB] max-w-[320px] mx-auto mb-3.5 leading-relaxed">
             "Hatur nuhun kana paneda sareng du'a restu ti wargi sadayana. Mugi janten amal kasaean sareng kenging balesan ti Gusti Allah SWT."
         </p>
 
-        <p class="text-xs text-sage-200 max-w-[300px] mx-auto leading-relaxed">
+        <p class="text-xs text-sage-300 max-w-[300px] mx-auto leading-relaxed">
             Mangrupikeun kahormatan sareng kabagjaan kanggo sim kuring sakulawargi saupami Bapa/Ibu/Saderek kersa sumping ngaluuhan ieu acara.
         </p>
-        <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#E8D09B] mt-4">Sim Kuring Nu Berbahagia</p>
-        <h3 class="font-editorial text-3xl text-white mt-1">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h3>
+        
+        <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-[#D4AF37] mt-5">Sim Kuring Nu Berbahagia</p>
+        <h3 class="font-editorial text-3xl text-white mt-1.5">{{ $couple['groom'] }} &amp; {{ $couple['bride'] }}</h3>
     </footer>
 
     <!-- =================================================================
-         STICKY BOTTOM NAVIGATION
+         STICKY BOTTOM NAVIGATION (LUXURY EMERALD & GOLD)
          ================================================================= -->
-    <nav class="fixed bottom-2.5 inset-x-0 z-40 mx-auto w-[90%] max-w-[350px] rounded-full bg-white/95 backdrop-blur-md border border-emerald-900 shadow-[0_10px_25px_rgba(14,41,28,0.25)] px-2 py-1.5 flex items-center justify-around">
-        <a href="#heroSection" class="flex flex-col items-center text-emerald-900 hover:text-[#C5A059] transition">
+    <nav class="fixed bottom-2.5 inset-x-0 z-40 mx-auto w-[90%] max-w-[350px] rounded-full bg-emerald-950/90 backdrop-blur-md border border-[#D4AF37]/50 shadow-[0_12px_30px_rgba(0,0,0,0.65)] px-2 py-1.5 flex items-center justify-around">
+        <a href="#heroSection" class="flex flex-col items-center text-sage-300 hover:text-[#F3E5AB] transition">
             <span class="material-symbols-outlined text-base">home</span>
             <span class="text-[8.5px] font-bold uppercase tracking-wider">Home</span>
         </a>
-        <a href="#coupleSection" class="flex flex-col items-center text-emerald-900 hover:text-[#C5A059] transition">
+        <a href="#coupleSection" class="flex flex-col items-center text-sage-300 hover:text-[#F3E5AB] transition">
             <span class="material-symbols-outlined text-base">favorite</span>
             <span class="text-[8.5px] font-bold uppercase tracking-wider">Mempelai</span>
         </a>
-        <a href="#eventSection" class="flex flex-col items-center text-emerald-900 hover:text-[#C5A059] transition">
+        <a href="#eventSection" class="flex flex-col items-center text-sage-300 hover:text-[#F3E5AB] transition">
             <span class="material-symbols-outlined text-base">event</span>
             <span class="text-[8.5px] font-bold uppercase tracking-wider">Acara</span>
         </a>
-        <a href="#gallerySection" class="flex flex-col items-center text-emerald-900 hover:text-[#C5A059] transition">
+        <a href="#gallerySection" class="flex flex-col items-center text-sage-300 hover:text-[#F3E5AB] transition">
             <span class="material-symbols-outlined text-base">photo_library</span>
             <span class="text-[8.5px] font-bold uppercase tracking-wider">Galeri</span>
         </a>
-        <a href="#rsvpSection" class="flex flex-col items-center text-emerald-900 hover:text-[#C5A059] transition">
+        <a href="#rsvpSection" class="flex flex-col items-center text-sage-300 hover:text-[#F3E5AB] transition">
             <span class="material-symbols-outlined text-base">chat</span>
             <span class="text-[8.5px] font-bold uppercase tracking-wider">Ucapan</span>
         </a>
     </nav>
 
     <!-- Lightbox Modal -->
-    <div id="lightboxModal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden bg-emerald-950/90 backdrop-blur-md items-center justify-center p-4">
+    <div id="lightboxModal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden bg-emerald-950/95 backdrop-blur-md items-center justify-center p-4">
         <button type="button" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center">
             <span class="material-symbols-outlined">close</span>
         </button>
-        <img id="lightboxImage" alt="Preview" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-[#C5A059] shadow-2xl object-contain" src=""/>
+        <img id="lightboxImage" alt="Preview" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-[#D4AF37] shadow-2xl object-contain" src=""/>
     </div>
 
 </div>
@@ -1010,7 +956,7 @@
             cover.classList.add('cover-open');
             setTimeout(() => {
                 cover.style.display = 'none';
-            }, 1050);
+            }, 1250);
         }
 
         playSundaMusic();
@@ -1020,7 +966,7 @@
             if (hero) {
                 hero.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 300);
+        }, 200);
     }
 
     function playSundaMusic() {
@@ -1098,7 +1044,7 @@
                     entry.target.classList.add('is-revealed');
                 }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.10 });
 
         reveals.forEach(el => observer.observe(el));
     }
@@ -1127,11 +1073,11 @@
         navigator.clipboard.writeText(account).then(() => {
             const label = btn.querySelector('.copy-label');
             const originalText = label ? label.textContent : '';
-            if (label) label.textContent = 'Kopong Disalin!';
-            btn.classList.add('bg-emerald-900', 'text-white');
+            if (label) label.textContent = 'Parantos Disalin!';
+            btn.classList.add('bg-emerald-800', 'text-[#F3E5AB]');
             setTimeout(() => {
                 if (label) label.textContent = originalText;
-                btn.classList.remove('bg-emerald-900', 'text-white');
+                btn.classList.remove('bg-emerald-800', 'text-[#F3E5AB]');
             }, 2000);
         });
     }
@@ -1148,20 +1094,20 @@
 
             const wall = document.getElementById('wishesWall');
             const card = document.createElement('div');
-            card.className = 'p-3.5 rounded-2xl bg-[#F8F6F0] border border-[#E3DCce]';
+            card.className = 'p-3.5 rounded-2xl bg-emerald-950/70 border border-[#D4AF37]/25';
             card.innerHTML = `
                 <div class="flex items-center justify-between mb-1">
-                    <span class="font-editorial font-bold text-xs text-emerald-950">${escapeHtml(name)}</span>
-                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${status === 'Hadir' ? 'bg-emerald-900 text-[#E8D09B]' : 'bg-slate-200 text-slate-700'}">
+                    <span class="font-editorial font-bold text-xs text-[#F3E5AB]">${escapeHtml(name)}</span>
+                    <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${status === 'Hadir' ? 'bg-[#D4AF37] text-emerald-950' : 'bg-slate-700 text-slate-300'}">
                         ${status}
                     </span>
                 </div>
-                <p class="text-xs text-[#4A6753] leading-relaxed">${escapeHtml(message)}</p>
+                <p class="text-xs text-sage-200 leading-relaxed">${escapeHtml(message)}</p>
             `;
             wall.prepend(card);
 
             document.getElementById('wishesForm').reset();
-            alert('Hatur nuhun! Du\'a sareng ucapan anjeun parantos kakintun.');
+            alert('Hatur nuhun! Du\'a sareng pangharepan anjeun parantos kakintun.');
             return false;
         @else
             return true;
