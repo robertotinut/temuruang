@@ -306,9 +306,33 @@
         <!-- 1. COVER (CARD 1: CELESTIAL MOON COVER)    -->
         <!-- ========================================== -->
         <section id="cover-screen" class="fixed inset-0 z-50 flex flex-col justify-between max-w-[460px] mx-auto bg-[#172635] transition-transform duration-1000 ease-in-out overflow-hidden shadow-2xl">
-            <!-- Artwork scene locked to 682:1024 so typography stays exactly on the moon -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 h-full pointer-events-none select-none" style="width:max(100%, 66.6dvh);">
-                <img src="{{ $imgDir }}/celestial-moon-clean.jpg" alt="Celestial Moon" class="absolute inset-0 w-full h-full object-cover"/>
+            <!-- Artwork scene (682:1024) composed from individual assets in wedding-new-2 -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 h-full pointer-events-none select-none overflow-hidden" style="width:max(100%, 66.6dvh);background:radial-gradient(ellipse at 50% 30%,#2a3b55 0%,#1b2740 45%,#141d30 100%);">
+                <div class="absolute inset-0" style="background-image:radial-gradient(1px 1px at 12% 8%,#fff,transparent),radial-gradient(1px 1px at 30% 4%,#fff,transparent),radial-gradient(1.5px 1.5px at 58% 6%,#f5e3b0,transparent),radial-gradient(1px 1px at 72% 3%,#fff,transparent),radial-gradient(1px 1px at 88% 10%,#fff,transparent),radial-gradient(1.5px 1.5px at 94% 22%,#fff,transparent),radial-gradient(1px 1px at 8% 22%,#fff,transparent),radial-gradient(1px 1px at 46% 2%,#fff,transparent),radial-gradient(1px 1px at 82% 28%,#f5e3b0,transparent);"></div>
+                <img src="{{ $imgDir }}/layers/moon.webp" alt="" class="absolute max-w-none" style="left:14%;top:9.5%;width:72%;filter:drop-shadow(0 0 30px rgba(255,236,190,.45));"/>
+                <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="" class="absolute max-w-none" style="left:2%;top:24%;width:40%;transform:scaleX(-1);opacity:.95;"/>
+                <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="" class="absolute max-w-none" style="left:74%;top:13%;width:36%;"/>
+                <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="" class="absolute max-w-none" style="left:72%;top:28%;width:36%;width:34%;"/>
+                <img src="{{ $imgDir }}/layers/mountains.webp" alt="" class="absolute max-w-none" style="left:-4%;top:50%;width:108%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
+                <img src="{{ $imgDir }}/layers/cliff-pagoda.webp" alt="" class="absolute max-w-none" style="left:16%;top:57%;width:20%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
+                <img src="{{ $imgDir }}/layers/pagoda.webp" alt="" class="absolute max-w-none" style="left:60%;top:40%;width:52%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 30%);mask-image:linear-gradient(90deg,transparent 0%,#000 30%);"/>
+                <img src="{{ $imgDir }}/layers/waterfall.webp" alt="" class="absolute max-w-none" style="left:46%;top:62%;width:50%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
+                <img src="{{ $imgDir }}/layers/rocks.webp" alt="" class="absolute max-w-none" style="left:54%;top:70%;width:50%;"/>
+                <img src="{{ $imgDir }}/layers/pine.webp" alt="" class="absolute max-w-none" style="left:26%;top:66%;width:32%;"/>
+                <img src="{{ $imgDir }}/layers/waves.webp" alt="" class="absolute max-w-none" style="left:40%;top:74%;width:70%;opacity:.95;"/>
+                <img src="{{ $imgDir }}/layers/rail-plain.webp" alt="" class="absolute max-w-none" style="left:30%;top:70%;width:48%;transform:rotate(6deg);"/>
+                <img src="{{ $imgDir }}/layers/rail-flower-r.webp" alt="" class="absolute max-w-none" style="left:58%;top:76%;width:46%;transform:rotate(6deg);"/>
+                <img src="{{ $imgDir }}/layers/rail-flower-l.webp" alt="" class="absolute max-w-none" style="left:14%;top:68%;width:44%;transform:rotate(6deg);"/>
+                <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="" class="absolute max-w-none" style="left:-10%;top:-1%;width:52%;"/>
+                <img src="{{ $imgDir }}/layers/blossom-top.webp" alt="" class="absolute max-w-none" style="left:-8%;top:0%;width:40%;"/>
+                <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="" class="absolute max-w-none" style="left:-16%;top:34%;width:32%;transform:rotate(-15deg);"/>
+                <img src="{{ $imgDir }}/layers/flower-bush.webp" alt="" class="absolute max-w-none" style="left:-12%;top:64%;width:50%;"/>
+                <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="" class="absolute max-w-none" style="left:-12%;top:70%;width:40%;"/>
+                <img src="{{ $imgDir }}/layers/waves.webp" alt="" class="absolute max-w-none" style="left:-8%;top:85%;width:116%;"/>
+                <img src="{{ $imgDir }}/layers/pendant.webp" alt="" class="absolute max-w-none" style="left:44.5%;top:-1.5%;width:11%;transform-origin:50% 0;animation:pendantSway 5s ease-in-out infinite;"/>
+                <img src="{{ $imgDir }}/layers/crane.webp" alt="" class="absolute max-w-none" style="left:60%;top:3%;width:36%;animation:craneGlide 6s ease-in-out infinite;"/>
+                <img src="{{ $imgDir }}/layers/petals.webp" alt="" class="absolute max-w-none" style="left:10%;top:30%;width:16%;animation:petalsDrift 7s ease-in-out infinite;"/>
+                <img src="{{ $imgDir }}/layers/petals.webp" alt="" class="absolute max-w-none" style="left:62%;top:52%;width:14%;transform:rotate(30deg);opacity:.85;"/>
                 <div class="absolute left-0 right-0 text-center" style="top:22.6%;color:#8B6327;">
                     <p class="font-serif" style="font-size:2.1dvh;letter-spacing:.12em;color:#3a3a3a;">THE WEDDING OF</p>
                     <h1 class="font-serif" style="font-size:6.2dvh;line-height:1;margin-top:1.6dvh;font-weight:500;letter-spacing:.02em;">{{ strtoupper($couple['bride']) }}</h1>
