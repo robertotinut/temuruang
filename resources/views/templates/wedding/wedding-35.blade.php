@@ -306,63 +306,24 @@
         <!-- 1. COVER (CARD 1: CELESTIAL MOON COVER)    -->
         <!-- ========================================== -->
         <section id="cover-screen" class="fixed inset-0 z-50 flex flex-col justify-between max-w-[460px] mx-auto bg-[#172635] transition-transform duration-1000 ease-in-out overflow-hidden shadow-2xl">
-            <!-- Master Background Landscape (Luminous Full Moon, Pagoda Palace, Mountains, Waterfall, Clouds, Bridge) -->
-            <div class="absolute inset-0 z-0 pointer-events-none">
-                <img src="{{ $imgDir }}/celestial-moon-bg.jpg" alt="Celestial Moon Landscape" class="w-full h-full object-cover object-top sm:object-center select-none"/>
-            </div>
-
-            <!-- Animated Layer: Flying Red-Crowned Crane (Top Right) -->
-            <div class="absolute inset-0 z-[1] pointer-events-none animate-crane">
-                <img src="{{ $imgDir }}/crane-layer.png" alt="Celestial Crane" class="w-full h-full object-cover object-top sm:object-center select-none"/>
-            </div>
-
-            <!-- Animated Layer: Top Center Hanging Gold Pendant / Tassel -->
-            <div class="absolute inset-0 z-[2] pointer-events-none animate-pendant">
-                <img src="{{ $imgDir }}/pendant-layer.png" alt="Hanging Tassel" class="w-full h-full object-cover object-top sm:object-center select-none"/>
-            </div>
-
-            <!-- Animated Layer: Falling Red Flower Petals -->
-            <div class="absolute inset-0 z-[3] pointer-events-none animate-petals">
-                <img src="{{ $imgDir }}/petals-layer.png" alt="Flower Petals" class="w-full h-full object-cover object-top sm:object-center select-none"/>
-            </div>
-
-            <!-- Top spacing / spacer so vertical flex layout stays well-balanced on all phone screens -->
-            <div class="relative z-10 pt-4 sm:pt-6"></div>
-
-            <!-- Center Typography - Perfectly Centered on the Luminous Full Moon -->
-            <div class="relative z-20 px-6 text-center select-none -mt-4 sm:-mt-8">
-                <!-- Subtitle: THE WEDDING OF -->
-                <p class="font-cinzel text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.35em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)] mb-2">
-                    THE WEDDING OF
-                </p>
-
-                <!-- Bride Name -->
-                <h1 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
-                    {{ $couple['bride'] }}
-                </h1>
-
-                <!-- Ampersand -->
-                <div class="my-0.5 sm:my-1 flex items-center justify-center">
-                    <span class="font-serif italic text-2xl sm:text-3xl font-normal text-[#8A6126] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">&amp;</span>
-                </div>
-
-                <!-- Groom Name -->
-                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
-                    {{ $couple['groom'] }}
-                </h2>
-
-                <!-- Date with ornamental line accents -->
-                <div class="mt-2.5 sm:mt-3.5 flex items-center justify-center gap-3">
-                    <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
-                    <p class="font-cinzel text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)]">
-                        21 . 12 . 2026
-                    </p>
-                    <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
+            <!-- Artwork scene locked to 682:1024 so typography stays exactly on the moon -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 h-full pointer-events-none select-none" style="width:max(100%, 66.6dvh);">
+                <img src="{{ $imgDir }}/celestial-moon-clean.jpg" alt="Celestial Moon" class="absolute inset-0 w-full h-full object-cover"/>
+                <div class="absolute left-0 right-0 text-center" style="top:22.6%;color:#8B6327;">
+                    <p class="font-serif" style="font-size:2.1dvh;letter-spacing:.12em;color:#3a3a3a;">THE WEDDING OF</p>
+                    <h1 class="font-serif" style="font-size:6.2dvh;line-height:1;margin-top:1.6dvh;font-weight:500;letter-spacing:.02em;">{{ strtoupper($couple['bride']) }}</h1>
+                    <div class="flex items-center justify-center" style="gap:2dvh;margin:.3dvh 0;">
+                        <span style="height:1px;width:13dvh;background:#B8945A;"></span>
+                        <span class="font-serif" style="font-size:4.6dvh;line-height:1;">&amp;</span>
+                        <span style="height:1px;width:13dvh;background:#B8945A;"></span>
+                    </div>
+                    <h2 class="font-serif" style="font-size:6.2dvh;line-height:1;font-weight:500;letter-spacing:.02em;">{{ strtoupper($couple['groom']) }}</h2>
+                    <p class="font-serif" style="font-size:2.2dvh;letter-spacing:.12em;margin-top:2.6dvh;color:#3a3a3a;">21 . 12 . 2026</p>
                 </div>
             </div>
 
             <!-- Bottom Guest Greeting & Open Button - Positioned over swirling blue wave clouds -->
-            <div class="relative z-20 px-6 pb-6 sm:pb-8 text-center flex flex-col items-center">
+            <div class="relative z-20 mt-auto px-6 pb-6 sm:pb-8 text-center flex flex-col items-center">
                 <!-- Recipient Pill (frosted midnight glass with gold trim) -->
                 <div class="w-full max-w-[270px] bg-[#142330]/85 backdrop-blur-md border border-[#C5A059]/45 rounded-full py-2 px-4 mb-3 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
                     <p class="text-[9px] uppercase tracking-wider text-[#DFBF77] font-cinzel font-medium">Kepada Yth. Tamu Undangan:</p>
