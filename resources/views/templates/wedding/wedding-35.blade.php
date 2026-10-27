@@ -225,7 +225,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Ethereal wind animation */
+        /* Ethereal wind & celestial animations */
         @keyframes floatCloud {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-6px) rotate(1deg); }
@@ -242,6 +242,24 @@
             100% { transform: translate(0, 0); }
         }
 
+        /* Crane floating glide animation */
+        @keyframes craneGlide {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) translateX(3px) rotate(-1deg); }
+        }
+
+        /* Top tassel / pendant swaying pendulum animation */
+        @keyframes pendantSway {
+            0%, 100% { transform: rotate(0deg); transform-origin: 50% 0%; }
+            50% { transform: rotate(1.8deg); transform-origin: 50% 0%; }
+        }
+
+        /* Falling red flower petals gentle drift */
+        @keyframes petalsDrift {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.95; }
+            50% { transform: translateY(5px) translateX(-3px); opacity: 1; }
+        }
+
         .animate-float {
             animation: floatCloud 6s ease-in-out infinite;
         }
@@ -252,6 +270,18 @@
 
         .animate-wind {
             animation: windDrift 8s ease-in-out infinite;
+        }
+
+        .animate-crane {
+            animation: craneGlide 6s ease-in-out infinite;
+        }
+
+        .animate-pendant {
+            animation: pendantSway 5s ease-in-out infinite;
+        }
+
+        .animate-petals {
+            animation: petalsDrift 7s ease-in-out infinite;
         }
 
         /* Custom scrollbar */
@@ -273,56 +303,75 @@
     <div class="mobile-canvas relative">
 
         <!-- ========================================== -->
-        <!-- 1. COVER (CARD 1: COVER)                   -->
+        <!-- 1. COVER (CARD 1: CELESTIAL MOON COVER)    -->
         <!-- ========================================== -->
-        <section id="cover-screen" class="fixed inset-0 z-50 flex flex-col justify-between max-w-[460px] mx-auto bg-[#1C2C39] transition-transform duration-1000 ease-in-out overflow-hidden shadow-2xl">
-            <!-- Background Candi Bentar Landscape (Exact Gateway in Mist) -->
-            <div class="absolute inset-0 z-0">
-                <img src="{{ $imgDir }}/candi-bentar-bg.jpg" alt="Candi Bentar Negara Angin" class="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05]"/>
-                <!-- Subtle Gradient Vignette -->
-                <div class="absolute inset-0 bg-gradient-to-b from-[#182733]/50 via-transparent to-[#182733]/85 pointer-events-none"></div>
+        <section id="cover-screen" class="fixed inset-0 z-50 flex flex-col justify-between max-w-[460px] mx-auto bg-[#172635] transition-transform duration-1000 ease-in-out overflow-hidden shadow-2xl">
+            <!-- Master Background Landscape (Luminous Full Moon, Pagoda Palace, Mountains, Waterfall, Clouds, Bridge) -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="{{ $imgDir }}/celestial-moon-bg.jpg" alt="Celestial Moon Landscape" class="w-full h-full object-cover object-top sm:object-center select-none"/>
             </div>
 
-            <!-- Top Hanging Lantern / Pendant -->
-            <div class="relative z-10 flex justify-center pt-3">
-                <img src="{{ $ornDir }}/hanging-pendant.svg" alt="Pendant" class="w-9 h-16 opacity-90 filter drop-shadow-md animate-wind"/>
+            <!-- Animated Layer: Flying Red-Crowned Crane (Top Right) -->
+            <div class="absolute inset-0 z-[1] pointer-events-none animate-crane">
+                <img src="{{ $imgDir }}/crane-layer.png" alt="Celestial Crane" class="w-full h-full object-cover object-top sm:object-center select-none"/>
             </div>
 
-            <!-- Center Typography (Exact Match to Card 1: THE WEDDING OF / NADHIRA & FARREL / 21 . 12 . 2026) -->
-            <div class="relative z-10 px-6 text-center -mt-10">
-                <!-- Subtitle -->
-                <p class="font-cinzel text-[11px] uppercase tracking-[0.35em] text-[#EBE3D5] opacity-95 drop-shadow-md mb-2">
+            <!-- Animated Layer: Top Center Hanging Gold Pendant / Tassel -->
+            <div class="absolute inset-0 z-[2] pointer-events-none animate-pendant">
+                <img src="{{ $imgDir }}/pendant-layer.png" alt="Hanging Tassel" class="w-full h-full object-cover object-top sm:object-center select-none"/>
+            </div>
+
+            <!-- Animated Layer: Falling Red Flower Petals -->
+            <div class="absolute inset-0 z-[3] pointer-events-none animate-petals">
+                <img src="{{ $imgDir }}/petals-layer.png" alt="Flower Petals" class="w-full h-full object-cover object-top sm:object-center select-none"/>
+            </div>
+
+            <!-- Top spacing / spacer so vertical flex layout stays well-balanced on all phone screens -->
+            <div class="relative z-10 pt-4 sm:pt-6"></div>
+
+            <!-- Center Typography - Perfectly Centered on the Luminous Full Moon -->
+            <div class="relative z-20 px-6 text-center select-none -mt-4 sm:-mt-8">
+                <!-- Subtitle: THE WEDDING OF -->
+                <p class="font-cinzel text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.35em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)] mb-2">
                     THE WEDDING OF
                 </p>
 
-                <!-- Couple Names (Uppercase Classical Serif in Gold Metallic) -->
-                <h1 class="font-serif text-3xl sm:text-4xl font-semibold tracking-[0.18em] uppercase text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.8)] leading-tight">
-                    <span class="block gold-metallic-text">NADHIRA</span>
-                    <span class="block text-2xl font-light italic text-[#EBE3D5] my-0.5 lowercase">&amp;</span>
-                    <span class="block gold-metallic-text">FARREL</span>
+                <!-- Bride Name -->
+                <h1 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
+                    {{ $couple['bride'] }}
                 </h1>
 
-                <!-- Date -->
-                <div class="mt-3 flex items-center justify-center gap-3">
-                    <span class="h-[1px] w-8 bg-[#C5A059]/70"></span>
-                    <p class="font-cinzel text-xs tracking-[0.3em] text-[#F3EFE6] drop-shadow-md font-light">
+                <!-- Ampersand -->
+                <div class="my-0.5 sm:my-1 flex items-center justify-center">
+                    <span class="font-serif italic text-2xl sm:text-3xl font-normal text-[#8A6126] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">&amp;</span>
+                </div>
+
+                <!-- Groom Name -->
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
+                    {{ $couple['groom'] }}
+                </h2>
+
+                <!-- Date with ornamental line accents -->
+                <div class="mt-2.5 sm:mt-3.5 flex items-center justify-center gap-3">
+                    <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
+                    <p class="font-cinzel text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)]">
                         21 . 12 . 2026
                     </p>
-                    <span class="h-[1px] w-8 bg-[#C5A059]/70"></span>
+                    <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
                 </div>
             </div>
 
-            <!-- Bottom Guest Greeting & Open Button -->
-            <div class="relative z-10 px-8 pb-8 text-center flex flex-col items-center">
-                <!-- Recipient Pill -->
-                <div class="w-full max-w-[280px] bg-[#1E2C38]/85 backdrop-blur-md border border-[#C5A059]/50 rounded-full py-2.5 px-4 mb-4 shadow-xl">
-                    <p class="text-[9px] uppercase tracking-wider text-[#C5A059] font-cinzel">Kepada Yth. Tamu Undangan:</p>
-                    <p class="text-sm font-semibold text-white truncate mt-0.5">{{ $guestName }}</p>
+            <!-- Bottom Guest Greeting & Open Button - Positioned over swirling blue wave clouds -->
+            <div class="relative z-20 px-6 pb-6 sm:pb-8 text-center flex flex-col items-center">
+                <!-- Recipient Pill (frosted midnight glass with gold trim) -->
+                <div class="w-full max-w-[270px] bg-[#142330]/85 backdrop-blur-md border border-[#C5A059]/45 rounded-full py-2 px-4 mb-3 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
+                    <p class="text-[9px] uppercase tracking-wider text-[#DFBF77] font-cinzel font-medium">Kepada Yth. Tamu Undangan:</p>
+                    <p class="text-xs sm:text-sm font-semibold text-white truncate mt-0.5">{{ $guestName }}</p>
                 </div>
 
-                <!-- CTA Button BUKA UNDANGAN -->
-                <button id="btn-open-invitation" class="group relative inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-[#C5A059] via-[#DFBF77] to-[#C5A059] text-celestial-navy font-cinzel text-xs font-bold tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(197,160,89,0.55)] hover:brightness-110 active:scale-95 transition-all">
-                    <svg class="w-4 h-4 text-celestial-navy group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- CTA Button BUKA UNDANGAN (Rich shimmering gold) -->
+                <button id="btn-open-invitation" class="group relative inline-flex items-center justify-center gap-2 px-8 py-2.5 sm:py-3 bg-gradient-to-r from-[#C5A059] via-[#E2C37E] to-[#C5A059] text-[#162734] font-cinzel text-xs font-bold tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(197,160,89,0.55)] hover:brightness-110 active:scale-95 transition-all">
+                    <svg class="w-4 h-4 text-[#162734] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19V5l12-3v16l-12-3zm12-9l6-2v8l-6-2"/>
                     </svg>
                     <span>BUKA UNDANGAN</span>
