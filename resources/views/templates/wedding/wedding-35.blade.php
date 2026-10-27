@@ -284,7 +284,7 @@
             animation: petalsDrift 7s ease-in-out infinite;
         }
 
-        /* Custom scrollbar */
+/* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 5px;
         }
@@ -307,47 +307,145 @@
         <!-- ========================================== -->
         <section id="cover-screen" class="fixed inset-0 z-50 flex flex-col justify-between max-w-[460px] mx-auto bg-[#172635] transition-transform duration-1000 ease-in-out overflow-hidden shadow-2xl">
             <!-- Artwork scene (682:1024) composed from individual assets in wedding-new-2 -->
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 h-full pointer-events-none select-none overflow-hidden" style="width:max(100%, 66.6dvh);background:radial-gradient(ellipse at 50% 30%,#2a3b55 0%,#1b2740 45%,#141d30 100%);">
+            <div id="w35-scene" class="absolute top-0 left-1/2 -translate-x-1/2 h-full pointer-events-none select-none overflow-hidden" style="width:max(100%, 66.6dvh);background:radial-gradient(ellipse at 50% 30%,#2a3b55 0%,#1b2740 45%,#141d30 100%);">
+                <!-- Distant night stars -->
                 <div class="absolute inset-0" style="background-image:radial-gradient(1px 1px at 12% 8%,#fff,transparent),radial-gradient(1px 1px at 30% 4%,#fff,transparent),radial-gradient(1.5px 1.5px at 58% 6%,#f5e3b0,transparent),radial-gradient(1px 1px at 72% 3%,#fff,transparent),radial-gradient(1px 1px at 88% 10%,#fff,transparent),radial-gradient(1.5px 1.5px at 94% 22%,#fff,transparent),radial-gradient(1px 1px at 8% 22%,#fff,transparent),radial-gradient(1px 1px at 46% 2%,#fff,transparent),radial-gradient(1px 1px at 82% 28%,#f5e3b0,transparent);"></div>
-                <img src="{{ $imgDir }}/layers/moon.webp" alt="" class="absolute max-w-none" style="left:14%;top:9.5%;width:72%;filter:drop-shadow(0 0 30px rgba(255,236,190,.45));"/>
-                <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="" class="absolute max-w-none" style="left:2%;top:24%;width:40%;transform:scaleX(-1);opacity:.95;"/>
-                <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="" class="absolute max-w-none" style="left:74%;top:13%;width:36%;"/>
-                <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="" class="absolute max-w-none" style="left:72%;top:28%;width:36%;width:34%;"/>
-                <img src="{{ $imgDir }}/layers/mountains.webp" alt="" class="absolute max-w-none" style="left:-4%;top:50%;width:108%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
-                <img src="{{ $imgDir }}/layers/cliff-pagoda.webp" alt="" class="absolute max-w-none" style="left:16%;top:57%;width:20%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
-                <img src="{{ $imgDir }}/layers/pagoda.webp" alt="" class="absolute max-w-none" style="left:60%;top:40%;width:52%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 30%);mask-image:linear-gradient(90deg,transparent 0%,#000 30%);"/>
-                <img src="{{ $imgDir }}/layers/waterfall.webp" alt="" class="absolute max-w-none" style="left:46%;top:62%;width:50%;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);"/>
-                <img src="{{ $imgDir }}/layers/rocks.webp" alt="" class="absolute max-w-none" style="left:54%;top:70%;width:50%;"/>
-                <img src="{{ $imgDir }}/layers/pine.webp" alt="" class="absolute max-w-none" style="left:26%;top:66%;width:32%;"/>
-                <img src="{{ $imgDir }}/layers/waves.webp" alt="" class="absolute max-w-none" style="left:40%;top:74%;width:70%;opacity:.95;"/>
-                <img src="{{ $imgDir }}/layers/rail-plain.webp" alt="" class="absolute max-w-none" style="left:30%;top:70%;width:48%;transform:rotate(6deg);"/>
-                <img src="{{ $imgDir }}/layers/rail-flower-r.webp" alt="" class="absolute max-w-none" style="left:58%;top:76%;width:46%;transform:rotate(6deg);"/>
-                <img src="{{ $imgDir }}/layers/rail-flower-l.webp" alt="" class="absolute max-w-none" style="left:14%;top:68%;width:44%;transform:rotate(6deg);"/>
-                <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="" class="absolute max-w-none" style="left:-10%;top:-1%;width:52%;"/>
-                <img src="{{ $imgDir }}/layers/blossom-top.webp" alt="" class="absolute max-w-none" style="left:-8%;top:0%;width:40%;"/>
-                <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="" class="absolute max-w-none" style="left:-16%;top:34%;width:32%;transform:rotate(-15deg);"/>
-                <img src="{{ $imgDir }}/layers/flower-bush.webp" alt="" class="absolute max-w-none" style="left:-12%;top:64%;width:50%;"/>
-                <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="" class="absolute max-w-none" style="left:-12%;top:70%;width:40%;"/>
-                <img src="{{ $imgDir }}/layers/waves.webp" alt="" class="absolute max-w-none" style="left:-8%;top:85%;width:116%;"/>
-                <img src="{{ $imgDir }}/layers/pendant.webp" alt="" class="absolute max-w-none" style="left:44.5%;top:-1.5%;width:11%;transform-origin:50% 0;animation:pendantSway 5s ease-in-out infinite;"/>
-                <img src="{{ $imgDir }}/layers/crane.webp" alt="" class="absolute max-w-none" style="left:60%;top:3%;width:36%;animation:craneGlide 6s ease-in-out infinite;"/>
-                <img src="{{ $imgDir }}/layers/petals.webp" alt="" class="absolute max-w-none" style="left:10%;top:30%;width:16%;animation:petalsDrift 7s ease-in-out infinite;"/>
-                <img src="{{ $imgDir }}/layers/petals.webp" alt="" class="absolute max-w-none" style="left:62%;top:52%;width:14%;transform:rotate(30deg);opacity:.85;"/>
-                <div class="absolute left-0 right-0 text-center" style="top:22.6%;color:#8B6327;">
-                    <p class="font-serif" style="font-size:2.1dvh;letter-spacing:.12em;color:#3a3a3a;">THE WEDDING OF</p>
-                    <h1 class="font-serif" style="font-size:6.2dvh;line-height:1;margin-top:1.6dvh;font-weight:500;letter-spacing:.02em;">{{ strtoupper($couple['bride']) }}</h1>
-                    <div class="flex items-center justify-center" style="gap:2dvh;margin:.3dvh 0;">
-                        <span style="height:1px;width:13dvh;background:#B8945A;"></span>
-                        <span class="font-serif" style="font-size:4.6dvh;line-height:1;">&amp;</span>
-                        <span style="height:1px;width:13dvh;background:#B8945A;"></span>
+
+                <!-- 1. Giant Luminous Full Moon -->
+                <div class="w35-in w35-zoom" style="animation-delay:0.15s">
+                    <img src="{{ $imgDir }}/layers/moon.webp" alt="Moon" class="absolute max-w-none" style="left:3.5%;top:5%;width:93%;filter:drop-shadow(0 0 35px rgba(255,236,190,.4));"/>
+                </div>
+
+                <!-- 2. Distant Misty Blue Mountains -->
+                <div class="w35-in w35-fade" style="animation-delay:0.4s">
+                    <img src="{{ $imgDir }}/layers/mountains.webp" alt="Mountains" class="absolute max-w-none" style="left:-2%;top:45%;width:104%;"/>
+                </div>
+
+                <!-- 3. Left Midground Cliff & Waterfall -->
+                <div class="w35-in w35-fade" style="animation-delay:0.65s">
+                    <img src="{{ $imgDir }}/layers/cliff-pagoda.webp" alt="Cliff" class="absolute max-w-none" style="left:18%;top:54%;width:25%;"/>
+                </div>
+
+                <!-- 4. Waterfall in Gorge -->
+                <div class="w35-in w35-up" style="animation-delay:0.9s">
+                    <img src="{{ $imgDir }}/layers/waterfall.webp" alt="Waterfall" class="absolute max-w-none" style="left:42%;top:59%;width:48%;"/>
+                </div>
+
+                <!-- 5. Pagoda Temple on Mountain Cliff (Right) -->
+                <div class="w35-in w35-right" style="animation-delay:1.15s">
+                    <img src="{{ $imgDir }}/layers/pagoda.webp" alt="Pagoda" class="absolute max-w-none" style="left:50%;top:34%;width:52%;"/>
+                </div>
+
+                <!-- 6. Pine Tree Branch -->
+                <div class="w35-in w35-up" style="animation-delay:1.4s">
+                    <img src="{{ $imgDir }}/layers/pine.webp" alt="Pine" class="absolute max-w-none" style="left:28%;top:62%;width:42%;"/>
+                </div>
+
+                <!-- 7. Rocks on Right -->
+                <div class="w35-in w35-up" style="animation-delay:1.65s">
+                    <img src="{{ $imgDir }}/layers/rocks.webp" alt="Rocks" class="absolute max-w-none" style="left:54%;top:69%;width:48%;"/>
+                </div>
+
+                <!-- 8. Bridge Railing Segments -->
+                <div class="w35-in w35-up" style="animation-delay:1.9s">
+                    <img src="{{ $imgDir }}/layers/rail-flower-l.webp" alt="Bridge Left" class="absolute max-w-none" style="left:20%;top:68%;width:44%;transform:rotate(9deg);"/>
+                </div>
+                <div class="w35-in w35-up" style="animation-delay:2.05s">
+                    <img src="{{ $imgDir }}/layers/rail-plain.webp" alt="Bridge Mid" class="absolute max-w-none" style="left:44%;top:76%;width:40%;transform:rotate(9deg);"/>
+                </div>
+                <div class="w35-in w35-up" style="animation-delay:2.2s">
+                    <img src="{{ $imgDir }}/layers/rail-flower-r.webp" alt="Bridge Right" class="absolute max-w-none" style="left:64%;top:83%;width:40%;transform:rotate(9deg);"/>
+                </div>
+
+                <!-- 9. Golden Clouds Flanking Moon -->
+                <div class="w35-in w35-left" style="animation-delay:2.4s">
+                    <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="Cloud" class="absolute max-w-none" style="left:-6%;top:26%;width:40%;transform:scaleX(-1);"/>
+                </div>
+                <div class="w35-in w35-right" style="animation-delay:2.55s">
+                    <img src="{{ $imgDir }}/layers/cloud-b.webp" alt="Cloud" class="absolute max-w-none" style="left:72%;top:12%;width:32%;"/>
+                </div>
+                <div class="w35-in w35-right" style="animation-delay:2.7s">
+                    <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="Cloud" class="absolute max-w-none" style="left:76%;top:28%;width:28%;"/>
+                </div>
+                <div class="w35-in w35-left" style="animation-delay:2.85s">
+                    <img src="{{ $imgDir }}/layers/cloud-a.webp" alt="Cloud" class="absolute max-w-none" style="left:-4%;top:-1%;width:48%;"/>
+                </div>
+
+                <!-- 10. Cascading Cherry Blossoms (Top & Bottom Left) -->
+                <div class="w35-in w35-left" style="animation-delay:3.0s">
+                    <img src="{{ $imgDir }}/layers/blossom-top.webp" alt="Blossoms Top" class="absolute max-w-none" style="left:-6%;top:-1%;width:44%;"/>
+                </div>
+                <div class="w35-in w35-left" style="animation-delay:3.15s">
+                    <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="Blossoms Mid" class="absolute max-w-none" style="left:-12%;top:24%;width:38%;transform:rotate(-15deg);"/>
+                </div>
+                <div class="w35-in w35-left" style="animation-delay:3.3s">
+                    <img src="{{ $imgDir }}/layers/flower-bush.webp" alt="Flowers Bottom" class="absolute max-w-none" style="left:-12%;top:58%;width:54%;"/>
+                </div>
+                <div class="w35-in w35-left" style="animation-delay:3.45s">
+                    <img src="{{ $imgDir }}/layers/flower-branch.webp" alt="Flowers Lower" class="absolute max-w-none" style="left:-10%;top:68%;width:42%;"/>
+                </div>
+
+                <!-- 11. Swirling Blue Cloud Waves at Base -->
+                <div class="w35-in w35-up" style="animation-delay:3.6s">
+                    <img src="{{ $imgDir }}/layers/waves.webp" alt="Waves Left" class="absolute max-w-none" style="left:-10%;top:80%;width:80%;"/>
+                </div>
+                <div class="w35-in w35-up" style="animation-delay:3.75s">
+                    <img src="{{ $imgDir }}/layers/waves.webp" alt="Waves Mid" class="absolute max-w-none" style="left:18%;top:85%;width:75%;"/>
+                </div>
+                <div class="w35-in w35-up" style="animation-delay:3.9s">
+                    <img src="{{ $imgDir }}/layers/waves.webp" alt="Waves Right" class="absolute max-w-none" style="left:46%;top:83%;width:68%;transform:scaleX(-1);"/>
+                </div>
+
+                <!-- 12. Hanging Gold Pendant (Top Center) -->
+                <div class="w35-in w35-down" style="animation-delay:4.05s">
+                    <img src="{{ $imgDir }}/layers/pendant.webp" alt="Pendant" class="absolute max-w-none animate-pendant" style="left:43.5%;top:-1%;width:13%;transform-origin:50% 0;"/>
+                </div>
+
+                <!-- 13. Flying White Red-Crowned Crane (Top Right) -->
+                <div class="w35-in w35-crane-in" style="animation-delay:4.2s">
+                    <img src="{{ $imgDir }}/layers/crane.webp" alt="Crane" class="absolute max-w-none animate-crane" style="left:61%;top:4%;width:33%;"/>
+                </div>
+
+                <!-- 14. Drifting Flower Petals -->
+                <div class="w35-in w35-fade" style="animation-delay:4.35s">
+                    <img src="{{ $imgDir }}/layers/petals.webp" alt="Petals" class="absolute max-w-none animate-petals" style="left:10%;top:26%;width:18%;"/>
+                </div>
+                <div class="w35-in w35-fade" style="animation-delay:4.5s">
+                    <img src="{{ $imgDir }}/layers/petals.webp" alt="Petals" class="absolute max-w-none" style="left:62%;top:52%;width:14%;transform:rotate(30deg);opacity:.85;"/>
+                </div>
+
+                <!-- 15. Center Typography on the Moon -->
+                <div class="absolute left-0 right-0 text-center w35-in w35-text-in select-none" style="top:22.5%;color:#7D5827;animation-delay:4.7s">
+                    <p class="font-cinzel text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.35em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)] mb-2">
+                        THE WEDDING OF
+                    </p>
+
+                    <h1 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
+                        {{ $couple['bride'] }}
+                    </h1>
+
+                    <div class="my-0.5 sm:my-1 flex items-center justify-center gap-3">
+                        <span class="h-[1px] w-8 sm:w-12 bg-[#8A6126]/40"></span>
+                        <span class="font-serif italic text-2xl sm:text-3xl font-normal text-[#8A6126] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">&amp;</span>
+                        <span class="h-[1px] w-8 sm:w-12 bg-[#8A6126]/40"></span>
                     </div>
-                    <h2 class="font-serif" style="font-size:6.2dvh;line-height:1;font-weight:500;letter-spacing:.02em;">{{ strtoupper($couple['groom']) }}</h2>
-                    <p class="font-serif" style="font-size:2.2dvh;letter-spacing:.12em;margin-top:2.6dvh;color:#3a3a3a;">21 . 12 . 2026</p>
+
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-[0.16em] uppercase text-[#6B471C] drop-shadow-[0_2px_4px_rgba(255,255,255,0.7)] leading-none">
+                        {{ $couple['groom'] }}
+                    </h2>
+
+                    <div class="mt-2.5 sm:mt-3.5 flex items-center justify-center gap-3">
+                        <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
+                        <p class="font-cinzel text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#7D5827] drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)]">
+                            21 . 12 . 2026
+                        </p>
+                        <span class="h-[1px] w-6 sm:w-8 bg-[#8A6126]/40"></span>
+                    </div>
                 </div>
             </div>
 
             <!-- Bottom Guest Greeting & Open Button - Positioned over swirling blue wave clouds -->
-            <div class="relative z-20 mt-auto px-6 pb-6 sm:pb-8 text-center flex flex-col items-center">
+            <div class="relative z-20 mt-auto px-6 pb-6 sm:pb-8 text-center flex flex-col items-center w35-cta">
                 <!-- Recipient Pill (frosted midnight glass with gold trim) -->
                 <div class="w-full max-w-[270px] bg-[#142330]/85 backdrop-blur-md border border-[#C5A059]/45 rounded-full py-2 px-4 mb-3 shadow-[0_8px_20px_rgba(0,0,0,0.35)]">
                     <p class="text-[9px] uppercase tracking-wider text-[#DFBF77] font-cinzel font-medium">Kepada Yth. Tamu Undangan:</p>
